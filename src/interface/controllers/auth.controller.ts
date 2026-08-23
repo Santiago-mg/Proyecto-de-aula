@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { UserRepository } from '../../infrastructure/repositories/UserRepository'
 import {
+  getProfile,
   loginUser,
   registerUser,
 } from '../../application/use-cases/auth.use-cases'
@@ -29,6 +30,11 @@ export async function login(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export function me(req: Request, res: Response) {
-  res.json({ data: req.user })
+export async function me(req: Request, res: Response, next: NextFunction) {
+  try {
+    const user = await getProfile(repo, req.user!.id)
+    res.json({ data: user })
+  } catch (error) {
+    next(error)
+  }
 }

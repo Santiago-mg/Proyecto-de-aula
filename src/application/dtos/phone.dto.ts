@@ -47,7 +47,16 @@ export const phonesQueryDto = z.object({
   category: z.string().optional(),
   brand: z.string().optional(),
   condition: z.enum(['NEW', 'CERTIFIED', 'USED']).optional(),
-  verified: z.coerce.boolean().optional(),
+  // Los query params siempre llegan como string. `z.coerce.boolean()` aplica
+  // la semántica de JS (Boolean("false") === true), así que "verified=false"
+  // filtraba por verificados. Se comparan los literales explícitamente y
+  // cualquier otro valor da 400 en lugar de colarse como `true`.
+  verified: z
+    .enum(['true', 'false'], {
+      errorMap: () => ({ message: 'verified debe ser "true" o "false"' }),
+    })
+    .transform((v) => v === 'true')
+    .optional(),
   minPrice: z.coerce.number().int().positive().optional(),
   maxPrice: z.coerce.number().int().positive().optional(),
   search: z.string().optional(),

@@ -8,14 +8,16 @@ import {
   getPhones,
   updatePhone,
 } from '../../application/use-cases/phones.use-cases'
-import { phonesQueryDto } from '../../application/dtos/phone.dto'
+import type { PhonesQueryDto } from '../../application/dtos/phone.dto'
 
 const repo = new PhoneRepository()
 
 export async function list(req: Request, res: Response, next: NextFunction) {
   try {
-    const query = phonesQueryDto.parse(req.query)
-    const result = await getPhones(repo, query)
+    // Ya viene validado y convertido por validate(phonesQueryDto, 'query').
+    // Antes se hacía .parse() aquí, y el ZodError crudo llegaba al manejador
+    // global como 500 en lugar de responder 400.
+    const result = await getPhones(repo, req.query as unknown as PhonesQueryDto)
     res.json(result)
   } catch (error) {
     next(error)

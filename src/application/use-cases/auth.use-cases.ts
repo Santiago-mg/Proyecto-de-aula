@@ -31,10 +31,11 @@ export async function loginUser(repo: IUserRepository, data: LoginDto) {
   if (!validPassword) throw new AppError('Credenciales inválidas', 401)
 
   // Usuario baneado no puede ingresar
-  if ((user as { banned?: boolean }).banned) {
-    const reason = (user as { banReason?: string | null }).banReason
+  if (user.banned) {
     throw new AppError(
-      `Tu cuenta ha sido suspendida.${reason ? ` Motivo: ${reason}` : ''}`,
+      `Tu cuenta ha sido suspendida.${
+        user.banReason ? ` Motivo: ${user.banReason}` : ''
+      }`,
       403,
     )
   }
@@ -42,4 +43,15 @@ export async function loginUser(repo: IUserRepository, data: LoginDto) {
   const token = signToken({ id: user.id, role: user.role })
   const { password: _p, ...publicUser } = user
   return { user: publicUser, token }
+}
+
+// El JWT solo carga `id` y `role`. Para /me hay que ir a la base, si no el
+// endpoint devuelve el payload del token (id, role, iat, exp) en lugar del
+// perfil, y el front nunca recibe `name` ni `email`.
+export async function getProfile(repo: IUserRepository, userId: string) {
+  const user = await repo.findById(userId)
+  if (!user) throw new AppError('Usuario no encontrado', 404)
+
+  const { password: _p, ...publicUser } = user
+  return publicUser
 }
