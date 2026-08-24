@@ -19,7 +19,10 @@ export async function banUser(
   repo: IAdminRepository,
   userId: string,
   data: BanUserDto,
+  requesterId: string,
 ) {
+  if (userId === requesterId)
+    throw new AppError('No puedes banear tu propia cuenta', 400)
   return repo.banUser(userId, data.reason)
 }
 
