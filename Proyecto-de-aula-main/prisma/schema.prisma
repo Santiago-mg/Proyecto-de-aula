@@ -1,0 +1,156 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Condition {
+  NEW
+  CERTIFIED
+  USED
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  name      String
+  password  String
+  role      Role      @default(USER)
+  banned    Boolean   @default(false)
+  banReason String?
+  bannedAt  DateTime?
+  orders    Order[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Category {
+  id      String  @id
+  name    String
+  tagline String?
+  phones  Phone[]
+}
+
+model Phone {
+  id            String         @id @default(uuid())
+  slug          String         @unique
+  name          String
+  brand         String
+  categoryId    String
+  category      Category       @relation(fields: [categoryId], references: [id])
+  price         Int
+  compareAt     Int?
+  badge         String?
+  stock         Int            @default(0)
+  condition     Condition      @default(NEW)
+  verified      Boolean        @default(false)
+  batteryHealth Int?
+  ram           String?
+  storage       String?
+  camera        String?
+  battery       String?
+  screen        String?
+  chip          String?
+  shortDesc     String?
+  longDesc      String?
+  heroImage     String?
+  images        PhoneImage[]
+  colors        PhoneColor[]
+  features      PhoneFeature[]
+  orderItems    OrderItem[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([categoryId])
+  @@index([brand])
+  @@index([condition])
+  @@index([verified])
+}
+
+model PhoneImage {
+  id       Int    @id @default(autoincrement())
+  phoneId  String
+  phone    Phone  @relation(fields: [phoneId], references: [id], onDelete: Cascade)
+  url      String
+  position Int    @default(0)
+
+  @@index([phoneId])
+}
+
+model PhoneColor {
+  id       Int    @id @default(autoincrement())
+  phoneId  String
+  phone    Phone  @relation(fields: [phoneId], references: [id], onDelete: Cascade)
+  colorId  String
+  name     String
+  hex      String
+
+  @@unique([phoneId, colorId])
+  @@index([phoneId])
+}
+
+model PhoneFeature {
+  id       Int    @id @default(autoincrement())
+  phoneId  String
+  phone    Phone  @relation(fields: [phoneId], references: [id], onDelete: Cascade)
+  feature  String
+  position Int    @default(0)
+
+  @@index([phoneId])
+}
+
+model Order {
+  id        String      @id @default(uuid())
+  orderRef  String      @unique
+  userId    String?
+  user      User?       @relation(fields: [userId], references: [id])
+  email     String
+  name      String
+  phone     String
+  address   String
+  city      String
+  dept      String
+  subtotal  Int
+  shipping  Int         @default(0)
+  total     Int
+  status    OrderStatus @default(CONFIRMED)
+  items     OrderItem[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([email])
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  phoneId   String?
+  phone     Phone?  @relation(fields: [phoneId], references: [id])
+  name      String
+  heroImage String?
+  price     Int
+  qty       Int
+  colorId   String?
+  colorName String?
+
+  @@index([orderId])
+}
