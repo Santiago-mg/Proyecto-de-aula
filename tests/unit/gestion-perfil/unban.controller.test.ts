@@ -1,23 +1,14 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Request, Response, NextFunction } from 'express'
+import { unban } from '../../../src/interface/controllers/admin.controller'
+import { limpiarBaseDeDatos } from '../../helpers/db'
+import { crearUsuario } from '../../helpers/fixtures'
 
 // Basado en: interface/controllers/admin.controller.ts — unban()
 //          + application/use-cases/admin.use-cases.ts — unbanUser()
-
-vi.mock('../../../src/infrastructure/repositories/AdminRepository', () => ({
-  AdminRepository: vi.fn(),
-}))
-
-vi.mock('../../../src/application/use-cases/admin.use-cases', () => ({
-  banUser: vi.fn(),
-  unbanUser: vi.fn(),
-  changeUserRole: vi.fn(),
-  getStats: vi.fn(),
-  listUsers: vi.fn(),
-}))
-
-import { unban } from '../../../src/interface/controllers/admin.controller'
-import { unbanUser } from '../../../src/application/use-cases/admin.use-cases'
+//
+// Sin vi.mock(): unban() usa el AdminRepository real del módulo, así que
+// esta prueba lo ejercita contra la base de datos real.
 
 function makeRes() {
   const res: Partial<Response> = {}
@@ -25,39 +16,38 @@ function makeRes() {
   return res as Response
 }
 
-beforeEach(() => {
-  vi.clearAllMocks()
+beforeEach(async () => {
+  await limpiarBaseDeDatos()
 })
 
 describe('admin.controller — unban()', () => {
   // Camino 1,2,3,4,5,F — id existente y baneado
   it('responde con el usuario desbaneado cuando unbanUser() resuelve sin error', async () => {
-    const unbannedUser = { id: 'user-1', banned: false, banReason: null, bannedAt: null }
-    ;(unbanUser as ReturnType<typeof vi.fn>).mockResolvedValue(unbannedUser)
+    const victima = await crearUsuario({ banned: true, banReason: 'spam' })
 
-    const req = { params: { id: 'user-1' } } as unknown as Request
+    const req = { params: { id: victima.id } } as unknown as Request
     const res = makeRes()
     const next = vi.fn() as NextFunction
 
     await unban(req, res, next)
 
-    expect(unbanUser).toHaveBeenCalledWith(expect.anything(), 'user-1')
-    expect(res.json).toHaveBeenCalledWith({ data: unbannedUser })
+    expect(res.json).toHaveBeenCalledWith({
+      data: expect.objectContaining({ id: victima.id, banned: false, banReason: null, bannedAt: null }),
+    })
     expect(next).not.toHaveBeenCalled()
   })
 
-  // Camino 1,2,3,4,6,F — unbanUser() lanza error (ej. id inexistente)
-  it('invoca next(error) cuando unbanUser() lanza un error', async () => {
-    const error = new Error('Record not found (P2025)')
-    ;(unbanUser as ReturnType<typeof vi.fn>).mockRejectedValue(error)
-
-    const req = { params: { id: 'no-existe' } } as unknown as Request
+  // Camino 1,2,3,4,6,F — unbanUser() lanza error (id inexistente)
+  it('invoca next(error) cuando el id no existe', async () => {
+    const req = { params: { id: '00000000-0000-0000-0000-000000000000' } } as unknown as Request
     const res = makeRes()
     const next = vi.fn() as NextFunction
 
     await unban(req, res, next)
 
-    expect(next).toHaveBeenCalledWith(error)
+    expect(next).toHaveBeenCalledWith(
+      expect.objectContaining({ message: 'Usuario no encontrado', statusCode: 404 }),
+    )
     expect(res.json).not.toHaveBeenCalled()
   })
 })

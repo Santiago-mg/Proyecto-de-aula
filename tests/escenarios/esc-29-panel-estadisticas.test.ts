@@ -1,33 +1,54 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import request from 'supertest'
 import app from '../../src/app'
-import { prismaMock } from '../helpers/prisma-mock'
-import {
-  ID_USUARIO,
-  autenticarComo,
-  simularEstadisticas,
-  tokenConFirmaInvalida,
-} from '../helpers/datos'
+import prisma from '../../src/infrastructure/database/prisma'
+import { limpiarBaseDeDatos } from '../helpers/db'
+import { crearAdminAutenticado, crearUsuarioAutenticado, tokenConFirmaInvalida } from '../helpers/fixtures'
 
 /**
  * ESC-29 — Panel de estadísticas
  * GET /api/v1/admin/stats
  *
  * V(G) = 6. Los tres últimos caminos recorren el bucle que suma los ingresos:
- * sin pedidos, con un pedido que sí suma, y con un pedido cancelado que se salta.
+ * sin pedidos, con un pedido que sí suma, y con un pedido cancelado que se
+ * salta. Contra Postgres real, sin mocks.
+ *
+ * getStats() solo lee: no hay ningún endpoint que lleve un pedido hasta
+ * DELIVERED o CANCELLED de un salto (eso pasa con varias llamadas a
+ * updateOrderStatus). Para probar el conteo por estado alcanza con insertar
+ * el pedido directamente con el estado ya puesto, así que se hace con Prisma
+ * en lugar de recorrer todo el flujo de compra.
  */
 
 const RUTA = '/api/v1/admin/stats'
 
-/** Una fila del groupBy de pedidos, tal como la devuelve Prisma. */
-function grupoDePedidos(status: string, cantidad: number, suma: number) {
-  return { status, _count: { _all: cantidad }, _sum: { total: suma } }
+function crearPedido(overrides: {
+  status: 'PENDING' | 'CONFIRMED' | 'SHIPPED' | 'DELIVERED' | 'CANCELLED'
+  total: number
+  orderRef?: string
+  createdAt?: Date
+}) {
+  const { status, total, orderRef, createdAt } = overrides
+  return prisma.order.create({
+    data: {
+      orderRef: orderRef ?? `CP-${Math.random().toString(36).slice(2, 8).toUpperCase()}`,
+      email: 'cliente@correo.com',
+      name: 'Cliente de prueba',
+      phone: '+57 300 000 0000',
+      address: 'Calle de prueba',
+      city: 'Bogota',
+      dept: 'Cundinamarca',
+      subtotal: total,
+      shipping: 0,
+      total,
+      status,
+      createdAt,
+    },
+  })
 }
 
-// Cada prueba arranca con los mocks en blanco, así ninguna pasa "de rebote"
-// por lo que dejó configurado la anterior.
-beforeEach(() => {
-  vi.resetAllMocks()
+beforeEach(async () => {
+  await limpiarBaseDeDatos()
 })
 
 describe('ESC-29 — Panel de estadísticas', () => {
@@ -36,7 +57,6 @@ describe('ESC-29 — Panel de estadísticas', () => {
 
     expect(res.status).toBe(401)
     expect(res.body.error).toBe('Token requerido')
-    expect(prismaMock.order.groupBy).not.toHaveBeenCalled()
   })
 
   it('Camino 2 (1-3-4-14): firma inválida → 401 Token inválido o expirado', async () => {
@@ -46,22 +66,19 @@ describe('ESC-29 — Panel de estadísticas', () => {
 
     expect(res.status).toBe(401)
     expect(res.body.error).toBe('Token inválido o expirado')
-    expect(prismaMock.order.groupBy).not.toHaveBeenCalled()
   })
 
   it('Camino 3 (1-3-5-6-14): rol USER → 403 Acceso restringido', async () => {
-    const token = autenticarComo({ id: ID_USUARIO, role: 'USER' })
+    const { token } = await crearUsuarioAutenticado()
 
     const res = await request(app).get(RUTA).set('Authorization', `Bearer ${token}`)
 
     expect(res.status).toBe(403)
     expect(res.body.error).toBe('Acceso restringido a administradores')
-    expect(prismaMock.order.groupBy).not.toHaveBeenCalled()
   })
 
   it('Camino 4 (1-3-5-7-8-9-13-14): sin pedidos → 200 con los ingresos en 0', async () => {
-    const token = autenticarComo()
-    simularEstadisticas({ groupBy: [] })
+    const { token } = await crearAdminAutenticado()
 
     const res = await request(app).get(RUTA).set('Authorization', `Bearer ${token}`)
 
@@ -70,8 +87,8 @@ describe('ESC-29 — Panel de estadísticas', () => {
   })
 
   it('Camino 5 (1-3-5-7-8-9-10-11-9-13-14): pedido no cancelado → suma su total a los ingresos', async () => {
-    const token = autenticarComo()
-    simularEstadisticas({ groupBy: [grupoDePedidos('DELIVERED', 1, 3_500_000)] })
+    const { token } = await crearAdminAutenticado()
+    await crearPedido({ status: 'DELIVERED', total: 3_500_000 })
 
     const res = await request(app).get(RUTA).set('Authorization', `Bearer ${token}`)
 
@@ -85,8 +102,8 @@ describe('ESC-29 — Panel de estadísticas', () => {
   })
 
   it('Camino 6 (1-3-5-7-8-9-10-12-9-13-14): pedido cancelado → no se suma a los ingresos', async () => {
-    const token = autenticarComo()
-    simularEstadisticas({ groupBy: [grupoDePedidos('CANCELLED', 1, 3_500_000)] })
+    const { token } = await crearAdminAutenticado()
+    await crearPedido({ status: 'CANCELLED', total: 3_500_000 })
 
     const res = await request(app).get(RUTA).set('Authorization', `Bearer ${token}`)
 
@@ -100,14 +117,13 @@ describe('ESC-29 — Panel de estadísticas', () => {
   })
 
   it('Con pedidos mezclados solo suma los que no están cancelados', async () => {
-    const token = autenticarComo()
-    simularEstadisticas({
-      groupBy: [
-        grupoDePedidos('DELIVERED', 2, 5_000_000),
-        grupoDePedidos('PENDING', 1, 1_000_000),
-        grupoDePedidos('CANCELLED', 3, 9_000_000),
-      ],
-    })
+    const { token } = await crearAdminAutenticado()
+    await crearPedido({ status: 'DELIVERED', total: 2_000_000 })
+    await crearPedido({ status: 'DELIVERED', total: 3_000_000 })
+    await crearPedido({ status: 'PENDING', total: 1_000_000 })
+    await crearPedido({ status: 'CANCELLED', total: 3_000_000 })
+    await crearPedido({ status: 'CANCELLED', total: 3_000_000 })
+    await crearPedido({ status: 'CANCELLED', total: 3_000_000 })
 
     const res = await request(app).get(RUTA).set('Authorization', `Bearer ${token}`)
 
@@ -117,13 +133,12 @@ describe('ESC-29 — Panel de estadísticas', () => {
       delivered: 2,
       pending: 1,
       cancelled: 3,
-      revenue: 6_000_000, // 5.000.000 + 1.000.000, sin los 9.000.000 cancelados
+      revenue: 6_000_000, // 2.000.000 + 3.000.000 + 1.000.000, sin los 9.000.000 cancelados
     })
   })
 
   it('El panel siempre devuelve los 7 días de ingresos', async () => {
-    const token = autenticarComo()
-    simularEstadisticas({ groupBy: [] })
+    const { token } = await crearAdminAutenticado()
 
     const res = await request(app).get(RUTA).set('Authorization', `Bearer ${token}`)
 

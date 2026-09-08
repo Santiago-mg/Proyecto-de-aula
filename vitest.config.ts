@@ -1,4 +1,9 @@
+import { config } from 'dotenv'
 import { defineConfig } from 'vitest/config'
+
+// Carga .env.test (no .env) antes de que arranque cualquier prueba, para que
+// DATABASE_URL apunte a la base de pruebas y no a la compartida del equipo.
+config({ path: '.env.test' })
 
 export default defineConfig({
   test: {
@@ -9,24 +14,27 @@ export default defineConfig({
 
     environment: 'node',
 
-    // Reemplaza el cliente Prisma antes de que lo importe cualquier repositorio.
+    // Corre la comprobación de seguridad de DATABASE_URL y cierra la
+    // conexión de Prisma al final de cada archivo.
     setupFiles: ['tests/setup.ts'],
 
-    // Variables que el código de producción espera encontrar. Se fijan aquí
-    // para que la suite no dependa del .env de cada máquina.
+    // JWT_SECRET no depende del .env de cada máquina; DATABASE_URL sí, y se
+    // carga arriba desde .env.test.
     env: {
       NODE_ENV: 'test',
       JWT_SECRET: 'secreto-solo-para-pruebas',
     },
 
-    // Cada archivo corre en su propio entorno: los mocks de un archivo no se
-    // filtran a otro. Es lo que permite que convivan los tres juegos de
-    // pruebas, que simulan módulos distintos.
-    isolate: true,
+    // Todos los archivos comparten la misma base de datos real, así que
+    // corren uno detrás del otro y no en paralelo. Si dos archivos
+    // corrieran a la vez, el beforeEach de uno podría borrar los datos que
+    // el otro acababa de insertar.
+    fileParallelism: false,
 
-    // Se limpian las llamadas registradas, pero NO las implementaciones: los
-    // vi.mock() de módulo definen su comportamiento una sola vez al cargarse.
-    clearMocks: true,
+    // Cada archivo corre en su propio entorno de módulos, así que su propio
+    // cliente Prisma. No hay mocks de módulo que necesiten sobrevivir entre
+    // archivos, pero mantiene los archivos totalmente independientes entre sí.
+    isolate: true,
 
     coverage: {
       provider: 'v8',

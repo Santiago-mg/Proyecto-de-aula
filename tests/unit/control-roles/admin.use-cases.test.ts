@@ -1,66 +1,43 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { changeUserRole } from '../../../src/application/use-cases/admin.use-cases';
-import type { AdminUser } from '../../../src/domain/repositories/IAdminRepository';
+import { beforeEach, describe, expect, it } from 'vitest'
+import { changeUserRole } from '../../../src/application/use-cases/admin.use-cases'
+import { AdminRepository } from '../../../src/infrastructure/repositories/AdminRepository'
+import { limpiarBaseDeDatos } from '../../helpers/db'
+import { crearUsuario } from '../../helpers/fixtures'
 
-const mockRepo = {
-  getStats: vi.fn(),
-  listUsers: vi.fn(),
-  banUser: vi.fn(),
-  unbanUser: vi.fn(),
-  changeRole: vi.fn(),
-};
+// Igual que control-roles/changeUserRole.use-case.test.ts, pero cubriendo
+// también el caso de degradar de ADMIN a USER. Se deja como archivo aparte
+// porque documenta ese camino con datos propios.
 
-function makeUser(overrides: Partial<AdminUser> = {}): AdminUser {
-  return {
-    id: 'u1',
-    email: 'a@test.com',
-    name: 'Ana',
-    role: 'USER',
-    banned: false,
-    banReason: null,
-    bannedAt: null,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    orderCount: 0,
-    ...overrides,
-  };
-}
+const repo = new AdminRepository()
+
+beforeEach(async () => {
+  await limpiarBaseDeDatos()
+})
 
 describe('changeUserRole', () => {
-  beforeEach(() => {
-    // resetAllMocks also clears mockResolvedValueOnce queues
-    vi.resetAllMocks();
-  });
+  it('promueve a un USER a ADMIN', async () => {
+    const admin = await crearUsuario({ role: 'ADMIN' })
+    const usuario = await crearUsuario({ role: 'USER' })
 
-  it('promotes USER to ADMIN', async () => {
-    const updatedUser = makeUser({ role: 'ADMIN' });
-    // Sets up the mock to return a resolved promise to the next call
-    mockRepo.changeRole.mockResolvedValueOnce(updatedUser);
+    const result = await changeUserRole(repo, usuario.id, { role: 'ADMIN' }, admin.id)
 
-    const result = await changeUserRole(mockRepo, 'u1', { role: 'ADMIN' }, 'admin-1');
+    expect(result.role).toBe('ADMIN')
+  })
 
-    expect(result.role).toBe('ADMIN');
-    expect(mockRepo.changeRole).toHaveBeenCalledTimes(1);
-    expect(mockRepo.changeRole).toHaveBeenCalledWith('u1', 'ADMIN');
-  });
+  it('rechaza que un admin cambie su propio rol', async () => {
+    const admin = await crearUsuario({ role: 'ADMIN' })
 
-  it('rejects changing your own role', async () => {
     await expect(
-      changeUserRole(mockRepo, 'u1', { role: 'ADMIN' }, 'u1'),
-    ).rejects.toMatchObject({ statusCode: 400 });
+      changeUserRole(repo, admin.id, { role: 'ADMIN' }, admin.id),
+    ).rejects.toMatchObject({ statusCode: 400 })
+  })
 
-    expect(mockRepo.changeRole).not.toHaveBeenCalled();
-  });
+  it('degrada a un ADMIN a USER', async () => {
+    const admin = await crearUsuario({ role: 'ADMIN' })
+    const otroAdmin = await crearUsuario({ role: 'ADMIN' })
 
-  it('changes from ADMIN to USER', async () => {
-    const updatedUser = makeUser({ role: 'USER' });
+    const result = await changeUserRole(repo, otroAdmin.id, { role: 'USER' }, admin.id)
 
-    mockRepo.changeRole.mockResolvedValueOnce(updatedUser);
-
-    const result = await changeUserRole(mockRepo, 'u1', { role: 'USER' }, 'admin-1');
-
-    expect(result.role).toBe('USER');
-    expect(mockRepo.changeRole).toHaveBeenCalledTimes(1);
-    expect(mockRepo.changeRole).toHaveBeenCalledWith('u1', 'USER');
-  });
-});
+    expect(result.role).toBe('USER')
+  })
+})
