@@ -2,10 +2,6 @@ import 'dotenv/config'
 import prisma from './prisma'
 
 // ─── Helpers ──────────────────────────────────────────────────────────
-// Antes cada teléfono repetía: el mismo string de query de Unsplash (~14
-// veces), la heroImage escrita otra vez completa dentro de images[], y el
-// `position: 0|1|2` a mano. Ahora la hero se declara una sola vez y las
-// posiciones salen del índice del arreglo.
 const Q = '?auto=format&fit=crop&w=800&q=85'
 const Q_WEBP = `${Q}&fm=webp`
 const Q_MIN = '?w=800&q=85'
@@ -41,6 +37,20 @@ type PhoneSeed = {
   features: string[]
 }
 
+// Helper para crear registros PhoneSeed evitando código duplicado mediante overrides
+function createPhoneSeed(
+  defaults: Partial<PhoneSeed>,
+  overrides: PhoneSeed
+): PhoneSeed {
+  return {
+    badge: null,
+    stock: 10,
+    condition: 'NEW',
+    ...defaults,
+    ...overrides,
+  }
+}
+
 function toPrismaPhone({
   gallery,
   heroFirst,
@@ -67,13 +77,32 @@ function toPrismaPhone({
   }
 }
 
+// ─── Defaults por Marca ──────────────────────────────────────────────────
+const APPLE_BASE: Partial<PhoneSeed> = {
+  brand: 'Apple',
+  categoryId: 'apple',
+}
+
+const SAMSUNG_BASE: Partial<PhoneSeed> = {
+  brand: 'Samsung',
+  categoryId: 'samsung',
+}
+
+const XIAOMI_BASE: Partial<PhoneSeed> = {
+  brand: 'Xiaomi',
+  categoryId: 'xiaomi',
+}
+
+const MOTOROLA_BASE: Partial<PhoneSeed> = {
+  brand: 'Motorola',
+  categoryId: 'motorola',
+}
+
 // ─── Catálogo ─────────────────────────────────────────────────────────
 const PHONES: PhoneSeed[] = [
-  {
+  createPhoneSeed(APPLE_BASE, {
     slug: 'iphone-15-pro-max',
     name: 'iPhone 15 Pro Max',
-    brand: 'Apple',
-    categoryId: 'apple',
     price: 1299000,
     compareAt: 1499000,
     badge: 'Nuevo',
@@ -99,12 +128,10 @@ const PHONES: PhoneSeed[] = [
       { colorId: 'c3', name: 'Plata', hex: '#C0C0C0' },
     ],
     features: ['Face ID', 'Carga rápida 35W', 'Acero inoxidable', 'IP68'],
-  },
-  {
+  }),
+  createPhoneSeed(APPLE_BASE, {
     slug: 'iphone-14',
     name: 'iPhone 14',
-    brand: 'Apple',
-    categoryId: 'apple',
     price: 799000,
     compareAt: 999000,
     badge: 'Descuento',
@@ -131,12 +158,10 @@ const PHONES: PhoneSeed[] = [
       { colorId: 'c2', name: 'Negro', hex: '#000000' },
     ],
     features: ['Face ID', 'Notch más pequeño', 'Fotograma acero', 'IP54'],
-  },
-  {
+  }),
+  createPhoneSeed(SAMSUNG_BASE, {
     slug: 'samsung-galaxy-s24-ultra',
     name: 'Samsung Galaxy S24 Ultra',
-    brand: 'Samsung',
-    categoryId: 'samsung',
     price: 1249000,
     compareAt: 1449000,
     badge: 'Nuevo',
@@ -166,15 +191,12 @@ const PHONES: PhoneSeed[] = [
       'Carga rápida 45W',
       'IP68',
     ],
-  },
-  {
+  }),
+  createPhoneSeed(SAMSUNG_BASE, {
     slug: 'samsung-galaxy-a54',
     name: 'Samsung Galaxy A54',
-    brand: 'Samsung',
-    categoryId: 'samsung',
     price: 399000,
     compareAt: 499000,
-    badge: null,
     stock: 20,
     condition: 'NEW',
     ram: '6GB',
@@ -202,12 +224,10 @@ const PHONES: PhoneSeed[] = [
       'IP67',
       'Carga rápida 25W',
     ],
-  },
-  {
+  }),
+  createPhoneSeed(XIAOMI_BASE, {
     slug: 'xiaomi-14-ultra',
     name: 'Xiaomi 14 Ultra',
-    brand: 'Xiaomi',
-    categoryId: 'xiaomi',
     price: 799000,
     compareAt: 999000,
     badge: 'Potencia',
@@ -239,15 +259,13 @@ const PHONES: PhoneSeed[] = [
       'IP68',
       'Batería 5000mAh',
     ],
-  },
-  {
+  }),
+  // ─── A partir de aquí (Línea 216 en adelante) aplicamos overrides ───────
+  createPhoneSeed(XIAOMI_BASE, {
     slug: 'xiaomi-13',
     name: 'Xiaomi 13',
-    brand: 'Xiaomi',
-    categoryId: 'xiaomi',
     price: 499000,
     compareAt: 699000,
-    badge: null,
     stock: 18,
     condition: 'CERTIFIED',
     batteryHealth: 90,
@@ -277,12 +295,10 @@ const PHONES: PhoneSeed[] = [
       'IP53',
       'Batería 4500mAh',
     ],
-  },
-  {
+  }),
+  createPhoneSeed(MOTOROLA_BASE, {
     slug: 'motorola-edge-50-pro',
     name: 'Motorola Edge 50 Pro',
-    brand: 'Motorola',
-    categoryId: 'motorola',
     price: 699000,
     compareAt: 899000,
     badge: 'Diseño',
@@ -314,12 +330,10 @@ const PHONES: PhoneSeed[] = [
       'Carga rápida 125W',
       'IP68',
     ],
-  },
-  {
+  }),
+  createPhoneSeed(MOTOROLA_BASE, {
     slug: 'motorola-g84',
     name: 'Motorola G84',
-    brand: 'Motorola',
-    categoryId: 'motorola',
     price: 299000,
     compareAt: 399000,
     badge: 'Económico',
@@ -350,12 +364,10 @@ const PHONES: PhoneSeed[] = [
       'Carga rápida 33W',
       'IP54',
     ],
-  },
-  {
+  }),
+  createPhoneSeed(APPLE_BASE, {
     slug: 'iphone-13-usado',
     name: 'iPhone 13 (Usado)',
-    brand: 'Apple',
-    categoryId: 'apple',
     price: 549000,
     compareAt: 799000,
     badge: 'Usado',
@@ -379,7 +391,7 @@ const PHONES: PhoneSeed[] = [
     ],
     colors: [{ colorId: 'c4', name: 'Azul', hex: '#0000FF' }],
     features: ['Face ID', 'Pantalla 6.1"', 'Acero inoxidable', 'IP67'],
-  },
+  }),
 ]
 
 async function seed() {
@@ -432,4 +444,4 @@ seed()
     console.error(e)
     process.exit(1)
   })
-  .finally(() => prisma.$disconnect())
+  .finally(() => prisma.$disconnect())finally(() => prisma.$disconnect())

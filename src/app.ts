@@ -4,6 +4,7 @@ import { errorHandler } from './interface/middlewares/error.middleware'
 import routes from './interface/routes'
 
 const app = express()
+app.disable("x-powered-by")
 
 app.use(
   cors({
