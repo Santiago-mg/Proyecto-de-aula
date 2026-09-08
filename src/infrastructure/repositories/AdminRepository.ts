@@ -180,11 +180,17 @@ export class AdminRepository implements IAdminRepository {
     }
   }
 
-  async banUser(userId: string, reason: string): Promise<AdminUser> {
+  // banUser() y unbanUser() eran el mismo bloque (update + include + manejo
+  // de P2025) repetido con solo el `data` distinto. 42.9% de líneas
+  // idénticas (hallazgo del documento de métricas) → un solo método privado.
+  private async setBanStatus(
+    userId: string,
+    data: Pick<Prisma.UserUpdateInput, 'banned' | 'banReason' | 'bannedAt'>,
+  ): Promise<AdminUser> {
     try {
       const user = await prisma.user.update({
         where: { id: userId },
-        data: { banned: true, banReason: reason, bannedAt: new Date() },
+        data,
         include: { _count: { select: { orders: true } } },
       })
       return mapUser(user)
@@ -195,19 +201,20 @@ export class AdminRepository implements IAdminRepository {
     }
   }
 
+  async banUser(userId: string, reason: string): Promise<AdminUser> {
+    return this.setBanStatus(userId, {
+      banned: true,
+      banReason: reason,
+      bannedAt: new Date(),
+    })
+  }
+
   async unbanUser(userId: string): Promise<AdminUser> {
-    try {
-      const user = await prisma.user.update({
-        where: { id: userId },
-        data: { banned: false, banReason: null, bannedAt: null },
-        include: { _count: { select: { orders: true } } },
-      })
-      return mapUser(user)
-    } catch (error) {
-      if (usuarioNoExiste(error))
-        throw new AppError('Usuario no encontrado', 404)
-      throw error
-    }
+    return this.setBanStatus(userId, {
+      banned: false,
+      banReason: null,
+      bannedAt: null,
+    })
   }
 
   async changeRole(userId: string, role: 'USER' | 'ADMIN'): Promise<AdminUser> {
