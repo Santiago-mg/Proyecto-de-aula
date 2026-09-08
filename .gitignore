@@ -1,5 +1,12 @@
 ﻿node_modules
 dist
+coverage
 .env
 .env.local
+.env.test
 *.js.map
+.DS_Store
+.claude/
+
+# Credenciales de los roles de base de datos del equipo — NUNCA subir
+team-credentials.txt

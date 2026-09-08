@@ -48,36 +48,36 @@ function mapToOrder(raw: {
 export class OrderRepository implements IOrderRepository {
   async create(data: CreateOrderData): Promise<Order> {
     const phoneIds = data.items.map((i) => i.phoneId)
-    const phones = await prisma.phone.findMany({
-      where: { id: { in: phoneIds } },
-      select: {
-        id: true,
-        name: true,
-        price: true,
-        heroImage: true,
-        stock: true,
-      },
-    })
-
-    const phoneMap = new Map(phones.map((p) => [p.id, p]))
-
-    for (const item of data.items) {
-      const phone = phoneMap.get(item.phoneId)
-      if (!phone)
-        throw new AppError(`Celular ${item.phoneId} no encontrado`, 404)
-      if (phone.stock < item.qty)
-        throw new AppError(`Stock insuficiente para "${phone.name}"`, 400)
-    }
-
-    const subtotal = data.items.reduce((sum, item) => {
-      const phone = phoneMap.get(item.phoneId)!
-      return sum + phone.price * item.qty
-    }, 0)
-
-    const shipping = subtotal > 500000 ? 0 : 20000
-    const total = subtotal + shipping
 
     const order = await prisma.$transaction(async (tx) => {
+      // Leer DENTRO de la transacción: el precio que se cobra y el nombre que
+      // se guarda en el snapshot deben ser los mismos que se validan aquí.
+      const phones = await tx.phone.findMany({
+        where: { id: { in: phoneIds } },
+        select: {
+          id: true,
+          name: true,
+          price: true,
+          heroImage: true,
+          stock: true,
+        },
+      })
+
+      const phoneMap = new Map(phones.map((p) => [p.id, p]))
+
+      for (const item of data.items) {
+        if (!phoneMap.has(item.phoneId))
+          throw new AppError(`Celular ${item.phoneId} no encontrado`, 404)
+      }
+
+      const subtotal = data.items.reduce((sum, item) => {
+        const phone = phoneMap.get(item.phoneId)!
+        return sum + phone.price * item.qty
+      }, 0)
+
+      const shipping = subtotal > 500000 ? 0 : 20000
+      const total = subtotal + shipping
+
       const newOrder = await tx.order.create({
         data: {
           orderRef: generateOrderRef(),
@@ -109,11 +109,21 @@ export class OrderRepository implements IOrderRepository {
         include: { items: true },
       })
 
+      // Descuento atómico. La condición `stock >= qty` viaja dentro del WHERE,
+      // así que la valida el propio motor al aplicar el UPDATE, no nosotros
+      // antes. Si dos compras simultáneas van por el último celular, la
+      // segunda encuentra la fila ya descontada, afecta 0 filas y revierte
+      // toda la transacción en lugar de sobrevender.
       for (const item of data.items) {
-        await tx.phone.update({
-          where: { id: item.phoneId },
+        const updated = await tx.phone.updateMany({
+          where: { id: item.phoneId, stock: { gte: item.qty } },
           data: { stock: { decrement: item.qty } },
         })
+
+        if (updated.count === 0) {
+          const phone = phoneMap.get(item.phoneId)!
+          throw new AppError(`Stock insuficiente para "${phone.name}"`, 400)
+        }
       }
 
       return newOrder

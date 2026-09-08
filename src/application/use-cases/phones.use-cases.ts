@@ -42,6 +42,8 @@ export async function createPhone(
   repo: IPhoneRepository,
   data: CreatePhoneDto,
 ): Promise<Phone> {
+  const existe = await repo.findBySlug(data.slug)
+  if (existe) throw new AppError('Ya existe un celular con ese slug', 409)
   return repo.create({
     ...data,
     compareAt: data.compareAt ?? null,

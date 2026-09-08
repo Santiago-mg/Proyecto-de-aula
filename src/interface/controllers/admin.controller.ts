@@ -32,7 +32,7 @@ export async function users(req: Request, res: Response, next: NextFunction) {
 
 export async function ban(req: Request, res: Response, next: NextFunction) {
   try {
-    const user = await banUser(repo, req.params.id, req.body)
+    const user = await banUser(repo, req.params.id, req.body, req.user!.id)
     res.json({ data: user })
   } catch (error) {
     next(error)

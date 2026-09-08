@@ -1,9 +1,20 @@
+import { Prisma } from '@prisma/client'
 import prisma from '../database/prisma'
+import { AppError } from '../../domain/AppError'
 import type {
   AdminStats,
   AdminUser,
   IAdminRepository,
 } from '../../domain/repositories/IAdminRepository'
+
+// Prisma tira P2025 cuando el update no encuentra la fila. Si no se traduce,
+// el error sube crudo y sale como 500 en vez del 404 que corresponde.
+function usuarioNoExiste(error: unknown): boolean {
+  return (
+    error instanceof Prisma.PrismaClientKnownRequestError &&
+    error.code === 'P2025'
+  )
+}
 
 function mapUser(raw: {
   id: string
@@ -170,21 +181,33 @@ export class AdminRepository implements IAdminRepository {
   }
 
   async banUser(userId: string, reason: string): Promise<AdminUser> {
-    const user = await prisma.user.update({
-      where: { id: userId },
-      data: { banned: true, banReason: reason, bannedAt: new Date() },
-      include: { _count: { select: { orders: true } } },
-    })
-    return mapUser(user)
+    try {
+      const user = await prisma.user.update({
+        where: { id: userId },
+        data: { banned: true, banReason: reason, bannedAt: new Date() },
+        include: { _count: { select: { orders: true } } },
+      })
+      return mapUser(user)
+    } catch (error) {
+      if (usuarioNoExiste(error))
+        throw new AppError('Usuario no encontrado', 404)
+      throw error
+    }
   }
 
   async unbanUser(userId: string): Promise<AdminUser> {
-    const user = await prisma.user.update({
-      where: { id: userId },
-      data: { banned: false, banReason: null, bannedAt: null },
-      include: { _count: { select: { orders: true } } },
-    })
-    return mapUser(user)
+    try {
+      const user = await prisma.user.update({
+        where: { id: userId },
+        data: { banned: false, banReason: null, bannedAt: null },
+        include: { _count: { select: { orders: true } } },
+      })
+      return mapUser(user)
+    } catch (error) {
+      if (usuarioNoExiste(error))
+        throw new AppError('Usuario no encontrado', 404)
+      throw error
+    }
   }
 
   async changeRole(userId: string, role: 'USER' | 'ADMIN'): Promise<AdminUser> {
