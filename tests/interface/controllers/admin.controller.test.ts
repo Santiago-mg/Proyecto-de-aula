@@ -44,7 +44,12 @@ class AdminRepository implements IAdminRepository {
 	}
     }
 
-    async changeRole(userId: string, role: 'USER' | 'ADMIN'): AdminUser {
+    async changeRole(userId: string, role: 'USER' | 'ADMIN', requesterId: string): AdminUser {
+	
+	if (userId == requesterId) {
+	    throw new Error('You can\'t change your own role!');
+	};
+
     	const users = [
 	    {
 	    	id: '1',
@@ -91,6 +96,6 @@ describe('Change user role', () => {
     it('Does not allow an Admin to change their own role', async () => {
     	const repo = new AdminRepository();
 
-	await expect(repo.changeRole('2', 'USER')).rejects;
+	await expect(repo.changeRole('2', 'USER', '2')).rejects.toThrow('You can\'t change your own role!');
     });
 });
