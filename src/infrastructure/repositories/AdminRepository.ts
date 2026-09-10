@@ -1,4 +1,5 @@
 import prisma from '../database/prisma'
+import { AppError } from '../../domain/AppError'
 import type {
   AdminStats,
   AdminUser,
@@ -170,12 +171,19 @@ export class AdminRepository implements IAdminRepository {
   }
 
   async banUser(userId: string, reason: string): Promise<AdminUser> {
-    const user = await prisma.user.update({
-      where: { id: userId },
-      data: { banned: true, banReason: reason, bannedAt: new Date() },
-      include: { _count: { select: { orders: true } } },
-    })
-    return mapUser(user)
+    try {
+      const user = await prisma.user.update({
+        where: { id: userId },
+        data: { banned: true, banReason: reason, bannedAt: new Date() },
+        include: { _count: { select: { orders: true } } },
+      })
+      return mapUser(user)
+    } catch (error: any) {
+      if (error.code === 'P2025') {
+        throw new AppError('Usuario no encontrado', 404)
+      }
+      throw error
+    }
   }
 
   async unbanUser(userId: string): Promise<AdminUser> {
