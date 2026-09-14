@@ -35,6 +35,10 @@ export async function unbanUser(repo: IAdminRepository, userId: string) {
   return repo.unbanUser(userId)
 }
 
+export async function listStockAlerts(repo: IAdminRepository) {
+  return repo.listAlerts()
+}
+
 export async function changeUserRole(
   repo: IAdminRepository,
   userId: string,
