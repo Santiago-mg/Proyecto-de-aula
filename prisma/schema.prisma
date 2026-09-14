@@ -37,6 +37,7 @@ model User {
   banReason String?
   bannedAt  DateTime?
   orders    Order[]
+  favorites Favorite[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
@@ -78,6 +79,7 @@ model Phone {
   features      PhoneFeature[]
   orderItems    OrderItem[]
   alerts        Alert[]
+  favorites     Favorite[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 
@@ -178,4 +180,22 @@ model Alert {
   @@unique([phoneId, type])
   @@index([phoneId])
   @@index([isResolved])
+}
+
+/// Celular que un usuario guardó en su lista de favoritos.
+///
+/// El unique (userId, phoneId) es lo que hace que la operación sea
+/// idempotente: marcar dos veces el mismo celular no crea una segunda fila.
+/// Ambas relaciones borran en cascada, así que dar de baja un usuario o
+/// retirar un celular del catálogo no deja favoritos huérfanos.
+model Favorite {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  phoneId   String
+  phone     Phone    @relation(fields: [phoneId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, phoneId])
+  @@index([userId])
 }

@@ -35,6 +35,7 @@ function makePhone(sobreescrituras: Partial<Phone> = {}): Phone {
     compareAt: null,
     badge: null,
     stock: 5,
+    minStock: 5,
     condition: 'CERTIFIED',
     verified: true,
     batteryHealth: null,
@@ -320,6 +321,7 @@ describe('createPhone — crear un celular', () => {
       categoryId: 'apple',
       price: 4_500_000,
       stock: 10,
+      minStock: 5,
       condition: 'NEW',
       verified: true,
       compareAt: 5_000_000,
@@ -371,6 +373,9 @@ describe('createPhone — crear un celular', () => {
       categoryId: 'samsung',
       price: 3_000_000,
       stock: 4,
+      // El DTO tiene .default(5): para cuando el dato llega al caso de uso
+      // el valor ya está resuelto, así que aquí se escribe explícito.
+      minStock: 5,
       condition: 'CERTIFIED',
       verified: false,
       images: [],

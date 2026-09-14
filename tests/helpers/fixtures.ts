@@ -194,6 +194,24 @@ export function bodyCelularValido(cambios: Record<string, unknown> = {}) {
   }
 }
 
+/**
+ * Fila de la tabla Favorite con su celular incluido, como la devuelve
+ * findByUser() antes de pasar por el mapeo al dominio.
+ */
+export function favorito(
+  opciones: { userId?: string; celular?: ReturnType<typeof celular> } = {},
+) {
+  const { userId = randomUUID(), celular: phone = celular() } = opciones
+
+  return {
+    id: randomUUID(),
+    userId,
+    phoneId: phone.id,
+    createdAt: new Date(),
+    phone,
+  }
+}
+
 interface OpcionesAlerta {
   id?: string
   phoneId?: string

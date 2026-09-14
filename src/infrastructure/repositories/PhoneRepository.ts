@@ -6,19 +6,12 @@ import type {
   PhoneFilters,
 } from '../../domain/repositories/IPhoneRepository'
 import prisma from '../database/prisma'
+import {
+  mapToPhone,
+  phoneInclude,
+  type PhoneWithRelations,
+} from './phone-mapper'
 import { sincronizarAlertas } from './stock-alerts'
-
-// Tipo inferido de Prisma con todas las relaciones incluidas
-const phoneInclude = {
-  images: { orderBy: { position: 'asc' as const } },
-  colors: true,
-  features: { orderBy: { position: 'asc' as const } },
-  category: { select: { name: true } },
-} satisfies Prisma.PhoneInclude
-
-type PhoneWithRelations = Prisma.PhoneGetPayload<{
-  include: typeof phoneInclude
-}>
 
 function buildWhere(filters: PhoneFilters): Prisma.PhoneWhereInput {
   const where: Prisma.PhoneWhereInput = {}
@@ -43,47 +36,6 @@ function buildWhere(filters: PhoneFilters): Prisma.PhoneWhereInput {
   }
 
   return where
-}
-
-function mapToPhone(raw: PhoneWithRelations): Phone {
-  return {
-    id: raw.id,
-    slug: raw.slug,
-    name: raw.name,
-    brand: raw.brand,
-    categoryId: raw.categoryId,
-    price: raw.price,
-    compareAt: raw.compareAt,
-    badge: raw.badge,
-    stock: raw.stock,
-    minStock: raw.minStock,
-    condition: raw.condition as Phone['condition'],
-    verified: raw.verified,
-    batteryHealth: raw.batteryHealth,
-    ram: raw.ram,
-    storage: raw.storage,
-    camera: raw.camera,
-    battery: raw.battery,
-    screen: raw.screen,
-    chip: raw.chip,
-    shortDesc: raw.shortDesc,
-    longDesc: raw.longDesc,
-    heroImage: raw.heroImage,
-    images: raw.images.map((img) => ({
-      id: img.id,
-      url: img.url,
-      position: img.position,
-    })),
-    colors: raw.colors.map((c) => ({
-      id: c.id,
-      colorId: c.colorId,
-      name: c.name,
-      hex: c.hex,
-    })),
-    features: raw.features.map((f) => f.feature),
-    createdAt: raw.createdAt,
-    updatedAt: raw.updatedAt,
-  }
 }
 
 export class PhoneRepository implements IPhoneRepository {

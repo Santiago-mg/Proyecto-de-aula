@@ -1,6 +1,6 @@
 # Suite de pruebas — CelularPro API
 
-220 pruebas en 25 archivos. **No necesita base de datos ni variables de
+257 pruebas en 28 archivos. **No necesita base de datos ni variables de
 entorno**: se sustituye el cliente Prisma por un doble, así que corre igual en
 tu máquina que en el pipeline.
 
@@ -46,14 +46,15 @@ tests/
 │   ├── esc-29-panel-estadisticas.test.ts      V(G)=6
 │   ├── esc-30-administracion-catalogo.test.ts V(G)=10
 │   ├── esc-31-alertas-stock.test.ts           V(G)=8
+│   ├── esc-32-lista-favoritos.test.ts         V(G)=9
 │   ├── autenticacion.test.ts          register / login / me
 │   ├── pedidos.test.ts                crear, consultar y cambiar estado
 │   ├── catalogo-publico.test.ts       listado, filtros y detalle
 │   ├── ramas-de-error.test.ts         cambio de rol y fallos de infraestructura
 │   └── ramas-restantes.test.ts        estados terminales, CORS y 500 en producción
 └── unit/                       Pruebas por caso de uso, middleware y DTO
-    ├── alertas/ catalogo/ control-roles/ gestion-perfil/ login/
-    ├── pedidos/ registro/ validacion-credenciales/
+    ├── alertas/ catalogo/ control-roles/ errores/ favoritos/
+    ├── gestion-perfil/ login/ pedidos/ registro/ validacion-credenciales/
 ```
 
 ## Fixtures
@@ -67,6 +68,7 @@ tests/
 | `errorRegistroNoEncontrado()` | El `PrismaClientKnownRequestError` P2025 real, que es lo que activa el 404 |
 | `bodyCelularValido()` | Body mínimo que aprueba `createPhoneDto` |
 | `alerta()` | Fila de la tabla `Alert` con su celular incluido, como la devuelve `listAlerts()` |
+| `favorito()` | Fila de la tabla `Favorite` con su celular incluido, antes del mapeo al dominio |
 | `ID_INEXISTENTE` | UUID que nunca corresponde a un registro |
 
 ## Cobertura
