@@ -6,9 +6,13 @@ import {
   getPhoneById,
   getPhoneBySlug,
   getPhones,
+  getSimilarPhones,
   updatePhone,
 } from '../../application/use-cases/phones.use-cases'
-import type { PhonesQueryDto } from '../../application/dtos/phone.dto'
+import type {
+  PhonesQueryDto,
+  SimilarQueryDto,
+} from '../../application/dtos/phone.dto'
 
 const repo = new PhoneRepository()
 
@@ -28,6 +32,18 @@ export async function detail(req: Request, res: Response, next: NextFunction) {
   try {
     const phone = await getPhoneBySlug(repo, req.params.slug)
     res.json({ data: phone })
+  } catch (error) {
+    next(error)
+  }
+}
+
+export async function similar(req: Request, res: Response, next: NextFunction) {
+  try {
+    // limit ya viene convertido a número, con su default, por
+    // validate(similarQueryDto, 'query').
+    const { limit } = req.query as unknown as SimilarQueryDto
+    const data = await getSimilarPhones(repo, req.params.slug, limit)
+    res.json({ data })
   } catch (error) {
     next(error)
   }

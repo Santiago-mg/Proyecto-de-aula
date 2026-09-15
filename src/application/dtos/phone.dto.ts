@@ -70,6 +70,23 @@ export const phonesQueryDto = z.object({
   search: z.string().optional(),
 })
 
+/**
+ * Cuántas recomendaciones se piden (funcionalidad 13).
+ *
+ * El tope existe para que nadie convierta el endpoint en un volcado del
+ * catálogo: para eso está GET /phones con su paginación. Cuatro es lo que
+ * cabe en la fila de "también te puede interesar" de la ficha del producto.
+ */
+export const similarQueryDto = z.object({
+  limit: z.coerce
+    .number()
+    .int()
+    .positive('limit debe ser un entero positivo')
+    .max(12, 'No se pueden pedir más de 12 recomendaciones')
+    .default(4),
+})
+
 export type CreatePhoneDto = z.infer<typeof createPhoneDto>
 export type UpdatePhoneDto = z.infer<typeof updatePhoneDto>
 export type PhonesQueryDto = z.infer<typeof phonesQueryDto>
+export type SimilarQueryDto = z.infer<typeof similarQueryDto>

@@ -5,13 +5,27 @@ import type {
   PaginatedPhones,
   PhoneFilters,
 } from '../../domain/repositories/IPhoneRepository'
+import { ordenarPorAfinidad, rangoDePrecio } from '../../domain/recomendaciones'
 import prisma from '../database/prisma'
 import {
+  mapToListItem,
   mapToPhone,
   phoneInclude,
+  phoneListSelect,
   type PhoneWithRelations,
 } from './phone-mapper'
 import { sincronizarAlertas } from './stock-alerts'
+
+/**
+ * Cuántos candidatos se traen por cada recomendación pedida.
+ *
+ * La base sabe filtrar (misma marca, categoría o rango), pero no sabe
+ * puntuar: ese orden lo pone el dominio. Si se pidieran exactamente `limit`
+ * filas, el recorte lo haría el `take` con el orden de la base y la afinidad
+ * llegaría tarde. Se traen unas cuantas de más para que haya algo que ordenar
+ * sin llegar a leer el catálogo entero.
+ */
+const FACTOR_CANDIDATOS = 4
 
 function buildWhere(filters: PhoneFilters): Prisma.PhoneWhereInput {
   const where: Prisma.PhoneWhereInput = {}
@@ -73,50 +87,43 @@ export class PhoneRepository implements IPhoneRepository {
         skip,
         take: limit,
         orderBy: { createdAt: 'desc' },
-        select: {
-          id: true,
-          slug: true,
-          name: true,
-          brand: true,
-          price: true,
-          compareAt: true,
-          badge: true,
-          stock: true,
-          condition: true,
-          verified: true,
-          batteryHealth: true,
-          storage: true,
-          ram: true,
-          shortDesc: true,
-          heroImage: true,
-          category: { select: { name: true } },
-        },
+        select: phoneListSelect,
       }),
     ])
 
-    const data: PhoneListItem[] = phones.map((p) => ({
-      id: p.id,
-      slug: p.slug,
-      name: p.name,
-      brand: p.brand,
-      price: p.price,
-      compareAt: p.compareAt,
-      badge: p.badge,
-      stock: p.stock,
-      condition: p.condition as Phone['condition'],
-      verified: p.verified,
-      batteryHealth: p.batteryHealth,
-      storage: p.storage,
-      ram: p.ram,
-      shortDesc: p.shortDesc,
-      heroImage: p.heroImage,
-      category: p.category.name,
-    }))
-
     return {
-      data,
+      data: phones.map(mapToListItem),
       meta: { total, page, limit, totalPages: Math.ceil(total / limit) },
     }
+  }
+
+  /**
+   * Celulares parecidos al que el cliente está viendo (funcionalidad 13).
+   *
+   * El reparto de responsabilidades es a propósito: la base reduce el
+   * catálogo a los que comparten *algo* con el celular base, y el dominio
+   * decide cuáles se le parecen más. Se descartan el propio celular, que no
+   * es una recomendación, y los agotados, que no se pueden comprar.
+   */
+  async findSimilar(base: Phone, limit: number): Promise<PhoneListItem[]> {
+    const { min, max } = rangoDePrecio(base.price)
+
+    const candidatos = await prisma.phone.findMany({
+      where: {
+        id: { not: base.id },
+        stock: { gt: 0 },
+        OR: [
+          { brand: { equals: base.brand, mode: 'insensitive' } },
+          { categoryId: base.categoryId },
+          { price: { gte: min, lte: max } },
+        ],
+      },
+      take: limit * FACTOR_CANDIDATOS,
+      orderBy: { createdAt: 'desc' },
+      select: phoneListSelect,
+    })
+
+    return ordenarPorAfinidad(base, candidatos, limit).map(mapToListItem)
   }
 
   async findBySlug(slug: string): Promise<Phone | null> {

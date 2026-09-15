@@ -1,6 +1,6 @@
 # Suite de pruebas — CelularPro API
 
-257 pruebas en 28 archivos. **No necesita base de datos ni variables de
+289 pruebas en 30 archivos. **No necesita base de datos ni variables de
 entorno**: se sustituye el cliente Prisma por un doble, así que corre igual en
 tu máquina que en el pipeline.
 
@@ -40,6 +40,7 @@ tests/
 │   ├── prisma-mock.ts          El doble del cliente, un vi.fn() por método
 │   └── fixtures.ts             Filas de prueba, tokens JWT reales y el error P2025
 ├── escenarios/                 Pruebas de camino básico sobre la API completa
+│   ├── esc-13-recomendacion-productos.test.ts V(G)=7
 │   ├── esc-26-banear-usuario.test.ts          V(G)=7
 │   ├── esc-27-desbanear-usuario.test.ts       V(G)=5
 │   ├── esc-28-consultar-usuarios.test.ts      V(G)=6
@@ -55,6 +56,11 @@ tests/
 └── unit/                       Pruebas por caso de uso, middleware y DTO
     ├── alertas/ catalogo/ control-roles/ errores/ favoritos/
     ├── gestion-perfil/ login/ pedidos/ registro/ validacion-credenciales/
+```
+
+`unit/catalogo/recomendaciones.test.ts` aísla las reglas de afinidad del
+dominio: ahí están los valores límite del rango de precio y el desempate por
+cercanía, que por HTTP costaría más provocar.
 ```
 
 ## Fixtures

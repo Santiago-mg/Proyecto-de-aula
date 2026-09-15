@@ -17,7 +17,36 @@ import type {
   PaginatedPhones,
   PhoneFilters,
 } from '../../../src/domain/repositories/IPhoneRepository';
-import type { Phone } from '../../../src/domain/entities/Phone';
+import type {
+  Phone,
+  PhoneListItem,
+} from '../../../src/domain/entities/Phone';
+import {
+  ordenarPorAfinidad,
+  rangoDePrecio,
+} from '../../../src/domain/recomendaciones';
+
+/** La ficha resumida, tal como la arma mapToListItem() en el repositorio real. */
+function aListItem(p: Phone): PhoneListItem {
+  return {
+    id: p.id,
+    slug: p.slug,
+    name: p.name,
+    brand: p.brand,
+    price: p.price,
+    compareAt: p.compareAt,
+    badge: p.badge,
+    stock: p.stock,
+    condition: p.condition,
+    verified: p.verified,
+    batteryHealth: p.batteryHealth,
+    storage: p.storage,
+    ram: p.ram,
+    shortDesc: p.shortDesc,
+    heroImage: p.heroImage,
+    category: p.categoryId,
+  };
+}
 
 // ─── Fábrica de teléfonos de prueba ─────────────────────────────
 let contador = 0;
@@ -99,24 +128,7 @@ class IPhoneRepositoryMock implements IPhoneRepository {
       return true;
     });
 
-    const data = coinciden.slice(empieza, empieza + limit).map((p) => ({
-      id: p.id,
-      slug: p.slug,
-      name: p.name,
-      brand: p.brand,
-      price: p.price,
-      compareAt: p.compareAt,
-      badge: p.badge,
-      stock: p.stock,
-      condition: p.condition,
-      verified: p.verified,
-      batteryHealth: p.batteryHealth,
-      storage: p.storage,
-      ram: p.ram,
-      shortDesc: p.shortDesc,
-      heroImage: p.heroImage,
-      category: p.categoryId,
-    }));
+    const data = coinciden.slice(empieza, empieza + limit).map(aListItem);
 
     return {
       data,
@@ -132,6 +144,26 @@ class IPhoneRepositoryMock implements IPhoneRepository {
   // Implementación funcional: permiten probar los use-cases restantes.
   async findById(id: string): Promise<Phone | null> {
     return this.phones.find((p) => p.id === id) ?? null;
+  }
+
+  /**
+   * Misma división que el repositorio real: aquí se filtran los candidatos
+   * (lo que en producción hace el WHERE de Prisma) y el orden lo pone la
+   * función del dominio, que es la misma en ambos sitios.
+   */
+  async findSimilar(base: Phone, limit: number): Promise<PhoneListItem[]> {
+    const { min, max } = rangoDePrecio(base.price);
+
+    const candidatos = this.phones.filter(
+      (p) =>
+        p.id !== base.id &&
+        p.stock > 0 &&
+        (p.brand.toLowerCase() === base.brand.toLowerCase() ||
+          p.categoryId === base.categoryId ||
+          (p.price >= min && p.price <= max)),
+    );
+
+    return ordenarPorAfinidad(base, candidatos, limit).map(aListItem);
   }
 
   async create(

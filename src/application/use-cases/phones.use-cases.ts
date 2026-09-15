@@ -1,5 +1,5 @@
 import { AppError } from '../../domain/AppError'
-import type { Phone } from '../../domain/entities/Phone'
+import type { Phone, PhoneListItem } from '../../domain/entities/Phone'
 import type {
   IPhoneRepository,
   PhoneFilters,
@@ -46,6 +46,23 @@ export async function getPhoneBySlug(repo: IPhoneRepository, slug: string) {
 
 export async function getPhoneById(repo: IPhoneRepository, id: string) {
   return findPhoneByIdOrThrow(repo, id)
+}
+
+/**
+ * Celulares sugeridos a partir del que se está viendo (funcionalidad 13).
+ *
+ * Se entra por el slug, igual que la ficha del producto, para que el frontend
+ * pueda pedir las recomendaciones con el mismo dato que ya tiene en la URL sin
+ * una consulta previa. Reutiliza getPhoneBySlug y con ello su 404: si el
+ * celular base no existe, no hay nada de lo que recomendar parecidos.
+ */
+export async function getSimilarPhones(
+  repo: IPhoneRepository,
+  slug: string,
+  limit: number,
+): Promise<PhoneListItem[]> {
+  const base = await getPhoneBySlug(repo, slug)
+  return repo.findSimilar(base, limit)
 }
 
 export async function createPhone(

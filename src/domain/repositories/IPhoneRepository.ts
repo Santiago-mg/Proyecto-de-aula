@@ -28,6 +28,11 @@ export interface IPhoneRepository {
   ): Promise<PaginatedPhones>
   findBySlug(slug: string): Promise<Phone | null>
   findById(id: string): Promise<Phone | null>
+  /**
+   * Hasta `limit` celulares parecidos a `base`, ordenados de más a menos
+   * afines según las reglas de domain/recomendaciones.
+   */
+  findSimilar(base: Phone, limit: number): Promise<PhoneListItem[]>
   create(data: Omit<Phone, 'id' | 'createdAt' | 'updatedAt'>): Promise<Phone>
   update(
     id: string,

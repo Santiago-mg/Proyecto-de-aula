@@ -32,6 +32,7 @@ function dobleCelulares(): IPhoneRepository {
     findAll: vi.fn(),
     findBySlug: vi.fn(),
     findById: vi.fn(),
+    findSimilar: vi.fn(),
     create: vi.fn(),
     update: vi.fn(),
     delete: vi.fn(),
