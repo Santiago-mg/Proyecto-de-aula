@@ -68,7 +68,8 @@ pipeline {
                     sleep 3
 
                     cat > /tmp/setup.sql << 'EOF'
-CREATE USER ...
+CREATE USER celularproapi WITH PASSWORD '\''password'\'' CREATEDB;
+CREATE DATABASE celularpro OWNER celularproapi;
 EOF
 
                     # 4. Run as postgres user
