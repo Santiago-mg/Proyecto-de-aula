@@ -16,8 +16,10 @@ pipeline {
     environment {
         SONAR_PROJECT_KEY = 'andresmendoza59_celular-pro-api'
         SONAR_PROJECT_NAME = 'celular-pro-api'
-        IMAGE_NAME = 'celular_pro_api:latest'
+        IMAGE_NAME = 'celular_pro_api'
         CONTAINER_NAME = 'celular-pro-api'
+        DATABASE_URL = 'postgresql://celularproapi:password@127.0.0.1:5432/celularpro'
+        JWT_SECRET = 'ilwkfwufrfr'
     }
 
     stages {
@@ -38,33 +40,62 @@ pipeline {
                 sh '''
                     set -e
 
-                    cp .env.example .env
+                    # Create .env file from example
+                    if [ -f .env.example ]; then
+                        cp .env.example .env
+                    else
+                        echo "ERROR: .env.example not found in workspace"
+                        exit 1
+                    fi
+
+                    # Verify .env was created
+                    if [ ! -f .env ]; then
+                        echo "ERROR: Failed to create .env file"
+                        exit 1
+                    fi
+
                     npm ci
 
-        		    service postgresql start
+                    # Start PostgreSQL service
+                    service postgresql start || true
+                    sleep 3
 
-                    sed -i 's/local   all             all                                     peer/local   all             all                                     md5/' /etc/postgresql/14/main/pg_hba.conf
+                    # Update PostgreSQL authentication method
+                    sed -i 's/local   all             all                                     peer/local   all             all                                     trust/' /etc/postgresql/14/main/pg_hba.conf
 
+                    # Restart PostgreSQL to apply changes
                     service postgresql restart
+                    sleep 3
 
-                    su - postgres << 'EOF'
-                        psql -c "CREATE USER user WITH PASSWORD 'password' CREATEDB;"
-                    EOF
+                    cat > /tmp/setup.sql << 'EOF'
+CREATE USER ...
+EOF
 
-                    echo "password" | su - root
+                    # 4. Run as postgres user
+                    su postgres -c "psql -f /tmp/setup.sql"
 
-                    sed -i 's|DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/celularpro"|DATABASE_URL="postgresql://celularproapi:password@127.0.0.1:5432/celularpro"|' .env
+                    # 5. Cleanup
+                    rm /tmp/setup.sql
 
+                    # Update .env file with database credentials
+                    sed -i "s|DATABASE_URL=.*|DATABASE_URL=\"postgresql://celularproapi:password@127.0.0.1:5432/celularpro\"|g" .env
 
-                    sed -i 's/JWT_SECRET=cambia_esto_por_una_clave_aleatoria_segura/JWT_SECRET=ilwkfwufrfr/' .env
+                    # Update JWT secret
+                    sed -i "s/JWT_SECRET=.*/JWT_SECRET=ilwkfwufrfr/g" .env
 
+                    # Verify .env was updated correctly
+                    echo "=== .env file content ==="
+                    cat .env
+                    echo "=========================="
+
+                    # Run database migrations and seed
                     npx prisma migrate dev --name init
                     npm run db:seed
                 '''
             }
         }
 
-        stage('Tesing and coverage') {
+        stage('Testing and coverage') {
             steps {
                 sh '''
                     set -e
@@ -76,13 +107,23 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
+            agent {
+                docker {
+                    image 'sonarsource/sonar-scanner-cli:latest'
+                    args '-v "${WORKSPACE}:/workspace" -u root'
+                    reuseNode true
+                }
+            }
             steps {
                 sh '''
-                    withSonarQubeEnv('SonarQube') {
-                        set -e
-
-                        sonar-scanner
-                    }
+                    set -e
+                    cd /workspace
+                    sonar-scanner \
+                        -Dsonar.projectKey=$SONAR_PROJECT_KEY \
+                        -Dsonar.projectName="$SONAR_PROJECT_NAME" \
+                        -Dsonar.sources=src \
+                        -Dsonar.host.url=$SONAR_HOST_URL \
+                        -Dsonar.login=$SONAR_AUTH_TOKEN
                 '''
             }
         }
