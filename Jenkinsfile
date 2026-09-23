@@ -41,6 +41,8 @@ pipeline {
 
         		    service postgresql start
 
+                    sed -i 's/local   all             all                                     peer/local   all             all                                     md5/' /etc/postgresql/14/main/pg_hba.conf
+
                     psql -U postgres -c "CREATE USER celularproapi WITH PASSWORD 'password' CREATEDB;"
 
                     cp .env.example .env
