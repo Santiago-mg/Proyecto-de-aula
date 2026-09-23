@@ -23,19 +23,19 @@ pipeline {
     stages {
         stage('Verify environment') {
             steps {
-                sh ```
+                sh '''
                     set -e
 
                     node --version
                     npm --version
                     psql --version
-                ```
+                '''
             }
         }
 
         stage('Install dependencies') {
             steps {
-                sh ```
+                sh '''
                     set -e
                     npm ci
 
@@ -48,30 +48,30 @@ pipeline {
 
                     npx prisma migrate dev --name init
                     npm run db:seed
-                ```
+                '''
             }
         }
 
         stage('Tesing and coverage') {
             steps {
-                sh ```
+                sh '''
                     set -e
 
                     npm run test
                     npm run test:coverage
-                ```
+                '''
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
-                sh ```
+                sh '''
                     withSonarQubeEnv('SonarQube') {
                         set -e
 
                         sonar-scanner
                     }
-                ```
+                '''
             }
         }
     }
