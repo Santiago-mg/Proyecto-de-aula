@@ -39,12 +39,13 @@ pipeline {
                     set -e
                     npm ci
 
+        		    service postgresql start
+
                     psql -U postgres -c "CREATE USER celularproapi WITH PASSWORD 'password' CREATEDB;"
 
                     cp .env.example .env
                     sed -i 's|DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/celularpro"|DATABASE_URL="postgresql://celularproapi:password@127.0.0.1:5432/celularpro"|' .env
 
-        		    service postgresql start
 
                     sed -i 's/JWT_SECRET=cambia_esto_por_una_clave_aleatoria_segura/JWT_SECRET=ilwkfwufrfr/' .env
 
