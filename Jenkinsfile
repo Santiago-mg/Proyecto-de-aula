@@ -86,5 +86,74 @@ pipeline {
                 '''
             }
         }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                    set -e
+                    docker build \
+                        --pull \
+                        -t "$IMAGE_NAME:$BUILD_NUMBER" \
+                        -t "$IMAGE_NAME:latest" \
+                        .
+                '''
+            }
+        }
+
+        stage('Deploy API') {
+            steps {
+                sh '''
+                    set -e
+
+                    docker rm -f "$CONTAINER_NAME" \
+                        2>/dev/null || true
+
+                    docker run -d \
+                        --name "$CONTAINER_NAME" \
+                        --restart unless-stopped \
+                        -p 8000:8000 \
+                        "$IMAGE_NAME:$BUILD_NUMBER"
+            }
+        }
+
+        stage('Verify API') {
+            steps {
+                sh '''
+                    set -e
+
+                    for attempt in $(seq 1 12); do
+                        HEALTH_STATUS=$(docker inspect \
+                            --format='{{.State.Health.Status}}' \
+                            "$CONTAINER_NAME" \
+                            2>/dev/null || true)
+
+                        echo "Estado: $HEALTH_STATUS"
+
+                        if [ "$HEALTH_STATUS" = "healthy" ]; then
+                            exit 0
+                        fi
+
+                        if [ "$HEALTH_STATUS" = "unhealthy" ]; then
+                            docker logs "$CONTAINER_NAME"
+                            exit 1
+                        fi
+
+                        sleep 5
+                    done
+
+                    docker logs "$CONTAINER_NAME"
+                    echo "El contenedor no alcanzo el estado healthy."
+                    exit 1
+                '''
+            }
+        }
     }
 }
