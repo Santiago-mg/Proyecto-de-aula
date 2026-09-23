@@ -47,7 +47,7 @@ pipeline {
 
                     service postgresql restart
 
-                    su - postgres << EOF
+                    su - postgres << 'EOF'
                         psql -c "CREATE USER user WITH PASSWORD 'password' CREATEDB;"
                     EOF
 
