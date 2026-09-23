@@ -121,6 +121,7 @@ pipeline {
                         --restart unless-stopped \
                         -p 8000:8000 \
                         "$IMAGE_NAME:$BUILD_NUMBER"
+                '''
             }
         }
 
