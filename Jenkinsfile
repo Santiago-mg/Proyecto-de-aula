@@ -61,14 +61,19 @@ pipeline {
                     sleep 3
 
                     # Update PostgreSQL authentication method
-                    sed -i 's/local   all             all                                     peer/local   all             all                                     trust/' /etc/postgresql/14/main/pg_hba.conf
+                    # For local socket connections
+                    sed -i 's/local   all             all                                     peer/local   all             all                                     md5/' /etc/postgresql/14/main/pg_hba.conf
+
+                    # For TCP connections (127.0.0.1)
+                    sed -i 's|host    all             all             127.0.0.1/32            ident|host    all             all             127.0.0.1/32            md5|' /etc/postgresql/14/main/pg_hba.conf
 
                     # Restart PostgreSQL to apply changes
                     service postgresql restart
                     sleep 3
 
                     cat > /tmp/setup.sql << 'EOF'
-CREATE USER ...
+CREATE USER celularproapi WITH PASSWORD '\''password'\'' CREATEDB;
+CREATE DATABASE celularpro OWNER celularproapi;
 EOF
 
                     # 4. Run as postgres user
