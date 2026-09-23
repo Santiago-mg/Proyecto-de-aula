@@ -1,5 +1,5 @@
 import { AppError } from '../../domain/AppError'
-import type { Phone } from '../../domain/entities/Phone'
+import type { Phone, PhoneListItem } from '../../domain/entities/Phone'
 import type {
   IPhoneRepository,
   PhoneFilters,
@@ -26,6 +26,18 @@ export async function getPhones(
   return repo.findAll(filters, query.page, query.limit)
 }
 
+// findById() + el 404 se repetía igual en getPhoneById, updatePhone y
+// deletePhone. Se exporta porque favoritos necesita la misma guarda antes de
+// marcar un celular, y no tiene sentido tener dos versiones del mismo 404.
+export async function findPhoneByIdOrThrow(
+  repo: IPhoneRepository,
+  id: string,
+) {
+  const phone = await repo.findById(id)
+  if (!phone) throw new AppError('Celular no encontrado', 404)
+  return phone
+}
+
 export async function getPhoneBySlug(repo: IPhoneRepository, slug: string) {
   const phone = await repo.findBySlug(slug)
   if (!phone) throw new AppError('Celular no encontrado', 404)
@@ -33,9 +45,24 @@ export async function getPhoneBySlug(repo: IPhoneRepository, slug: string) {
 }
 
 export async function getPhoneById(repo: IPhoneRepository, id: string) {
-  const phone = await repo.findById(id)
-  if (!phone) throw new AppError('Celular no encontrado', 404)
-  return phone
+  return findPhoneByIdOrThrow(repo, id)
+}
+
+/**
+ * Celulares sugeridos a partir del que se está viendo (funcionalidad 13).
+ *
+ * Se entra por el slug, igual que la ficha del producto, para que el frontend
+ * pueda pedir las recomendaciones con el mismo dato que ya tiene en la URL sin
+ * una consulta previa. Reutiliza getPhoneBySlug y con ello su 404: si el
+ * celular base no existe, no hay nada de lo que recomendar parecidos.
+ */
+export async function getSimilarPhones(
+  repo: IPhoneRepository,
+  slug: string,
+  limit: number,
+): Promise<PhoneListItem[]> {
+  const base = await getPhoneBySlug(repo, slug)
+  return repo.findSimilar(base, limit)
 }
 
 export async function createPhone(
@@ -66,8 +93,7 @@ export async function updatePhone(
   id: string,
   data: UpdatePhoneDto,
 ): Promise<Phone> {
-  const phone = await repo.findById(id)
-  if (!phone) throw new AppError('Celular no encontrado', 404)
+  await findPhoneByIdOrThrow(repo, id)
   return repo.update(id, data)
 }
 
@@ -75,7 +101,6 @@ export async function deletePhone(
   repo: IPhoneRepository,
   id: string,
 ): Promise<void> {
-  const phone = await repo.findById(id)
-  if (!phone) throw new AppError('Celular no encontrado', 404)
+  await findPhoneByIdOrThrow(repo, id)
   return repo.delete(id)
 }

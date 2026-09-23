@@ -22,6 +22,14 @@ export const createPhoneDto = z.object({
   compareAt: z.number().int().positive().optional(),
   badge: z.string().optional(),
   stock: z.number().int().nonnegative('El stock no puede ser negativo'),
+  // Umbral de reposición. Si no viene, se usa el mismo valor por defecto que
+  // tiene la columna en la base, para que el celular quede siempre con un
+  // mínimo con el que comparar.
+  minStock: z
+    .number()
+    .int()
+    .nonnegative('El stock mínimo no puede ser negativo')
+    .default(5),
   condition: z.enum(['NEW', 'CERTIFIED', 'USED']),
   verified: z.boolean().default(false),
   batteryHealth: z.number().int().min(0).max(100).optional(),
@@ -62,6 +70,23 @@ export const phonesQueryDto = z.object({
   search: z.string().optional(),
 })
 
+/**
+ * Cuántas recomendaciones se piden (funcionalidad 13).
+ *
+ * El tope existe para que nadie convierta el endpoint en un volcado del
+ * catálogo: para eso está GET /phones con su paginación. Cuatro es lo que
+ * cabe en la fila de "también te puede interesar" de la ficha del producto.
+ */
+export const similarQueryDto = z.object({
+  limit: z.coerce
+    .number()
+    .int()
+    .positive('limit debe ser un entero positivo')
+    .max(12, 'No se pueden pedir más de 12 recomendaciones')
+    .default(4),
+})
+
 export type CreatePhoneDto = z.infer<typeof createPhoneDto>
 export type UpdatePhoneDto = z.infer<typeof updatePhoneDto>
 export type PhonesQueryDto = z.infer<typeof phonesQueryDto>
+export type SimilarQueryDto = z.infer<typeof similarQueryDto>
