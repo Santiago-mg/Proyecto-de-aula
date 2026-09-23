@@ -44,11 +44,8 @@ pipeline {
                     sed -i 's/local   all             all                                     peer/local   all             all                                     md5/' /etc/postgresql/14/main/pg_hba.conf
 
                     service postgresql restart
-                        
-                    su - postgres
 
-                    psql -c "CREATE USER celularproapi WITH PASSWORD 'password' CREATEDB;"
-                    exit
+                    echo "password" | psql -c "CREATE USER celularproapi WITH PASSWORD 'password' CREATEDB;"
 
                     cp .env.example .env
                     sed -i 's|DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/celularpro"|DATABASE_URL="postgresql://celularproapi:password@127.0.0.1:5432/celularpro"|' .env
