@@ -106,10 +106,12 @@ EOF
 
         stage('SonarQube Analysis') {
             steps {
-                sh '''
-                    set -e
-                    sonar-scanner
-                '''
+                withSonarQubeEnv('SonarQube') {
+                    sh '''
+                        set -e
+                        sonar-scanner
+                    '''
+                }
             }
         }
 
