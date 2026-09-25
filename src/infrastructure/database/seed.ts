@@ -37,10 +37,18 @@ type PhoneSeed = {
   features: string[]
 }
 
-// Helper para crear registros PhoneSeed evitando código duplicado mediante overrides
+// Helper para crear registros PhoneSeed evitando código duplicado mediante overrides.
+// `defaults` aporta brand/categoryId (lo que se repite por marca).
+// `overrides` aporta el resto del registro; badge/stock/condition son opcionales
+// porque este helper ya les asigna un valor por defecto.
+type PhoneSeedDefaults = Pick<PhoneSeed, 'brand' | 'categoryId'>
+type PhoneSeedOptional = 'badge' | 'stock' | 'condition'
+type PhoneSeedOverrides = Omit<PhoneSeed, keyof PhoneSeedDefaults | PhoneSeedOptional> &
+  Partial<Pick<PhoneSeed, PhoneSeedOptional>>
+
 function createPhoneSeed(
-  defaults: Partial<PhoneSeed>,
-  overrides: PhoneSeed
+  defaults: PhoneSeedDefaults,
+  overrides: PhoneSeedOverrides
 ): PhoneSeed {
   return {
     badge: null,
@@ -78,22 +86,22 @@ function toPrismaPhone({
 }
 
 // ─── Defaults por Marca ──────────────────────────────────────────────────
-const APPLE_BASE: Partial<PhoneSeed> = {
+const APPLE_BASE: PhoneSeedDefaults = {
   brand: 'Apple',
   categoryId: 'apple',
 }
 
-const SAMSUNG_BASE: Partial<PhoneSeed> = {
+const SAMSUNG_BASE: PhoneSeedDefaults = {
   brand: 'Samsung',
   categoryId: 'samsung',
 }
 
-const XIAOMI_BASE: Partial<PhoneSeed> = {
+const XIAOMI_BASE: PhoneSeedDefaults = {
   brand: 'Xiaomi',
   categoryId: 'xiaomi',
 }
 
-const MOTOROLA_BASE: Partial<PhoneSeed> = {
+const MOTOROLA_BASE: PhoneSeedDefaults = {
   brand: 'Motorola',
   categoryId: 'motorola',
 }
