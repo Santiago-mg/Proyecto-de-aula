@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     ca-certificates \
     git \
-    docker-cli \
     postgresql \
     postgresql-contrib \
     && rm -rf /var/lib/apt/lists/*
