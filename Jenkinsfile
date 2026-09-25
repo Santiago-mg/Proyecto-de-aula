@@ -65,7 +65,7 @@ pipeline {
                     sleep 3
 
                     cat > /tmp/setup.sql << 'EOF'
-CREATE USER celularproapi WITH PASSWORD '\''password'\'' CREATEDB;
+CREATE USER celularproapi WITH PASSWORD 'password' CREATEDB;
 CREATE DATABASE celularpro OWNER celularproapi;
 EOF
 
@@ -105,23 +105,10 @@ EOF
         }
 
         stage('SonarQube Analysis') {
-            agent {
-                docker {
-                    image 'sonarsource/sonar-scanner-cli:latest'
-                    args '-v "${WORKSPACE}:/workspace" -u root'
-                    reuseNode true
-                }
-            }
             steps {
                 sh '''
                     set -e
-                    cd /workspace
-                    sonar-scanner \
-                        -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-                        -Dsonar.projectName="$SONAR_PROJECT_NAME" \
-                        -Dsonar.sources=src \
-                        -Dsonar.host.url=$SONAR_HOST_URL \
-                        -Dsonar.login=$SONAR_AUTH_TOKEN
+                    sonar-scanner
                 '''
             }
         }
