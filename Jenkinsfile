@@ -105,24 +105,11 @@ EOF
         }
 
         stage('SonarQube Analysis') {
-            agent {
-                docker {
-                    image 'sonarsource/sonar-scanner-cli:latest'
-                    args '-v "${WORKSPACE}:/workspace" -v /var/run/docker/.sock:/var/run/docker.sock -u root'
-                    reuseNode true
-                }
-            }
             steps {
                 withSonarQubeEnv('SonarQube') {
                     sh '''
                         set -e
-                        cd /workspace
-                        sonar-scanner \
-                            -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-                            -Dsonar.projectName="$SONAR_PROJECT_NAME" \
-                            -Dsonar.sources=backend,frontend \
-                            -Dsonar.host.url=$SONAR_HOST_URL \
-                            -Dsonar.login=$SONAR_AUTH_TOKEN
+                        sonar-scanner
                     '''
                 }
             }
