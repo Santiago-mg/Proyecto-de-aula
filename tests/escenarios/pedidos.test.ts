@@ -1,4 +1,5 @@
-import { describe, expect, it } from 'vitest'
+import { expect } from 'chai'
+import { describe, it } from 'vitest'
 import request from 'supertest'
 import app from '../../src/app'
 import { prismaMock } from '../helpers/prisma-mock'
@@ -52,36 +53,45 @@ function pedido(cambios: Record<string, unknown> = {}) {
 
 describe('POST /orders — crear pedido', () => {
   it('sin token → 401', async () => {
+    // Act
     const res = await request(app).post(RUTA).send(bodyPedido())
 
-    expect(res.status).toBe(401)
+    // Assert
+    expect(res.status).to.equal(401)
   })
 
   it('body inválido → 400 Datos inválidos', async () => {
+    // Arrange
     const { token } = autenticar()
 
+    // Act
     const res = await request(app)
       .post(RUTA)
       .set('Authorization', `Bearer ${token}`)
       .send({ ...bodyPedido(), items: [] })
 
-    expect(res.status).toBe(400)
-    expect(res.body.error).toBe('Datos inválidos')
+    // Assert
+    expect(res.status).to.equal(400)
+    expect(res.body.error).to.equal('Datos inválidos')
   })
 
   it('celular inexistente → 404', async () => {
+    // Arrange
     const { token } = autenticar()
     prismaMock.phone.findMany.mockResolvedValue([])
 
+    // Act
     const res = await request(app)
       .post(RUTA)
       .set('Authorization', `Bearer ${token}`)
       .send(bodyPedido())
 
-    expect(res.status).toBe(404)
+    // Assert
+    expect(res.status).to.equal(404)
   })
 
   it('datos correctos → 201 con el pedido creado', async () => {
+    // Arrange
     const { token } = autenticar()
     prismaMock.phone.findMany.mockResolvedValue([
       {
@@ -95,107 +105,132 @@ describe('POST /orders — crear pedido', () => {
     prismaMock.phone.updateMany.mockResolvedValue({ count: 1 })
     prismaMock.order.create.mockResolvedValue(pedido())
 
+    // Act
     const res = await request(app)
       .post(RUTA)
       .set('Authorization', `Bearer ${token}`)
       .send(bodyPedido())
 
-    expect(res.status).toBe(201)
-    expect(res.body.data.orderRef).toBe('CP-ABC123')
+    // Assert
+    expect(res.status).to.equal(201)
+    expect(res.body.data.orderRef).to.equal('CP-ABC123')
   })
 })
 
 describe('GET /orders/my — mis pedidos', () => {
   it('sin token → 401', async () => {
+    // Act
     const res = await request(app).get(`${RUTA}/my`)
 
-    expect(res.status).toBe(401)
+    // Assert
+    expect(res.status).to.equal(401)
   })
 
   it('con token → 200 con los pedidos de ese usuario', async () => {
+    // Arrange
     const { user, token } = autenticar()
     prismaMock.order.findMany.mockResolvedValue([pedido({ userId: user.id })])
 
+    // Act
     const res = await request(app)
       .get(`${RUTA}/my`)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(200)
-    expect(res.body.data).toHaveLength(1)
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data).to.have.lengthOf(1)
   })
 })
 
 describe('GET /orders — listado de admin', () => {
   it('rol USER → 403', async () => {
+    // Arrange
     const { token } = autenticar()
 
+    // Act
     const res = await request(app)
       .get(RUTA)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(403)
+    // Assert
+    expect(res.status).to.equal(403)
   })
 
   it('admin → 200 con la lista paginada', async () => {
+    // Arrange
     const { token } = autenticarAdmin()
     prismaMock.order.count.mockResolvedValue(1)
     prismaMock.order.findMany.mockResolvedValue([pedido()])
 
+    // Act
     const res = await request(app)
       .get(`${RUTA}?page=1&limit=10`)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(200)
-    expect(res.body.meta).toMatchObject({ total: 1, page: 1, limit: 10 })
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.meta).to.deep.include({ total: 1, page: 1, limit: 10 })
   })
 })
 
 describe('PUT /orders/:id/status — cambiar estado', () => {
   it('rol USER → 403', async () => {
+    // Arrange
     const { token } = autenticar()
 
+    // Act
     const res = await request(app)
       .put(`${RUTA}/${ORDER_ID}/status`)
       .set('Authorization', `Bearer ${token}`)
       .send({ status: 'SHIPPED' })
 
-    expect(res.status).toBe(403)
+    // Assert
+    expect(res.status).to.equal(403)
   })
 
   it('estado inválido → 400 Datos inválidos', async () => {
+    // Arrange
     const { token } = autenticarAdmin()
 
+    // Act
     const res = await request(app)
       .put(`${RUTA}/${ORDER_ID}/status`)
       .set('Authorization', `Bearer ${token}`)
       .send({ status: 'INVENTADO' })
 
-    expect(res.status).toBe(400)
+    // Assert
+    expect(res.status).to.equal(400)
   })
 
   it('pedido inexistente → 404', async () => {
+    // Arrange
     const { token } = autenticarAdmin()
     prismaMock.order.findUnique.mockResolvedValue(null)
 
+    // Act
     const res = await request(app)
       .put(`${RUTA}/${ORDER_ID}/status`)
       .set('Authorization', `Bearer ${token}`)
       .send({ status: 'SHIPPED' })
 
-    expect(res.status).toBe(404)
+    // Assert
+    expect(res.status).to.equal(404)
   })
 
   it('transición válida → 200 con el estado nuevo', async () => {
+    // Arrange
     const { token } = autenticarAdmin()
     prismaMock.order.findUnique.mockResolvedValue(pedido())
     prismaMock.order.update.mockResolvedValue(pedido({ status: 'SHIPPED' }))
 
+    // Act
     const res = await request(app)
       .put(`${RUTA}/${ORDER_ID}/status`)
       .set('Authorization', `Bearer ${token}`)
       .send({ status: 'SHIPPED' })
 
-    expect(res.status).toBe(200)
-    expect(res.body.data.status).toBe('SHIPPED')
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data.status).to.equal('SHIPPED')
   })
 })

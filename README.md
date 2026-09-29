@@ -53,6 +53,38 @@ npm run db:seed
 npm run dev
 ```
 
+## Pruebas
+
+```bash
+npm test                # suite completa: tests/unit + tests/escenarios
+npm run test:coverage   # + cobertura en coverage/ (la lee SonarQube)
+npm run typecheck       # tipos de src/ y de tests/
+```
+
+No necesitan base de datos: usan un doble de Prisma.
+
+## Docker
+
+```bash
+docker build -t celularpro-api:latest .
+```
+
+La imagen trae la CLI de Prisma, así que
+`docker run --rm -e DATABASE_URL=... celularpro-api prisma migrate deploy`
+aplica las migraciones. La app completa (base, API y front) se levanta con el
+`docker-compose.yml` del repositorio del front.
+
+## Integración continua (Jenkins)
+
+El `Jenkinsfile` corre dentro del agente de `Dockerfile.jenkins`:
+
+Entorno → Instalar dependencias → Typecheck → Pruebas y cobertura →
+SonarQube (análisis + Quality Gate) → Build → Imagen Docker
+
+Este job no despliega. El despliegue (Docker y Vercel) lo hace el orquestador
+del repositorio del front, y solo si el back y el front pasan. Configuración
+paso a paso: [DEVOPS.md](https://github.com/Santiago-mg/Proyecto-de-aula-front/blob/main/DEVOPS.md).
+
 ## Endpoints
 
 - POST /api/v1/auth/register

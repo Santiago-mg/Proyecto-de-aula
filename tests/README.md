@@ -63,6 +63,35 @@ dominio: ahí están los valores límite del rango de precio y el desempate por
 cercanía, que por HTTP costaría más provocar.
 ```
 
+## Cómo están escritas
+
+Todas siguen el mismo modelo que el ejemplo del profesor (`calculadora.test.js`
+y `pedido.test.js`):
+
+- **Aserciones fluidas con Chai.** `expect` se importa de `chai`, no de Vitest,
+  así que solo existe el estilo encadenado:
+
+  ```ts
+  expect(res.status).to.equal(404)
+  expect(res.body.data).to.include({ banned: true }).and.not.have.property('password')
+  expect(ids, 'orden de la recomendación').to.deep.equal(['todo', 'marca', 'nada'])
+  ```
+
+- **Patrón AAA.** Cada prueba marca sus tres partes con `// Arrange`, `// Act`
+  y `// Assert`. Cuando la ejecución va dentro del propio `expect` (una función
+  pura o una excepción) se marca `// Act & Assert`, igual que en el ejemplo.
+
+Chai no trae aserciones para dobles ni para promesas, así que hay dos ayudas
+pequeñas en `helpers/`:
+
+| Ayuda | Para qué |
+|---|---|
+| `consultaDe(prismaMock.x.y)` | Devuelve lo que recibió el doble en su última llamada (`{ where, data, ... }`) para revisarlo con `to.deep.include` |
+| `capturarError(promesa)` | Espera una promesa que debe fallar y devuelve el error: `expect(error).to.include({ statusCode: 404 })` |
+
+Para saber si un `vi.fn()` se llamó se usa su historial:
+`expect(doble.mock.calls).to.be.empty` o `.to.deep.include([argumentos])`.
+
 ## Fixtures
 
 | Función | Para qué sirve |

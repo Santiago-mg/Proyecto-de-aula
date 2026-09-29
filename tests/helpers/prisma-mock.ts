@@ -83,11 +83,26 @@ export const prismaMock = {
       return (fn as (tx: typeof prismaMock) => unknown)(prismaMock)
     }
     // Forma prisma.$transaction([...promesas])
-    return Promise.all(fn as unknown as Promise<unknown>[])
+    return Promise.all(fn as Promise<unknown>[])
   }),
 
   $connect: vi.fn(),
   $disconnect: vi.fn(),
+}
+
+/**
+ * Lo que recibió un método del doble en su última llamada: el objeto de la
+ * consulta de Prisma ({ where, data, skip, take, ... }). Así la consulta se
+ * revisa con las mismas aserciones fluidas de chai que el resto:
+ *
+ *   expect(consultaDe(prismaMock.phone.findMany)).to.deep.include({ take: 12 })
+ */
+export function consultaDe(metodo: ReturnType<typeof vi.fn>): Record<string, unknown> {
+  const llamada = metodo.mock.lastCall
+  if (!llamada) {
+    throw new Error('El método del doble de Prisma no fue llamado')
+  }
+  return llamada[0] as Record<string, unknown>
 }
 
 /** Deja todos los vi.fn() del doble sin implementación ni historial. */

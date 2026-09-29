@@ -1,4 +1,5 @@
-import { describe, expect, it, vi } from 'vitest'
+import { expect } from 'chai'
+import { describe, it, vi } from 'vitest'
 import type { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 import { authenticate } from '../../../src/interface/middlewares/auth.middleware'
@@ -29,44 +30,54 @@ function makeRes() {
 describe('authenticate middleware', () => {
   // Camino 1,2,3,F — sin header Authorization o sin prefijo Bearer
   it('responde 401 "Token requerido" si no hay header Authorization', async () => {
+    // Arrange
     const req = { headers: {} } as Request
     const res = makeRes()
     const next = vi.fn() as NextFunction
 
+    // Act
     await authenticate(req, res, next)
 
-    expect(res.status).toHaveBeenCalledWith(401)
-    expect(res.json).toHaveBeenCalledWith({ error: 'Token requerido' })
-    expect(next).not.toHaveBeenCalled()
+    // Assert
+    expect(vi.mocked(res.status).mock.calls).to.deep.include([401])
+    expect(vi.mocked(res.json).mock.calls).to.deep.include([{ error: 'Token requerido' }])
+    expect(vi.mocked(next).mock.calls).to.be.empty
   })
 
   it('responde 401 "Token requerido" si el header no tiene el prefijo Bearer', async () => {
+    // Arrange
     const req = { headers: { authorization: 'Token abc123' } } as Request
     const res = makeRes()
     const next = vi.fn() as NextFunction
 
+    // Act
     await authenticate(req, res, next)
 
-    expect(res.status).toHaveBeenCalledWith(401)
-    expect(next).not.toHaveBeenCalled()
+    // Assert
+    expect(vi.mocked(res.status).mock.calls).to.deep.include([401])
+    expect(vi.mocked(next).mock.calls).to.be.empty
   })
 
   // Camino 1,2,4,5,6,7,F — token presente pero inválido o expirado
   it('responde 401 "Token inválido o expirado" si la firma no corresponde al JWT_SECRET del servidor', async () => {
+    // Arrange
     const req = {
       headers: { authorization: `Bearer ${tokenConFirmaInvalida()}` },
     } as Request
     const res = makeRes()
     const next = vi.fn() as NextFunction
 
+    // Act
     await authenticate(req, res, next)
 
-    expect(res.status).toHaveBeenCalledWith(401)
-    expect(res.json).toHaveBeenCalledWith({ error: 'Token inválido o expirado' })
-    expect(next).not.toHaveBeenCalled()
+    // Assert
+    expect(vi.mocked(res.status).mock.calls).to.deep.include([401])
+    expect(vi.mocked(res.json).mock.calls).to.deep.include([{ error: 'Token inválido o expirado' }])
+    expect(vi.mocked(next).mock.calls).to.be.empty
   })
 
   it('responde 401 "Token inválido o expirado" si el token ya venció', async () => {
+    // Arrange
     const tokenVencido = jwt.sign({ id: ID_INEXISTENTE, role: 'USER' }, process.env.JWT_SECRET as string, {
       expiresIn: -1, // ya vencido al momento de firmarlo
     })
@@ -74,15 +85,18 @@ describe('authenticate middleware', () => {
     const res = makeRes()
     const next = vi.fn() as NextFunction
 
+    // Act
     await authenticate(req, res, next)
 
-    expect(res.status).toHaveBeenCalledWith(401)
-    expect(res.json).toHaveBeenCalledWith({ error: 'Token inválido o expirado' })
-    expect(next).not.toHaveBeenCalled()
+    // Assert
+    expect(vi.mocked(res.status).mock.calls).to.deep.include([401])
+    expect(vi.mocked(res.json).mock.calls).to.deep.include([{ error: 'Token inválido o expirado' }])
+    expect(vi.mocked(next).mock.calls).to.be.empty
   })
 
   // Firma válida, pero el usuario ya no está en la base
   it('responde 401 si el token es válido pero el usuario ya no existe', async () => {
+    // Arrange
     const token = jwt.sign({ id: ID_INEXISTENTE, role: 'USER' }, process.env.JWT_SECRET as string, {
       expiresIn: '1h',
     })
@@ -92,14 +106,17 @@ describe('authenticate middleware', () => {
     const res = makeRes()
     const next = vi.fn() as NextFunction
 
+    // Act
     await authenticate(req, res, next)
 
-    expect(res.status).toHaveBeenCalledWith(401)
-    expect(next).not.toHaveBeenCalled()
+    // Assert
+    expect(vi.mocked(res.status).mock.calls).to.deep.include([401])
+    expect(vi.mocked(next).mock.calls).to.be.empty
   })
 
   // Firma válida, pero la cuenta fue suspendida después de emitir el token
   it('responde 403 con el motivo si la cuenta está baneada', async () => {
+    // Arrange
     const user = usuario({ banned: true, banReason: 'fraude en pagos' })
     prismaMock.user.findUnique.mockResolvedValue(user)
     const token = generarToken(user)
@@ -108,17 +125,20 @@ describe('authenticate middleware', () => {
     const res = makeRes()
     const next = vi.fn() as NextFunction
 
+    // Act
     await authenticate(req, res, next)
 
-    expect(res.status).toHaveBeenCalledWith(403)
-    expect(res.json).toHaveBeenCalledWith({
-      error: expect.stringContaining('fraude en pagos'),
-    })
-    expect(next).not.toHaveBeenCalled()
+    // Assert
+    expect(vi.mocked(res.status).mock.calls).to.deep.include([403])
+    const cuerpo = vi.mocked(res.json).mock.calls[0][0]
+    expect(cuerpo).to.have.all.keys('error')
+    expect(cuerpo.error).to.be.a('string').that.includes('fraude en pagos')
+    expect(vi.mocked(next).mock.calls).to.be.empty
   })
 
   // Camino 1,2,4,5,6,8,9,F — token válido y cuenta activa
   it('asigna req.user y llama a next() si el token es válido', async () => {
+    // Arrange
     const user = usuario()
     prismaMock.user.findUnique.mockResolvedValue(user)
     const token = generarToken(user)
@@ -127,16 +147,19 @@ describe('authenticate middleware', () => {
     const res = makeRes()
     const next = vi.fn() as NextFunction
 
+    // Act
     await authenticate(req, res, next)
 
-    expect(req.user).toMatchObject({ id: user.id, role: 'USER' })
-    expect(next).toHaveBeenCalledTimes(1)
-    expect(res.status).not.toHaveBeenCalled()
+    // Assert
+    expect(req.user).to.deep.include({ id: user.id, role: 'USER' })
+    expect(vi.mocked(next).mock.calls).to.have.lengthOf(1)
+    expect(vi.mocked(res.status).mock.calls).to.be.empty
   })
 
   // El rol se toma de la base, no del token: una degradación de ADMIN a USER
   // surte efecto sin esperar a que la sesión expire.
   it('usa el rol vigente en la base y no el que trae el token', async () => {
+    // Arrange
     const user = usuario({ role: 'USER' })
     prismaMock.user.findUnique.mockResolvedValue(user)
     // El token quedó firmado como ADMIN antes de que lo degradaran a USER.
@@ -147,9 +170,11 @@ describe('authenticate middleware', () => {
     const req = { headers: { authorization: `Bearer ${token}` } } as Request
     const next = vi.fn() as NextFunction
 
+    // Act
     await authenticate(req, makeRes(), next)
 
-    expect(req.user?.role).toBe('USER')
-    expect(next).toHaveBeenCalledTimes(1)
+    // Assert
+    expect(req.user?.role).to.equal('USER')
+    expect(vi.mocked(next).mock.calls).to.have.lengthOf(1)
   })
 })

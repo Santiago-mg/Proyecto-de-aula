@@ -4,6 +4,7 @@ import {
   authenticate,
   requireAdmin,
 } from '../middlewares/auth.middleware'
+import { asyncHandler } from '../middlewares/async-handler'
 import { validate } from '../middlewares/validate.middleware'
 import {
   createOrderDto,
@@ -13,11 +14,11 @@ import {
 const router = Router()
 
 // Usuario autenticado
-router.post('/', authenticate, validate(createOrderDto), create)
-router.get('/my', authenticate, myOrders)
+router.post('/', asyncHandler(authenticate), validate(createOrderDto), asyncHandler(create))
+router.get('/my', asyncHandler(authenticate), asyncHandler(myOrders))
 
 // Admin
-router.get('/', authenticate, requireAdmin, all)
-router.put('/:id/status', authenticate, requireAdmin, validate(updateOrderStatusDto), updateStatus)
+router.get('/', asyncHandler(authenticate), requireAdmin, asyncHandler(all))
+router.put('/:id/status', asyncHandler(authenticate), requireAdmin, validate(updateOrderStatusDto), asyncHandler(updateStatus))
 
 export default router

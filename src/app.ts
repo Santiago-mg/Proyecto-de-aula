@@ -9,9 +9,12 @@ const app = express()
 // y su versión a cualquiera que mire las respuestas.
 app.disable('x-powered-by')
 
+// Sin FRONTEND_URL (o vacía) se acepta cualquier origen, como en desarrollo.
+const frontendUrl = process.env.FRONTEND_URL?.trim() ? process.env.FRONTEND_URL : '*'
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || '*',
+    origin: frontendUrl,
     credentials: true,
   }),
 )

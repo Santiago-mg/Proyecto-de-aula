@@ -1,4 +1,5 @@
-import { describe, expect, it, vi } from 'vitest'
+import { expect } from 'chai'
+import { describe, it, vi } from 'vitest'
 import type { Request, Response, NextFunction } from 'express'
 import { ban } from '../../../src/interface/controllers/admin.controller'
 import { prismaMock } from '../../helpers/prisma-mock'
@@ -36,6 +37,7 @@ function makeReq(id: string, requesterId: string) {
 describe('admin.controller — ban()', () => {
   // Camino 1,2,3,4,5,F — id existente, reason válido
   it('responde con el usuario baneado cuando banUser() resuelve sin error', async () => {
+    // Arrange
     const admin = usuarioConConteo({ role: 'ADMIN' })
     const victima = usuarioConConteo({ banned: true, banReason: 'spam' })
     prismaMock.user.update.mockResolvedValue(victima)
@@ -44,20 +46,19 @@ describe('admin.controller — ban()', () => {
     const res = makeRes()
     const next = vi.fn() as NextFunction
 
+    // Act
     await ban(req, res, next)
 
-    expect(res.json).toHaveBeenCalledWith({
-      data: expect.objectContaining({
-        id: victima.id,
-        banned: true,
-        banReason: 'spam',
-      }),
-    })
-    expect(next).not.toHaveBeenCalled()
+    // Assert
+    const cuerpo = vi.mocked(res.json).mock.calls[0][0]
+    expect(cuerpo, 'respuesta del controlador').to.have.all.keys('data')
+    expect(cuerpo.data).to.include({ id: victima.id, banned: true, banReason: 'spam' })
+    expect(vi.mocked(next).mock.calls).to.be.empty
   })
 
   // Camino 1,2,3,4,6,F — banUser() lanza error (id inexistente)
   it('invoca next(error) cuando el id no existe', async () => {
+    // Arrange
     const admin = usuarioConConteo({ role: 'ADMIN' })
     prismaMock.user.update.mockRejectedValue(errorRegistroNoEncontrado())
 
@@ -65,29 +66,29 @@ describe('admin.controller — ban()', () => {
     const res = makeRes()
     const next = vi.fn() as NextFunction
 
+    // Act
     await ban(req, res, next)
 
-    expect(next).toHaveBeenCalledWith(
-      expect.objectContaining({
-        message: 'Usuario no encontrado',
-        statusCode: 404,
-      }),
-    )
-    expect(res.json).not.toHaveBeenCalled()
+    // Assert
+    const [error] = vi.mocked(next).mock.calls[0]
+    expect(error).to.include({ message: 'Usuario no encontrado', statusCode: 404 })
+    expect(vi.mocked(res.json).mock.calls).to.be.empty
   })
 
   it('le pasa al caso de uso el id del admin que hace la petición, y ese admin no puede banearse a sí mismo', async () => {
+    // Arrange
     const admin = usuarioConConteo({ role: 'ADMIN' })
 
     const req = makeReq(admin.id, admin.id)
     const res = makeRes()
     const next = vi.fn() as NextFunction
 
+    // Act
     await ban(req, res, next)
 
-    expect(next).toHaveBeenCalledWith(
-      expect.objectContaining({ message: 'No puedes banear tu propia cuenta' }),
-    )
-    expect(prismaMock.user.update).not.toHaveBeenCalled()
+    // Assert
+    const [error] = vi.mocked(next).mock.calls[0]
+    expect(error).to.have.property('message', 'No puedes banear tu propia cuenta')
+    expect(prismaMock.user.update.mock.calls).to.be.empty
   })
 })

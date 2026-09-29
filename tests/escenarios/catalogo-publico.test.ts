@@ -1,7 +1,8 @@
-import { describe, expect, it } from 'vitest'
+import { expect } from 'chai'
+import { describe, it } from 'vitest'
 import request from 'supertest'
 import app from '../../src/app'
-import { prismaMock } from '../helpers/prisma-mock'
+import { consultaDe, prismaMock } from '../helpers/prisma-mock'
 import { autenticar, autenticarAdmin, celular } from '../helpers/fixtures'
 
 /**
@@ -39,162 +40,189 @@ function filaListado(cambios: Record<string, unknown> = {}) {
 
 describe('GET /phones — listado público', () => {
   it('sin filtros → 200 con la lista paginada y el WHERE vacío', async () => {
+    // Arrange
     prismaMock.phone.count.mockResolvedValue(1)
     prismaMock.phone.findMany.mockResolvedValue([filaListado()])
 
+    // Act
     const res = await request(app).get(RUTA)
 
-    expect(prismaMock.phone.findMany).toHaveBeenCalledWith(
-      expect.objectContaining({ where: {}, skip: 0, take: 12 }),
-    )
-    expect(res.status).toBe(200)
-    expect(res.body.data).toHaveLength(1)
-    expect(res.body.meta).toMatchObject({ total: 1, page: 1, limit: 12 })
+    // Assert
+    expect(consultaDe(prismaMock.phone.findMany)).to.deep.include({ where: {}, skip: 0, take: 12 })
+    expect(res.status).to.equal(200)
+    expect(res.body.data).to.have.lengthOf(1)
+    expect(res.body.meta).to.deep.include({ total: 1, page: 1, limit: 12 })
   })
 
   it('limit fuera de rango → 400 Datos inválidos', async () => {
+    // Act
     // El esquema tope el limit en 50.
     const res = await request(app).get(`${RUTA}?limit=51`)
 
-    expect(res.status).toBe(400)
-    expect(res.body.error).toBe('Datos inválidos')
-    expect(prismaMock.phone.findMany).not.toHaveBeenCalled()
+    // Assert
+    expect(res.status).to.equal(400)
+    expect(res.body.error).to.equal('Datos inválidos')
+    expect(prismaMock.phone.findMany.mock.calls).to.be.empty
   })
 
   it('verified=false filtra por los NO verificados', async () => {
+    // Arrange
     prismaMock.phone.count.mockResolvedValue(0)
     prismaMock.phone.findMany.mockResolvedValue([])
 
+    // Act
     await request(app).get(`${RUTA}?verified=false`)
 
+    // Assert
     // Con z.coerce.boolean() esto llegaba como true y filtraba al revés.
-    expect(prismaMock.phone.findMany).toHaveBeenCalledWith(
-      expect.objectContaining({ where: { verified: false } }),
-    )
+    expect(consultaDe(prismaMock.phone.findMany)).to.deep.include({ where: { verified: false } })
   })
 
   it('verified con un valor que no es true/false → 400', async () => {
+    // Act
     const res = await request(app).get(`${RUTA}?verified=quizas`)
 
-    expect(res.status).toBe(400)
+    // Assert
+    expect(res.status).to.equal(400)
   })
 
   it('cada filtro se traduce a su parte del WHERE', async () => {
+    // Arrange
     prismaMock.phone.count.mockResolvedValue(0)
     prismaMock.phone.findMany.mockResolvedValue([])
 
+    // Act
     await request(app).get(
       `${RUTA}?category=apple&brand=Apple&condition=NEW&minPrice=100000&maxPrice=2000000&search=iphone`,
     )
 
-    expect(prismaMock.phone.findMany).toHaveBeenCalledWith(
-      expect.objectContaining({
-        where: {
-          categoryId: 'apple',
-          brand: { equals: 'Apple', mode: 'insensitive' },
-          condition: 'NEW',
-          price: { gte: 100_000, lte: 2_000_000 },
-          OR: [
-            { name: { contains: 'iphone', mode: 'insensitive' } },
-            { brand: { contains: 'iphone', mode: 'insensitive' } },
-            { shortDesc: { contains: 'iphone', mode: 'insensitive' } },
-          ],
-        },
-      }),
-    )
+    // Assert
+    expect(consultaDe(prismaMock.phone.findMany)).to.deep.include({
+      where: {
+        categoryId: 'apple',
+        brand: { equals: 'Apple', mode: 'insensitive' },
+        condition: 'NEW',
+        price: { gte: 100_000, lte: 2_000_000 },
+        OR: [
+          { name: { contains: 'iphone', mode: 'insensitive' } },
+          { brand: { contains: 'iphone', mode: 'insensitive' } },
+          { shortDesc: { contains: 'iphone', mode: 'insensitive' } },
+        ],
+      },
+    })
   })
 
   it('la segunda página salta los resultados de la primera', async () => {
+    // Arrange
     prismaMock.phone.count.mockResolvedValue(30)
     prismaMock.phone.findMany.mockResolvedValue([])
 
+    // Act
     const res = await request(app).get(`${RUTA}?page=3&limit=10`)
 
-    expect(prismaMock.phone.findMany).toHaveBeenCalledWith(
-      expect.objectContaining({ skip: 20, take: 10 }),
-    )
-    expect(res.body.meta).toMatchObject({ total: 30, totalPages: 3 })
+    // Assert
+    expect(consultaDe(prismaMock.phone.findMany)).to.deep.include({ skip: 20, take: 10 })
+    expect(res.body.meta).to.deep.include({ total: 30, totalPages: 3 })
   })
 })
 
 describe('GET /phones/:slug — detalle público', () => {
   it('slug inexistente → 404', async () => {
+    // Arrange
     prismaMock.phone.findUnique.mockResolvedValue(null)
 
+    // Act
     const res = await request(app).get(`${RUTA}/no-existe`)
 
-    expect(res.status).toBe(404)
-    expect(res.body.error).toBe('Celular no encontrado')
+    // Assert
+    expect(res.status).to.equal(404)
+    expect(res.body.error).to.equal('Celular no encontrado')
   })
 
   it('slug existente → 200 con el celular y sus relaciones', async () => {
+    // Arrange
     const telefono = celular({ slug: 'iphone-15' })
     prismaMock.phone.findUnique.mockResolvedValue(telefono)
 
+    // Act
     const res = await request(app).get(`${RUTA}/iphone-15`)
 
-    expect(prismaMock.phone.findUnique).toHaveBeenCalledWith(
-      expect.objectContaining({ where: { slug: 'iphone-15' } }),
-    )
-    expect(res.status).toBe(200)
-    expect(res.body.data).toMatchObject({ slug: 'iphone-15' })
+    // Assert
+    expect(consultaDe(prismaMock.phone.findUnique)).to.deep.include({ where: { slug: 'iphone-15' } })
+    expect(res.status).to.equal(200)
+    expect(res.body.data).to.deep.include({ slug: 'iphone-15' })
   })
 })
 
 describe('GET /phones/id/:id — detalle por UUID (solo admin)', () => {
   it('sin token → 401', async () => {
+    // Act
     const res = await request(app).get(`${RUTA}/id/tel-1`)
 
-    expect(res.status).toBe(401)
+    // Assert
+    expect(res.status).to.equal(401)
   })
 
   it('rol USER → 403: expone el registro crudo, así que no es pública', async () => {
+    // Arrange
     const { token } = autenticar()
 
+    // Act
     const res = await request(app)
       .get(`${RUTA}/id/tel-1`)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(403)
+    // Assert
+    expect(res.status).to.equal(403)
   })
 
   it('admin con id inexistente → 404', async () => {
+    // Arrange
     const { token } = autenticarAdmin()
     prismaMock.phone.findUnique.mockResolvedValue(null)
 
+    // Act
     const res = await request(app)
       .get(`${RUTA}/id/tel-1`)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(404)
+    // Assert
+    expect(res.status).to.equal(404)
   })
 
   it('admin con id existente → 200', async () => {
+    // Arrange
     const { token } = autenticarAdmin()
     const telefono = celular()
     prismaMock.phone.findUnique.mockResolvedValue(telefono)
 
+    // Act
     const res = await request(app)
       .get(`${RUTA}/id/${telefono.id}`)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(200)
-    expect(res.body.data.id).toBe(telefono.id)
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data.id).to.equal(telefono.id)
   })
 })
 
 describe('Rutas que no existen', () => {
   it('devuelve 404 Ruta no encontrada', async () => {
+    // Act
     const res = await request(app).get('/api/v1/inventado')
 
-    expect(res.status).toBe(404)
-    expect(res.body.error).toBe('Ruta no encontrada')
+    // Assert
+    expect(res.status).to.equal(404)
+    expect(res.body.error).to.equal('Ruta no encontrada')
   })
 
   it('/health responde ok', async () => {
+    // Act
     const res = await request(app).get('/health')
 
-    expect(res.status).toBe(200)
-    expect(res.body.status).toBe('ok')
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.status).to.equal('ok')
   })
 })
