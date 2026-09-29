@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest'
+import { expect } from 'chai'
+import { describe, it } from 'vitest'
 import { loginDto, registerDto } from '../../../src/application/dtos/auth.dto'
 
 // Basado en: application/dtos/auth.dto.ts — la validación de email que
@@ -18,39 +19,46 @@ describe('validación de email (compartida entre registro y login)', () => {
     ['sin nombre', '@gmail.com'],
     ['vacío', ''],
   ])('rechaza un correo %s', (_caso, email) => {
+    // Act
     const result = registerDto.safeParse({ ...base, email })
 
-    expect(result.success).toBe(false)
+    // Assert
+    expect(result.success).to.be.false
     if (!result.success) {
       const emailError = result.error.errors.find((e) => e.path[0] === 'email')
-      expect(emailError?.message).toBe('Email inválido')
+      expect(emailError?.message).to.equal('Email inválido')
     }
   })
 
   // Camino 1,2,3,5,6,F — email con formato válido
   it('acepta un correo con formato válido', () => {
+    // Act
     const result = registerDto.safeParse({ ...base, email: 'user@gmail.com' })
 
-    expect(result.success).toBe(true)
+    // Assert
+    expect(result.success).to.be.true
   })
 
   it.each(['gmail.com', 'outlook.com', 'hotmail.com', 'yahoo.com', 'empresa.com'])(
     'acepta el dominio %s, porque el esquema no restringe dominios',
     (domain) => {
+      // Act
       const result = registerDto.safeParse({ ...base, email: `user@${domain}` })
 
-      expect(result.success).toBe(true)
+      // Assert
+      expect(result.success).to.be.true
     },
   )
 
   it('aplica la misma validación en loginDto', () => {
+    // Act & Assert
     expect(
       loginDto.safeParse({ email: 'usuario@', password: 'password123' }).success,
-    ).toBe(false)
+    ).to.be.false
 
     expect(
       loginDto.safeParse({ email: 'user@gmail.com', password: 'password123' })
         .success,
-    ).toBe(true)
+    ).to.be.true
   })
 })

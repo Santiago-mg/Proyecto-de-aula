@@ -12,12 +12,18 @@ function signToken(payload: { id: string; role: string }) {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN })
 }
 
+// Copia del usuario sin la contraseña: la contraseña nunca sale de la API.
+function sinPassword(user: User): Omit<User, 'password'> {
+  const publico: Partial<User> = { ...user }
+  delete publico.password
+  return publico as Omit<User, 'password'>
+}
+
 // registerUser y loginUser terminaban igual: firmar el token y quitarle la
 // password al usuario antes de devolverlo. Estaba repetido línea por línea.
 function buildAuthResponse(user: User) {
   const token = signToken({ id: user.id, role: user.role })
-  const { password: _p, ...publicUser } = user
-  return { user: publicUser, token }
+  return { user: sinPassword(user), token }
 }
 
 export async function registerUser(repo: IUserRepository, data: RegisterDto) {
@@ -57,6 +63,5 @@ export async function getProfile(repo: IUserRepository, userId: string) {
   const user = await repo.findById(userId)
   if (!user) throw new AppError('Usuario no encontrado', 404)
 
-  const { password: _p, ...publicUser } = user
-  return publicUser
+  return sinPassword(user)
 }

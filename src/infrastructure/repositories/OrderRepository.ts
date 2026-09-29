@@ -1,4 +1,4 @@
-import crypto from 'crypto'
+import crypto from 'node:crypto'
 import type { Order, OrderStatus } from '../../domain/entities/Order'
 import type {
   CreateOrderData,

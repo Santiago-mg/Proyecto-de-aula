@@ -1,7 +1,8 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { expect } from 'chai'
+import { afterEach, beforeEach, describe, it, vi } from 'vitest'
 import request from 'supertest'
 import app from '../../src/app'
-import { prismaMock } from '../helpers/prisma-mock'
+import { consultaDe, prismaMock } from '../helpers/prisma-mock'
 import { celular } from '../helpers/fixtures'
 
 /**
@@ -53,54 +54,66 @@ function conBase() {
 
 describe('Camino 1 (1-2-15): el parámetro limit no es válido', () => {
   it('limit = 0 → 400 Datos inválidos', async () => {
+    // Act
     const res = await request(app).get(RUTA(SLUG, '?limit=0'))
 
-    expect(res.status).toBe(400)
-    expect(res.body.error).toBe('Datos inválidos')
+    // Assert
+    expect(res.status).to.equal(400)
+    expect(res.body.error).to.equal('Datos inválidos')
     // La guarda corta antes de tocar la base: ni se busca el celular base.
-    expect(prismaMock.phone.findUnique).not.toHaveBeenCalled()
-    expect(prismaMock.phone.findMany).not.toHaveBeenCalled()
+    expect(prismaMock.phone.findUnique.mock.calls).to.be.empty
+    expect(prismaMock.phone.findMany.mock.calls).to.be.empty
   })
 
   it('limit por encima del tope → 400, el endpoint no es un volcado del catálogo', async () => {
+    // Act
     const res = await request(app).get(RUTA(SLUG, '?limit=50'))
 
-    expect(res.status).toBe(400)
-    expect(res.body.errors).toEqual([
+    // Assert
+    expect(res.status).to.equal(400)
+    expect(res.body.errors).to.deep.equal([
       { field: 'limit', message: 'No se pueden pedir más de 12 recomendaciones' },
     ])
   })
 
   it('limit que no es un número → 400', async () => {
+    // Act
     const res = await request(app).get(RUTA(SLUG, '?limit=cuatro'))
 
-    expect(res.status).toBe(400)
-    expect(prismaMock.phone.findMany).not.toHaveBeenCalled()
+    // Assert
+    expect(res.status).to.equal(400)
+    expect(prismaMock.phone.findMany.mock.calls).to.be.empty
   })
 })
 
 describe('Camino 2 (1-3-4-15): el celular base no existe', () => {
   it('slug que no está en el catálogo → 404 Celular no encontrado', async () => {
+    // Arrange
     prismaMock.phone.findUnique.mockResolvedValue(null)
 
+    // Act
     const res = await request(app).get(RUTA('celular-que-no-existe'))
 
-    expect(res.status).toBe(404)
-    expect(res.body.error).toBe('Celular no encontrado')
+    // Assert
+    expect(res.status).to.equal(404)
+    expect(res.body.error).to.equal('Celular no encontrado')
     // Sin celular base no hay con qué comparar: no se consultan candidatos.
-    expect(prismaMock.phone.findMany).not.toHaveBeenCalled()
+    expect(prismaMock.phone.findMany.mock.calls).to.be.empty
   })
 })
 
 describe('Camino 3 (1-3-5-6-13-14-15): no hay candidatos', () => {
   it('el catálogo no tiene nada parecido → 200 con lista vacía', async () => {
+    // Arrange
     conBase()
     prismaMock.phone.findMany.mockResolvedValue([])
 
+    // Act
     const res = await request(app).get(RUTA(SLUG))
 
-    expect(res.status).toBe(200)
-    expect(res.body.data).toEqual([])
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data).to.be.an('array').that.is.empty
   })
 })
 
@@ -114,6 +127,7 @@ describe('Puntuación de un candidato (caminos 4 a 7)', () => {
   }
 
   it('Camino 4 (1-3-5-6-7-8-9-10-11-12-6-13-14-15): coincide en marca, categoría y precio', async () => {
+    // Act
     const res = await conUnCandidato(
       celular({
         id: 'afin-total',
@@ -124,9 +138,10 @@ describe('Puntuación de un candidato (caminos 4 a 7)', () => {
       }),
     )
 
-    expect(res.status).toBe(200)
-    expect(res.body.data).toHaveLength(1)
-    expect(res.body.data[0]).toMatchObject({
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data).to.have.lengthOf(1)
+    expect(res.body.data[0]).to.deep.include({
       id: 'afin-total',
       name: 'iPhone 14 Pro',
       brand: 'Apple',
@@ -136,6 +151,7 @@ describe('Puntuación de un candidato (caminos 4 a 7)', () => {
   })
 
   it('Camino 5 (1-3-5-6-7-9-10-11-12-6-13-14-15): otra marca, misma categoría y precio', async () => {
+    // Act
     const res = await conUnCandidato(
       celular({
         id: 'otra-marca',
@@ -145,11 +161,13 @@ describe('Puntuación de un candidato (caminos 4 a 7)', () => {
       }),
     )
 
-    expect(res.status).toBe(200)
-    expect(res.body.data[0].id).toBe('otra-marca')
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data[0].id).to.equal('otra-marca')
   })
 
   it('Camino 6 (1-3-5-6-7-8-9-11-12-6-13-14-15): misma marca, otra categoría, precio dentro', async () => {
+    // Act
     const res = await conUnCandidato(
       celular({
         id: 'otra-categoria',
@@ -159,11 +177,13 @@ describe('Puntuación de un candidato (caminos 4 a 7)', () => {
       }),
     )
 
-    expect(res.status).toBe(200)
-    expect(res.body.data[0].id).toBe('otra-categoria')
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data[0].id).to.equal('otra-categoria')
   })
 
   it('Camino 7 (1-3-5-6-7-8-9-10-11-6-13-14-15): marca y categoría iguales, precio fuera del rango', async () => {
+    // Act
     const res = await conUnCandidato(
       celular({
         id: 'precio-fuera',
@@ -173,8 +193,9 @@ describe('Puntuación de un candidato (caminos 4 a 7)', () => {
       }),
     )
 
-    expect(res.status).toBe(200)
-    expect(res.body.data[0].id).toBe('precio-fuera')
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data[0].id).to.equal('precio-fuera')
   })
 })
 
@@ -182,6 +203,7 @@ describe('Orden y recorte de la lista (nodo 13)', () => {
   beforeEach(conBase)
 
   it('primero el de más afinidad, aunque la base lo devuelva de último', async () => {
+    // Arrange
     prismaMock.phone.findMany.mockResolvedValue([
       // 1 punto: solo el precio.
       celular({ id: 'solo-precio', brand: 'Xiaomi', categoryId: 'android', price: PRECIO_DENTRO }),
@@ -191,9 +213,11 @@ describe('Orden y recorte de la lista (nodo 13)', () => {
       celular({ id: 'solo-marca', brand: 'Apple', categoryId: 'tablets', price: PRECIO_FUERA }),
     ])
 
+    // Act
     const res = await request(app).get(RUTA(SLUG))
 
-    expect(res.body.data.map((p: { id: string }) => p.id)).toEqual([
+    // Assert
+    expect(res.body.data.map((p: { id: string }) => p.id)).to.deep.equal([
       'todo',
       'solo-marca',
       'solo-precio',
@@ -201,30 +225,36 @@ describe('Orden y recorte de la lista (nodo 13)', () => {
   })
 
   it('a igual afinidad, primero el de precio más cercano', async () => {
+    // Arrange
     prismaMock.phone.findMany.mockResolvedValue([
       celular({ id: 'lejano', brand: 'Apple', categoryId: 'apple', price: 1_850_000 }),
       celular({ id: 'cercano', brand: 'Apple', categoryId: 'apple', price: 1_520_000 }),
     ])
 
+    // Act
     const res = await request(app).get(RUTA(SLUG))
 
+    // Assert
     // Los dos suman 6 puntos, así que desempata la diferencia de precio.
-    expect(res.body.data.map((p: { id: string }) => p.id)).toEqual([
+    expect(res.body.data.map((p: { id: string }) => p.id)).to.deep.equal([
       'cercano',
       'lejano',
     ])
   })
 
   it('devuelve como mucho las que se piden', async () => {
+    // Arrange
     prismaMock.phone.findMany.mockResolvedValue([
       celular({ id: 'a', brand: 'Apple', categoryId: 'apple', price: PRECIO_DENTRO }),
       celular({ id: 'b', brand: 'Apple', categoryId: 'apple', price: PRECIO_DENTRO }),
       celular({ id: 'c', brand: 'Apple', categoryId: 'apple', price: PRECIO_DENTRO }),
     ])
 
+    // Act
     const res = await request(app).get(RUTA(SLUG, '?limit=2'))
 
-    expect(res.body.data).toHaveLength(2)
+    // Assert
+    expect(res.body.data).to.have.lengthOf(2)
   })
 })
 
@@ -235,40 +265,40 @@ describe('Consulta de candidatos (nodo 5)', () => {
   })
 
   it('descarta el propio celular y los agotados, y busca por marca, categoría o precio', async () => {
+    // Act
     await request(app).get(RUTA(SLUG))
 
-    expect(prismaMock.phone.findMany).toHaveBeenCalledWith(
-      expect.objectContaining({
-        where: {
-          id: { not: 'base-id' },
-          stock: { gt: 0 },
-          OR: [
-            { brand: { equals: 'Apple', mode: 'insensitive' } },
-            { categoryId: 'apple' },
-            // ±25% de 1.500.000
-            { price: { gte: 1_125_000, lte: 1_875_000 } },
-          ],
-        },
-      }),
-    )
+    // Assert
+    expect(consultaDe(prismaMock.phone.findMany)).to.deep.include({
+      where: {
+        id: { not: 'base-id' },
+        stock: { gt: 0 },
+        OR: [
+          { brand: { equals: 'Apple', mode: 'insensitive' } },
+          { categoryId: 'apple' },
+          // ±25% de 1.500.000
+          { price: { gte: 1_125_000, lte: 1_875_000 } },
+        ],
+      },
+    })
   })
 
   it('sin limit se piden 4, que es lo que cabe en la fila de la ficha', async () => {
+    // Act
     await request(app).get(RUTA(SLUG))
 
+    // Assert
     // Se traen candidatos de más (4 por cada uno pedido) porque el orden por
     // afinidad lo pone el dominio, no la base.
-    expect(prismaMock.phone.findMany).toHaveBeenCalledWith(
-      expect.objectContaining({ take: 16 }),
-    )
+    expect(consultaDe(prismaMock.phone.findMany)).to.deep.include({ take: 16 })
   })
 
   it('con limit explícito se piden candidatos en proporción', async () => {
+    // Act
     await request(app).get(RUTA(SLUG, '?limit=3'))
 
-    expect(prismaMock.phone.findMany).toHaveBeenCalledWith(
-      expect.objectContaining({ take: 12 }),
-    )
+    // Assert
+    expect(consultaDe(prismaMock.phone.findMany)).to.deep.include({ take: 12 })
   })
 })
 
@@ -282,12 +312,15 @@ describe('Fallos de infraestructura', () => {
   })
 
   it('si se cae la consulta de candidatos → 500 sin filtrar el detalle', async () => {
+    // Arrange
     conBase()
     prismaMock.phone.findMany.mockRejectedValue(new Error('timeout'))
 
+    // Act
     const res = await request(app).get(RUTA(SLUG))
 
-    expect(res.status).toBe(500)
-    expect(res.body.error).toBe('Error interno del servidor')
+    // Assert
+    expect(res.status).to.equal(500)
+    expect(res.body.error).to.equal('Error interno del servidor')
   })
 })

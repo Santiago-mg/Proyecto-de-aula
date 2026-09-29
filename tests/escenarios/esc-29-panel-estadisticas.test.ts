@@ -1,4 +1,5 @@
-import { describe, expect, it } from 'vitest'
+import { expect } from 'chai'
+import { describe, it } from 'vitest'
 import request from 'supertest'
 import app from '../../src/app'
 import { prismaMock } from '../helpers/prisma-mock'
@@ -59,59 +60,72 @@ function programarEstadisticas(
 
 describe('ESC-29 — Panel de estadísticas', () => {
   it('Camino 1 (1-2-14): sin cabecera Bearer → 401 Token requerido', async () => {
+    // Act
     const res = await request(app).get(RUTA)
 
-    expect(res.status).toBe(401)
-    expect(res.body.error).toBe('Token requerido')
-    expect(prismaMock.order.groupBy).not.toHaveBeenCalled()
+    // Assert
+    expect(res.status).to.equal(401)
+    expect(res.body.error).to.equal('Token requerido')
+    expect(prismaMock.order.groupBy.mock.calls).to.be.empty
   })
 
   it('Camino 2 (1-3-4-14): firma inválida → 401 Token inválido o expirado', async () => {
+    // Act
     const res = await request(app)
       .get(RUTA)
       .set('Authorization', `Bearer ${tokenConFirmaInvalida()}`)
 
-    expect(res.status).toBe(401)
-    expect(res.body.error).toBe('Token inválido o expirado')
-    expect(prismaMock.order.groupBy).not.toHaveBeenCalled()
+    // Assert
+    expect(res.status).to.equal(401)
+    expect(res.body.error).to.equal('Token inválido o expirado')
+    expect(prismaMock.order.groupBy.mock.calls).to.be.empty
   })
 
   it('Camino 3 (1-3-5-6-14): rol USER → 403 Acceso restringido', async () => {
+    // Arrange
     const { token } = autenticar()
 
+    // Act
     const res = await request(app)
       .get(RUTA)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(403)
-    expect(res.body.error).toBe('Acceso restringido a administradores')
-    expect(prismaMock.order.groupBy).not.toHaveBeenCalled()
+    // Assert
+    expect(res.status).to.equal(403)
+    expect(res.body.error).to.equal('Acceso restringido a administradores')
+    expect(prismaMock.order.groupBy.mock.calls).to.be.empty
   })
 
   it('Camino 4 (1-3-5-7-8-9-13-14): sin pedidos → 200 con los ingresos en 0', async () => {
+    // Arrange
     const { token } = autenticarAdmin()
     programarEstadisticas([])
 
+    // Act
     const res = await request(app)
       .get(RUTA)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(200)
-    expect(res.body.data.orders).toMatchObject({ total: 0, revenue: 0 })
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data.orders).to.deep.include({ total: 0, revenue: 0 })
   })
 
   it('Camino 5 (1-3-5-7-8-9-10-11-9-13-14): pedido no cancelado → suma su total a los ingresos', async () => {
+    // Arrange
     const { token } = autenticarAdmin()
     programarEstadisticas([
       { status: 'DELIVERED', count: 1, sum: 3_500_000 },
     ])
 
+    // Act
     const res = await request(app)
       .get(RUTA)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(200)
-    expect(res.body.data.orders).toMatchObject({
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data.orders).to.deep.include({
       total: 1,
       delivered: 1,
       cancelled: 0,
@@ -120,17 +134,20 @@ describe('ESC-29 — Panel de estadísticas', () => {
   })
 
   it('Camino 6 (1-3-5-7-8-9-10-12-9-13-14): pedido cancelado → no se suma a los ingresos', async () => {
+    // Arrange
     const { token } = autenticarAdmin()
     programarEstadisticas([
       { status: 'CANCELLED', count: 1, sum: 3_500_000 },
     ])
 
+    // Act
     const res = await request(app)
       .get(RUTA)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(200)
-    expect(res.body.data.orders).toMatchObject({
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data.orders).to.deep.include({
       total: 1,
       cancelled: 1,
       // El pedido se cuenta, pero su dinero no entra a los ingresos.
@@ -139,6 +156,7 @@ describe('ESC-29 — Panel de estadísticas', () => {
   })
 
   it('Con pedidos mezclados solo suma los que no están cancelados', async () => {
+    // Arrange
     const { token } = autenticarAdmin()
     programarEstadisticas([
       { status: 'DELIVERED', count: 2, sum: 5_000_000 },
@@ -146,12 +164,14 @@ describe('ESC-29 — Panel de estadísticas', () => {
       { status: 'CANCELLED', count: 3, sum: 9_000_000 },
     ])
 
+    // Act
     const res = await request(app)
       .get(RUTA)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(200)
-    expect(res.body.data.orders).toMatchObject({
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data.orders).to.deep.include({
       total: 6,
       delivered: 2,
       pending: 1,
@@ -162,18 +182,22 @@ describe('ESC-29 — Panel de estadísticas', () => {
   })
 
   it('El panel siempre devuelve los 7 días de ingresos', async () => {
+    // Arrange
     const { token } = autenticarAdmin()
     programarEstadisticas([])
 
+    // Act
     const res = await request(app)
       .get(RUTA)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(200)
-    expect(res.body.data.revenueByDay).toHaveLength(7)
+    // Assert
+    expect(res.status).to.equal(200)
+    expect(res.body.data.revenueByDay).to.have.lengthOf(7)
   })
 
   it('Un pedido de hoy aparece en el último día del desglose diario', async () => {
+    // Arrange
     const { token } = autenticarAdmin()
     programarEstadisticas([{ status: 'DELIVERED', count: 1, sum: 800_000 }])
     // Se reprograman las dos findMany: la segunda devuelve el pedido de hoy.
@@ -183,13 +207,15 @@ describe('ESC-29 — Panel de estadísticas', () => {
       { total: 800_000, createdAt: new Date() },
     ])
 
+    // Act
     const res = await request(app)
       .get(RUTA)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(res.status).toBe(200)
+    // Assert
+    expect(res.status).to.equal(200)
     const dias = res.body.data.revenueByDay
-    expect(dias).toHaveLength(7)
-    expect(dias[6]).toMatchObject({ amount: 800_000, count: 1 })
+    expect(dias).to.have.lengthOf(7)
+    expect(dias[6]).to.deep.include({ amount: 800_000, count: 1 })
   })
 })
