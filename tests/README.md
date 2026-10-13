@@ -1,6 +1,6 @@
 # Suite de pruebas — CelularPro API
 
-289 pruebas en 30 archivos. **No necesita base de datos ni variables de
+575 pruebas en 54 archivos. **No necesita base de datos ni variables de
 entorno**: se sustituye el cliente Prisma por un doble, así que corre igual en
 tu máquina que en el pipeline.
 
@@ -8,7 +8,16 @@ tu máquina que en el pipeline.
 npm test              # toda la suite
 npm run test:watch    # en modo watch
 npm run test:coverage # + reporte en coverage/ (incluye lcov.info para SonarQube)
+npm run test:regresion          # regresión de todos los autores (Santiago, luego Mario)
+npm run test:regresion:santiago # solo la de Santiago (ESC-13 y 26-30), con resumen
+npm run test:regresion:mario    # solo la de Mario
 ```
+
+De esas, 286 son la suite de regresión de las funcionalidades 13, 26, 27, 28,
+29 y 30 (`tests/regresion/santiago/`), organizada en las cuatro categorías del
+repositorio del curso: regresión funcional, API, performance y seguridad. Cómo
+se corre y qué revisa cada categoría está en
+[`regresion/README.md`](regresion/README.md) (índice por autor).
 
 ## Cómo está montada
 
@@ -53,6 +62,9 @@ tests/
 │   ├── catalogo-publico.test.ts       listado, filtros y detalle
 │   ├── ramas-de-error.test.ts         cambio de rol y fallos de infraestructura
 │   └── ramas-restantes.test.ts        estados terminales, CORS y 500 en producción
+├── regresion/                  Suite de regresión de ESC-13 y 26-30 (ver su README)
+│   ├── regression-testing/  api-testing/  performance-testing/  security-testing/
+│   └── ejecutar.mjs           Corre las 4 categorías y muestra el resumen
 └── unit/                       Pruebas por caso de uso, middleware y DTO
     ├── alertas/ catalogo/ control-roles/ errores/ favoritos/
     ├── gestion-perfil/ login/ pedidos/ registro/ validacion-credenciales/

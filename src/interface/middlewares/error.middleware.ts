@@ -2,6 +2,29 @@ import { NextFunction, Request, Response } from 'express'
 import { ZodError } from 'zod'
 import { AppError } from '../../domain/AppError'
 
+/**
+ * Errores 4xx que lanza Express antes de llegar a las rutas: JSON mal formado
+ * (400), cuerpo de más de 100 kB (413), un charset que no soporta (415) o una
+ * URL con un parámetro mal codificado como "/phones/%E0%A4%A" (400). Son
+ * culpa del cliente y ya traen su status. Sin esta rama terminaban como 500
+ * y, fuera de producción, la respuesta arrastraba el mensaje interno del
+ * parser (DEF-REG-01 y DEF-REG-02, detectados por la suite de tests/regresion).
+ *
+ * body-parser marca sus errores con `type`; el mensaje se elige por ese tipo y
+ * no por el status, porque un 400 puede venir del cuerpo o de la URL.
+ */
+const MENSAJES_DEL_CLIENTE: Record<string, string> = {
+  'entity.parse.failed': 'El cuerpo de la petición no es un JSON válido',
+  'entity.too.large': 'El cuerpo de la petición es demasiado grande',
+}
+
+function esErrorDelCliente(
+  err: Error,
+): err is Error & { status: number; type?: string } {
+  const { status } = err as { status?: unknown }
+  return typeof status === 'number' && status >= 400 && status < 500
+}
+
 export function errorHandler(
   err: Error,
   _req: Request,
@@ -10,6 +33,13 @@ export function errorHandler(
 ) {
   if (err instanceof AppError) {
     res.status(err.statusCode).json({ error: err.message })
+    return
+  }
+
+  if (esErrorDelCliente(err)) {
+    res.status(err.status).json({
+      error: MENSAJES_DEL_CLIENTE[err.type ?? ''] ?? 'Petición inválida',
+    })
     return
   }
 

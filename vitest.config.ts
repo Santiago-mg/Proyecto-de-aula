@@ -7,6 +7,11 @@ export default defineConfig({
     //   tests/unit        → pruebas unitarias por caso de uso, middleware y DTO
     include: ['tests/**/*.test.ts'],
 
+    // Pruebas de un compañero que verifican código que este back todavía no
+    // tiene (ver tests/regresion/mario/README.md). Se corren a propósito con
+    // vitest.pendiente.config.ts, no dentro de `npm test`.
+    exclude: ['**/node_modules/**', 'tests/regresion/mario/pendiente-codigo-de-mario/**'],
+
     environment: 'node',
 
     // Instala el doble del cliente Prisma y el de bcrypt antes de que

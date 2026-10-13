@@ -1,7 +1,10 @@
 import { z } from 'zod'
 
 export const banUserDto = z.object({
-  reason: z.string().min(4, 'El motivo debe tener al menos 4 caracteres'),
+  // Se recorta antes de medir: un motivo de solo espacios no explica nada. El
+  // modal del front ya lo recorta, pero la API se puede llamar sin pasar por
+  // él (DEF-REG-03, detectado por la suite de tests/regresion).
+  reason: z.string().trim().min(4, 'El motivo debe tener al menos 4 caracteres'),
 })
 
 export const changeRoleDto = z.object({
