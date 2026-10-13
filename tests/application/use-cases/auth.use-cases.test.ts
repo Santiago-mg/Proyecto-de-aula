@@ -3,6 +3,7 @@ import { loginUser, registerUser } from '../../../src/application/use-cases/auth
 import type { IUserRepository } from '../../../src/domain/repositories/IUserRepository.ts';
 import type { User } from '../../../src/domain/entities/User.ts';
 import type { LoginDto, RegisterDto } from '../../../src/application/dtos/auth.dto.ts';
+import { loginDto, registerDto } from '../../../src/application/dtos/auth.dto.ts';
 
 // El módulo captura el secreto al cargarse, así que se fija antes de los imports.
 vi.hoisted(() => {
@@ -227,5 +228,96 @@ describe('configuración del módulo (JWT_EXPIRES_IN)', () => {
       'secreto-de-prueba',
       { expiresIn: '2h' },
     );
+  });
+});
+
+describe('seguridad — reglas Zod de los formularios de autenticación', () => {
+  describe('registerDto', () => {
+    it('rechaza un password con menos de 8 caracteres', () => {
+      const result = registerDto.safeParse({
+        email: 'user@gmail.com',
+        name: 'Mario',
+        password: 'Pass1',
+      });
+
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        const error = result.error.errors.find((e) => e.path[0] === 'password');
+        expect(error?.message).toBe(
+          'La contraseña debe tener al menos 8 caracteres',
+        );
+      }
+    });
+
+    it('rechaza un nombre con etiqueta <script> (XSS)', () => {
+      const result = registerDto.safeParse({
+        email: 'user@gmail.com',
+        name: '<script>alert(1)</script>',
+        password: 'Password123',
+      });
+
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        const error = result.error.errors.find((e) => e.path[0] === 'name');
+        expect(error?.message).toBe(
+          'No se permiten etiquetas HTML ni scripts',
+        );
+      }
+    });
+
+    it('rechaza un nombre con cualquier etiqueta HTML (p.ej. <b>)', () => {
+      const result = registerDto.safeParse({
+        email: 'user@gmail.com',
+        name: 'Ana <b>bold</b>',
+        password: 'Password123',
+      });
+
+      expect(result.success).toBe(false);
+    });
+
+    it('rechaza un nombre con el esquema javascript:', () => {
+      const result = registerDto.safeParse({
+        email: 'user@gmail.com',
+        name: 'javascript:alert(1)',
+        password: 'Password123',
+      });
+
+      expect(result.success).toBe(false);
+    });
+
+    it('acepta nombres legítimos (apóstrofo, acentos, espacios)', () => {
+      const result = registerDto.safeParse({
+        email: 'user@gmail.com',
+        name: "Ana O'Brien García",
+        password: 'Password123',
+      });
+
+      expect(result.success).toBe(true);
+    });
+
+    it('rechaza un email que contiene etiquetas HTML', () => {
+      const result = registerDto.safeParse({
+        email: 'user<script>@gmail.com',
+        name: 'Mario',
+        password: 'Password123',
+      });
+
+      expect(result.success).toBe(false);
+    });
+  });
+
+  describe('loginDto', () => {
+    it('rechaza un password vacío', () => {
+      const result = loginDto.safeParse({
+        email: 'user@gmail.com',
+        password: '',
+      });
+
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        const error = result.error.errors.find((e) => e.path[0] === 'password');
+        expect(error?.message).toBe('La contraseña es requerida');
+      }
+    });
   });
 });
