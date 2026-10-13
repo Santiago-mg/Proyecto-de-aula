@@ -14,5 +14,8 @@
     "rootDir": ".",
     "declaration": false
   },
-  "include": ["src/**/*", "tests/**/*", "vitest.config.ts"]
+  "include": ["src/**/*", "tests/**/*", "vitest.config.ts", "vitest.pendiente.config.ts"],
+  // Las pruebas de Mario que esperan código que este back no tiene no
+  // compilan hasta que ese código exista (tests/regresion/mario/README.md).
+  "exclude": ["tests/regresion/mario/pendiente-codigo-de-mario/**"]
 }
