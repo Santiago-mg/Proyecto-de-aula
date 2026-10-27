@@ -22,20 +22,19 @@ Qué se trajo de la rama `pruebas-qa-mario` (commit `f34db91`, MarioFer299) a la
 
 No se tocaron `Dockerfile`, `.dockerignore`, `Jenkinsfile` ni `sonar-project.properties`: los de la rama de Mario son distintos (por ejemplo su `.dockerignore` ya no excluye `team-credentials.txt`).
 
-## Qué NO se trajo: el código de `src/`
+## El código de `src/` de Mario (ya integrado)
 
-La rama de Mario cambia 18 archivos de `src/` (reglas de contraseña, límite de intentos de login, `helmet`, perfil, cabeceras `no-store`). Este back sigue con su `src/`.
+La rama de Mario cambia 18 archivos de `src/`: reglas de contraseña y de dominios de correo, normalización del correo, límite de intentos de login (429 con `Retry-After`), `helmet`, `Cache-Control: no-store`, perfil (`PATCH /auth/me`, `PUT /auth/me/password`) y la regla "no se banea a un administrador" (403). Antes no se había traído y 14 archivos de prueba quedaban en `tests/pendiente-qa-mario.json`. Ahora sí está, porque el front y las pruebas de Cypress de post-despliegue dependen de ese comportamiento (sin él, el perfil devolvía 404 en el despliegue de Docker).
 
-Consecuencia: **14 archivos de prueba** de esa rama verifican ese código y no pueden pasar todavía. Están en `tests/pendiente-qa-mario.json`, fuera de `npm test` y del chequeo de tipos, y se corren aparte:
+Cómo se integró, sin pisar lo que ya tenía este back:
 
-```bash
-npm run test:pendiente-qa      # hoy: 57 pasan y 37 fallan, a propósito
-```
-
-Archivos pendientes: perfil (`gestion-perfil`, `updateProfile`, `changePassword`), límite de intentos (`fuerza-bruta`, `login-limiter`), `password-policy`, enumeración de usuarios en login, cabeceras de seguridad, seguridad de credenciales, rendimiento, fluent de credenciales, regresión de credenciales y las ampliaciones de ESC-27 y ESC-28 (que esperan `Cache-Control: no-store`).
-
-Para activarlas hay que decidir con Mario qué cambios de `src/` se integran.
+- Se aplicó el diff de `src/` de Mario (respecto a la base común) con fusión de tres vías. El único conflicto fue `error.middleware.ts`: ambos lados arreglaron lo mismo (JSON mal formado → 400, cuerpo grande → 413); se conservó la versión de este back, que ya tenía pruebas propias.
+- Se **conservó `asyncHandler`** en todas las rutas (el diff de Mario lo quitaba porque su rama es anterior a ese cambio; sin él, un error async en Express 4 no llega al manejador). Las rutas nuevas de perfil también lo usan.
+- Se agregó la dependencia `helmet` (8.3.0).
+- Se actualizaron las 16 pruebas que esperaban el comportamiento anterior: datos de registro válidos (dominio permitido, contraseña con mayúscula, minúscula y número), el esquema de correo (dominios solo en el registro; el login no los exige), y las de ESC-26, porque el baneo ahora filtra por `role: 'USER'` y distingue 404 (no existe) de 403 (es administrador). Se agregó el camino 8 de ESC-26 y el fixture `autenticarAdminConDirectorio`.
+- Las 14 pruebas pendientes y las 9 de `tests/regresion/mario/` entraron a `npm test`; se eliminaron `tests/pendiente-qa-mario.json`, `vitest.pendiente-qa.config.ts` y `vitest.pendiente.config.ts`.
+- `tests/setup.ts` reinicia el limitador de intentos entre pruebas.
 
 ## Verificación
 
-`npm test`: 60 archivos, 618 pruebas, todas pasan. `npm run typecheck` sin errores.
+`npm test`: 75 archivos, 768 pruebas, todas pasan. `npm run test:regresion`: 286 (Santiago) + 20 (Mario). `npm run typecheck` sin errores.

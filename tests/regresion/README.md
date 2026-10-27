@@ -7,17 +7,16 @@ de otro.
 | Carpeta | Autor | Qué cubre | Pruebas | Comando |
 |---|---|---|---:|---|
 | [`santiago/`](santiago/README.md) | Santiago | Funcionalidades 13, 26–30 en cuatro categorías: funcional, API, rendimiento y seguridad | 286 | `npm run test:regresion:santiago` |
-| [`mario/`](mario/README.md) | Mario | Funcionalidades 13, 14, 21, 22, 25 y 26: números y mensajes que el negocio no debe perder | 11 | `npm run test:regresion:mario` |
-| `mario/pendiente-codigo-de-mario/` | Mario | Reglas de credenciales y perfil de usuario (código que este back aún no tiene) | 9 | `npm run test:regresion:mario:pendiente` (falla a propósito) |
+| [`mario/`](mario/README.md) | Mario | Funcionalidades 13, 14, 21, 22, 25 y 26 (números y mensajes que el negocio no debe perder) y las reglas de credenciales y perfil | 20 | `npm run test:regresion:mario` |
 
 `npm run test:regresion` corre Santiago y después Mario. `npm test` corre toda
-la suite del back (586 pruebas) y **no** incluye la carpeta pendiente.
+la suite del back.
 
 ## Cómo comprobar que cada autor corre solo lo suyo
 
 ```bash
 npm run test:regresion:santiago   # debe terminar con "Total: 286 passed"
-npm run test:regresion:mario      # debe decir "Tests 11 passed (11)"
+npm run test:regresion:mario      # debe decir "Tests 20 passed (20)"
 ```
 
 ## Reglas para agregar pruebas de otra persona

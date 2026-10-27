@@ -29,4 +29,10 @@ vi.mock('bcrypt', () => {
 beforeEach(async () => {
   const { limpiarPrismaMock } = await import('./helpers/prisma-mock')
   limpiarPrismaMock()
+  // El limitador de intentos de login guarda sus contadores en memoria del
+  // proceso: sin reiniciarlo, los 401 de una prueba contarían en la siguiente.
+  const { reiniciarLimitadorLogin } = await import(
+    '../src/interface/middlewares/login-limiter.middleware'
+  )
+  reiniciarLimitadorLogin()
 })

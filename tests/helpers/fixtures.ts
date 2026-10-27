@@ -119,6 +119,23 @@ export function autenticarAdmin(opciones: OpcionesUsuario = {}) {
   return autenticar({ ...opciones, role: 'ADMIN' })
 }
 
+/**
+ * Admin autenticado más un "directorio" de usuarios para la comprobación que
+ * hace el repositorio al banear: si el UPDATE condicionado a role USER no
+ * encuentra fila, busca el id para decidir entre 404 (no existe) y 403 (es
+ * administrador). findUnique responde con el admin del token (lo necesita el
+ * middleware), con los `existentes` por su id y con null para cualquier otro.
+ */
+export function autenticarAdminConDirectorio(existentes: Array<{ id: string }> = []) {
+  const sesion = autenticarAdmin()
+  const conocidos = [sesion.user, ...existentes]
+  prismaMock.user.findUnique.mockImplementation(
+    async ({ where }: { where: { id: string } }) =>
+      conocidos.find((u) => u.id === where.id) ?? null,
+  )
+  return sesion
+}
+
 interface OpcionesCelular {
   id?: string
   slug?: string

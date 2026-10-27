@@ -162,6 +162,6 @@ describe('Errores del cliente al enviar el cuerpo', () => {
       .send({ email: 'ana@gmail.com', name: 'x'.repeat(150_000), password: 'Password123' })
 
     expect(res.status).toBe(413)
-    expect(res.body).toEqual({ error: 'Petición inválida' })
+    expect(res.body).toEqual({ error: 'El cuerpo de la petición es demasiado grande' })
   })
 })

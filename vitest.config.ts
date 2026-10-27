@@ -1,5 +1,4 @@
 import { defineConfig } from 'vitest/config'
-import pendientesQa from './tests/pendiente-qa-mario.json'
 import { RPReporter } from '@reportportal/agent-js-vitest'
 import rp from './reportportal/config.cjs'
 
@@ -15,14 +14,8 @@ export default defineConfig({
     //   tests/unit        → pruebas unitarias por caso de uso, middleware y DTO
     include: ['tests/**/*.test.ts'],
 
-    // Pruebas de un compañero que verifican código que este back todavía no
-    // tiene (ver tests/regresion/mario/README.md). Se corren a propósito con
-    // vitest.pendiente.config.ts, no dentro de `npm test`.
     // La carga tiene su propia configuración (vitest.carga.config.ts).
-    exclude: ['**/node_modules/**', 'tests/regresion/mario/pendiente-codigo-de-mario/**', 'tests/carga/**', ...pendientesQa],
-    // pendientesQa: pruebas de la rama pruebas-qa-mario que esperan el código de Mario
-    // (perfil, límite de intentos, cabeceras, reglas de contraseña). Se corren aparte
-    // con `npm run test:pendiente-qa`; ver INTEGRACION-QA.md.
+    exclude: ['**/node_modules/**', 'tests/carga/**'],
 
     environment: 'node',
 

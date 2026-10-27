@@ -14,7 +14,6 @@
     "test:regresion:api": "vitest run tests/regresion/santiago/api-testing",
     "test:regresion:performance": "vitest run tests/regresion/santiago/performance-testing",
     "test:regresion:seguridad": "vitest run tests/regresion/santiago/security-testing",
-    "test:regresion:mario:pendiente": "vitest run --config vitest.pendiente.config.ts",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json",
     "metrics": "npm run test:coverage && npm run metrics:duplicacion && npm run metrics:loc",
     "metrics:duplicacion": "npx --yes jscpd src --min-lines 5 --min-tokens 50 --reporters console",
@@ -34,7 +33,6 @@
     "test:seguridad": "vitest run tests/seguridad",
     "test:rendimiento": "vitest run tests/rendimiento",
     "test:carga": "vitest run --config vitest.carga.config.ts",
-    "test:pendiente-qa": "vitest run --config vitest.pendiente-qa.config.ts",
     "test:evidencia": "vitest run --coverage --reporter=default --reporter=json --outputFile.json=docs/evidencias/unitarias/resultado.json",
     "instalar": "node scripts/criterios.mjs instalar",
     "criterio1": "node scripts/criterios.mjs 1",
@@ -56,6 +54,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
+    "helmet": "8.3.0",
     "jsonwebtoken": "^9.0.2",
     "zod": "^3.23.8"
   },

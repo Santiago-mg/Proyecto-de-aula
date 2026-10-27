@@ -6,7 +6,7 @@ negocio, para que un refactor que lo cambie sin querer falle con un nombre que
 dice qué regla se rompió.
 
 ```bash
-npm run test:regresion:mario   # 11 pruebas, no necesita Postgres
+npm run test:regresion:mario   # 20 pruebas, no necesita Postgres
 ```
 
 ## Qué verifica `regresion.test.ts`
@@ -41,23 +41,18 @@ repositorio) y se corrió la carpeta. **8 de 8 cambios fueron detectados**:
 | `DELIVERED` deja de ser estado final | Sí |
 | Permitir que un admin se banee a sí mismo | Sí |
 
-## Lo que está en `pendiente-codigo-de-mario/`
+## Qué verifica `regresion-credenciales.test.ts`
 
-`regresion-credenciales.test.ts` tiene 9 pruebas que **no pueden pasar en este
-back** porque verifican funciones que solo existen en el proyecto de Mario:
+9 pruebas de las reglas de credenciales y perfil que trajo el código de
+seguridad de Mario (`src/domain/credenciales.ts`, perfil, límite de intentos,
+`helmet`):
 
-- `src/domain/credenciales.ts` (lista de dominios de correo permitidos y
-  política de contraseñas de 8 a 72 caracteres).
+- Lista de dominios de correo permitidos y política de contraseñas de 8 a 72
+  caracteres.
 - Que el login acepte el correo en mayúsculas.
 - Que un JSON malformado responda 400 y no 500.
 - Los endpoints de perfil `PATCH /auth/me` y `PUT /auth/me/password`.
 
-Están separadas y excluidas de `npm test` para no dejar la suite en rojo ni
-copiar código de producción sin que el equipo lo decida. Con el código de
-Mario, esas 9 pasan (se comprobó en una copia). Ver el comando en
-`npm run test:regresion:mario:pendiente`.
-
-**Por qué no se trajo el código de Mario:** ambos proyectos nacieron del mismo
-trabajo de clase pero cada uno cambió cosas. Al poner el `src` de Mario encima
-de este, sus pruebas pasan pero **se rompen 16 pruebas de este back**. Traerlo
-exige elegir qué conservar de cada lado.
+Antes estaban en `pendiente-codigo-de-mario/` y fallaban a propósito porque
+este back no tenía ese código. Ya está integrado (ver `INTEGRACION-QA.md`) y
+la carpeta desapareció.

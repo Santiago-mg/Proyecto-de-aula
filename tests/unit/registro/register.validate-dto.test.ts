@@ -26,7 +26,7 @@ describe('registerDto (validación del body en POST /auth/register)', () => {
     // Act
     const result = registerDto.safeParse({
       email: 'user@gmail.com',
-      password: 'password123',
+      password: 'Password123',
     })
 
     // Assert
@@ -38,7 +38,7 @@ describe('registerDto (validación del body en POST /auth/register)', () => {
     const result = registerDto.safeParse({
       email: 'user@gmail.com',
       name: 'M',
-      password: 'password123',
+      password: 'Password123',
     })
 
     // Assert
@@ -67,7 +67,7 @@ describe('registerDto (validación del body en POST /auth/register)', () => {
     const body = {
       email: 'user@gmail.com',
       name: 'Mario',
-      password: 'password123',
+      password: 'Password123',
     }
 
     // Act
@@ -85,7 +85,7 @@ describe('registerDto (validación del body en POST /auth/register)', () => {
     const result = registerDto.safeParse({
       email: 'user@gmail.com',
       name: 'Mario',
-      password: 'password123',
+      password: 'Password123',
       role: 'ADMIN',
     })
 

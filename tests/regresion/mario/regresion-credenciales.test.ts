@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import request from 'supertest'
-import app from '../../../../src/app'
-import { registerDto } from '../../../../src/application/dtos/auth.dto'
-import { DOMINIOS_PERMITIDOS, PASSWORD_MAX, PASSWORD_MIN } from '../../../../src/domain/credenciales'
-import { evaluarAlerta } from '../../../../src/domain/stock-alerts'
-import { prismaMock } from '../../../helpers/prisma-mock'
-import { autenticar, usuario } from '../../../helpers/fixtures'
+import app from '../../../src/app'
+import { registerDto } from '../../../src/application/dtos/auth.dto'
+import { DOMINIOS_PERMITIDOS, PASSWORD_MAX, PASSWORD_MIN } from '../../../src/domain/credenciales'
+import { evaluarAlerta } from '../../../src/domain/stock-alerts'
+import { prismaMock } from '../../helpers/prisma-mock'
+import { autenticar, usuario } from '../../helpers/fixtures'
 
 /**
  * Regresión de las seis funcionalidades y de los defectos corregidos en esta

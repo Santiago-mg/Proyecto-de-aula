@@ -8,6 +8,9 @@ import type {
   IAdminRepository,
 } from '../../domain/repositories/IAdminRepository'
 
+export const MENSAJE_BANEAR_ADMIN =
+  'No puedes banear a un administrador. Quítale primero el rol de administrador.'
+
 // Prisma tira P2025 cuando el update no encuentra la fila. Si no se traduce,
 // el error sube crudo y sale como 500 en vez del 404 que corresponde.
 function usuarioNoExiste(error: unknown): boolean {
@@ -204,12 +207,28 @@ export class AdminRepository implements IAdminRepository {
     }
   }
 
+  // Solo se banea a clientes. La condición role: 'USER' va en el MISMO update
+  // (atómico): no hay ventana entre comprobar el rol y banear en la que otro
+  // administrador pudiera promoverlo. Antes la API permitía banear a otro
+  // administrador; solo la pantalla lo evitaba (hallazgo H7.1 de la evaluación
+  // heurística). Si el update no encuentra fila, se averigua por qué:
+  // no existe → 404, es administrador → 403.
   async banUser(userId: string, reason: string): Promise<AdminUser> {
-    return this.actualizarUsuario(userId, {
-      banned: true,
-      banReason: reason,
-      bannedAt: new Date(),
-    })
+    try {
+      const user = await prisma.user.update({
+        where: { id: userId, role: 'USER' },
+        data: { banned: true, banReason: reason, bannedAt: new Date() },
+        include: { _count: { select: { orders: true } } },
+      })
+      return mapUser(user)
+    } catch (error) {
+      if (!usuarioNoExiste(error)) throw error
+      const destino = await prisma.user.findUnique({ where: { id: userId }, select: { role: true } })
+      if (destino?.role === 'ADMIN') {
+        throw new AppError(MENSAJE_BANEAR_ADMIN, 403)
+      }
+      throw new AppError('Usuario no encontrado', 404)
+    }
   }
 
   async unbanUser(userId: string): Promise<AdminUser> {

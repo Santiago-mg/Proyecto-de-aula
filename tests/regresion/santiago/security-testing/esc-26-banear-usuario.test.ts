@@ -5,6 +5,7 @@ import app from '../../../../src/app'
 import { consultaDe, prismaMock } from '../../../helpers/prisma-mock'
 import {
   autenticarAdmin,
+  autenticarAdminConDirectorio,
   errorRegistroNoEncontrado,
   generarToken,
   usuario,
@@ -89,7 +90,8 @@ describe('ESC-26 · Seguridad — banear usuario', () => {
 
     // Assert
     const consulta = consultaDe(prismaMock.user.update)
-    expect(consulta.where).to.deep.equal({ id: 'user-ana' })
+    // role: 'USER' lo agrega el repositorio (no se banea a administradores); el cliente no lo controla.
+    expect(consulta.where).to.deep.equal({ id: 'user-ana', role: 'USER' })
     expect(consulta.data).to.have.all.keys('banned', 'banReason', 'bannedAt')
     expect(consulta.data).to.include({ banned: true, banReason: 'fraude en pagos' })
   })
@@ -173,7 +175,7 @@ describe('ESC-26 · Seguridad — banear usuario', () => {
 
   it('un id con inyección llega a la base como dato literal → 404, no 500', async () => {
     // Arrange
-    const { token } = autenticarAdmin()
+    const { token } = autenticarAdminConDirectorio()
     const id = "user' OR '1'='1"
     prismaMock.user.update.mockRejectedValue(errorRegistroNoEncontrado())
 
@@ -184,7 +186,7 @@ describe('ESC-26 · Seguridad — banear usuario', () => {
       .send({ reason: 'fraude en pagos' })
 
     // Assert
-    expect(consultaDe(prismaMock.user.update).where).to.deep.equal({ id })
+    expect(consultaDe(prismaMock.user.update).where).to.deep.equal({ id, role: 'USER' })
     expect(res.status).to.equal(404)
   })
 })

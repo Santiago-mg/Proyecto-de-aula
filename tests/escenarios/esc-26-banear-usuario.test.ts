@@ -7,6 +7,7 @@ import {
   ID_INEXISTENTE,
   autenticar,
   autenticarAdmin,
+  autenticarAdminConDirectorio,
   errorRegistroNoEncontrado,
   tokenConFirmaInvalida,
   usuarioConConteo,
@@ -16,9 +17,11 @@ import {
  * ESC-26 — Banear usuario
  * PUT /api/v1/admin/users/:id/ban
  *
- * Una prueba por cada camino básico del grafo de flujo. V(G) = 7, así que
- * son 7 caminos. Solo se sustituye la capa de datos: rutas, middlewares,
- * controlador, caso de uso y repositorio se ejecutan de verdad.
+ * Una prueba por cada camino básico del grafo de flujo. V(G) = 8, así que
+ * son 8 caminos (el 8 se agregó con la regla "no se banea a un administrador",
+ * hallazgo H7.1 de la evaluación heurística). Solo se sustituye la capa de
+ * datos: rutas, middlewares, controlador, caso de uso y repositorio se
+ * ejecutan de verdad.
  */
 
 const RUTA = (id: string) => `/api/v1/admin/users/${id}/ban`
@@ -100,7 +103,8 @@ describe('ESC-26 — Banear usuario', () => {
 
   it('Camino 6 (1-3-5-7-9-11-12-14): el id no existe → 404 Usuario no encontrado', async () => {
     // Arrange
-    const { token } = autenticarAdmin()
+    // El middleware encuentra al admin; la comprobación posterior no encuentra el id.
+    const { token } = autenticarAdminConDirectorio()
     prismaMock.user.update.mockRejectedValue(errorRegistroNoEncontrado())
 
     // Act
@@ -111,7 +115,9 @@ describe('ESC-26 — Banear usuario', () => {
 
     // Assert
     // DEF-26-01 corregido: antes el P2025 de Prisma salía como 500.
-    expect(consultaDe(prismaMock.user.update)).to.deep.include({ where: { id: ID_INEXISTENTE } })
+    expect(consultaDe(prismaMock.user.update)).to.deep.include({
+      where: { id: ID_INEXISTENTE, role: 'USER' },
+    })
     expect(res.status).to.equal(404)
     expect(res.body.error).to.equal('Usuario no encontrado')
   })
@@ -133,7 +139,8 @@ describe('ESC-26 — Banear usuario', () => {
 
     // Assert
     const consulta = consultaDe(prismaMock.user.update)
-    expect(consulta.where).to.deep.equal({ id: victima.id })
+    // role: 'USER' va en el mismo UPDATE: la regla es atómica.
+    expect(consulta.where).to.deep.equal({ id: victima.id, role: 'USER' })
     expect(consulta.data)
       .to.include({ banned: true, banReason: MOTIVO.reason })
       .and.have.property('bannedAt').that.is.instanceOf(Date)
@@ -143,5 +150,30 @@ describe('ESC-26 — Banear usuario', () => {
       .to.include({ id: victima.id, banned: true, banReason: MOTIVO.reason })
       .and.not.have.property('password')
     expect(res.body.data.bannedAt, 'fecha del baneo').to.not.be.null
+  })
+
+  it('Camino 8: el destino es otro administrador → 403 y no se banea (H7.1)', async () => {
+    // Arrange
+    const otroAdmin = usuarioConConteo({ id: 'admin-2', role: 'ADMIN', email: 'otro.admin@celularpro.co' })
+    const { token } = autenticarAdminConDirectorio([otroAdmin])
+    // El UPDATE condicionado a role USER no encuentra fila...
+    prismaMock.user.update.mockRejectedValue(errorRegistroNoEncontrado())
+    // ...y la comprobación descubre que el id existe y es ADMIN.
+
+    // Act
+    const res = await request(app)
+      .put(RUTA(otroAdmin.id))
+      .set('Authorization', `Bearer ${token}`)
+      .send(MOTIVO)
+
+    // Assert
+    expect(res.status).to.equal(403)
+    expect(res.body.error).to.equal(
+      'No puedes banear a un administrador. Quítale primero el rol de administrador.',
+    )
+    expect(consultaDe(prismaMock.user.update)).to.deep.include({
+      where: { id: otroAdmin.id, role: 'USER' },
+    })
+    expect(prismaMock.user.update.mock.calls).to.have.lengthOf(1)
   })
 })

@@ -6,6 +6,7 @@ import { consultaDe, prismaMock } from '../../../helpers/prisma-mock'
 import {
   ID_INEXISTENTE,
   autenticarAdmin,
+  autenticarAdminConDirectorio,
   errorRegistroNoEncontrado,
   generarToken,
   usuario,
@@ -98,7 +99,7 @@ describe('ESC-26 · Regresión — banear usuario', () => {
   describe('Defectos corregidos: no deben volver', () => {
     it('DEF-26-01 — banear un id inexistente respondía 500 (P2025 crudo); ahora 404', async () => {
       // Arrange
-      const { token } = autenticarAdmin()
+      const { token } = autenticarAdminConDirectorio()
       prismaMock.user.update.mockRejectedValue(errorRegistroNoEncontrado())
 
       // Act

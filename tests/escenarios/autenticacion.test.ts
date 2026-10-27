@@ -21,7 +21,8 @@ const REGISTRO = '/api/v1/auth/register'
 const LOGIN = '/api/v1/auth/login'
 const PERFIL = '/api/v1/auth/me'
 
-const CREDENCIALES = { email: 'nuevo@correo.com', password: 'password123' }
+// El registro exige un dominio permitido y una contraseña con mayúscula, minúscula y número.
+const CREDENCIALES = { email: 'nuevo@gmail.com', password: 'Password123' }
 
 describe('POST /auth/register', () => {
   it('body inválido → 400 Datos inválidos', async () => {
