@@ -1,0 +1,172 @@
+
+ RUN  v1.6.1 /home/claude/b/Proyecto-de-aula-front-main
+
+stderr | test/escenarios/esc-31-alertas-stock.test.tsx > Insignia del menú — cuántas alertas hay abiertas > muestra el número de alertas abiertas y lo anuncia a lectores de pantalla
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/esc-31-alertas-stock.test.tsx  (31 tests) 5017ms
+stderr | test/escenarios/pedidos.test.tsx > POST /orders — crear pedido > sin sesión → el checkout pide iniciar sesión
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/pedidos.test.tsx  (22 tests) 4768ms
+stderr | test/escenarios/esc-30-administracion-catalogo.test.tsx > ESC-30 — Administración del catálogo > Camino 1 (1-2-19): sin sesión no se entra al panel y se pide iniciar sesión
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/esc-30-administracion-catalogo.test.tsx  (20 tests) 4983ms
+stderr | test/escenarios/perfil-y-sesion.test.tsx > D-01 Perfil — editar el nombre (PATCH /auth/me) > guarda el nombre recortado, actualiza la sesión y avisa
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/perfil-y-sesion.test.tsx  (29 tests) 7475ms
+stderr | test/escenarios/catalogo-publico.test.tsx > GET /phones — listado público > sin filtros → pide la página 1 y muestra la lista con su total
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/catalogo-publico.test.tsx  (20 tests) 3843ms
+stderr | test/escenarios/autenticacion.test.tsx > Registro — POST /auth/register > datos inválidos → el formulario los frena y no llega al backend
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/autenticacion.test.tsx  (15 tests) 3757ms
+stderr | test/unit/interfaz/navegacion.test.tsx > Nav — barra principal > sin sesión ofrece ingresar y registrarse, y marca el enlace de la ruta actual
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/interfaz/navegacion.test.tsx  (16 tests) 2437ms
+stderr | test/escenarios/esc-29-panel-estadisticas.test.tsx > ESC-29 — Panel de estadísticas > Camino 1 (1-2-14): sin sesión no se entra al panel y se pide iniciar sesión
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/esc-29-panel-estadisticas.test.tsx  (13 tests) 1426ms
+stderr | test/unit/heuristicas/sistema.test.tsx > H1.1 — cada pantalla nombra su pestaña > /login → "Ingresar · CelularPro"
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/heuristicas/sistema.test.tsx  (18 tests) 1642ms
+stderr | test/escenarios/ramas-restantes.test.tsx > Fallos al consultar listados > si falla la consulta de mis pedidos → 500: lo dice (no "no tienes pedidos") y ofrece reintentar (H1, H11)
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/ramas-restantes.test.tsx  (11 tests) 1651ms
+stderr | test/escenarios/ramas-de-error.test.tsx > Cambio de rol — PUT /admin/users/:id/role > rol USER → no llega al panel de usuarios
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/ramas-de-error.test.tsx  (10 tests) 2015ms
+stderr | test/escenarios/accesibilidad-axe.test.tsx > Accesibilidad (axe) — acceso y cuenta > Registro de usuario
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/accesibilidad-axe.test.tsx  (16 tests) 5223ms
+stderr | test/unit/catalogo/phone-form.test.tsx > PhoneForm — validación y creación > muestra errores de validación y no llama a create() si faltan campos requeridos
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/catalogo/phone-form.test.tsx  (5 tests) 1378ms
+stderr | test/unit/registro/register.email-domain.test.tsx > Register — validación del correo (dominios permitidos por el backend) > muestra "Correo electrónico inválido" con un formato incorrecto
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/registro/register.email-domain.test.tsx  (12 tests) 3868ms
+stderr | test/unit/heuristicas/formularios.test.tsx > H5/H7/H8 — requisitos de la contraseña en tiempo real > antes de escribir, los 4 requisitos se ven pendientes
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/heuristicas/formularios.test.tsx  (11 tests) 2152ms
+stderr | test/escenarios/esc-26-banear-usuario.test.tsx > ESC-26 — Banear usuario > Camino 1 (1-2-14): sin sesión no se entra al panel y se pide iniciar sesión
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/esc-26-banear-usuario.test.tsx  (7 tests) 1683ms
+stderr | test/escenarios/esc-28-consultar-usuarios.test.tsx > ESC-28 — Consultar usuarios > Camino 1 (1-2-14): sin sesión no se entra al panel y se pide iniciar sesión
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/esc-28-consultar-usuarios.test.tsx  (7 tests) 1470ms
+ ✓ test/unit/interfaz/shader-background.test.tsx  (9 tests) 74ms
+ ✓ test/unit/gestion-perfil/role-confirm.test.tsx  (6 tests) 830ms
+ ✓ test/unit/catalogo/filtros-y-hooks.test.tsx  (7 tests) 259ms
+ ✓ test/unit/errores/errores-sesion.test.tsx  (15 tests) 94ms
+ ✓ test/unit/sesion/persistencia-sesion.test.tsx  (5 tests) 67ms
+ ✓ test/unit/errores/errores.test.tsx  (8 tests) 260ms
+stderr | test/escenarios/esc-27-desbanear-usuario.test.tsx > ESC-27 — Desbanear usuario > Camino 1 (1-2-10): sin sesión no se entra al panel y se pide iniciar sesión
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/escenarios/esc-27-desbanear-usuario.test.tsx  (5 tests) 743ms
+ ✓ test/unit/pedidos/carrito-y-servicio.test.tsx  (7 tests) 110ms
+stderr | test/unit/catalogo/admin-phones-delete.test.tsx > AdminPhones — eliminación de un celular > no elimina el celular si el admin cancela la confirmación
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/catalogo/admin-phones-delete.test.tsx  (3 tests) 373ms
+stderr | test/unit/heuristicas/ayuda.test.tsx > H10 — Centro de ayuda (/ayuda) > tiene preguntas frecuentes, guías de problemas, garantías, atajos y contacto
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/heuristicas/ayuda.test.tsx  (11 tests) 1306ms
+ ✓ test/unit/gestion-usuarios/consultar-usuarios.test.tsx  (3 tests) 721ms
+stderr | test/unit/login/login.submit.test.tsx > Login — envío de credenciales y autenticación > redirige de inmediato a /dashboard si ya hay sesión activa
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/login/login.submit.test.tsx  (3 tests) 746ms
+ ✓ test/unit/gestion-perfil/self-protection.test.tsx  (3 tests) 265ms
+ ✓ test/unit/gestion-perfil/ban-modal.test.tsx  (2 tests) 705ms
+ ✓ test/unit/gestion-usuarios/unban-flow.test.tsx  (2 tests) 378ms
+ ✓ test/unit/gestion-perfil/ban-admin.test.tsx  (4 tests) 470ms
+ ✓ test/unit/estadisticas/admin-stats.test.tsx  (3 tests) 158ms
+ ✓ test/unit/login/auth-context.test.tsx  (4 tests) 66ms
+stderr | test/unit/login/login.schema.test.tsx > Login — validación del esquema del formulario > muestra "Correo electrónico inválido" con un correo mal formado
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/login/login.schema.test.tsx  (3 tests) 751ms
+stderr | test/unit/registro/register.submit.test.tsx > Register — envío del formulario > crea la cuenta y navega a /dashboard cuando registerUser() resuelve sin error
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/registro/register.submit.test.tsx  (2 tests) 1108ms
+ ✓ test/unit/interfaz/password-input.test.tsx  (6 tests) 406ms
+ ✓ test/unit/validacion-credenciales/reglas-backend.test.ts  (11 tests) 26ms
+ ✓ test/unit/interfaz/sticky-add-to-cart.test.tsx  (4 tests) 155ms
+ ✓ test/unit/validacion-credenciales/api-interceptor.test.ts  (2 tests) 11ms
+ ✓ test/unit/validacion-credenciales/auth-guard.test.tsx  (3 tests) 169ms
+stderr | test/unit/validacion-credenciales/auth-guard.test.tsx > Guardia de acceso a formularios de auth con sesión activa > Login redirige de inmediato a /dashboard si hay sesión activa
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/control-roles/admin-route.test.tsx  (3 tests) 46ms
+stderr | test/unit/control-roles/admin-route.test.tsx > AdminRoute — verificación de acceso > redirige a /login si no hay sesión activa
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | test/unit/interfaz/skeleton-y-promo.test.tsx > PromoBar — barra de promociones > repite los mensajes para el desplazamiento continuo y enlaza a certificados
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/interfaz/skeleton-y-promo.test.tsx  (4 tests) 242ms
+ ✓ test/unit/validacion-credenciales/api-interceptor.peticion.test.ts  (3 tests) 20ms
+ ✓ test/unit/control-roles/protected-route.test.tsx  (2 tests) 48ms
+stderr | test/unit/control-roles/protected-route.test.tsx > ProtectedRoute — verificación de acceso > redirige a /login si no hay sesión activa
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/interfaz/hero-geometric.test.tsx  (3 tests) 236ms
+ ✓ test/unit/validacion-credenciales/auth-service-contrato.test.ts  (3 tests) 14ms
+ ✓ test/unit/interfaz/container-scroll.test.tsx  (2 tests) 56ms
+stderr | test/unit/pedidos/checkout.test.tsx > Checkout — sin datos del usuario para precargar > nombre y email arrancan vacíos y se exigen antes de enviar
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ test/unit/pedidos/checkout.test.tsx  (1 test) 282ms
+
+ Test Files  50 passed (50)
+      Tests  415 passed (415)
+   Start at  09:59:36
+   Duration  147.53s (transform 3.75s, setup 14.27s, collect 17.14s, tests 65.98s, environment 28.36s, prepare 8.94s)
+
+JUNIT report written to /home/claude/evid/junit-vitest-frontend.xml

@@ -1,0 +1,22 @@
+fileType: momentic/test/v2
+id: celularpro-api-alertas
+description: Alertas de stock bajo — el administrador recibe solo alertas abiertas, de tipo LOW_STOCK u OUT_OF_STOCK, con su celular
+defaultEnv: local
+labels: [api, alertas-stock]
+steps:
+  - module: ../modules/token-admin.module.yaml
+  - request:
+      url: "{{ env.API_URL }}/admin/alerts"
+      method: GET
+      headers:
+        Authorization: "Bearer {{ env.TOKEN_ADMIN }}"
+      saveAs: ALERTAS
+  - javascript:
+      code: |
+        const lista = env.ALERTAS.json.data
+        if (!Array.isArray(lista)) throw new Error('data no es una lista')
+        for (const a of lista) {
+          if (!['LOW_STOCK', 'OUT_OF_STOCK'].includes(a.type)) throw new Error(`tipo inesperado: ${a.type}`)
+          if (a.isResolved) throw new Error('llegó una alerta ya resuelta')
+          if (!a.phone?.name) throw new Error('la alerta no trae el celular')
+        }

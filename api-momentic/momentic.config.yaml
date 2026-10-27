@@ -1,0 +1,40 @@
+# Momentic para la API de CelularPro. Base: el archivo que genera `npx momentic init`.
+name: celularpro-api
+
+include:
+  - "tests/**/*.test.yaml"
+  - "modules/**/*.module.yaml"
+
+parallel: 1
+gitMainBranch: main
+fileFormat: v2
+
+# Momentic abre un navegador en baseUrl antes de cada prueba; para la API basta
+# con /health. Las peticiones van con el paso `request` a API_URL.
+environments:
+  - name: local
+    baseUrl: ${HEALTH_URL:-http://localhost:3001/health}
+    envVariables:
+      API_URL: ${API_URL:-http://localhost:3001/api/v1}
+      HEALTH_URL: ${HEALTH_URL:-http://localhost:3001/health}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@celularpro.co}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin1234}
+      CLAVE_PRUEBA: ${CLAVE_PRUEBA:-Medellin2026}
+
+advanced:
+  aiActionShorthand: true
+
+browser:
+  disableSecondaryCacheResolution: true
+
+ai:
+  useMemory: true
+  failureRecovery: true
+  agentConfig:
+    locator: v5
+    assertion: v5
+    visual-assertion: v5
+    text-extraction: v3.0
+    failure-recovery: v2.1
+    android-locator: v2
+    ios-locator: v2

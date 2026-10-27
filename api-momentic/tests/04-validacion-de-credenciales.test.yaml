@@ -1,0 +1,19 @@
+fileType: momentic/test/v2
+id: celularpro-api-credenciales
+description: Validación de credenciales — el correo se normaliza, se puede entrar escribiéndolo en mayúsculas y la respuesta no se guarda en caché
+defaultEnv: local
+labels: [api, credenciales, seguridad]
+steps:
+  - module: ../modules/cuenta-nueva.module.yaml
+  - request:
+      url: "{{ env.API_URL }}/auth/login"
+      method: POST
+      body: '{"email":"{{ env.CORREO_NUEVO }}","password":"{{ env.CLAVE_PRUEBA }}"}'
+      saveAs: LOGIN_MAYUSCULAS
+  - javascript:
+      code: |
+        const reg = env.REGISTRO, r = env.LOGIN_MAYUSCULAS
+        if (reg.json.data.user.email !== env.CORREO_NUEVO.toLowerCase()) throw new Error('el correo no se guardó en minúsculas')
+        if (r.status !== 200) throw new Error(`el login con el correo en mayúsculas respondió ${r.status}`)
+        if (r.headers['cache-control'] !== 'no-store') throw new Error('la respuesta con token se puede guardar en caché')
+        if (r.headers['x-content-type-options'] !== 'nosniff') throw new Error('falta la cabecera nosniff')

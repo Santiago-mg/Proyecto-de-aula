@@ -1,0 +1,18 @@
+fileType: momentic/test/v2
+id: celularpro-api-inicio-sesion
+description: Inicio de sesión — el administrador recibe un token válido y /auth/me lo identifica
+defaultEnv: local
+labels: [api, login]
+steps:
+  - module: ../modules/token-admin.module.yaml
+  - request:
+      url: "{{ env.API_URL }}/auth/me"
+      method: GET
+      headers:
+        Authorization: "Bearer {{ env.TOKEN_ADMIN }}"
+      saveAs: YO
+  - javascript:
+      code: |
+        const u = env.YO.json.data
+        if (u.email !== env.ADMIN_EMAIL.toLowerCase()) throw new Error(`correo: ${u.email}`)
+        if ('password' in u) throw new Error('/auth/me devuelve la contraseña')

@@ -1,0 +1,16 @@
+fileType: momentic/module/v2
+id: celularpro-api-token-admin
+name: token-admin
+steps:
+  - request:
+      url: "{{ env.API_URL }}/auth/login"
+      method: POST
+      body: '{"email":"{{ env.ADMIN_EMAIL }}","password":"{{ env.ADMIN_PASSWORD }}"}'
+      saveAs: LOGIN_ADMIN
+  - javascript:
+      code: |
+        const r = env.LOGIN_ADMIN
+        if (r.status !== 200) throw new Error(`login admin respondió ${r.status}`)
+        if (typeof r.json?.data?.token !== 'string') throw new Error('el login no devolvió token')
+        return r.json.data.token
+      saveAs: TOKEN_ADMIN

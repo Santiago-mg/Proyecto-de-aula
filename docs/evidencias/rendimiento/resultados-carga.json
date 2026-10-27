@@ -1,0 +1,266 @@
+{
+  "entorno": {
+    "fecha": "2026-10-12T22:38:39.508Z",
+    "node": "v22.22.2",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "nucleos": 1,
+    "memoriaGB": 4,
+    "latenciaBdSimuladaMs": 5,
+    "bcrypt": "nativo, costo 12"
+  },
+  "escenarios": [
+    {
+      "id": "E1",
+      "nombre": "Catálogo público",
+      "objetivo": "Comprobar que el listado de celulares atiende a 50 usuarios simultáneos con tiempos bajos y sin errores.",
+      "peticion": "GET /api/v1/phones?page=1&limit=12",
+      "conexiones": 50,
+      "duracionS": 10,
+      "peticionesTotales": 27098,
+      "peticionesPorSegundo": 2710,
+      "latenciaMs": {
+        "p50": 15,
+        "p90": 26,
+        "p97_5": 52,
+        "p99": 81,
+        "max": 424
+      },
+      "codigos": {
+        "200": 27098
+      },
+      "errores": {
+        "5xx": 0,
+        "red": 0,
+        "timeouts": 0
+      },
+      "criterios": [
+        {
+          "criterio": "p97,5 ≤ 200 ms",
+          "cumple": true,
+          "informativo": false
+        },
+        {
+          "criterio": "0 errores (5xx, de red o timeouts)",
+          "cumple": true,
+          "informativo": false
+        },
+        {
+          "criterio": "≥ 300 peticiones/s",
+          "cumple": true,
+          "informativo": false
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "nombre": "Inicio de sesión",
+      "objetivo": "Medir el costo real de verificar contraseñas (bcrypt costo 12) con 10 usuarios ingresando a la vez.",
+      "peticion": "POST /api/v1/auth/login (credenciales correctas)",
+      "conexiones": 10,
+      "duracionS": 10,
+      "peticionesTotales": 36,
+      "peticionesPorSegundo": 4,
+      "latenciaMs": {
+        "p50": 2087,
+        "p90": 3112,
+        "p97_5": 3163,
+        "p99": 3163,
+        "max": 3163
+      },
+      "codigos": {
+        "200": 36
+      },
+      "errores": {
+        "5xx": 0,
+        "red": 0,
+        "timeouts": 0
+      },
+      "criterios": [
+        {
+          "criterio": "p97,5 ≤ 1500 ms",
+          "cumple": false,
+          "informativo": true
+        },
+        {
+          "criterio": "0 errores (5xx, de red o timeouts)",
+          "cumple": true,
+          "informativo": false
+        },
+        {
+          "criterio": "100 % de respuestas 200",
+          "cumple": true,
+          "informativo": false
+        }
+      ]
+    },
+    {
+      "id": "E2b",
+      "nombre": "Inicio de sesión, costo 10",
+      "objetivo": "Medir el mismo escenario E2 con contraseñas hasheadas con costo 10, el mínimo recomendado por OWASP.",
+      "peticion": "POST /api/v1/auth/login (hash con costo 10)",
+      "conexiones": 10,
+      "duracionS": 10,
+      "peticionesTotales": 150,
+      "peticionesPorSegundo": 15,
+      "latenciaMs": {
+        "p50": 707,
+        "p90": 756,
+        "p97_5": 995,
+        "p99": 1026,
+        "max": 1050
+      },
+      "codigos": {
+        "200": 150
+      },
+      "errores": {
+        "5xx": 0,
+        "red": 0,
+        "timeouts": 0
+      },
+      "criterios": [
+        {
+          "criterio": "p97,5 ≤ 1500 ms",
+          "cumple": true,
+          "informativo": false
+        },
+        {
+          "criterio": "0 errores (5xx, de red o timeouts)",
+          "cumple": true,
+          "informativo": false
+        },
+        {
+          "criterio": "100 % de respuestas 200",
+          "cumple": true,
+          "informativo": false
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "nombre": "Panel de alertas de stock",
+      "objetivo": "Comprobar que la consulta de alertas, que autentica y relee el rol en cada petición, soporta 50 sesiones de administrador.",
+      "peticion": "GET /api/v1/admin/alerts (token de administrador)",
+      "conexiones": 50,
+      "duracionS": 10,
+      "peticionesTotales": 17184,
+      "peticionesPorSegundo": 1719,
+      "latenciaMs": {
+        "p50": 23,
+        "p90": 38,
+        "p97_5": 80,
+        "p99": 123,
+        "max": 858
+      },
+      "codigos": {
+        "200": 17184
+      },
+      "errores": {
+        "5xx": 0,
+        "red": 0,
+        "timeouts": 0
+      },
+      "criterios": [
+        {
+          "criterio": "p97,5 ≤ 200 ms",
+          "cumple": true,
+          "informativo": false
+        },
+        {
+          "criterio": "0 errores (5xx, de red o timeouts)",
+          "cumple": true,
+          "informativo": false
+        },
+        {
+          "criterio": "100 % de respuestas 200",
+          "cumple": true,
+          "informativo": false
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "nombre": "Edición de perfil",
+      "objetivo": "Comprobar que guardar el nombre (validación + autenticación + escritura) soporta 30 usuarios a la vez.",
+      "peticion": "PATCH /api/v1/auth/me",
+      "conexiones": 30,
+      "duracionS": 10,
+      "peticionesTotales": 19400,
+      "peticionesPorSegundo": 1940,
+      "latenciaMs": {
+        "p50": 13,
+        "p90": 18,
+        "p97_5": 31,
+        "p99": 52,
+        "max": 95
+      },
+      "codigos": {
+        "200": 19400
+      },
+      "errores": {
+        "5xx": 0,
+        "red": 0,
+        "timeouts": 0
+      },
+      "criterios": [
+        {
+          "criterio": "p97,5 ≤ 200 ms",
+          "cumple": true,
+          "informativo": false
+        },
+        {
+          "criterio": "0 errores (5xx, de red o timeouts)",
+          "cumple": true,
+          "informativo": false
+        },
+        {
+          "criterio": "100 % de respuestas 200",
+          "cumple": true,
+          "informativo": false
+        }
+      ]
+    },
+    {
+      "id": "E5",
+      "nombre": "Fuerza bruta con limitador",
+      "objetivo": "Simular un ataque de 20 conexiones probando contraseñas sobre una cuenta y verificar que se bloquea con 429 sin degradar el servicio.",
+      "peticion": "POST /api/v1/auth/login (contraseña incorrecta, misma cuenta)",
+      "conexiones": 20,
+      "duracionS": 8,
+      "peticionesTotales": 6817,
+      "peticionesPorSegundo": 852,
+      "latenciaMs": {
+        "p50": 4,
+        "p90": 20,
+        "p97_5": 38,
+        "p99": 47,
+        "max": 5939
+      },
+      "codigos": {
+        "401": 24,
+        "429": 6793
+      },
+      "errores": {
+        "5xx": 0,
+        "red": 0,
+        "timeouts": 0
+      },
+      "criterios": [
+        {
+          "criterio": "≥ 95 % de respuestas 429",
+          "cumple": true,
+          "informativo": false
+        },
+        {
+          "criterio": "p97,5 ≤ 100 ms (los 429 no ejecutan bcrypt)",
+          "cumple": true,
+          "informativo": false
+        },
+        {
+          "criterio": "0 errores (5xx, de red o timeouts)",
+          "cumple": true,
+          "informativo": false
+        }
+      ]
+    }
+  ]
+}

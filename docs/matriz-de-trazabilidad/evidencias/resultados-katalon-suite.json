@@ -1,0 +1,295 @@
+{
+  "fecha": "2026-10-25T03:07:50.493Z",
+  "resultados": [
+    {
+      "nombre": "TC01_Registro_correcto",
+      "ok": true,
+      "error": null,
+      "pasos": 16,
+      "captura": "TC01_Registro_correcto.OK.png",
+      "segundos": 2.2,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC02_Registro_clave_solo_numeros",
+      "ok": true,
+      "error": null,
+      "pasos": 15,
+      "captura": "TC02_Registro_clave_solo_numeros.OK.png",
+      "segundos": 1.9,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC03_Registro_confirmacion_distinta",
+      "ok": true,
+      "error": null,
+      "pasos": 14,
+      "captura": "TC03_Registro_confirmacion_distinta.OK.png",
+      "segundos": 1.9,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC04_Registro_correo_repetido",
+      "ok": true,
+      "error": null,
+      "pasos": 26,
+      "captura": "TC04_Registro_correo_repetido.OK.png",
+      "segundos": 3.2,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC25_Registro_dominio_no_permitido",
+      "ok": true,
+      "error": null,
+      "pasos": 15,
+      "captura": "TC25_Registro_dominio_no_permitido.OK.png",
+      "segundos": 1.8,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC26_Registro_clave_sin_mayuscula",
+      "ok": true,
+      "error": null,
+      "pasos": 15,
+      "captura": "TC26_Registro_clave_sin_mayuscula.OK.png",
+      "segundos": 1.8,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC05_Login_correcto",
+      "ok": true,
+      "error": null,
+      "pasos": 24,
+      "captura": "TC05_Login_correcto.OK.png",
+      "segundos": 3,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC06_Login_clave_incorrecta_usuario_valido",
+      "ok": true,
+      "error": null,
+      "pasos": 25,
+      "captura": "TC06_Login_clave_incorrecta_usuario_valido.OK.png",
+      "segundos": 3.1,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC07_Login_usuario_inexistente_clave_valida",
+      "ok": true,
+      "error": null,
+      "pasos": 12,
+      "captura": "TC07_Login_usuario_inexistente_clave_valida.OK.png",
+      "segundos": 1.7,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC08_Login_correo_en_mayusculas",
+      "ok": true,
+      "error": null,
+      "pasos": 25,
+      "captura": "TC08_Login_correo_en_mayusculas.OK.png",
+      "segundos": 3,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC09_Perfil_cambiar_nombre",
+      "ok": true,
+      "error": null,
+      "pasos": 23,
+      "captura": "TC09_Perfil_cambiar_nombre.OK.png",
+      "segundos": 3,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC10_Perfil_nombre_en_blanco",
+      "ok": true,
+      "error": null,
+      "pasos": 21,
+      "captura": "TC10_Perfil_nombre_en_blanco.OK.png",
+      "segundos": 2,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC11_Perfil_cambiar_contrasena",
+      "ok": true,
+      "error": null,
+      "pasos": 32,
+      "captura": "TC11_Perfil_cambiar_contrasena.OK.png",
+      "segundos": 4.8,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC12_Perfil_contrasena_actual_incorrecta",
+      "ok": true,
+      "error": null,
+      "pasos": 23,
+      "captura": "TC12_Perfil_contrasena_actual_incorrecta.OK.png",
+      "segundos": 3.6,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC13_Sesion_perfil_sin_login",
+      "ok": true,
+      "error": null,
+      "pasos": 8,
+      "captura": "TC13_Sesion_perfil_sin_login.OK.png",
+      "segundos": 0.7,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC14_Sesion_cerrar_sesion",
+      "ok": true,
+      "error": null,
+      "pasos": 20,
+      "captura": "TC14_Sesion_cerrar_sesion.OK.png",
+      "segundos": 2.1,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC15_Sesion_token_corrupto_se_explica",
+      "ok": true,
+      "error": null,
+      "pasos": 19,
+      "captura": "TC15_Sesion_token_corrupto_se_explica.OK.png",
+      "segundos": 2.2,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC16_Roles_cliente_no_entra_al_panel",
+      "ok": true,
+      "error": null,
+      "pasos": 18,
+      "captura": "TC16_Roles_cliente_no_entra_al_panel.OK.png",
+      "segundos": 1.9,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC17_Roles_sin_sesion_panel",
+      "ok": true,
+      "error": null,
+      "pasos": 7,
+      "captura": "TC17_Roles_sin_sesion_panel.OK.png",
+      "segundos": 0.6,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC18_Roles_admin_entra_al_panel",
+      "ok": true,
+      "error": null,
+      "pasos": 14,
+      "captura": "TC18_Roles_admin_entra_al_panel.OK.png",
+      "segundos": 1.8,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC19_Alertas_stock_bajo_3_de_5",
+      "ok": true,
+      "error": null,
+      "pasos": 30,
+      "captura": "TC19_Alertas_stock_bajo_3_de_5.OK.png",
+      "segundos": 2.1,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC20_Alertas_en_el_minimo_exacto_5_de_5",
+      "ok": true,
+      "error": null,
+      "pasos": 30,
+      "captura": "TC20_Alertas_en_el_minimo_exacto_5_de_5.OK.png",
+      "segundos": 2.2,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC21_Alertas_sobre_el_minimo_6_de_5",
+      "ok": true,
+      "error": null,
+      "pasos": 28,
+      "captura": "TC21_Alertas_sobre_el_minimo_6_de_5.OK.png",
+      "segundos": 2,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC22_Alertas_sin_stock_0_de_5",
+      "ok": true,
+      "error": null,
+      "pasos": 30,
+      "captura": "TC22_Alertas_sin_stock_0_de_5.OK.png",
+      "segundos": 2.1,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC23_Alertas_umbral_propio_10_de_12",
+      "ok": true,
+      "error": null,
+      "pasos": 30,
+      "captura": "TC23_Alertas_umbral_propio_10_de_12.OK.png",
+      "segundos": 2.2,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC24_Alertas_reponer_cierra_la_alerta",
+      "ok": true,
+      "error": null,
+      "pasos": 36,
+      "captura": "TC24_Alertas_reponer_cierra_la_alerta.OK.png",
+      "segundos": 2.7,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC27_Ayuda_desde_ingresar",
+      "ok": true,
+      "error": null,
+      "pasos": 11,
+      "captura": "TC27_Ayuda_desde_ingresar.OK.png",
+      "segundos": 1.6,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC28_Registro_requisitos_en_vivo",
+      "ok": true,
+      "error": null,
+      "pasos": 15,
+      "captura": "TC28_Registro_requisitos_en_vivo.OK.png",
+      "segundos": 1,
+      "esperadoFallar": false,
+      "cumple": true
+    },
+    {
+      "nombre": "TC29_Pie_garantias_lleva_a_garantias",
+      "ok": true,
+      "error": null,
+      "pasos": 9,
+      "captura": "TC29_Pie_garantias_lleva_a_garantias.OK.png",
+      "segundos": 0.9,
+      "esperadoFallar": false,
+      "cumple": true
+    }
+  ]
+}

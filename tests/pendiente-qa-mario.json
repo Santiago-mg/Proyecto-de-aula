@@ -1,0 +1,16 @@
+[
+  "tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts",
+  "tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts",
+  "tests/escenarios/gestion-perfil.test.ts",
+  "tests/fluent/credenciales-y-perfil.test.ts",
+  "tests/regression/regresion-credenciales.test.ts",
+  "tests/rendimiento/rendimiento.test.ts",
+  "tests/seguridad/cabeceras-seguridad.test.ts",
+  "tests/seguridad/fuerza-bruta.test.ts",
+  "tests/seguridad/seguridad-credenciales.test.ts",
+  "tests/unit/gestion-perfil/changePassword.use-case.test.ts",
+  "tests/unit/gestion-perfil/updateProfile.use-case.test.ts",
+  "tests/unit/login/login-enumeracion.test.ts",
+  "tests/unit/validacion-credenciales/login-limiter.middleware.test.ts",
+  "tests/unit/validacion-credenciales/password-policy.test.ts"
+]

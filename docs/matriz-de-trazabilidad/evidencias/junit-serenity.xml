@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<testsuite name="Cucumber" time="128.652" tests="35" skipped="0" failures="0" errors="0" timestamp="2026-10-25T05:18:01.010Z">
+  <testcase classname="Alertas de stock bajo" name="La alerta depende del stock frente al mínimo - #1.1" time="4.52">
+    <system-out><![CDATA[Given Daniela es administradora y ha iniciado sesión........................passed
+When ella crea un celular con stock 3 y mínimo 5............................passed
+And ella abre la página "/admin/alerts".....................................passed
+Then ella ve que la alerta del celular es "Stock bajo"......................passed]]></system-out>
+  </testcase>
+  <testcase classname="Alertas de stock bajo" name="La alerta depende del stock frente al mínimo - #1.2" time="3.629">
+    <system-out><![CDATA[Given Daniela es administradora y ha iniciado sesión........................passed
+When ella crea un celular con stock 5 y mínimo 5............................passed
+And ella abre la página "/admin/alerts".....................................passed
+Then ella ve que la alerta del celular es "Stock bajo"......................passed]]></system-out>
+  </testcase>
+  <testcase classname="Alertas de stock bajo" name="La alerta depende del stock frente al mínimo - #1.3" time="3.848">
+    <system-out><![CDATA[Given Daniela es administradora y ha iniciado sesión........................passed
+When ella crea un celular con stock 6 y mínimo 5............................passed
+And ella abre la página "/admin/alerts".....................................passed
+Then ella ve que la alerta del celular es "ninguna".........................passed]]></system-out>
+  </testcase>
+  <testcase classname="Alertas de stock bajo" name="La alerta depende del stock frente al mínimo - #1.4" time="4.007">
+    <system-out><![CDATA[Given Daniela es administradora y ha iniciado sesión........................passed
+When ella crea un celular con stock 0 y mínimo 5............................passed
+And ella abre la página "/admin/alerts".....................................passed
+Then ella ve que la alerta del celular es "Sin stock".......................passed]]></system-out>
+  </testcase>
+  <testcase classname="Alertas de stock bajo" name="La alerta depende del stock frente al mínimo - #1.5" time="3.802">
+    <system-out><![CDATA[Given Daniela es administradora y ha iniciado sesión........................passed
+When ella crea un celular con stock 10 y mínimo 12..........................passed
+And ella abre la página "/admin/alerts".....................................passed
+Then ella ve que la alerta del celular es "Stock bajo"......................passed]]></system-out>
+  </testcase>
+  <testcase classname="Alertas de stock bajo" name="El menú muestra cuántas alertas hay abiertas" time="3.89">
+    <system-out><![CDATA[Given Daniela es administradora y ha iniciado sesión........................passed
+When ella crea un celular con stock 2 y mínimo 5............................passed
+And ella abre la página "/admin"............................................passed
+Then ella ve la insignia de alertas en el menú..............................passed]]></system-out>
+  </testcase>
+  <testcase classname="Alertas de stock bajo" name="Reponer el inventario cierra la alerta" time="5.272">
+    <system-out><![CDATA[Given Daniela es administradora y ha iniciado sesión........................passed
+Given ella creó un celular con stock 2 y mínimo 5...........................passed
+When ella repone ese celular a 50 unidades desde la alerta..................passed
+And ella abre la página "/admin/alerts".....................................passed
+Then ella ve que la alerta del celular es "ninguna".........................passed]]></system-out>
+  </testcase>
+  <testcase classname="Validación de credenciales y sesión" name="Sin sesión, el perfil lleva a iniciar sesión" time="1.144">
+    <system-out><![CDATA[Given Alicia abre la página "/login"........................................passed
+And ella borra la sesión del navegador......................................passed
+When ella abre la página "/profile".........................................passed
+Then ella llega a "/login"..................................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Validación de credenciales y sesión" name="Cerrar sesión devuelve al inicio de sesión y cierra el perfil" time="3.136">
+    <system-out><![CDATA[Given Alicia tiene la sesión iniciada.......................................passed
+When ella cierra sesión.....................................................passed
+Then ella llega a "/login"..................................................passed
+When ella abre la página "/profile".........................................passed
+Then ella llega a "/login"..................................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Validación de credenciales y sesión" name="Una sesión corrupta se explica en lugar de fallar en silencio" time="3.259">
+    <system-out><![CDATA[Given Alicia tiene la sesión iniciada.......................................passed
+And su sesión se corrompe...................................................passed
+When ella abre la página "/dashboard".......................................passed
+Then ella llega a "/login"..................................................passed
+And ella ve el aviso de sesión "Tu sesión ya no es válida. Inicia sesión de nuevo."..passed]]></system-out>
+  </testcase>
+  <testcase classname="Correcciones de la evaluación heurística" name="Desde Ingresar se llega al centro de ayuda" time="1.874">
+    <system-out><![CDATA[Given Alicia abre la página "/login"........................................passed
+When ella sigue el enlace "Centro de ayuda".................................passed
+Then ella llega a "/ayuda"..................................................passed
+And ella ve el título "Centro de ayuda".....................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Correcciones de la evaluación heurística" name="&quot;Garantías&quot; lleva a las garantías" time="1.05">
+    <system-out><![CDATA[Given Alicia abre la página "/unauthorized".................................passed
+When ella sigue el enlace "Garantías".......................................passed
+Then ella llega a "/ayuda"..................................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Correcciones de la evaluación heurística" name="Cada pantalla nombra su pestaña" time="0.473">
+    <system-out><![CDATA[Given Alicia abre la página "/register".....................................passed
+Then la pestaña del navegador dice "Crear cuenta · CelularPro"..............passed]]></system-out>
+  </testcase>
+  <testcase classname="Correcciones de la evaluación heurística" name="Los requisitos de la contraseña se marcan mientras se escribe" time="0.769">
+    <system-out><![CDATA[Given Alicia abre la página "/register".....................................passed
+When ella escribe la contraseña "medellin2026" sin enviar...................passed
+Then el requisito "minuscula" aparece cumplido..............................passed
+And el requisito "numero" aparece cumplido..................................passed
+And el requisito "mayuscula" aparece pendiente..............................passed]]></system-out>
+  </testcase>
+  <testcase classname="Correcciones de la evaluación heurística" name="Descartar los cambios devuelve el nombre guardado" time="4.081">
+    <system-out><![CDATA[Given Alicia tiene la sesión iniciada.......................................passed
+And ella abre la página "/profile"..........................................passed
+When ella escribe el nombre "Otro Nombre" sin guardar.......................passed
+And ella descarta los cambios...............................................passed
+Then el campo de nombre muestra "Ana Pérez".................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Inicio de sesión" name="Inicio de sesión correcto" time="5.024">
+    <system-out><![CDATA[Given Alicia tiene una cuenta registrada....................................passed
+When ella inicia sesión con su correo y su contraseña.......................passed
+Then ella llega a "/dashboard"..............................................passed
+And ella ve el saludo "Hola, Ana"...........................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Inicio de sesión" name="Contraseña incorrecta con el correo correcto" time="4.353">
+    <system-out><![CDATA[Given Alicia tiene una cuenta registrada....................................passed
+When ella inicia sesión con su correo y la contraseña "ClaveEquivocada1"....passed
+Then ella observa el mensaje de error "Credenciales inválidas"..............passed
+And ella sigue en "/login"..................................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Inicio de sesión" name="Correo que no existe con la contraseña correcta" time="4.918">
+    <system-out><![CDATA[Given Alicia tiene una cuenta registrada....................................passed
+When ella inicia sesión con el correo "nadie.existe@gmail.com" y su contraseña..passed
+Then ella observa el mensaje de error "Credenciales inválidas"..............passed
+And ella sigue en "/login"..................................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Inicio de sesión" name="El correo escrito en mayúsculas también entra" time="4.873">
+    <system-out><![CDATA[Given Alicia tiene una cuenta registrada....................................passed
+When ella inicia sesión con su correo en mayúsculas y su contraseña.........passed
+Then ella llega a "/dashboard"..............................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Inicio de sesión" name="Demasiados intentos fallidos bloquean el acceso un rato" time="13.807">
+    <system-out><![CDATA[Given Alicia tiene una cuenta registrada....................................passed
+When ella falla 6 veces al iniciar sesión con su correo.....................passed
+Then ella observa el mensaje de error "Demasiados intentos fallidos"........passed]]></system-out>
+  </testcase>
+  <testcase classname="Gestión de perfil" name="Cambiar el nombre" time="3.998">
+    <system-out><![CDATA[Given Alicia tiene la sesión iniciada.......................................passed
+When ella cambia su nombre a "María Gómez"..................................passed
+Then ella ve la confirmación "Perfil actualizado"...........................passed
+When ella abre la página "/dashboard".......................................passed
+Then ella ve el saludo "Hola, María"........................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Gestión de perfil" name="Un nombre en blanco no se guarda" time="3.961">
+    <system-out><![CDATA[Given Alicia tiene la sesión iniciada.......................................passed
+When ella cambia su nombre a " "............................................passed
+Then ella observa el error de campo "El nombre debe tener al menos 2 caracteres"..passed]]></system-out>
+  </testcase>
+  <testcase classname="Gestión de perfil" name="Cambiar la contraseña y entrar con la nueva" time="7.724">
+    <system-out><![CDATA[Given Alicia tiene la sesión iniciada.......................................passed
+When ella cambia su contraseña por "ClaveNueva2027".........................passed
+Then ella ve la confirmación "Contraseña actualizada".......................passed
+When ella cierra sesión.....................................................passed
+And ella inicia sesión con su correo y la contraseña "ClaveNueva2027".......passed
+Then ella llega a "/dashboard"..............................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Gestión de perfil" name="La contraseña actual equivocada no permite el cambio" time="4.335">
+    <system-out><![CDATA[Given Alicia tiene la sesión iniciada.......................................passed
+When ella intenta cambiar su contraseña usando como actual "EquivocadaXX1"..passed
+Then ella observa el mensaje de error "La contraseña actual no es correcta"..passed]]></system-out>
+  </testcase>
+  <testcase classname="Registro de usuario" name="Registro correcto" time="2.787">
+    <system-out><![CDATA[Given Alicia abre la página "/register".....................................passed
+When ella se registra con una contraseña válida.............................passed
+Then ella llega a "/dashboard"..............................................passed
+And ella ve el saludo "Hola, Ana"...........................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Registro de usuario" name="Contraseña que no cumple la regla - #1.1" time="2.492">
+    <system-out><![CDATA[Given Alicia abre la página "/register".....................................passed
+When ella se registra con la contraseña "12345678"..........................passed
+Then ella observa el error de campo "La contraseña debe incluir al menos una letra minúscula"..passed
+And ella sigue en "/register"...............................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Registro de usuario" name="Contraseña que no cumple la regla - #1.2" time="2.907">
+    <system-out><![CDATA[Given Alicia abre la página "/register".....................................passed
+When ella se registra con la contraseña "sololetras1".......................passed
+Then ella observa el error de campo "La contraseña debe incluir al menos una letra mayúscula"..passed
+And ella sigue en "/register"...............................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Registro de usuario" name="Contraseña que no cumple la regla - #1.3" time="2.466">
+    <system-out><![CDATA[Given Alicia abre la página "/register".....................................passed
+When ella se registra con la contraseña "SoloLetras"........................passed
+Then ella observa el error de campo "La contraseña debe incluir al menos un número"..passed
+And ella sigue en "/register"...............................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Registro de usuario" name="Contraseña que no cumple la regla - #1.4" time="2.699">
+    <system-out><![CDATA[Given Alicia abre la página "/register".....................................passed
+When ella se registra con la contraseña "Abc1"..............................passed
+Then ella observa el error de campo "La contraseña debe tener al menos 8 caracteres"..passed
+And ella sigue en "/register"...............................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Registro de usuario" name="Correo con un dominio no permitido" time="2.148">
+    <system-out><![CDATA[Given Alicia abre la página "/register".....................................passed
+When ella se registra con el correo "ana.perez@empresa.com".................passed
+Then ella observa el error de campo "Correo inválido. Usa Gmail, Outlook, Hotmail, Yahoo o iCloud."..passed
+And ella sigue en "/register"...............................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Registro de usuario" name="La confirmación no coincide" time="2.15">
+    <system-out><![CDATA[Given Alicia abre la página "/register".....................................passed
+When ella se registra confirmando con "OtraClave2026".......................passed
+Then ella observa el error de campo "Las contraseñas no coinciden"..........passed]]></system-out>
+  </testcase>
+  <testcase classname="Registro de usuario" name="Correo ya registrado" time="5.255">
+    <system-out><![CDATA[Given Alicia tiene una cuenta registrada....................................passed
+When ella intenta registrarse otra vez con el mismo correo..................passed
+Then ella observa el mensaje de error "El email ya está registrado".........passed]]></system-out>
+  </testcase>
+  <testcase classname="Control de roles" name="Un cliente no entra al panel de administración" time="2.957">
+    <system-out><![CDATA[Given Alicia tiene la sesión iniciada.......................................passed
+When ella abre la página "/admin/alerts"....................................passed
+Then ella llega a "/unauthorized"...........................................passed
+And ella ve el título "Acceso no autorizado"................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Control de roles" name="Sin sesión, el panel lleva a iniciar sesión" time="1.245">
+    <system-out><![CDATA[Given Alicia abre la página "/login"........................................passed
+And ella borra la sesión del navegador......................................passed
+When ella abre la página "/admin"...........................................passed
+Then ella llega a "/login"..................................................passed]]></system-out>
+  </testcase>
+  <testcase classname="Control de roles" name="Un administrador sí entra al panel" time="2.988">
+    <system-out><![CDATA[Given Daniela es administradora y ha iniciado sesión........................passed
+When ella abre la página "/admin"...........................................passed
+Then ella ve el título "Panel"..............................................passed]]></system-out>
+  </testcase>
+</testsuite>

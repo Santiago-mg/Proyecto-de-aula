@@ -1,0 +1,18 @@
+{
+  "name": "celularpro-api-momentic",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pruebas de contrato de la API de CelularPro con Momentic (paso request + validaciones en JavaScript)",
+  "scripts": {
+    "lint": "momentic lint",
+    "check": "momentic check config && momentic check duplicate-names && momentic check unused",
+    "test": "momentic run --env local --reporter list --reporter junit --reporter-dir reports",
+    "rp:importar": "node ../reportportal/importar-junit.mjs reports/junit.xml api-momentic \"Contrato de la API con Momentic\""
+  },
+  "engines": {
+    "node": "^22.12.0 || >=24.0.0"
+  },
+  "devDependencies": {
+    "momentic": "3.63.1"
+  }
+}

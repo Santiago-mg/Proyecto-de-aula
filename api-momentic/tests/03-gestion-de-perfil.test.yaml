@@ -1,0 +1,20 @@
+fileType: momentic/test/v2
+id: celularpro-api-perfil
+description: Gestión de perfil — PATCH /auth/me cambia el nombre e ignora rol y correo (asignación masiva)
+defaultEnv: local
+labels: [api, perfil]
+steps:
+  - module: ../modules/cuenta-nueva.module.yaml
+  - request:
+      url: "{{ env.API_URL }}/auth/me"
+      method: PATCH
+      headers:
+        Authorization: "Bearer {{ env.TOKEN_CLIENTE }}"
+      body: '{"name":"María Gómez","role":"ADMIN","email":"otro@gmail.com"}'
+      saveAs: PERFIL
+  - javascript:
+      code: |
+        const u = env.PERFIL.json.data
+        if (u.name !== 'María Gómez') throw new Error(`nombre: ${u.name}`)
+        if (u.role !== 'USER') throw new Error('se pudo escalar a ADMIN')
+        if (u.email !== env.CORREO_NUEVO.toLowerCase()) throw new Error('se pudo cambiar el correo')

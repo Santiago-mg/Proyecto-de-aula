@@ -1,4 +1,12 @@
 import { defineConfig } from 'vitest/config'
+import pendientesQa from './tests/pendiente-qa-mario.json'
+import { RPReporter } from '@reportportal/agent-js-vitest'
+import rp from './reportportal/config.cjs'
+
+// ReportPortal (reportportal/LEEME.md): se suma solo si existe RP_API_KEY.
+const reportePortal = rp.activo()
+  ? [new RPReporter(rp.opciones('api-vitest', 'Backend: unitarias, escenarios de API, regresión, seguridad y rendimiento'))]
+  : []
 
 export default defineConfig({
   test: {
@@ -10,9 +18,17 @@ export default defineConfig({
     // Pruebas de un compañero que verifican código que este back todavía no
     // tiene (ver tests/regresion/mario/README.md). Se corren a propósito con
     // vitest.pendiente.config.ts, no dentro de `npm test`.
-    exclude: ['**/node_modules/**', 'tests/regresion/mario/pendiente-codigo-de-mario/**'],
+    // La carga tiene su propia configuración (vitest.carga.config.ts).
+    exclude: ['**/node_modules/**', 'tests/regresion/mario/pendiente-codigo-de-mario/**', 'tests/carga/**', ...pendientesQa],
+    // pendientesQa: pruebas de la rama pruebas-qa-mario que esperan el código de Mario
+    // (perfil, límite de intentos, cabeceras, reglas de contraseña). Se corren aparte
+    // con `npm run test:pendiente-qa`; ver INTEGRACION-QA.md.
 
     environment: 'node',
+
+    // En CI (Jenkins) también JUnit, que la etapa de pruebas publica
+    reporters: ['default', ...(process.env.CI === 'true' ? ['junit'] : []), ...reportePortal],
+    outputFile: { junit: 'reports/junit.xml' },
 
     // Instala el doble del cliente Prisma y el de bcrypt antes de que
     // cualquier repositorio los importe, y deja el doble en blanco entre

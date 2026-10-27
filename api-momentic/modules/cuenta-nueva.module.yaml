@@ -1,0 +1,18 @@
+fileType: momentic/module/v2
+id: celularpro-api-cuenta-nueva
+name: cuenta-nueva
+steps:
+  - javascript:
+      code: return `api+${Date.now()}@Gmail.COM`
+      saveAs: CORREO_NUEVO
+  - request:
+      url: "{{ env.API_URL }}/auth/register"
+      method: POST
+      body: '{"name":"Ana Pérez","email":"{{ env.CORREO_NUEVO }}","password":"{{ env.CLAVE_PRUEBA }}"}'
+      saveAs: REGISTRO
+  - javascript:
+      code: |
+        const r = env.REGISTRO
+        if (r.status !== 201) throw new Error(`registro respondió ${r.status}`)
+        return r.json.data.token
+      saveAs: TOKEN_CLIENTE
