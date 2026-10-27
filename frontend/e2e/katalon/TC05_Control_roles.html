@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>TC05_Control_roles</title></head><body><table cellpadding="1" cellspacing="1" border="1"><thead><tr><td rowspan="1" colspan="3">TC05_Control_roles</td></tr></thead><tbody><tr><td>open</td><td>http://localhost:5173/login</td><td></td></tr>
+<tr><td>runScript</td><td>localStorage.clear(); sessionStorage.clear();</td><td></td></tr>
+<tr><td>open</td><td>http://localhost:5173/login</td><td></td></tr>
+<tr><td>waitForElementPresent</td><td>id=email</td><td></td></tr>
+<tr><td>open</td><td>http://localhost:5173/admin</td><td></td></tr>
+<tr><td>waitForElementPresent</td><td>id=email</td><td></td></tr>
+<tr><td>assertLocation</td><td>glob:*/login</td><td></td></tr>
+<tr><td>storeEval</td><td>&quot;katalon.&quot; + Date.now() + &quot;@gmail.com&quot;</td><td>email</td></tr>
+<tr><td>open</td><td>http://localhost:5173/register</td><td></td></tr>
+<tr><td>waitForElementPresent</td><td>id=name</td><td></td></tr>
+<tr><td>type</td><td>id=name</td><td>Katalon Pruebas</td></tr>
+<tr><td>type</td><td>id=email</td><td>${email}</td></tr>
+<tr><td>type</td><td>id=password</td><td>Segura123</td></tr>
+<tr><td>type</td><td>id=confirmPassword</td><td>Segura123</td></tr>
+<tr><td>click</td><td>css=form button[type=&quot;submit&quot;]</td><td></td></tr>
+<tr><td>waitForElementPresent</td><td>xpath=//h1[contains(.,&#x27;Hola, Katalon&#x27;)]</td><td></td></tr>
+<tr><td>assertLocation</td><td>glob:*/dashboard</td><td></td></tr>
+<tr><td>open</td><td>http://localhost:5173/admin</td><td></td></tr>
+<tr><td>waitForElementPresent</td><td>xpath=//h1[contains(.,&#x27;Acceso no autorizado&#x27;)]</td><td></td></tr>
+<tr><td>assertText</td><td>css=h1</td><td>glob:Acceso no autorizado</td></tr>
+<tr><td>runScript</td><td>localStorage.clear(); sessionStorage.clear();</td><td></td></tr>
+<tr><td>open</td><td>http://localhost:5173/login</td><td></td></tr>
+<tr><td>waitForElementPresent</td><td>id=email</td><td></td></tr>
+<tr><td>type</td><td>id=email</td><td>admin@celularpro.co</td></tr>
+<tr><td>type</td><td>id=password</td><td>admin1234</td></tr>
+<tr><td>click</td><td>css=form button[type=&quot;submit&quot;]</td><td></td></tr>
+<tr><td>waitForElementPresent</td><td>xpath=//h1[contains(.,&#x27;Hola&#x27;)]</td><td></td></tr>
+<tr><td>assertLocation</td><td>glob:*/dashboard</td><td></td></tr>
+<tr><td>open</td><td>http://localhost:5173/admin/users</td><td></td></tr>
+<tr><td>waitForElementPresent</td><td>css=input[aria-label=&quot;Buscar usuarios&quot;]</td><td></td></tr>
+<tr><td>type</td><td>css=input[aria-label=&quot;Buscar usuarios&quot;]</td><td>${email}</td></tr>
+<tr><td>waitForElementPresent</td><td>xpath=//table//tr[contains(.,&#x27;${email}&#x27;)]//button[contains(.,&#x27;Hacer admin&#x27;)]</td><td></td></tr>
+<tr><td>click</td><td>xpath=//table//tr[contains(.,&#x27;${email}&#x27;)]//button[contains(.,&#x27;Hacer admin&#x27;)]</td><td></td></tr>
+<tr><td>waitForElementPresent</td><td>xpath=//table//tr[contains(.,&#x27;${email}&#x27;)]//button[contains(.,&#x27;Quitar admin&#x27;)]</td><td></td></tr>
+<tr><td>runScript</td><td>localStorage.clear(); sessionStorage.clear();</td><td></td></tr>
+<tr><td>open</td><td>http://localhost:5173/login</td><td></td></tr>
+<tr><td>waitForElementPresent</td><td>id=email</td><td></td></tr>
+<tr><td>type</td><td>id=email</td><td>${email}</td></tr>
+<tr><td>type</td><td>id=password</td><td>Segura123</td></tr>
+<tr><td>click</td><td>css=form button[type=&quot;submit&quot;]</td><td></td></tr>
+<tr><td>waitForElementPresent</td><td>xpath=//h1[contains(.,&#x27;Hola, Katalon&#x27;)]</td><td></td></tr>
+<tr><td>assertLocation</td><td>glob:*/dashboard</td><td></td></tr>
+<tr><td>open</td><td>http://localhost:5173/admin</td><td></td></tr>
+<tr><td>waitForElementPresent</td><td>css=[data-alertas-cargadas]</td><td></td></tr>
+<tr><td>assertLocation</td><td>glob:*/admin</td><td></td></tr>
+<tr><td>assertElementPresent</td><td>css=h1.cp-admin-page-title</td><td></td></tr></tbody></table></body></html>

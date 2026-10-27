@@ -1,13 +1,11 @@
-import { expect } from 'chai'
-import { describe, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { registerUser } from '../../../src/application/use-cases/auth.use-cases'
+import { costoBcrypt, registerUser } from '../../../src/application/use-cases/auth.use-cases'
 import { UserRepository } from '../../../src/infrastructure/repositories/UserRepository'
 import { AppError } from '../../../src/domain/AppError'
 import { prismaMock } from '../../helpers/prisma-mock'
 import { usuario } from '../../helpers/fixtures'
-import { capturarError } from '../../helpers/errores'
 
 // Basado en: application/use-cases/auth.use-cases.ts — registerUser()
 //
@@ -20,51 +18,40 @@ const repo = new UserRepository()
 describe('registerUser', () => {
   // Camino 1,2,3,4,5,F — email ya registrado en BD
   it('lanza AppError 409 cuando el email ya existe', async () => {
-    // Arrange
     prismaMock.user.findUnique.mockResolvedValue(
       usuario({ email: 'user@correo.com' }),
     )
 
-    // Act
-    const error = await capturarError(
+    await expect(
       registerUser(repo, {
         email: 'user@correo.com',
         name: 'Mario',
         password: 'password123',
       }),
-    )
-
-    // Assert
-    expect(error).to.deep.include({
+    ).rejects.toMatchObject({
       message: 'El email ya está registrado',
       statusCode: 409,
     })
 
-    expect(prismaMock.user.create.mock.calls).to.be.empty
+    expect(prismaMock.user.create).not.toHaveBeenCalled()
   })
 
   it('el error lanzado es una instancia de AppError', async () => {
-    // Arrange
     prismaMock.user.findUnique.mockResolvedValue(
       usuario({ email: 'user@correo.com' }),
     )
 
-    // Act
-    const error = await capturarError(
+    await expect(
       registerUser(repo, {
         email: 'user@correo.com',
         name: 'Mario',
         password: 'password123',
       }),
-    )
-
-    // Assert
-    expect(error).to.be.instanceOf(AppError)
+    ).rejects.toBeInstanceOf(AppError)
   })
 
   // Camino 1,2,3,4,6,7,8,9,F — email no registrado
   it('crea el usuario, hashea la contraseña con bcrypt y retorna user + token sin exponer el password', async () => {
-    // Arrange
     const creado = usuario({
       email: 'user@correo.com',
       name: 'Mario',
@@ -73,31 +60,52 @@ describe('registerUser', () => {
     prismaMock.user.findUnique.mockResolvedValue(null)
     prismaMock.user.create.mockResolvedValue(creado)
 
-    // Act
     const result = await registerUser(repo, {
       email: 'user@correo.com',
       name: 'Mario',
       password: 'password123',
     })
 
-    // Assert
-    expect(result.user).to.not.have.property('password')
-    expect(result.user.email).to.equal('user@correo.com')
+    expect(result.user).not.toHaveProperty('password')
+    expect(result.user.email).toBe('user@correo.com')
 
     // La contraseña que se mandó a guardar va hasheada, no en texto plano.
     const guardado = prismaMock.user.create.mock.calls[0][0] as {
       data: { password: string }
     }
-    expect(guardado.data.password).to.not.equal('password123')
-    const coincide = await bcrypt.compare('password123', guardado.data.password)
-    expect(coincide, 'la contraseña guardada corresponde a la original').to.be.true
+    expect(guardado.data.password).not.toBe('password123')
+    expect(await bcrypt.compare('password123', guardado.data.password)).toBe(
+      true,
+    )
 
     // El token es un JWT real, firmado con los datos del usuario recién creado.
     const payload = jwt.verify(
       result.token,
       process.env.JWT_SECRET as string,
     ) as { id: string; role: string }
-    expect(payload.id).to.equal(creado.id)
-    expect(payload.role).to.equal('USER')
+    expect(payload.id).toBe(creado.id)
+    expect(payload.role).toBe('USER')
+  })
+})
+
+describe('registerUser — costo de bcrypt configurable', () => {
+  it.each([
+    ['', 12],
+    ['10', 10],
+    ['8', 10],
+    ['20', 14],
+    ['abc', 12],
+  ])('con BCRYPT_COST="%s" hashea con costo %i', async (valor, esperado) => {
+    vi.stubEnv('BCRYPT_COST', valor)
+    const spy = vi.spyOn(bcrypt, 'hash')
+    prismaMock.user.findUnique.mockResolvedValue(null)
+    prismaMock.user.create.mockImplementation(async ({ data }: { data: object }) => ({ ...usuario(), ...data }))
+
+    await registerUser(repo, { email: 'a@gmail.com', name: 'Ana', password: 'Password123' })
+
+    expect(costoBcrypt()).toBe(esperado)
+    expect(spy).toHaveBeenCalledWith('Password123', esperado)
+    vi.unstubAllEnvs()
+    spy.mockRestore()
   })
 })

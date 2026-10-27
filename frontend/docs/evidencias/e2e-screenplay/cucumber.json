@@ -1,0 +1,2519 @@
+[
+  {
+    "description": "  Como administrador\n  Quiero ver qué celulares llegaron al mínimo de inventario\n  Para reponerlos antes de quedarme sin unidades",
+    "elements": [
+      {
+        "description": "",
+        "id": "alerta-de-stock-bajo;un-celular-llega-al-mínimo-de-inventario",
+        "keyword": "Escenario",
+        "line": 12,
+        "name": "Un celular llega al mínimo de inventario",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 509887
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1240837145
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Andrés ingresó como administrador",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:38"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 85489201
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 13,
+            "name": "que el celular de prueba queda con 2 unidades",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:80"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 377690054
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 14,
+            "name": "él abre el panel de administración",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:84"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 80613753
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 15,
+            "name": "él ve una alerta \"Stock bajo\" del celular de prueba con el texto \"tiene 2 unidades\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:88"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 86115401
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 35163566
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@alerta-stock",
+            "line": 2
+          },
+          {
+            "name": "@smoke",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "alerta-de-stock-bajo;el-umbral-es-inclusivo",
+        "keyword": "Escenario",
+        "line": 17,
+        "name": "El umbral es inclusivo",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 422795
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1609971834
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Andrés ingresó como administrador",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:38"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 32494182
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 18,
+            "name": "que el celular de prueba queda con 5 unidades",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:80"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 316932797
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 19,
+            "name": "él abre el panel de administración",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:84"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 40545111
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 20,
+            "name": "él ve una alerta \"Stock bajo\" del celular de prueba con el texto \"tiene 5 unidades\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:88"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 84496639
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 31844052
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@alerta-stock",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "alerta-de-stock-bajo;un-celular-se-queda-sin-unidades",
+        "keyword": "Escenario",
+        "line": 22,
+        "name": "Un celular se queda sin unidades",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 114058
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1025185804
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Andrés ingresó como administrador",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:38"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 44453662
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 23,
+            "name": "que el celular de prueba queda con 0 unidades",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:80"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 310095796
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 24,
+            "name": "él abre el panel de administración",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:84"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 38953009
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 25,
+            "name": "él ve una alerta \"Sin stock\" del celular de prueba con el texto \"se quedó sin unidades\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:88"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 93459330
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 28979543
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@alerta-stock",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "alerta-de-stock-bajo;reponer-inventario-cierra-la-alerta",
+        "keyword": "Escenario",
+        "line": 27,
+        "name": "Reponer inventario cierra la alerta",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 207738
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1102902154
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Andrés ingresó como administrador",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:38"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 38179576
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 28,
+            "name": "que el celular de prueba queda con 2 unidades",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:80"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 29450110
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 29,
+            "name": "que el celular de prueba queda con 20 unidades",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:80"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 324094315
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 30,
+            "name": "él abre el panel de administración",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:84"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 78844450
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 31,
+            "name": "él no ve ninguna alerta del celular de prueba",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:104"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 95591211
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 35055543
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@alerta-stock",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "alerta-de-stock-bajo;el-administrador-configura-el-inventario-y-el-mínimo-desde-el-formulario",
+        "keyword": "Escenario",
+        "line": 33,
+        "name": "El administrador configura el inventario y el mínimo desde el formulario",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 98792
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1053464445
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Andrés ingresó como administrador",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:38"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 901431171
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 34,
+            "name": "él edita el celular de prueba con 3 unidades y un mínimo de 4",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:111"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 292990085
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 35,
+            "name": "él abre el panel de administración",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:84"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 58529232
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 36,
+            "name": "él ve una alerta \"Stock bajo\" del celular de prueba con el texto \"tiene 3 unidades, en o por debajo del mínimo de 4\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:88"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 108986574
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 34755418
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@alerta-stock",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "alerta-de-stock-bajo",
+    "line": 3,
+    "keyword": "Característica",
+    "name": "Alerta de stock bajo",
+    "tags": [
+      {
+        "name": "@alerta-stock",
+        "line": 2
+      }
+    ],
+    "uri": "features/alerta-stock.feature"
+  },
+  {
+    "description": "  Como responsable de la tienda\n  Quiero que solo los administradores entren al panel de administración\n  Para proteger la gestión del catálogo, los pedidos y los usuarios",
+    "elements": [
+      {
+        "description": "",
+        "id": "control-de-roles;un-visitante-sin-sesión-es-enviado-a-iniciar-sesión",
+        "keyword": "Escenario",
+        "line": 8,
+        "name": "Un visitante sin sesión es enviado a iniciar sesión",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 102243
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 193543808
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 9,
+            "name": "Carla abre \"/admin\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:42"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 31287292
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 10,
+            "name": "ella está en la página \"/login\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:97"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 404482023
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 32107987
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@control-roles",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "control-de-roles;un-cliente-no-puede-entrar-al-panel-de-administración",
+        "keyword": "Escenario",
+        "line": 12,
+        "name": "Un cliente no puede entrar al panel de administración",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 103449
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 22491518
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 13,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1024275205
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 14,
+            "name": "que ella ingresó a su panel con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 193628329
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 15,
+            "name": "ella abre \"/admin\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:42"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 84712250
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 16,
+            "name": "ella ve la página \"Acceso no autorizado\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:54"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 174705508
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 31927348
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@control-roles",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "control-de-roles;el-administrador-convierte-a-un-cliente-en-administrador",
+        "keyword": "Escenario",
+        "line": 18,
+        "name": "El administrador convierte a un cliente en administrador",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 127352
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 16282862
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 19,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1027029069
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 20,
+            "name": "que Andrés ingresó como administrador",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:38"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 653980582
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 21,
+            "name": "él cambia el rol de Carla a administrador",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:50"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1336432527
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 22,
+            "name": "Carla ingresa a su panel con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:68"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 183138230
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 23,
+            "name": "ella abre \"/admin\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:42"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 91694620
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 24,
+            "name": "ella ve el panel de administración",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:58"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 110316112
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 71128211
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@control-roles",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "control-de-roles;el-administrador-le-quita-el-rol-a-otro-administrador",
+        "keyword": "Escenario",
+        "line": 26,
+        "name": "El administrador le quita el rol a otro administrador",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 95212
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 23307003
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 27,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 987321679
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 28,
+            "name": "que Andrés ingresó como administrador",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:38"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 663110522
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 29,
+            "name": "que él cambió el rol de Carla a administrador",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:46"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 776062041
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 30,
+            "name": "él cambia el rol de Carla a cliente",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:50"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1291496963
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 31,
+            "name": "Carla ingresa a su panel con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:68"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 182985169
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 32,
+            "name": "ella abre \"/admin\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:42"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 107838455
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 33,
+            "name": "ella ve la página \"Acceso no autorizado\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:54"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 224026108
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 65279375
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@control-roles",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "control-de-roles",
+    "line": 3,
+    "keyword": "Característica",
+    "name": "Control de roles",
+    "tags": [
+      {
+        "name": "@control-roles",
+        "line": 2
+      }
+    ],
+    "uri": "features/control-roles.feature"
+  },
+  {
+    "description": "  Como cliente\n  Quiero actualizar mi nombre y mi contraseña\n  Para mantener mi cuenta al día y segura",
+    "elements": [
+      {
+        "description": "",
+        "id": "gestión-de-perfil;cambiar-el-nombre",
+        "keyword": "Escenario",
+        "line": 13,
+        "name": "Cambiar el nombre",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 106738
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 17390623
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1046878937
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 10,
+            "name": "que ella ingresó a su panel con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 798885959
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 14,
+            "name": "ella cambia su nombre a \"Valentina Rojas\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 106479429
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 15,
+            "name": "ella ve la confirmación \"Nombre actualizado\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:29"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 40425332
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 16,
+            "name": "el menú muestra su nombre \"Valentina\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:85"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 199776400
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 31455035
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@gestion-perfil",
+            "line": 2
+          },
+          {
+            "name": "@smoke",
+            "line": 12
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "gestión-de-perfil;cambiar-la-contraseña-y-volver-a-ingresar-con-la-nueva",
+        "keyword": "Escenario",
+        "line": 18,
+        "name": "Cambiar la contraseña y volver a ingresar con la nueva",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 82817
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 18692047
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1114642121
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 10,
+            "name": "que ella ingresó a su panel con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 896840572
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 19,
+            "name": "ella cambia su contraseña \"Segura123\" por \"Nueva4567\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:25"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 90825641
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 20,
+            "name": "ella ve la confirmación \"Contraseña actualizada\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:29"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 155963516
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 21,
+            "name": "ella cierra la sesión",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:72"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 872600297
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 22,
+            "name": "ella inicia sesión con la contraseña \"Nueva4567\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:57"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 67559790
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 23,
+            "name": "ella ve su panel con el saludo \"Hola, Carla\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:78"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 166083974
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 26043311
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@gestion-perfil",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "gestión-de-perfil;la-contraseña-anterior-deja-de-funcionar",
+        "keyword": "Escenario",
+        "line": 25,
+        "name": "La contraseña anterior deja de funcionar",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 90106
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 28941121
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1000874093
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 10,
+            "name": "que ella ingresó a su panel con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 801062460
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 26,
+            "name": "ella cambia su contraseña \"Segura123\" por \"Nueva4567\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:25"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 188309696
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 27,
+            "name": "ella cierra la sesión",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:72"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 931891438
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 28,
+            "name": "ella inicia sesión con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:57"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 40987732
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 29,
+            "name": "ella ve el error del servidor \"Credenciales inválidas\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:89"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 353678175
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 33791627
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@gestion-perfil",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "gestión-de-perfil;la-contraseña-actual-es-incorrecta",
+        "keyword": "Escenario",
+        "line": 31,
+        "name": "La contraseña actual es incorrecta",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 101868
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 21673590
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1058457547
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 10,
+            "name": "que ella ingresó a su panel con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 919463901
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 32,
+            "name": "ella cambia su contraseña \"Otra12345\" por \"Nueva4567\"",
+            "match": {
+              "location": "features/step-definitions/perfil-roles-stock.steps.ts:25"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 46408434
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 33,
+            "name": "ella ve el error del servidor \"La contraseña actual no es correcta\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:89"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 31464452
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 34,
+            "name": "ella sigue en la página \"/profile\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:97"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 183049580
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 47305101
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@gestion-perfil",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "gestión-de-perfil",
+    "line": 3,
+    "keyword": "Característica",
+    "name": "Gestión de perfil",
+    "tags": [
+      {
+        "name": "@gestion-perfil",
+        "line": 2
+      }
+    ],
+    "uri": "features/gestion-perfil.feature"
+  },
+  {
+    "description": "  Como cliente registrado\n  Quiero ingresar con mi correo y contraseña\n  Para acceder a mi cuenta",
+    "elements": [
+      {
+        "description": "",
+        "id": "inicio-de-sesión;ingreso-con-credenciales-correctas",
+        "keyword": "Escenario",
+        "line": 12,
+        "name": "Ingreso con credenciales correctas",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 125563
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 23895874
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1463526551
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 13,
+            "name": "ella inicia sesión con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:57"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 66848570
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 14,
+            "name": "ella ve su panel con el saludo \"Hola, Carla\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:78"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 180841036
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 42617337
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@inicio-sesion",
+            "line": 2
+          },
+          {
+            "name": "@smoke",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "inicio-de-sesión;ingreso-escribiendo-el-correo-con-mayúsculas",
+        "keyword": "Escenario",
+        "line": 16,
+        "name": "Ingreso escribiendo el correo con mayúsculas",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 152010
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 15490434
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 974385478
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 17,
+            "name": "ella inicia sesión escribiendo su correo en mayúsculas y la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:61"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 75639266
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 18,
+            "name": "ella ve su panel con el saludo \"Hola, Carla\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:78"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 171920405
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 34288095
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@inicio-sesion",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "inicio-de-sesión;cerrar-sesión",
+        "keyword": "Escenario",
+        "line": 20,
+        "name": "Cerrar sesión",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 83537
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 15314991
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1020846156
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 21,
+            "name": "que ella ingresó a su panel con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 131636948
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 22,
+            "name": "ella cierra la sesión",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:72"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 41147519
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 23,
+            "name": "ella está en la página \"/login\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:97"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 238377274
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 24,
+            "name": "al abrir \"/dashboard\" la aplicación la devuelve a \"/login\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:101"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 341747904
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 36993053
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@inicio-sesion",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "inicio-de-sesión",
+    "line": 3,
+    "keyword": "Característica",
+    "name": "Inicio de sesión",
+    "tags": [
+      {
+        "name": "@inicio-sesion",
+        "line": 2
+      }
+    ],
+    "uri": "features/inicio-sesion.feature"
+  },
+  {
+    "description": "  Como visitante de CelularPro\n  Quiero crear una cuenta\n  Para comprar y seguir mis pedidos",
+    "elements": [
+      {
+        "description": "",
+        "id": "registro-de-usuario;crear-una-cuenta-nueva",
+        "keyword": "Escenario",
+        "line": 9,
+        "name": "Crear una cuenta nueva",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 99306
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 992147663
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 10,
+            "name": "Carla se registra con el nombre \"Carla Rojas\" y la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:37"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 77190197
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 11,
+            "name": "ella ve su panel con el saludo \"Hola, Carla\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:78"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 50226145
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 12,
+            "name": "el menú muestra su nombre \"Carla\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:85"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 239933574
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 33401448
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@registro",
+            "line": 2
+          },
+          {
+            "name": "@smoke",
+            "line": 8
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "registro-de-usuario;el-correo-ya-tiene-una-cuenta",
+        "keyword": "Escenario",
+        "line": 14,
+        "name": "El correo ya tiene una cuenta",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 137774
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 20207662
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 15,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 971592893
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 16,
+            "name": "ella intenta registrarse otra vez con el mismo correo",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:52"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 53134569
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 17,
+            "name": "ella ve el error del servidor \"El email ya está registrado\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:89"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 30320379
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 18,
+            "name": "ella sigue en la página \"/register\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:97"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 338955095
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 44887969
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@registro",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "registro-de-usuario",
+    "line": 3,
+    "keyword": "Característica",
+    "name": "Registro de usuario",
+    "tags": [
+      {
+        "name": "@registro",
+        "line": 2
+      }
+    ],
+    "uri": "features/registro.feature"
+  },
+  {
+    "description": "  Como responsable de la tienda\n  Quiero que las credenciales se validen igual en el navegador y en el servidor\n  Para que las cuentas sean seguras y los errores se entiendan",
+    "elements": [
+      {
+        "description": "",
+        "id": "validación-de-credenciales;contraseña-incorrecta",
+        "keyword": "Escenario",
+        "line": 8,
+        "name": "Contraseña incorrecta",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 85818
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 19133504
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 9,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 987611435
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 10,
+            "name": "ella inicia sesión con la contraseña \"Equivocada1\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:57"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 38897815
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 11,
+            "name": "ella ve el error del servidor \"Credenciales inválidas\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:89"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 36428078
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 12,
+            "name": "ella sigue en la página \"/login\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:97"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 341747965
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 31550838
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validacion-credenciales",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "validación-de-credenciales;contraseña-que-no-cumple-la-política",
+        "keyword": "Esquema del escenario",
+        "line": 21,
+        "name": "Contraseña que no cumple la política",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 127946
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1037693468
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 15,
+            "name": "Carla se registra con el nombre \"Carla Rojas\" y la contraseña \"Corta1\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:37"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 61485627
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 16,
+            "name": "ella ve el aviso del campo \"La contraseña debe tener al menos 8 caracteres\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:93"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 34192824
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 17,
+            "name": "ella sigue en la página \"/register\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:97"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 468933948
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 45860031
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validacion-credenciales",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "validación-de-credenciales;contraseña-que-no-cumple-la-política",
+        "keyword": "Esquema del escenario",
+        "line": 22,
+        "name": "Contraseña que no cumple la política",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 187582
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1049043570
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 15,
+            "name": "Carla se registra con el nombre \"Carla Rojas\" y la contraseña \"segura1234\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:37"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 47230434
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 16,
+            "name": "ella ve el aviso del campo \"La contraseña debe incluir al menos una letra mayúscula\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:93"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 31275555
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 17,
+            "name": "ella sigue en la página \"/register\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:97"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 338954529
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 31756307
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validacion-credenciales",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "validación-de-credenciales;contraseña-que-no-cumple-la-política",
+        "keyword": "Esquema del escenario",
+        "line": 23,
+        "name": "Contraseña que no cumple la política",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 90122
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1013956131
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 15,
+            "name": "Carla se registra con el nombre \"Carla Rojas\" y la contraseña \"SEGURA1234\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:37"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 52801373
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 16,
+            "name": "ella ve el aviso del campo \"La contraseña debe incluir al menos una letra minúscula\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:93"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 32986028
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 17,
+            "name": "ella sigue en la página \"/register\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:97"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 418117217
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 40274609
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validacion-credenciales",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "validación-de-credenciales;contraseña-que-no-cumple-la-política",
+        "keyword": "Esquema del escenario",
+        "line": 24,
+        "name": "Contraseña que no cumple la política",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 157714
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1060608662
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 15,
+            "name": "Carla se registra con el nombre \"Carla Rojas\" y la contraseña \"SeguraSegura\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:37"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 62566198
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 16,
+            "name": "ella ve el aviso del campo \"La contraseña debe incluir al menos un número\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:93"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 30641666
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 17,
+            "name": "ella sigue en la página \"/register\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:97"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 433307060
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 39546851
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validacion-credenciales",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "validación-de-credenciales;correo-con-un-dominio-no-permitido",
+        "keyword": "Escenario",
+        "line": 26,
+        "name": "Correo con un dominio no permitido",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 125370
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1159372566
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 27,
+            "name": "Carla se registra con el correo \"carla@empresa.com\" y la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:42"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 50141857
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 28,
+            "name": "ella ve el aviso del campo \"Correo inválido. Usa Gmail, Outlook, Hotmail, Yahoo o iCloud.\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:93"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 358303622
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 33666727
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validacion-credenciales",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "validación-de-credenciales;las-contraseñas-no-coinciden",
+        "keyword": "Escenario",
+        "line": 30,
+        "name": "Las contraseñas no coinciden",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 97299
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1037266397
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 31,
+            "name": "Carla se registra con la contraseña \"Segura123\" y la confirmación \"Segura124\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:47"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 51543362
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 32,
+            "name": "ella ve el aviso del campo \"Las contraseñas no coinciden\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:93"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 359375940
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 35994994
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validacion-credenciales",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "validación-de-credenciales;una-cuenta-suspendida-no-puede-ingresar",
+        "keyword": "Escenario",
+        "line": 34,
+        "name": "Una cuenta suspendida no puede ingresar",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 88282
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 15259785
+            },
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 35,
+            "name": "que Carla ya tiene una cuenta con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 20543891
+            },
+            "arguments": [],
+            "keyword": "Y ",
+            "line": 36,
+            "name": "que su cuenta fue suspendida por \"Fraude en pagos\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:30"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 884055083
+            },
+            "arguments": [],
+            "keyword": "Cuando ",
+            "line": 37,
+            "name": "ella inicia sesión con la contraseña \"Segura123\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:57"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 34475595
+            },
+            "arguments": [],
+            "keyword": "Entonces ",
+            "line": 38,
+            "name": "ella ve el error del servidor \"Tu cuenta ha sido suspendida. Motivo: Fraude en pagos\"",
+            "match": {
+              "location": "features/step-definitions/cuentas.steps.ts:89"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 311773463
+            },
+            "keyword": "After",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 31747379
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@validacion-credenciales",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "validación-de-credenciales",
+    "line": 3,
+    "keyword": "Característica",
+    "name": "Validación de credenciales",
+    "tags": [
+      {
+        "name": "@validacion-credenciales",
+        "line": 2
+      }
+    ],
+    "uri": "features/validacion-credenciales.feature"
+  }
+]

@@ -1,0 +1,1073 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="415" failures="0" errors="0" time="147.518">
+    <testsuite name="test/unit/catalogo/admin-phones-delete.test.tsx" timestamp="2026-10-25T10:02:04.623Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.373">
+        <testcase classname="test/unit/catalogo/admin-phones-delete.test.tsx" name="AdminPhones — eliminación de un celular &gt; no elimina el celular si el admin cancela la confirmación" time="0.164">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/catalogo/admin-phones-delete.test.tsx" name="AdminPhones — eliminación de un celular &gt; elimina el celular de la lista cuando se confirma y remove() resuelve" time="0.142">
+        </testcase>
+        <testcase classname="test/unit/catalogo/admin-phones-delete.test.tsx" name="AdminPhones — eliminación de un celular &gt; muestra una alerta y conserva el celular en la lista si remove() falla" time="0.065">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/catalogo/filtros-y-hooks.test.tsx" timestamp="2026-10-25T10:02:04.634Z" hostname="vm" tests="7" failures="0" errors="0" skipped="0" time="0.259">
+        <testcase classname="test/unit/catalogo/filtros-y-hooks.test.tsx" name="PhoneFilters — borrar un filtro lo quita de la consulta &gt; vaciar texto, selects y precio manda undefined y vuelve a la página 1" time="0.172">
+        </testcase>
+        <testcase classname="test/unit/catalogo/filtros-y-hooks.test.tsx" name="PhoneFilters — borrar un filtro lo quita de la consulta &gt; marca la condición activa" time="0.059">
+        </testcase>
+        <testcase classname="test/unit/catalogo/filtros-y-hooks.test.tsx" name="useDebounce — espera a que el usuario deje de escribir &gt; solo entrega el último valor cuando pasa el retraso" time="0.01">
+        </testcase>
+        <testcase classname="test/unit/catalogo/filtros-y-hooks.test.tsx" name="useDebounce — espera a que el usuario deje de escribir &gt; por defecto espera 400 ms" time="0.007">
+        </testcase>
+        <testcase classname="test/unit/catalogo/filtros-y-hooks.test.tsx" name="useLocalStorage — estado que sobrevive a recargar la página &gt; arranca con lo guardado o, si no hay nada, con el valor inicial" time="0.005">
+        </testcase>
+        <testcase classname="test/unit/catalogo/filtros-y-hooks.test.tsx" name="useLocalStorage — estado que sobrevive a recargar la página &gt; un valor corrupto se ignora y se usa el inicial" time="0.002">
+        </testcase>
+        <testcase classname="test/unit/catalogo/filtros-y-hooks.test.tsx" name="useLocalStorage — estado que sobrevive a recargar la página &gt; guardar acepta un valor o una función, y borrar vuelve al inicial" time="0.003">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/catalogo/phone-form.test.tsx" timestamp="2026-10-25T10:02:04.639Z" hostname="vm" tests="5" failures="0" errors="0" skipped="0" time="1.378">
+        <testcase classname="test/unit/catalogo/phone-form.test.tsx" name="PhoneForm — validación y creación &gt; muestra errores de validación y no llama a create() si faltan campos requeridos" time="0.266">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/catalogo/phone-form.test.tsx" name="PhoneForm — validación y creación &gt; crea el celular y navega a /admin/phones cuando los datos son válidos" time="0.569">
+        </testcase>
+        <testcase classname="test/unit/catalogo/phone-form.test.tsx" name="PhoneForm — validación y creación &gt; muestra el error del servidor y no navega si create() rechaza" time="0.415">
+        </testcase>
+        <testcase classname="test/unit/catalogo/phone-form.test.tsx" name="PhoneForm — edición de un celular existente &gt; precarga el formulario con los datos del celular al editar" time="0.047">
+        </testcase>
+        <testcase classname="test/unit/catalogo/phone-form.test.tsx" name="PhoneForm — edición de un celular existente &gt; llama a phonesService.update(id, data) y navega al guardar cambios" time="0.077">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/control-roles/admin-route.test.tsx" timestamp="2026-10-25T10:02:04.640Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.046">
+        <testcase classname="test/unit/control-roles/admin-route.test.tsx" name="AdminRoute — verificación de acceso &gt; redirige a /login si no hay sesión activa" time="0.037">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/control-roles/admin-route.test.tsx" name="AdminRoute — verificación de acceso &gt; redirige a /unauthorized si el usuario no es ADMIN" time="0.005">
+        </testcase>
+        <testcase classname="test/unit/control-roles/admin-route.test.tsx" name="AdminRoute — verificación de acceso &gt; renderiza el panel de administración si el usuario es ADMIN" time="0.003">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/control-roles/protected-route.test.tsx" timestamp="2026-10-25T10:02:04.641Z" hostname="vm" tests="2" failures="0" errors="0" skipped="0" time="0.048">
+        <testcase classname="test/unit/control-roles/protected-route.test.tsx" name="ProtectedRoute — verificación de acceso &gt; redirige a /login si no hay sesión activa" time="0.042">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/control-roles/protected-route.test.tsx" name="ProtectedRoute — verificación de acceso &gt; renderiza la ruta protegida si hay sesión activa" time="0.005">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/errores/errores-sesion.test.tsx" timestamp="2026-10-25T10:02:04.642Z" hostname="vm" tests="15" failures="0" errors="0" skipped="0" time="0.094">
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="mensajeDeError &gt; usa el primer mensaje por campo cuando el backend lo detalla (en vez de &quot;Datos inválidos&quot;)" time="0.009">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="mensajeDeError &gt; sin detalle por campo usa el mensaje general del backend" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="mensajeDeError &gt; con la lista de errores vacía cae al mensaje general, en lenguaje cotidiano (H2)" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="mensajeDeError &gt; H2: traduce el mensaje técnico &quot;Token inválido o expirado&quot;" time="0">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="mensajeDeError &gt; H2: traduce el mensaje técnico &quot;Token requerido&quot;" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="mensajeDeError &gt; H2: traduce el mensaje técnico &quot;Ruta no encontrada&quot;" time="0">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="mensajeDeError &gt; H2: traduce el mensaje técnico &quot;Error interno del servidor&quot;" time="0">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="mensajeDeError &gt; H2: los mensajes del backend que ya son claros se muestran tal cual" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="mensajeDeError &gt; sin respuesta del servidor avisa que falló la conexión" time="0">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="mensajeDeError &gt; un Error común devuelve su mensaje y null devuelve texto vacío" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="codigoDeError / avisoDeSesion &gt; lee el code que agrega el backend" time="0">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="codigoDeError / avisoDeSesion &gt; devuelve undefined si no es un error HTTP o no trae code" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="codigoDeError / avisoDeSesion &gt; cada code tiene su mensaje y cualquier otro cae al genérico" time="0">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="ErrorMessage &gt; se anuncia como alerta (role=&quot;alert&quot;) para lectores de pantalla" time="0.067">
+        </testcase>
+        <testcase classname="test/unit/errores/errores-sesion.test.tsx" name="ErrorMessage &gt; muestra el detalle por campo del backend" time="0.011">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/errores/errores.test.tsx" timestamp="2026-10-25T10:02:04.647Z" hostname="vm" tests="8" failures="0" errors="0" skipped="0" time="0.26">
+        <testcase classname="test/unit/errores/errores.test.tsx" name="ErrorMessage — texto que ve el usuario &gt; error del backend → muestra su campo &quot;error&quot;" time="0.051">
+        </testcase>
+        <testcase classname="test/unit/errores/errores.test.tsx" name="ErrorMessage — texto que ve el usuario &gt; error HTTP sin mensaje → uno genérico, sin detalles técnicos" time="0.007">
+        </testcase>
+        <testcase classname="test/unit/errores/errores.test.tsx" name="ErrorMessage — texto que ve el usuario &gt; error común de JavaScript → su mensaje" time="0.004">
+        </testcase>
+        <testcase classname="test/unit/errores/errores.test.tsx" name="ErrorMessage — texto que ve el usuario &gt; sin error → párrafo vacío" time="0.003">
+        </testcase>
+        <testcase classname="test/unit/errores/errores.test.tsx" name="comoError — normaliza lo que rechaza una promesa &gt; un Error se devuelve tal cual" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/errores/errores.test.tsx" name="comoError — normaliza lo que rechaza una promesa &gt; cualquier otro valor se envuelve en un Error con su texto" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/errores/errores.test.tsx" name="ToastContext — avisos temporales &gt; el aviso aparece y se va solo a los 2,8 segundos" time="0.174">
+        </testcase>
+        <testcase classname="test/unit/errores/errores.test.tsx" name="ToastContext — avisos temporales &gt; useToast fuera del provider avisa del error de uso" time="0.018">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/estadisticas/admin-stats.test.tsx" timestamp="2026-10-25T10:02:04.650Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.158">
+        <testcase classname="test/unit/estadisticas/admin-stats.test.tsx" name="AdminStats — carga y render de estadísticas &gt; muestra el indicador de carga mientras se calculan las estadísticas" time="0.033">
+        </testcase>
+        <testcase classname="test/unit/estadisticas/admin-stats.test.tsx" name="AdminStats — carga y render de estadísticas &gt; muestra un mensaje de error si no se pueden cargar las estadísticas" time="0.078">
+        </testcase>
+        <testcase classname="test/unit/estadisticas/admin-stats.test.tsx" name="AdminStats — carga y render de estadísticas &gt; renderiza el resumen sin errores cuando todos los días tienen revenue en 0 (protección de división por 0)" time="0.046">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/gestion-perfil/ban-admin.test.tsx" timestamp="2026-10-25T10:02:04.651Z" hostname="vm" tests="4" failures="0" errors="0" skipped="0" time="0.47">
+        <testcase classname="test/unit/gestion-perfil/ban-admin.test.tsx" name="AdminUsers — no se ofrece banear a otro administrador &gt; en la fila de otro admin no hay botón Banear y sí la explicación" time="0.21">
+        </testcase>
+        <testcase classname="test/unit/gestion-perfil/ban-admin.test.tsx" name="AdminUsers — no se ofrece banear a otro administrador &gt; el admin sigue pudiendo quitarle el rol a ese colega (el paso previo)" time="0.063">
+        </testcase>
+        <testcase classname="test/unit/gestion-perfil/ban-admin.test.tsx" name="AdminUsers — no se ofrece banear a otro administrador &gt; a un usuario común sí se le puede banear" time="0.07">
+        </testcase>
+        <testcase classname="test/unit/gestion-perfil/ban-admin.test.tsx" name="AdminUsers — no se ofrece banear a otro administrador &gt; un admin que ya estaba baneado (antes de la regla) conserva el botón Desbanear" time="0.125">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/gestion-perfil/ban-modal.test.tsx" timestamp="2026-10-25T10:02:04.652Z" hostname="vm" tests="2" failures="0" errors="0" skipped="0" time="0.705">
+        <testcase classname="test/unit/gestion-perfil/ban-modal.test.tsx" name="AdminUsers — validación y confirmación del motivo de baneo &gt; deshabilita el botón de confirmar baneo si el motivo tiene menos de 4 caracteres" time="0.45">
+        </testcase>
+        <testcase classname="test/unit/gestion-perfil/ban-modal.test.tsx" name="AdminUsers — validación y confirmación del motivo de baneo &gt; llama a adminService.banUser(id, reason) y actualiza la lista cuando el motivo es válido" time="0.253">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/gestion-perfil/role-confirm.test.tsx" timestamp="2026-10-25T10:02:04.652Z" hostname="vm" tests="6" failures="0" errors="0" skipped="0" time="0.83">
+        <testcase classname="test/unit/gestion-perfil/role-confirm.test.tsx" name="AdminUsers — el cambio de rol pide confirmación &gt; el primer clic abre el diálogo y NO cambia el rol todavía" time="0.275">
+        </testcase>
+        <testcase classname="test/unit/gestion-perfil/role-confirm.test.tsx" name="AdminUsers — el cambio de rol pide confirmación &gt; confirmar aplica el cambio con el rol correcto y cierra el diálogo" time="0.181">
+        </testcase>
+        <testcase classname="test/unit/gestion-perfil/role-confirm.test.tsx" name="AdminUsers — el cambio de rol pide confirmación &gt; Cancelar cierra el diálogo sin cambiar nada" time="0.13">
+        </testcase>
+        <testcase classname="test/unit/gestion-perfil/role-confirm.test.tsx" name="AdminUsers — el cambio de rol pide confirmación &gt; Escape también cierra el diálogo sin cambiar nada" time="0.074">
+        </testcase>
+        <testcase classname="test/unit/gestion-perfil/role-confirm.test.tsx" name="AdminUsers — el cambio de rol pide confirmación &gt; quitar el rol avisa que se pierde el acceso al panel de inmediato" time="0.068">
+        </testcase>
+        <testcase classname="test/unit/gestion-perfil/role-confirm.test.tsx" name="AdminUsers — el cambio de rol pide confirmación &gt; el diálogo de baneo también es accesible: role=&quot;dialog&quot;, título asociado y Escape" time="0.101">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/gestion-perfil/self-protection.test.tsx" timestamp="2026-10-25T10:02:04.655Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.265">
+        <testcase classname="test/unit/gestion-perfil/self-protection.test.tsx" name="AdminUsers — guardia de auto-protección y estado de la fila &gt; no muestra botones de banear/desbanear en la fila del propio admin" time="0.096">
+        </testcase>
+        <testcase classname="test/unit/gestion-perfil/self-protection.test.tsx" name="AdminUsers — guardia de auto-protección y estado de la fila &gt; muestra el botón &quot;Desbanear&quot; en la fila de otro usuario baneado" time="0.09">
+        </testcase>
+        <testcase classname="test/unit/gestion-perfil/self-protection.test.tsx" name="AdminUsers — guardia de auto-protección y estado de la fila &gt; muestra el botón &quot;Banear&quot; en la fila de otro usuario activo" time="0.077">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/gestion-usuarios/consultar-usuarios.test.tsx" timestamp="2026-10-25T10:02:04.655Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.721">
+        <testcase classname="test/unit/gestion-usuarios/consultar-usuarios.test.tsx" name="AdminUsers — carga, búsqueda y paginación de usuarios &gt; carga la lista de usuarios al montar, con page=1 y sin filtro" time="0.11">
+        </testcase>
+        <testcase classname="test/unit/gestion-usuarios/consultar-usuarios.test.tsx" name="AdminUsers — carga, búsqueda y paginación de usuarios &gt; espera el debounce, resetea a la página 1 y busca con el término escrito" time="0.505">
+        </testcase>
+        <testcase classname="test/unit/gestion-usuarios/consultar-usuarios.test.tsx" name="AdminUsers — carga, búsqueda y paginación de usuarios &gt; al hacer click en &quot;Siguiente&quot; solicita la página 2" time="0.105">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/gestion-usuarios/unban-flow.test.tsx" timestamp="2026-10-25T10:02:04.656Z" hostname="vm" tests="2" failures="0" errors="0" skipped="0" time="0.378">
+        <testcase classname="test/unit/gestion-usuarios/unban-flow.test.tsx" name="AdminUsers — desbaneo confirmado &gt; llama a adminService.unbanUser(id) y refleja el estado &quot;Activo&quot; al confirmar" time="0.259">
+        </testcase>
+        <testcase classname="test/unit/gestion-usuarios/unban-flow.test.tsx" name="AdminUsers — desbaneo confirmado &gt; deshabilita el botón &quot;Desbanear&quot; mientras la petición está en curso" time="0.118">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/heuristicas/ayuda.test.tsx" timestamp="2026-10-25T10:02:04.659Z" hostname="vm" tests="11" failures="0" errors="0" skipped="0" time="1.306">
+        <testcase classname="test/unit/heuristicas/ayuda.test.tsx" name="H10 — Centro de ayuda (/ayuda) &gt; tiene preguntas frecuentes, guías de problemas, garantías, atajos y contacto" time="0.417">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/heuristicas/ayuda.test.tsx" name="H10 — Centro de ayuda (/ayuda) &gt; las respuestas usan ejemplos concretos (correos y contraseñas válidas e inválidas)" time="0.172">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/ayuda.test.tsx" name="H10 — Centro de ayuda (/ayuda) &gt; la guía &quot;No puedo ingresar&quot; está orientada a resolver el problema, paso a paso" time="0.124">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/ayuda.test.tsx" name="H10 — Centro de ayuda (/ayuda) &gt; un enlace con #ancla abre esa pregunta frecuente" time="0.065">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/ayuda.test.tsx" name="H10 — Centro de ayuda (/ayuda) &gt; pone &quot;Ayuda&quot; en el título de la pestaña" time="0.089">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/ayuda.test.tsx" name="H10 — la ayuda está donde se necesita &gt; /login enlaza a la ayuda" time="0.041">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/ayuda.test.tsx" name="H10 — la ayuda está donde se necesita &gt; /register enlaza a la ayuda" time="0.041">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/ayuda.test.tsx" name="H10 — la ayuda está donde se necesita &gt; &quot;Acceso no autorizado&quot; explica por qué con un enlace a la ayuda" time="0.115">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/ayuda.test.tsx" name="H4.1 — el pie lleva a donde dice &gt; &quot;Garantías&quot; → /ayuda#garantias" time="0.08">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/ayuda.test.tsx" name="H4.1 — el pie lleva a donde dice &gt; &quot;Contacto&quot; → /ayuda#contacto" time="0.091">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/ayuda.test.tsx" name="H4.1 — el pie lleva a donde dice &gt; &quot;Preguntas frecuentes&quot; → /ayuda#preguntas" time="0.07">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/heuristicas/formularios.test.tsx" timestamp="2026-10-25T10:02:04.667Z" hostname="vm" tests="11" failures="0" errors="0" skipped="0" time="2.152">
+        <testcase classname="test/unit/heuristicas/formularios.test.tsx" name="H5/H7/H8 — requisitos de la contraseña en tiempo real &gt; antes de escribir, los 4 requisitos se ven pendientes" time="0.154">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/heuristicas/formularios.test.tsx" name="H5/H7/H8 — requisitos de la contraseña en tiempo real &gt; cada requisito se marca mientras se escribe, sin enviar el formulario" time="0.375">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/formularios.test.tsx" name="H5/H7/H8 — requisitos de la contraseña en tiempo real &gt; el campo de correo dice qué dominios se aceptan antes de fallar (H8.2)" time="0.032">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/formularios.test.tsx" name="H5/H7/H8 — requisitos de la contraseña en tiempo real &gt; la confirmación vacía tiene su propio mensaje" time="0.203">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/formularios.test.tsx" name="H5/H7/H8 — requisitos de la contraseña en tiempo real &gt; en Mi perfil, la contraseña nueva también muestra los requisitos" time="0.183">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/formularios.test.tsx" name="H3.3 — volver al estado anterior en Mi perfil &gt; &quot;Descartar cambios&quot; está apagado hasta que se edita y devuelve el nombre guardado" time="0.179">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/formularios.test.tsx" name="H3.3 — volver al estado anterior en Mi perfil &gt; después de guardar, el nombre nuevo pasa a ser el estado al que se vuelve" time="0.355">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/formularios.test.tsx" name="H3.3 — volver al estado anterior en Mi perfil &gt; &quot;Limpiar campos&quot; vacía el formulario de contraseña" time="0.165">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/formularios.test.tsx" name="H3.3 — volver al estado anterior en Mi perfil &gt; la ruta de navegación indica dónde se está (H1.2)" time="0.083">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/formularios.test.tsx" name="H1/H3 — salida visible desde Ingresar y Crear cuenta &gt; /login tiene &quot;← Volver a la tienda&quot;" time="0.249">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/formularios.test.tsx" name="H1/H3 — salida visible desde Ingresar y Crear cuenta &gt; /register tiene &quot;← Volver a la tienda&quot;" time="0.173">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/heuristicas/sistema.test.tsx" timestamp="2026-10-25T10:02:04.668Z" hostname="vm" tests="18" failures="0" errors="0" skipped="0" time="1.642">
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H1.1 — cada pantalla nombra su pestaña &gt; /login → &quot;Ingresar · CelularPro&quot;" time="0.103">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H1.1 — cada pantalla nombra su pestaña &gt; /register → &quot;Crear cuenta · CelularPro&quot;" time="0.028">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H1.1 — cada pantalla nombra su pestaña &gt; /unauthorized → &quot;Acceso no autorizado · CelularPro&quot;" time="0.043">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H1.1 — cada pantalla nombra su pestaña &gt; /404 → &quot;Página no encontrada · CelularPro&quot;" time="0.007">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H1.1 — cada pantalla nombra su pestaña &gt; con sesión: Mi cuenta y Mi perfil" time="0.052">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H1.1 — cada pantalla nombra su pestaña &gt; en el panel, la pestaña dice la sección" time="0.073">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H1.3 / H6.5 — Mi cuenta &gt; permite cerrar sesión desde la misma pantalla" time="0.259">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H1.3 / H6.5 — Mi cuenta &gt; dice cuánto dura la sesión (acelerador visible para quien vuelve)" time="0.049">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H1.3 / H6.5 — Mi cuenta &gt; H11: sin conexión explica, enlaza a la guía y &quot;Reintentar&quot; vuelve a pedir" time="0.207">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H1.3 / H6.5 — Mi cuenta &gt; H4.3: el total del pedido usa un recibo, no el escudo de &quot;verificado&quot;" time="0.118">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H11.3 — aviso de corte de internet &gt; aparece al perder la conexión y desaparece al recuperarla" time="0.106">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H11.3 — aviso de corte de internet &gt; también en Ingresar, que no usa el diseño principal" time="0.023">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H6.1 — atajos de teclado &gt; &quot;/&quot; en el catálogo lleva el foco a la búsqueda" time="0.084">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H6.1 — atajos de teclado &gt; &quot;/&quot; en otra pantalla abre el catálogo con la búsqueda enfocada" time="0.093">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H6.1 — atajos de teclado &gt; &quot;?&quot; abre la ayuda en la sección de atajos" time="0.137">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H6.1 — atajos de teclado &gt; no roba teclas mientras se escribe en un campo ni con Ctrl" time="0.067">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H6.1 — atajos de teclado &gt; el pie de página anuncia los atajos" time="0.068">
+        </testcase>
+        <testcase classname="test/unit/heuristicas/sistema.test.tsx" name="H4.3 — un ícono, un significado (panel de usuarios) &gt; &quot;Desbanear&quot; usa un candado abierto; el check queda solo para &quot;Activo&quot;" time="0.121">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/interfaz/container-scroll.test.tsx" timestamp="2026-10-25T10:02:04.675Z" hostname="vm" tests="2" failures="0" errors="0" skipped="0" time="0.056">
+        <testcase classname="test/unit/interfaz/container-scroll.test.tsx" name="ContainerScroll — tarjeta con animación de scroll &gt; en pantallas anchas usa las medidas de escritorio" time="0.043">
+        </testcase>
+        <testcase classname="test/unit/interfaz/container-scroll.test.tsx" name="ContainerScroll — tarjeta con animación de scroll &gt; al pasar a móvil (≤ 768px) se compacta" time="0.012">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/interfaz/hero-geometric.test.tsx" timestamp="2026-10-25T10:02:04.675Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.236">
+        <testcase classname="test/unit/interfaz/hero-geometric.test.tsx" name="HeroGeometric — contenido del hero &gt; sin contenido propio muestra el badge y los títulos por defecto" time="0.145">
+        </testcase>
+        <testcase classname="test/unit/interfaz/hero-geometric.test.tsx" name="HeroGeometric — contenido del hero &gt; usa los textos que recibe, incluida la descripción" time="0.072">
+        </testcase>
+        <testcase classname="test/unit/interfaz/hero-geometric.test.tsx" name="HeroGeometric — contenido del hero &gt; si recibe children, los muestra en lugar del contenido por defecto" time="0.018">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/interfaz/navegacion.test.tsx" timestamp="2026-10-25T10:02:04.676Z" hostname="vm" tests="16" failures="0" errors="0" skipped="0" time="2.437">
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="Nav — barra principal &gt; sin sesión ofrece ingresar y registrarse, y marca el enlace de la ruta actual" time="0.24">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="Nav — barra principal &gt; un admin ve el acceso al panel" time="0.11">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="Nav — barra principal &gt; el contador del carrito suma las unidades guardadas" time="0.134">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="Nav — barra principal &gt; el menú móvil se abre, y al elegir un enlace se cierra" time="0.202">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="Nav — barra principal &gt; sin sesión el menú móvil lleva a ingresar y registrarse" time="0.193">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="Nav — barra principal &gt; con sesión el menú móvil ofrece Mi cuenta y cerrar sesión" time="0.122">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="Nav — barra principal &gt; el botón del menú alterna entre abrir y cerrar, y lo anuncia (aria-expanded)" time="0.121">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="Nav — barra principal &gt; H1: en /profile, &quot;Mi cuenta&quot; queda marcado como sección actual" time="0.138">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="Nav — barra principal &gt; H10: la ayuda está en la barra en todas las pantallas de la tienda" time="0.26">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="Nav — barra principal &gt; H2: escritorio y móvil dicen lo mismo, &quot;Cerrar sesión&quot;" time="0.16">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="Nav — barra principal &gt; en el menú móvil, Mi cuenta lleva al panel del usuario" time="0.211">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="Nav — barra principal &gt; en el menú móvil, Ingresar lleva al login" time="0.107">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="AdminLayout — menú lateral del panel &gt; la barra superior muestra la sección actual y el nombre del admin" time="0.089">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="AdminLayout — menú lateral del panel &gt; el menú se abre desde la barra superior y se cierra con el fondo" time="0.049">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="AdminLayout — menú lateral del panel &gt; elegir una sección o la X también cierra el menú" time="0.198">
+        </testcase>
+        <testcase classname="test/unit/interfaz/navegacion.test.tsx" name="AdminLayout — menú lateral del panel &gt; Cerrar sesión (antes &quot;Salir&quot;) cierra la sesión y vuelve al login" time="0.101">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/interfaz/password-input.test.tsx" timestamp="2026-10-25T10:02:04.678Z" hostname="vm" tests="6" failures="0" errors="0" skipped="0" time="0.406">
+        <testcase classname="test/unit/interfaz/password-input.test.tsx" name="PasswordInput — mostrar y ocultar &gt; empieza oculta y el botón ofrece mostrarla" time="0.098">
+        </testcase>
+        <testcase classname="test/unit/interfaz/password-input.test.tsx" name="PasswordInput — mostrar y ocultar &gt; al pulsar el botón se muestra el texto y el botón pasa a ofrecer ocultarla" time="0.07">
+        </testcase>
+        <testcase classname="test/unit/interfaz/password-input.test.tsx" name="PasswordInput — mostrar y ocultar &gt; pulsar otra vez la vuelve a ocultar" time="0.059">
+        </testcase>
+        <testcase classname="test/unit/interfaz/password-input.test.tsx" name="PasswordInput — mostrar y ocultar &gt; el botón no envía el formulario (type=&quot;button&quot;)" time="0.087">
+        </testcase>
+        <testcase classname="test/unit/interfaz/password-input.test.tsx" name="PasswordInput — mostrar y ocultar &gt; marca el campo como inválido para los lectores de pantalla solo cuando hay error" time="0.038">
+        </testcase>
+        <testcase classname="test/unit/interfaz/password-input.test.tsx" name="PasswordInput — mostrar y ocultar &gt; reenvía el valor que se escribe (compatible con react-hook-form)" time="0.05">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/interfaz/shader-background.test.tsx" timestamp="2026-10-25T10:02:04.678Z" hostname="vm" tests="9" failures="0" errors="0" skipped="0" time="0.074">
+        <testcase classname="test/unit/interfaz/shader-background.test.tsx" name="ShaderBackground — fondo animado con WebGL &gt; sin WebGL deja el lienzo decorativo y no intenta dibujar" time="0.042">
+        </testcase>
+        <testcase classname="test/unit/interfaz/shader-background.test.tsx" name="ShaderBackground — fondo animado con WebGL &gt; con WebGL compila los shaders, ajusta el tamaño y dibuja en cada cuadro" time="0.007">
+        </testcase>
+        <testcase classname="test/unit/interfaz/shader-background.test.tsx" name="ShaderBackground — fondo animado con WebGL &gt; si un shader no compila, lo descarta y no arranca la animación" time="0.004">
+        </testcase>
+        <testcase classname="test/unit/interfaz/shader-background.test.tsx" name="ShaderBackground — fondo animado con WebGL &gt; si el navegador no crea shaders, no dibuja nada" time="0.003">
+        </testcase>
+        <testcase classname="test/unit/interfaz/shader-background.test.tsx" name="ShaderBackground — fondo animado con WebGL &gt; si no se puede crear el programa, no dibuja nada" time="0.003">
+        </testcase>
+        <testcase classname="test/unit/interfaz/shader-background.test.tsx" name="ShaderBackground — fondo animado con WebGL &gt; si el programa no enlaza, no dibuja nada" time="0.003">
+        </testcase>
+        <testcase classname="test/unit/interfaz/shader-background.test.tsx" name="ShaderBackground — fondo animado con WebGL &gt; si no hay buffer de vértices, no dibuja nada" time="0.003">
+        </testcase>
+        <testcase classname="test/unit/interfaz/shader-background.test.tsx" name="ShaderBackground — fondo animado con WebGL &gt; al desmontar cancela la animación y deja de escuchar el resize" time="0.003">
+        </testcase>
+        <testcase classname="test/unit/interfaz/shader-background.test.tsx" name="ShaderBackground — fondo animado con WebGL &gt; H12: con &quot;reducir movimiento&quot; pinta un cuadro fijo y no anima" time="0.004">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/interfaz/skeleton-y-promo.test.tsx" timestamp="2026-10-25T10:02:04.683Z" hostname="vm" tests="4" failures="0" errors="0" skipped="0" time="0.242">
+        <testcase classname="test/unit/interfaz/skeleton-y-promo.test.tsx" name="SkeletonGrid — tarjetas de carga &gt; por defecto dibuja 6 tarjetas" time="0.039">
+        </testcase>
+        <testcase classname="test/unit/interfaz/skeleton-y-promo.test.tsx" name="SkeletonGrid — tarjetas de carga &gt; dibuja las que se le pidan" time="0.006">
+        </testcase>
+        <testcase classname="test/unit/interfaz/skeleton-y-promo.test.tsx" name="PromoBar — barra de promociones &gt; repite los mensajes para el desplazamiento continuo y enlaza a certificados" time="0.073">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/interfaz/skeleton-y-promo.test.tsx" name="PromoBar — barra de promociones &gt; se puede cerrar" time="0.122">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/interfaz/sticky-add-to-cart.test.tsx" timestamp="2026-10-25T10:02:04.684Z" hostname="vm" tests="4" failures="0" errors="0" skipped="0" time="0.155">
+        <testcase classname="test/unit/interfaz/sticky-add-to-cart.test.tsx" name="StickyAddToCart — barra fija de compra &gt; no aparece mientras no se baje más de 500px" time="0.023">
+        </testcase>
+        <testcase classname="test/unit/interfaz/sticky-add-to-cart.test.tsx" name="StickyAddToCart — barra fija de compra &gt; al bajar muestra el equipo, el color elegido y el precio por la cantidad" time="0.038">
+        </testcase>
+        <testcase classname="test/unit/interfaz/sticky-add-to-cart.test.tsx" name="StickyAddToCart — barra fija de compra &gt; el botón agrega al carrito" time="0.087">
+        </testcase>
+        <testcase classname="test/unit/interfaz/sticky-add-to-cart.test.tsx" name="StickyAddToCart — barra fija de compra &gt; un equipo agotado nunca muestra la barra" time="0.004">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/login/auth-context.test.tsx" timestamp="2026-10-25T10:02:04.685Z" hostname="vm" tests="4" failures="0" errors="0" skipped="0" time="0.066">
+        <testcase classname="test/unit/login/auth-context.test.tsx" name="AuthContext — sesión del usuario &gt; recupera la sesión guardada en el navegador" time="0.033">
+        </testcase>
+        <testcase classname="test/unit/login/auth-context.test.tsx" name="AuthContext — sesión del usuario &gt; mientras el login está en curso marca isLoading y al terminar guarda la sesión" time="0.01">
+        </testcase>
+        <testcase classname="test/unit/login/auth-context.test.tsx" name="AuthContext — sesión del usuario &gt; logout borra la sesión del estado y del navegador" time="0.003">
+        </testcase>
+        <testcase classname="test/unit/login/auth-context.test.tsx" name="AuthContext — sesión del usuario &gt; useAuth fuera del provider avisa del error de uso" time="0.017">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/login/login.schema.test.tsx" timestamp="2026-10-25T10:02:04.685Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.751">
+        <testcase classname="test/unit/login/login.schema.test.tsx" name="Login — validación del esquema del formulario &gt; muestra &quot;Correo electrónico inválido&quot; con un correo mal formado" time="0.451">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/login/login.schema.test.tsx" name="Login — validación del esquema del formulario &gt; muestra &quot;La contraseña es requerida&quot; si el password está vacío" time="0.121">
+        </testcase>
+        <testcase classname="test/unit/login/login.schema.test.tsx" name="Login — validación del esquema del formulario &gt; no muestra errores de validación con datos correctos" time="0.177">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/login/login.submit.test.tsx" timestamp="2026-10-25T10:02:04.686Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.746">
+        <testcase classname="test/unit/login/login.submit.test.tsx" name="Login — envío de credenciales y autenticación &gt; redirige de inmediato a /dashboard si ya hay sesión activa" time="0.04">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/login/login.submit.test.tsx" name="Login — envío de credenciales y autenticación &gt; inicia sesión y navega a /dashboard cuando login() resuelve sin error" time="0.485">
+        </testcase>
+        <testcase classname="test/unit/login/login.submit.test.tsx" name="Login — envío de credenciales y autenticación &gt; muestra el mensaje de error y permanece en /login cuando login() rechaza" time="0.219">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/pedidos/carrito-y-servicio.test.tsx" timestamp="2026-10-25T10:02:04.686Z" hostname="vm" tests="7" failures="0" errors="0" skipped="0" time="0.11">
+        <testcase classname="test/unit/pedidos/carrito-y-servicio.test.tsx" name="CartContext — reglas del carrito &gt; el mismo equipo y color suma cantidad; otro color abre otra línea" time="0.059">
+        </testcase>
+        <testcase classname="test/unit/pedidos/carrito-y-servicio.test.tsx" name="CartContext — reglas del carrito &gt; una cantidad menor que 1 se ignora" time="0.005">
+        </testcase>
+        <testcase classname="test/unit/pedidos/carrito-y-servicio.test.tsx" name="CartContext — reglas del carrito &gt; un carrito corrupto en el navegador arranca vacío" time="0.004">
+        </testcase>
+        <testcase classname="test/unit/pedidos/carrito-y-servicio.test.tsx" name="CartContext — reglas del carrito &gt; useCart fuera del provider avisa del error de uso" time="0.029">
+        </testcase>
+        <testcase classname="test/unit/pedidos/carrito-y-servicio.test.tsx" name="ordersService — contrato con /orders &gt; getAll pide la página con 20 por página y devuelve datos y meta" time="0.006">
+        </testcase>
+        <testcase classname="test/unit/pedidos/carrito-y-servicio.test.tsx" name="ordersService — contrato con /orders &gt; getAll sin página pide la primera" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/pedidos/carrito-y-servicio.test.tsx" name="ordersService — contrato con /orders &gt; updateStatus manda el estado nuevo y devuelve el pedido actualizado" time="0.002">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/pedidos/checkout.test.tsx" timestamp="2026-10-25T10:02:04.689Z" hostname="vm" tests="1" failures="0" errors="0" skipped="0" time="0.282">
+        <testcase classname="test/unit/pedidos/checkout.test.tsx" name="Checkout — sin datos del usuario para precargar &gt; nombre y email arrancan vacíos y se exigen antes de enviar" time="0.281">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/registro/register.email-domain.test.tsx" timestamp="2026-10-25T10:02:04.690Z" hostname="vm" tests="12" failures="0" errors="0" skipped="0" time="3.868">
+        <testcase classname="test/unit/registro/register.email-domain.test.tsx" name="Register — validación del correo (dominios permitidos por el backend) &gt; muestra &quot;Correo electrónico inválido&quot; con un formato incorrecto" time="0.674">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/registro/register.email-domain.test.tsx" name="Register — validación del correo (dominios permitidos por el backend) &gt; acepta el correo &quot;user@gmail.com&quot; (dominio permitido) y envía el registro normalizado" time="0.357">
+        </testcase>
+        <testcase classname="test/unit/registro/register.email-domain.test.tsx" name="Register — validación del correo (dominios permitidos por el backend) &gt; acepta el correo &quot;user@outlook.com&quot; (dominio permitido) y envía el registro normalizado" time="0.323">
+        </testcase>
+        <testcase classname="test/unit/registro/register.email-domain.test.tsx" name="Register — validación del correo (dominios permitidos por el backend) &gt; acepta el correo &quot;user@hotmail.com&quot; (dominio permitido) y envía el registro normalizado" time="0.35">
+        </testcase>
+        <testcase classname="test/unit/registro/register.email-domain.test.tsx" name="Register — validación del correo (dominios permitidos por el backend) &gt; acepta el correo &quot;user@yahoo.com&quot; (dominio permitido) y envía el registro normalizado" time="0.264">
+        </testcase>
+        <testcase classname="test/unit/registro/register.email-domain.test.tsx" name="Register — validación del correo (dominios permitidos por el backend) &gt; acepta el correo &quot;user@icloud.com&quot; (dominio permitido) y envía el registro normalizado" time="0.3">
+        </testcase>
+        <testcase classname="test/unit/registro/register.email-domain.test.tsx" name="Register — validación del correo (dominios permitidos por el backend) &gt; acepta el correo &quot;  User@Gmail.COM &quot; (dominio permitido) y envía el registro normalizado" time="0.291">
+        </testcase>
+        <testcase classname="test/unit/registro/register.email-domain.test.tsx" name="Register — validación del correo (dominios permitidos por el backend) &gt; rechaza el correo user@empresa.com con el mensaje de dominio y no envía" time="0.258">
+        </testcase>
+        <testcase classname="test/unit/registro/register.email-domain.test.tsx" name="Register — validación del correo (dominios permitidos por el backend) &gt; rechaza el correo user@unal.edu.co con el mensaje de dominio y no envía" time="0.275">
+        </testcase>
+        <testcase classname="test/unit/registro/register.email-domain.test.tsx" name="Register — validación del correo (dominios permitidos por el backend) &gt; rechaza el correo user@gmail.co con el mensaje de dominio y no envía" time="0.272">
+        </testcase>
+        <testcase classname="test/unit/registro/register.email-domain.test.tsx" name="Register — validación del correo (dominios permitidos por el backend) &gt; no muestra error de email con un dominio permitido (user@gmail.com)" time="0.231">
+        </testcase>
+        <testcase classname="test/unit/registro/register.email-domain.test.tsx" name="Register — correo sin arroba &gt; muestra el error de formato, no el de dominio" time="0.268">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/registro/register.submit.test.tsx" timestamp="2026-10-25T10:02:04.695Z" hostname="vm" tests="2" failures="0" errors="0" skipped="0" time="1.108">
+        <testcase classname="test/unit/registro/register.submit.test.tsx" name="Register — envío del formulario &gt; crea la cuenta y navega a /dashboard cuando registerUser() resuelve sin error" time="0.682">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/registro/register.submit.test.tsx" name="Register — envío del formulario &gt; muestra el mensaje de error del servidor y no navega si registerUser() rechaza" time="0.424">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/sesion/persistencia-sesion.test.tsx" timestamp="2026-10-25T10:02:04.699Z" hostname="vm" tests="5" failures="0" errors="0" skipped="0" time="0.067">
+        <testcase classname="test/unit/sesion/persistencia-sesion.test.tsx" name="AuthContext — la sesión se guarda al instante &gt; login: el token está en localStorage apenas se resuelve la petición" time="0.046">
+        </testcase>
+        <testcase classname="test/unit/sesion/persistencia-sesion.test.tsx" name="AuthContext — la sesión se guarda al instante &gt; registro: igual que el login" time="0.005">
+        </testcase>
+        <testcase classname="test/unit/sesion/persistencia-sesion.test.tsx" name="AuthContext — la sesión se guarda al instante &gt; cambio de contraseña (204): la sesión y el token se conservan" time="0.005">
+        </testcase>
+        <testcase classname="test/unit/sesion/persistencia-sesion.test.tsx" name="AuthContext — la sesión se guarda al instante &gt; cerrar sesión borra el token al instante, sin esperar al efecto" time="0.005">
+        </testcase>
+        <testcase classname="test/unit/sesion/persistencia-sesion.test.tsx" name="AuthContext — la sesión se guarda al instante &gt; editar el perfil actualiza el usuario guardado sin perder el token" time="0.004">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/validacion-credenciales/api-interceptor.peticion.test.ts" timestamp="2026-10-25T10:02:04.699Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.02">
+        <testcase classname="test/unit/validacion-credenciales/api-interceptor.peticion.test.ts" name="interceptor de petición — cabecera Authorization &gt; con sesión, cada petición lleva el token como Bearer" time="0.011">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/api-interceptor.peticion.test.ts" name="interceptor de petición — cabecera Authorization &gt; sin sesión la petición sale sin cabecera" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/api-interceptor.peticion.test.ts" name="interceptor de respuesta — 401 sin sesión &gt; un login fallido (401 sin token guardado) solo propaga el error, sin redirigir" time="0.006">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/validacion-credenciales/api-interceptor.test.ts" timestamp="2026-10-25T10:02:04.700Z" hostname="vm" tests="2" failures="0" errors="0" skipped="0" time="0.011">
+        <testcase classname="test/unit/validacion-credenciales/api-interceptor.test.ts" name="interceptor de respuesta ante token inválido (401) &gt; propaga el error sin tocar la sesión si el status no es 401" time="0.008">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/api-interceptor.test.ts" name="interceptor de respuesta ante token inválido (401) &gt; limpia la sesión local y redirige a /login si el status es 401" time="0.002">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/validacion-credenciales/auth-guard.test.tsx" timestamp="2026-10-25T10:02:04.700Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.169">
+        <testcase classname="test/unit/validacion-credenciales/auth-guard.test.tsx" name="Guardia de acceso a formularios de auth con sesión activa &gt; Login redirige de inmediato a /dashboard si hay sesión activa" time="0.04">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/auth-guard.test.tsx" name="Guardia de acceso a formularios de auth con sesión activa &gt; Register redirige de inmediato a /dashboard si hay sesión activa" time="0.007">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/auth-guard.test.tsx" name="Guardia de acceso a formularios de auth con sesión activa &gt; muestra el formulario de login/registro si no hay sesión activa" time="0.121">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/validacion-credenciales/auth-service-contrato.test.ts" timestamp="2026-10-25T10:02:04.701Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.014">
+        <testcase classname="test/unit/validacion-credenciales/auth-service-contrato.test.ts" name="authService — usa las rutas que existen en el backend &gt; updateProfile → PATCH /auth/me con solo el nombre" time="0.011">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/auth-service-contrato.test.ts" name="authService — usa las rutas que existen en el backend &gt; changePassword → PUT /auth/me/password y acepta 204 sin cuerpo" time="0.002">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/auth-service-contrato.test.ts" name="authService — usa las rutas que existen en el backend &gt; no expone un logout de servidor (el backend no tiene esa ruta)" time="0.001">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/unit/validacion-credenciales/reglas-backend.test.ts" timestamp="2026-10-25T10:02:04.701Z" hostname="vm" tests="11" failures="0" errors="0" skipped="0" time="0.026">
+        <testcase classname="test/unit/validacion-credenciales/reglas-backend.test.ts" name="Regresión — reglas de credenciales alineadas con el backend &gt; mismos 5 dominios y mismo mensaje de dominio" time="0.014">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/reglas-backend.test.ts" name="Regresión — reglas de credenciales alineadas con el backend &gt; mismos límites y mensajes de contraseña" time="0.002">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/reglas-backend.test.ts" name="Regresión — reglas de credenciales alineadas con el backend &gt; contraseña &quot;Segura123&quot; → válida: true" time="0.002">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/reglas-backend.test.ts" name="Regresión — reglas de credenciales alineadas con el backend &gt; contraseña &quot;segura123&quot; → válida: false" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/reglas-backend.test.ts" name="Regresión — reglas de credenciales alineadas con el backend &gt; contraseña &quot;SEGURA123&quot; → válida: false" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/reglas-backend.test.ts" name="Regresión — reglas de credenciales alineadas con el backend &gt; contraseña &quot;SeguraSegura&quot; → válida: false" time="0">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/reglas-backend.test.ts" name="Regresión — reglas de credenciales alineadas con el backend &gt; contraseña &quot;Seg1&quot; → válida: false" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/reglas-backend.test.ts" name="Regresión — reglas de credenciales alineadas con el backend &gt; contraseña &quot;Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1&quot; → válida: true" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/reglas-backend.test.ts" name="Regresión — reglas de credenciales alineadas con el backend &gt; contraseña &quot;Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1Aa1x&quot; → válida: false" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/reglas-backend.test.ts" name="Regresión — reglas de credenciales alineadas con el backend &gt; el registro exige dominio permitido; el login no (admin@celularpro.co debe poder entrar)" time="0.001">
+        </testcase>
+        <testcase classname="test/unit/validacion-credenciales/reglas-backend.test.ts" name="Regresión — reglas de credenciales alineadas con el backend &gt; el correo se normaliza igual que en el backend (trim + minúsculas)" time="0.001">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/accesibilidad-axe.test.tsx" timestamp="2026-10-25T10:02:04.706Z" hostname="vm" tests="16" failures="0" errors="0" skipped="0" time="5.223">
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — acceso y cuenta &gt; Registro de usuario" time="0.512">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — acceso y cuenta &gt; Registro con errores de validación a la vista (mensajes asociados a sus campos)" time="0.277">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — acceso y cuenta &gt; Inicio de sesión" time="0.146">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — acceso y cuenta &gt; Inicio de sesión con el error del servidor anunciado (role=&quot;alert&quot;)" time="0.417">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — acceso y cuenta &gt; Gestión de perfil (nombre y contraseña)" time="0.535">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — acceso y cuenta &gt; Sesión vencida: el aviso de /login es un mensaje de estado" time="0.115">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — roles y alertas de stock &gt; Control de roles: pantalla de acceso no autorizado" time="0.319">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — roles y alertas de stock &gt; Alertas de stock: lista con alertas" time="0.278">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — roles y alertas de stock &gt; Alertas de stock: estado vacío" time="0.186">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — roles y alertas de stock &gt; Alertas de stock: error del servidor con &quot;Reintentar&quot;" time="0.148">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — roles y alertas de stock &gt; Panel con la insignia y el aviso de alertas" time="0.348">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — roles y alertas de stock &gt; Formulario de celular con el campo del umbral mínimo" time="0.442">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — roles y alertas de stock &gt; Tabla de celulares con las etiquetas de estado de stock" time="0.349">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — pantallas de la refactorización por heurísticas &gt; Centro de ayuda (FAQ desplegable, guías, tabla de atajos)" time="0.479">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — pantallas de la refactorización por heurísticas &gt; Registro con los requisitos de la contraseña marcándose" time="0.315">
+        </testcase>
+        <testcase classname="test/escenarios/accesibilidad-axe.test.tsx" name="Accesibilidad (axe) — pantallas de la refactorización por heurísticas &gt; Mi cuenta con el error de pedidos y &quot;Reintentar&quot;" time="0.346">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/autenticacion.test.tsx" timestamp="2026-10-25T10:02:04.713Z" hostname="vm" tests="15" failures="0" errors="0" skipped="0" time="3.757">
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Registro — POST /auth/register &gt; datos inválidos → el formulario los frena y no llega al backend" time="0.5">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Registro — POST /auth/register &gt; email ya registrado → 409 y el mensaje del backend, sin crear sesión" time="0.592">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Registro — POST /auth/register &gt; datos correctos → 201, guarda la sesión sin la contraseña y entra al panel del usuario" time="0.609">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Inicio de sesión — POST /auth/login &gt; credenciales incorrectas → 401, se ve el mensaje y no se recarga la página" time="0.235">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Inicio de sesión — POST /auth/login &gt; cuenta suspendida → 403 con el motivo" time="0.193">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Inicio de sesión — POST /auth/login &gt; credenciales correctas → 200, guarda el token y lo usa en las siguientes peticiones" time="0.269">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Inicio de sesión — POST /auth/login &gt; sin backend → el mensaje no filtra detalles técnicos" time="0.189">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Sesión — equivalente a GET /auth/me &gt; sin token → las rutas privadas mandan a /login" time="0.071">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Sesión — equivalente a GET /auth/me &gt; token con firma inválida → 401: se borra la sesión y se vuelve a /login" time="0.063">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Sesión — equivalente a GET /auth/me &gt; token válido → el perfil de la sesión se muestra en el panel y en la barra" time="0.138">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Sesión — equivalente a GET /auth/me &gt; con sesión, entrar a /login o /register lleva directo al panel" time="0.08">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Sesión — equivalente a GET /auth/me &gt; cerrar sesión borra el token y vuelve a /login" time="0.124">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Sesión — equivalente a GET /auth/me &gt; una sesión corrupta en el navegador se trata como si no hubiera sesión" time="0.08">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Mientras el backend responde &gt; el login deshabilita el botón y avisa que está ingresando" time="0.206">
+        </testcase>
+        <testcase classname="test/escenarios/autenticacion.test.tsx" name="Mientras el backend responde &gt; el registro deshabilita el botón y avisa que está creando la cuenta" time="0.404">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/catalogo-publico.test.tsx" timestamp="2026-10-25T10:02:04.720Z" hostname="vm" tests="20" failures="0" errors="0" skipped="0" time="3.843">
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones — listado público &gt; sin filtros → pide la página 1 y muestra la lista con su total" time="0.227">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones — listado público &gt; un solo resultado se cuenta en singular" time="0.15">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones — listado público &gt; parámetros fuera de rango → 400 y el catálogo avisa que no pudo cargar" time="0.13">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones — listado público &gt; &quot;Solo verificados&quot; filtra por verified=true y al desmarcarlo se quita el filtro" time="0.289">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones — listado público &gt; cada filtro se traduce a su parámetro de la consulta" time="0.913">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones — listado público &gt; &quot;Limpiar filtros&quot; deja solo la página 1" time="0.205">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones — listado público &gt; la segunda página salta los resultados de la primera" time="0.295">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones — listado público &gt; sin resultados → lo dice en vez de mostrar una grilla vacía" time="0.075">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones — listado público &gt; las tarjetas muestran descuento, condición, batería y el aviso de stock" time="0.062">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones/:slug — detalle público &gt; slug inexistente → 404 y la ficha lo dice" time="0.137">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones/:slug — detalle público &gt; slug existente → 200 con el celular y sus relaciones" time="0.325">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones/:slug — detalle público &gt; sin galería de fotos usa la imagen principal" time="0.104">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones/:slug — detalle público &gt; sin ninguna imagen muestra un ícono y omite las secciones vacías" time="0.145">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones/:slug — detalle público &gt; un celular agotado no deja agregarlo al carrito" time="0.102">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones/id/:id — ficha de edición (solo admin) &gt; sin sesión → se pide iniciar sesión" time="0.025">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones/id/:id — ficha de edición (solo admin) &gt; rol USER → acceso no autorizado, porque expone el registro completo" time="0.038">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="GET /phones/id/:id — ficha de edición (solo admin) &gt; admin con id existente → 200 y el formulario precargado" time="0.156">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="Rutas que no existen &gt; una URL desconocida lleva a la página 404" time="0.018">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="Inicio — destacados (GET /phones?limit=6) &gt; muestra los celulares destacados que devuelve el backend" time="0.275">
+        </testcase>
+        <testcase classname="test/escenarios/catalogo-publico.test.tsx" name="Inicio — destacados (GET /phones?limit=6) &gt; si el backend falla o no hay equipos, lo anuncia sin romper la portada" time="0.167">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/esc-26-banear-usuario.test.tsx" timestamp="2026-10-25T10:02:04.722Z" hostname="vm" tests="7" failures="0" errors="0" skipped="0" time="1.683">
+        <testcase classname="test/escenarios/esc-26-banear-usuario.test.tsx" name="ESC-26 — Banear usuario &gt; Camino 1 (1-2-14): sin sesión no se entra al panel y se pide iniciar sesión" time="0.237">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/esc-26-banear-usuario.test.tsx" name="ESC-26 — Banear usuario &gt; Camino 2 (1-3-4-14): token inválido → 401, se borra la sesión y se redirige a /login" time="0.078">
+        </testcase>
+        <testcase classname="test/escenarios/esc-26-banear-usuario.test.tsx" name="ESC-26 — Banear usuario &gt; Camino 3 (1-3-5-6-14): rol USER → acceso no autorizado, sin llamar al backend" time="0.119">
+        </testcase>
+        <testcase classname="test/escenarios/esc-26-banear-usuario.test.tsx" name="ESC-26 — Banear usuario &gt; Camino 4 (1-3-5-7-8-14): motivo con menos de 4 caracteres → no se puede confirmar" time="0.319">
+        </testcase>
+        <testcase classname="test/escenarios/esc-26-banear-usuario.test.tsx" name="ESC-26 — Banear usuario &gt; Camino 5 (1-3-5-7-9-10-14): un admin no puede banearse a sí mismo (RN-05)" time="0.111">
+        </testcase>
+        <testcase classname="test/escenarios/esc-26-banear-usuario.test.tsx" name="ESC-26 — Banear usuario &gt; Camino 6 (1-3-5-7-9-11-12-14): el id no existe → 404, se muestra el error y la fila no cambia" time="0.46">
+        </testcase>
+        <testcase classname="test/escenarios/esc-26-banear-usuario.test.tsx" name="ESC-26 — Banear usuario &gt; Camino 7 (1-3-5-7-9-11-13-14): datos correctos → 200 y la fila queda baneada con su motivo" time="0.356">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/esc-27-desbanear-usuario.test.tsx" timestamp="2026-10-25T10:02:04.726Z" hostname="vm" tests="5" failures="0" errors="0" skipped="0" time="0.743">
+        <testcase classname="test/escenarios/esc-27-desbanear-usuario.test.tsx" name="ESC-27 — Desbanear usuario &gt; Camino 1 (1-2-10): sin sesión no se entra al panel y se pide iniciar sesión" time="0.141">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/esc-27-desbanear-usuario.test.tsx" name="ESC-27 — Desbanear usuario &gt; Camino 2 (1-3-4-10): token inválido → 401, se borra la sesión y se redirige a /login" time="0.054">
+        </testcase>
+        <testcase classname="test/escenarios/esc-27-desbanear-usuario.test.tsx" name="ESC-27 — Desbanear usuario &gt; Camino 3 (1-3-5-6-10): rol USER → acceso no autorizado" time="0.078">
+        </testcase>
+        <testcase classname="test/escenarios/esc-27-desbanear-usuario.test.tsx" name="ESC-27 — Desbanear usuario &gt; Camino 4 (1-3-5-7-8-10): el id no existe → 404, se muestra el error y sigue baneado" time="0.221">
+        </testcase>
+        <testcase classname="test/escenarios/esc-27-desbanear-usuario.test.tsx" name="ESC-27 — Desbanear usuario &gt; Camino 5 (1-3-5-7-9-10): usuario suspendido → 200, queda activo y sin motivo" time="0.247">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/esc-28-consultar-usuarios.test.tsx" timestamp="2026-10-25T10:02:04.727Z" hostname="vm" tests="7" failures="0" errors="0" skipped="0" time="1.47">
+        <testcase classname="test/escenarios/esc-28-consultar-usuarios.test.tsx" name="ESC-28 — Consultar usuarios &gt; Camino 1 (1-2-14): sin sesión no se entra al panel y se pide iniciar sesión" time="0.171">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/esc-28-consultar-usuarios.test.tsx" name="ESC-28 — Consultar usuarios &gt; Camino 2 (1-3-4-14): token inválido → 401, se borra la sesión y se redirige a /login" time="0.06">
+        </testcase>
+        <testcase classname="test/escenarios/esc-28-consultar-usuarios.test.tsx" name="ESC-28 — Consultar usuarios &gt; Camino 3 (1-3-5-6-14): rol USER → acceso no autorizado" time="0.071">
+        </testcase>
+        <testcase classname="test/escenarios/esc-28-consultar-usuarios.test.tsx" name="ESC-28 — Consultar usuarios &gt; Camino 4 (1-3-5-7-8-14): el backend rechaza la página pedida → 400 y se muestra el motivo" time="0.073">
+        </testcase>
+        <testcase classname="test/escenarios/esc-28-consultar-usuarios.test.tsx" name="ESC-28 — Consultar usuarios &gt; Camino 5 (1-3-5-7-9-10-12-13-14): con search → vuelve a la página 1 y muestra solo lo filtrado" time="0.763">
+        </testcase>
+        <testcase classname="test/escenarios/esc-28-consultar-usuarios.test.tsx" name="ESC-28 — Consultar usuarios &gt; Camino 6 (1-3-5-7-9-11-12-13-14): sin search → lista completa paginada y se puede avanzar de página" time="0.235">
+        </testcase>
+        <testcase classname="test/escenarios/esc-28-consultar-usuarios.test.tsx" name="ESC-28 — Consultar usuarios &gt; La contraseña nunca se muestra, aunque llegara en la respuesta" time="0.092">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/esc-29-panel-estadisticas.test.tsx" timestamp="2026-10-25T10:02:04.735Z" hostname="vm" tests="13" failures="0" errors="0" skipped="0" time="1.426">
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="ESC-29 — Panel de estadísticas &gt; Camino 1 (1-2-14): sin sesión no se entra al panel y se pide iniciar sesión" time="0.169">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="ESC-29 — Panel de estadísticas &gt; Camino 2 (1-3-4-14): token inválido → 401, se borra la sesión y se redirige a /login" time="0.039">
+        </testcase>
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="ESC-29 — Panel de estadísticas &gt; Camino 3 (1-3-5-6-14): rol USER → acceso no autorizado" time="0.065">
+        </testcase>
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="ESC-29 — Panel de estadísticas &gt; Camino 4 (1-3-5-7-8-9-13-14): sin pedidos → ingresos en 0 y ningún día con ventas" time="0.099">
+        </testcase>
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="ESC-29 — Panel de estadísticas &gt; Camino 5 (1-3-5-7-8-9-10-11-9-13-14): pedido no cancelado → sus ingresos aparecen en el día" time="0.121">
+        </testcase>
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="ESC-29 — Panel de estadísticas &gt; Camino 6 (1-3-5-7-8-9-10-12-9-13-14): pedido cancelado → se cuenta como cancelado, no en ingresos" time="0.101">
+        </testcase>
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="ESC-29 — Panel de estadísticas &gt; Con varios pedidos en un día se muestra el plural" time="0.102">
+        </testcase>
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="ESC-29 — Panel de estadísticas &gt; El panel siempre dibuja los 7 días y el de hoy es el último" time="0.11">
+        </testcase>
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="Panel principal (/admin) — mismo endpoint GET /admin/stats &gt; muestra los KPI con los montos abreviados y el reparto de órdenes" time="0.157">
+        </testcase>
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="Panel principal (/admin) — mismo endpoint GET /admin/stats &gt; mapea los pedidos recientes con su número de artículos (singular y plural)" time="0.112">
+        </testcase>
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="Panel principal (/admin) — mismo endpoint GET /admin/stats &gt; sin usuarios baneados muestra 0 y sin órdenes no divide por cero" time="0.09">
+        </testcase>
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="Panel principal (/admin) — mismo endpoint GET /admin/stats &gt; si el backend no responde, lo explica y &quot;Reintentar&quot; vuelve a pedir los datos" time="0.179">
+        </testcase>
+        <testcase classname="test/escenarios/esc-29-panel-estadisticas.test.tsx" name="Panel principal (/admin) — mismo endpoint GET /admin/stats &gt; 403 del backend → mensaje de permisos" time="0.076">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/esc-30-administracion-catalogo.test.tsx" timestamp="2026-10-25T10:02:04.737Z" hostname="vm" tests="20" failures="0" errors="0" skipped="0" time="4.983">
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="ESC-30 — Administración del catálogo &gt; Camino 1 (1-2-19): sin sesión no se entra al panel y se pide iniciar sesión" time="0.226">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="ESC-30 — Administración del catálogo &gt; Camino 2 (1-3-4-19): token inválido → 401, se borra la sesión y se redirige a /login" time="0.044">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="ESC-30 — Administración del catálogo &gt; Camino 3 (1-3-5-6-19): rol USER → acceso no autorizado" time="0.067">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="ESC-30 — Administración del catálogo &gt; Camino 4 (1-3-5-7-8-9-19): POST con datos inválidos → el formulario lo frena y no llega al backend" time="0.306">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="ESC-30 — Administración del catálogo &gt; Camino 5 (1-3-5-7-8-10-11-19): slug repetido (RN-01) → 409 y el mensaje del backend" time="0.514">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="ESC-30 — Administración del catálogo &gt; Camino 6 (1-3-5-7-8-10-12-19): body válido y slug libre → 201 y vuelve al listado" time="0.587">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="ESC-30 — Administración del catálogo &gt; Camino 7 (1-3-5-7-13-14-19): PUT sobre un id que ya no existe → 404 Celular no encontrado" time="0.195">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="ESC-30 — Administración del catálogo &gt; Camino 8 (1-3-5-7-13-15-19): PUT sobre un celular existente → 200 con los cambios" time="0.21">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="ESC-30 — Administración del catálogo &gt; Camino 9 (1-3-5-7-16-17-19): DELETE sobre un id que no existe → 404, aviso y la fila se queda" time="0.084">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="ESC-30 — Administración del catálogo &gt; Camino 10 (1-3-5-7-16-18-19): DELETE sobre un celular existente → 204 y desaparece del listado" time="0.149">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="Panel de celulares — detalles del listado y del formulario &gt; si el admin cancela la confirmación no se borra nada" time="0.097">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="Panel de celulares — detalles del listado y del formulario &gt; sin celulares invita a crear el primero" time="0.098">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="Panel de celulares — detalles del listado y del formulario &gt; marca el stock según las alertas del backend: agotado, poco o suficiente" time="0.187">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="Panel de celulares — detalles del listado y del formulario &gt; si el celular a editar no existe, el formulario explica por qué está vacío" time="0.095">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="Panel de celulares — detalles del listado y del formulario &gt; Cancelar vuelve al listado sin guardar" time="0.183">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="Formulario de celulares — campos opcionales &gt; precio tachado, batería, imagen y condición se envían con su tipo" time="0.603">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="Formulario de celulares — campos opcionales &gt; una URL de imagen mal escrita no se envía" time="0.509">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="Formulario de celulares — campos opcionales &gt; un celular sin datos opcionales deja esos campos en blanco al editar" time="0.229">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="Formulario de celulares — campos opcionales &gt; una salud de batería fuera de 0–100 se explica y no se envía" time="0.483">
+        </testcase>
+        <testcase classname="test/escenarios/esc-30-administracion-catalogo.test.tsx" name="Formulario de celulares — campos opcionales &gt; mientras guarda, el botón dice &quot;Guardando...&quot; y queda deshabilitado" time="0.112">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/esc-31-alertas-stock.test.tsx" timestamp="2026-10-25T10:02:04.744Z" hostname="vm" tests="31" failures="0" errors="0" skipped="0" time="5.017">
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Insignia del menú — cuántas alertas hay abiertas &gt; muestra el número de alertas abiertas y lo anuncia a lectores de pantalla" time="0.14">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Insignia del menú — cuántas alertas hay abiertas &gt; con una sola alerta lo dice en singular" time="0.087">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Insignia del menú — cuántas alertas hay abiertas &gt; con más de 99 alertas muestra &quot;99+&quot; pero conserva el número exacto para lectores de pantalla" time="0.119">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Insignia del menú — cuántas alertas hay abiertas &gt; sin alertas no hay insignia ni aviso en el dashboard" time="0.119">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Insignia del menú — cuántas alertas hay abiertas &gt; se vuelve a pedir al cambiar de página del panel, para no quedar desactualizada" time="0.215">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Insignia del menú — cuántas alertas hay abiertas &gt; si las alertas no cargan, el panel funciona igual y no inventa una insignia" time="0.168">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Insignia del menú — cuántas alertas hay abiertas &gt; los botones solo con ícono del menú tienen nombre accesible" time="0.114">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Dashboard — el aviso es la notificación al administrador &gt; avisa cuántas alertas hay y lleva a la página de alertas" time="0.094">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Dashboard — el aviso es la notificación al administrador &gt; con una alerta el texto va en singular" time="0.058">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Página de alertas — /admin/alerts &gt; lista cada alerta con su tipo, mensaje, stock, mínimo y enlace para reponer" time="0.053">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Página de alertas — /admin/alerts &gt; el umbral es inclusivo: 5 de 5 aparece como alerta de stock bajo" time="0.064">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Página de alertas — /admin/alerts &gt; resume cuántas están agotadas y cuántas tienen poco stock" time="0.068">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Página de alertas — /admin/alerts &gt; sin alertas explica que el inventario está sano" time="0.049">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Página de alertas — /admin/alerts &gt; si el servidor falla muestra el error y &quot;Reintentar&quot; las vuelve a pedir" time="0.087">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Página de alertas — /admin/alerts &gt; el nombre de un celular con HTML se muestra como texto y no se interpreta" time="0.061">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Página de alertas — /admin/alerts &gt; un cliente (sin rol de admin) no puede entrar → pantalla de acceso no autorizado" time="0.021">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Página de alertas — /admin/alerts &gt; sin sesión lleva a /login" time="0.029">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Página de alertas — /admin/alerts &gt; pide las alertas con el token del administrador" time="0.048">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Tabla de celulares — el estado sale de las alertas, no de números fijos &gt; stock 5 con mínimo 5 se marca como bajo (antes solo se marcaba hasta 3)" time="0.111">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Tabla de celulares — el estado sale de las alertas, no de números fijos &gt; stock 3 con un mínimo menor NO se marca: no tiene alerta abierta" time="0.07">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Tabla de celulares — el estado sale de las alertas, no de números fijos &gt; si las alertas no cargan, la tabla se muestra completa y sin marcas" time="0.059">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Formulario de celular — definir el umbral mínimo &gt; el campo existe, arranca en 5 y explica para qué sirve" time="0.088">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Formulario de celular — definir el umbral mínimo &gt; crear sin tocar el campo envía el mínimo por defecto (5)" time="0.523">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Formulario de celular — definir el umbral mínimo &gt; un umbral propio viaja al backend" time="0.511">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Formulario de celular — definir el umbral mínimo &gt; al editar carga el umbral guardado y lo conserva al guardar" time="0.176">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Formulario de celular — definir el umbral mínimo &gt; si el backend no manda el umbral, al editar se propone el valor por defecto (5)" time="0.1">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Formulario de celular — definir el umbral mínimo &gt; un umbral negativo se frena en el formulario y no llega al backend" time="0.436">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Formulario de celular — definir el umbral mínimo &gt; un umbral decimal se frena en el formulario y no llega al backend" time="0.321">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Formulario de celular — definir el umbral mínimo &gt; un umbral sobre el tope se frena en el formulario y no llega al backend" time="0.313">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Formulario de celular — definir el umbral mínimo &gt; un stock sobre el tope (3.000.000.000) se frena aquí y no vuelve como un error genérico del servidor" time="0.347">
+        </testcase>
+        <testcase classname="test/escenarios/esc-31-alertas-stock.test.tsx" name="Formulario de celular — definir el umbral mínimo &gt; un precio sobre el tope se frena en el formulario" time="0.362">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/pedidos.test.tsx" timestamp="2026-10-25T10:02:04.751Z" hostname="vm" tests="22" failures="0" errors="0" skipped="0" time="4.768">
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="POST /orders — crear pedido &gt; sin sesión → el checkout pide iniciar sesión" time="0.2">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="POST /orders — crear pedido &gt; con el carrito vacío no hay nada que pagar y vuelve al catálogo" time="0.104">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="POST /orders — crear pedido &gt; datos inválidos → el formulario los frena y no llega al backend" time="0.298">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="POST /orders — crear pedido &gt; celular inexistente → 404, se muestra el error y el carrito se conserva" time="0.496">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="POST /orders — crear pedido &gt; datos correctos → 201, vacía el carrito y abre el panel con el pedido" time="0.43">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="POST /orders — crear pedido &gt; mientras se procesa el pedido el botón lo indica y no deja enviarlo dos veces" time="0.425">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="POST /orders — crear pedido &gt; el envío es gratis por encima de $500.000 y cuesta $20.000 por debajo" time="0.109">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="POST /orders — crear pedido &gt; un equipo sin color viaja sin colorId ni colorName" time="0.353">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="GET /orders/my — mis pedidos &gt; con sesión → muestra cada pedido con su estado, artículos y total" time="0.119">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="GET /orders/my — mis pedidos &gt; sin pedidos → invita a ver el catálogo" time="0.098">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="GET /orders — listado de admin &gt; rol USER → acceso no autorizado" time="0.025">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="GET /orders — listado de admin &gt; admin → lista paginada con cliente, productos y estado" time="0.119">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="PUT /orders/:id/status — cambiar estado &gt; estado inválido → 400, se muestra el error y el estado no cambia" time="0.092">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="PUT /orders/:id/status — cambiar estado &gt; pedido inexistente → 404 y el mensaje del backend" time="0.129">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="PUT /orders/:id/status — cambiar estado &gt; transición válida → 200 con el estado nuevo" time="0.115">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="PUT /orders/:id/status — cambiar estado &gt; un pedido entregado no admite más cambios" time="0.129">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="Carrito — lo que termina en POST /orders &gt; agregar desde la ficha suma al carrito, avisa y actualiza el contador" time="0.292">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="Carrito — lo que termina en POST /orders &gt; un equipo sin colores también se agrega, como una línea sin color" time="0.215">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="Carrito — lo que termina en POST /orders &gt; el mismo equipo y color se acumula en una sola línea" time="0.39">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="Carrito — lo que termina en POST /orders &gt; en el carrito se cambian cantidades, se quita un equipo y se vacía" time="0.264">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="Carrito — lo que termina en POST /orders &gt; &quot;Proceder al pago&quot; cierra el carrito y abre el checkout" time="0.145">
+        </testcase>
+        <testcase classname="test/escenarios/pedidos.test.tsx" name="Carrito — lo que termina en POST /orders &gt; con el carrito vacío ofrece ir a ver celulares" time="0.216">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/perfil-y-sesion.test.tsx" timestamp="2026-10-25T10:02:04.763Z" hostname="vm" tests="29" failures="0" errors="0" skipped="0" time="7.475">
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-01 Perfil — editar el nombre (PATCH /auth/me) &gt; guarda el nombre recortado, actualiza la sesión y avisa" time="0.457">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-01 Perfil — editar el nombre (PATCH /auth/me) &gt; la confirmación se anuncia a lectores de pantalla (role=&quot;status&quot;)" time="0.267">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-01 Perfil — editar el nombre (PATCH /auth/me) &gt; el correo se muestra pero no se puede editar" time="0.104">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-01 Perfil — editar el nombre (PATCH /auth/me) &gt; un nombre en blanco se frena en el formulario y no llega al backend (D-04)" time="0.23">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-01 Perfil — editar el nombre (PATCH /auth/me) &gt; si el backend rechaza el cambio, muestra su mensaje como alerta y conserva el nombre" time="0.289">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-01 Perfil — editar el nombre (PATCH /auth/me) &gt; sin sesión, /profile lleva a /login" time="0.095">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-02 Perfil — cambiar la contraseña (PUT /auth/me/password) &gt; manda la actual y la nueva, conserva la sesión (204) y vacía el formulario" time="0.496">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-02 Perfil — cambiar la contraseña (PUT /auth/me/password) &gt; contraseña actual incorrecta → muestra el mensaje del backend y no cambia el token" time="0.325">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-02 Perfil — cambiar la contraseña (PUT /auth/me/password) &gt; la contraseña nueva solo números (D-03) se frena sin llegar al backend" time="0.365">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-02 Perfil — cambiar la contraseña (PUT /auth/me/password) &gt; la contraseña nueva sin mayúscula se frena sin llegar al backend" time="0.347">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-02 Perfil — cambiar la contraseña (PUT /auth/me/password) &gt; la contraseña nueva sin número (D-03) se frena sin llegar al backend" time="0.309">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-02 Perfil — cambiar la contraseña (PUT /auth/me/password) &gt; la contraseña nueva demasiado larga (D-05) se frena sin llegar al backend" time="0.931">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-02 Perfil — cambiar la contraseña (PUT /auth/me/password) &gt; la confirmación distinta y la nueva igual a la actual se avisan" time="0.405">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-11 Cerrar sesión (JWT sin estado: se borra en el navegador) &gt; limpia la sesión local y vuelve a /login sin llamar a un endpoint inexistente" time="0.067">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-11 Cerrar sesión (JWT sin estado: se borra en el navegador) &gt; después de salir, /dashboard vuelve a pedir inicio de sesión" time="0.075">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="Cuenta suspendida durante la sesión (403 del backend) &gt; cierra la sesión y guarda el motivo para mostrarlo en /login" time="0.023">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="Cuenta suspendida durante la sesión (403 del backend) &gt; un 403 de &quot;solo administradores&quot; NO cierra la sesión" time="0.029">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-15 Sesión vencida — se explica en /login &gt; 401 con code TOKEN_EXPIRED guarda el motivo antes de redirigir" time="0.028">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-15 Sesión vencida — se explica en /login &gt; 401 con code undefined guarda el motivo antes de redirigir" time="0.073">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-15 Sesión vencida — se explica en /login &gt; /login muestra el motivo y lo borra para que no reaparezca" time="0.041">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-15 Sesión vencida — se explica en /login &gt; un login con credenciales malas (sin sesión guardada) NO deja aviso de sesión vencida" time="0.18">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-06 / D-07 Login y registro normalizan lo que se escribe &gt; el login manda el correo en minúsculas y sin espacios" time="0.222">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-06 / D-07 Login y registro normalizan lo que se escribe &gt; el login con demasiados intentos (429) muestra el mensaje del servidor" time="0.154">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-06 / D-07 Login y registro normalizan lo que se escribe &gt; registro con contraseña solo números (D-03) se frena sin llegar al backend" time="0.306">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-06 / D-07 Login y registro normalizan lo que se escribe &gt; registro con contraseña sin mayúscula se frena sin llegar al backend" time="0.336">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-06 / D-07 Login y registro normalizan lo que se escribe &gt; registro con contraseña sin número (D-03) se frena sin llegar al backend" time="0.27">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-06 / D-07 Login y registro normalizan lo que se escribe &gt; registro con contraseña de más de 72 caracteres (D-05) se frena sin llegar al backend" time="0.743">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-06 / D-07 Login y registro normalizan lo que se escribe &gt; registro con nombre de solo espacios se frena (D-04)" time="0.29">
+        </testcase>
+        <testcase classname="test/escenarios/perfil-y-sesion.test.tsx" name="D-06 / D-07 Login y registro normalizan lo que se escribe &gt; el registro muestra la ayuda de la regla de contraseña antes de fallar" time="0.015">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/ramas-de-error.test.tsx" timestamp="2026-10-25T10:02:04.791Z" hostname="vm" tests="10" failures="0" errors="0" skipped="0" time="2.015">
+        <testcase classname="test/escenarios/ramas-de-error.test.tsx" name="Cambio de rol — PUT /admin/users/:id/role &gt; rol USER → no llega al panel de usuarios" time="0.199">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/ramas-de-error.test.tsx" name="Cambio de rol — PUT /admin/users/:id/role &gt; un admin no puede cambiar su propio rol: su fila no tiene el botón" time="0.147">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-de-error.test.tsx" name="Cambio de rol — PUT /admin/users/:id/role &gt; cambia el rol de otro usuario → 200 y la fila pasa a Admin" time="0.259">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-de-error.test.tsx" name="Cambio de rol — PUT /admin/users/:id/role &gt; quitar el rol a otro admin lo deja como USER" time="0.211">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-de-error.test.tsx" name="Cambio de rol — PUT /admin/users/:id/role &gt; el id no existe → 404 y el mensaje del backend" time="0.335">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-de-error.test.tsx" name="Fallos inesperados de la capa de datos → 500 &gt; el listado de usuarios muestra el error en vez de quedarse cargando" time="0.093">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-de-error.test.tsx" name="Fallos inesperados de la capa de datos → 500 &gt; el listado de celulares del panel también" time="0.065">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-de-error.test.tsx" name="Fallos inesperados de la capa de datos → 500 &gt; y el listado de órdenes" time="0.054">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-de-error.test.tsx" name="Actualización de celular con relaciones &gt; reemplaza las características cuando vienen editadas" time="0.446">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-de-error.test.tsx" name="Actualización de celular con relaciones &gt; sin características en el formulario manda la lista vacía" time="0.205">
+        </testcase>
+    </testsuite>
+    <testsuite name="test/escenarios/ramas-restantes.test.tsx" timestamp="2026-10-25T10:02:04.796Z" hostname="vm" tests="11" failures="0" errors="0" skipped="0" time="1.651">
+        <testcase classname="test/escenarios/ramas-restantes.test.tsx" name="Fallos al consultar listados &gt; si falla la consulta de mis pedidos → 500: lo dice (no &quot;no tienes pedidos&quot;) y ofrece reintentar (H1, H11)" time="0.314">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="test/escenarios/ramas-restantes.test.tsx" name="Fallos al consultar listados &gt; si falla el conteo del catálogo → 500: el catálogo avisa" time="0.134">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-restantes.test.tsx" name="Detalle del error según el entorno del backend &gt; en producción el 500 solo trae el mensaje genérico, y eso es lo que se ve" time="0.085">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-restantes.test.tsx" name="Detalle del error según el entorno del backend &gt; fuera de producción el panel muestra el detalle, para diagnosticar" time="0.075">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-restantes.test.tsx" name="Detalle del error según el entorno del backend &gt; si la respuesta de error no trae mensaje, se muestra uno genérico" time="0.296">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-restantes.test.tsx" name="Detalle del error según el entorno del backend &gt; si el panel no recibe datos ni mensaje, lo dice igual" time="0.075">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-restantes.test.tsx" name="Panel principal sin datos o sin red &gt; si el navegador está sin conexión, lo dice en vez de mostrar el error crudo" time="0.081">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-restantes.test.tsx" name="Panel principal sin datos o sin red &gt; si el backend responde 200 sin datos, avisa que la respuesta llegó vacía" time="0.047">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-restantes.test.tsx" name="Estados terminales de un pedido &gt; un pedido cancelado tampoco revive" time="0.117">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-restantes.test.tsx" name="Mensaje de cuenta suspendida &gt; sin motivo registrado, el mensaje no inventa uno" time="0.268">
+        </testcase>
+        <testcase classname="test/escenarios/ramas-restantes.test.tsx" name="Filas incompletas que llegan del backend &gt; un pedido reciente sin artículos se muestra en plural y sin romper la tabla" time="0.156">
+        </testcase>
+    </testsuite>
+</testsuites>

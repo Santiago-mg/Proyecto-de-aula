@@ -1,38 +1,15 @@
-# Lo que NO entra al contexto de "docker build". Menos archivos = builds más
-# rápidos, y nunca se cuelan secretos (.env, team-credentials.txt) en la imagen.
-
-# Se reinstalan / regeneran dentro de la imagen
 node_modules
 dist
-
-# Pruebas, reportes y análisis: corren en su etapa del pipeline, no en la imagen
-tests
 coverage
 reports
 .scannerwork
-vitest.config.ts
-tsconfig.test.json
-sonar-project*.properties
-sonar-santiago.sh
-medir-cpu.sh
-
-# Secretos: nunca dentro de una imagen
 .env
 .env.*
 !.env.example
-team-credentials.txt
-
-# Configuración de otras herramientas
-.git
-.gitignore
-.github
-.vscode
-.claude
-.DS_Store
-Dockerfile*
-.dockerignore
-Jenkinsfile
-api
-vercel.json
-scripts
+docs
+tests
+frontend
+api-momentic
+reportportal
 *.md
+.git

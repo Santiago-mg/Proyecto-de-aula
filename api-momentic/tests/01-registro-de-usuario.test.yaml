@@ -1,0 +1,15 @@
+fileType: momentic/test/v2
+id: celularpro-api-registro
+description: Registro de usuario — 201 con token, rol USER, sin contraseña en la respuesta
+defaultEnv: local
+labels: [api, registro]
+steps:
+  - module: ../modules/cuenta-nueva.module.yaml
+  - javascript:
+      code: |
+        const r = env.REGISTRO
+        const u = r.json.data.user
+        if (typeof r.json.data.token !== 'string') throw new Error('el registro no devolvió token')
+        if (u.role !== 'USER') throw new Error(`rol inesperado: ${u.role}`)
+        if (u.name !== 'Ana Pérez') throw new Error(`nombre: ${u.name}`)
+        if ('password' in u) throw new Error('la respuesta incluye la contraseña')

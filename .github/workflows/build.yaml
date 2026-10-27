@@ -27,6 +27,9 @@ jobs:
 
       # La suite usa un doble del cliente Prisma, así que no necesita
       # Postgres ni variables de entorno: corre igual aquí que en local.
+      - name: Typecheck (src y tests)
+        run: npm run typecheck
+
       - name: Test and coverage
         run: npm run test:coverage
 

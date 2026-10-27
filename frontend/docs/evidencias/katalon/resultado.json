@@ -1,0 +1,1115 @@
+{
+  "fecha": "2026-10-12T22:45:45.189Z",
+  "suite": "Suite_CelularPro_6_funcionalidades.html",
+  "entorno": "http://localhost:5173",
+  "casos": [
+    {
+      "caso": "TC01_Registro_usuario",
+      "resultado": "PASA",
+      "duracionMs": 3826,
+      "captura": "TC01_Registro_usuario.png",
+      "pasos": [
+        {
+          "paso": 1,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 2,
+          "comando": "runScript | localStorage.clear(); sessionStorage.clear();",
+          "resultado": "OK"
+        },
+        {
+          "paso": 3,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 4,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 5,
+          "comando": "storeEval | \"katalon.\" + Date.now() + \"@gmail.com\" | email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 6,
+          "comando": "open | http://localhost:5173/register",
+          "resultado": "OK"
+        },
+        {
+          "paso": 7,
+          "comando": "waitForElementPresent | id=name",
+          "resultado": "OK"
+        },
+        {
+          "paso": 8,
+          "comando": "type | id=name | Katalon Pruebas",
+          "resultado": "OK"
+        },
+        {
+          "paso": 9,
+          "comando": "type | id=email | ${email}",
+          "resultado": "OK"
+        },
+        {
+          "paso": 10,
+          "comando": "type | id=password | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 11,
+          "comando": "type | id=confirmPassword | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 12,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 13,
+          "comando": "waitForElementPresent | xpath=//h1[contains(.,'Hola, Katalon')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 14,
+          "comando": "assertLocation | glob:*/dashboard",
+          "resultado": "OK"
+        },
+        {
+          "paso": 15,
+          "comando": "assertText | css=header a[href=\"/dashboard\"] | glob:Katalon",
+          "resultado": "OK"
+        }
+      ]
+    },
+    {
+      "caso": "TC02_Inicio_sesion",
+      "resultado": "PASA",
+      "duracionMs": 5247,
+      "captura": "TC02_Inicio_sesion.png",
+      "pasos": [
+        {
+          "paso": 1,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 2,
+          "comando": "runScript | localStorage.clear(); sessionStorage.clear();",
+          "resultado": "OK"
+        },
+        {
+          "paso": 3,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 4,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 5,
+          "comando": "storeEval | \"katalon.\" + Date.now() + \"@gmail.com\" | email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 6,
+          "comando": "open | http://localhost:5173/register",
+          "resultado": "OK"
+        },
+        {
+          "paso": 7,
+          "comando": "waitForElementPresent | id=name",
+          "resultado": "OK"
+        },
+        {
+          "paso": 8,
+          "comando": "type | id=name | Katalon Pruebas",
+          "resultado": "OK"
+        },
+        {
+          "paso": 9,
+          "comando": "type | id=email | ${email}",
+          "resultado": "OK"
+        },
+        {
+          "paso": 10,
+          "comando": "type | id=password | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 11,
+          "comando": "type | id=confirmPassword | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 12,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 13,
+          "comando": "waitForElementPresent | xpath=//h1[contains(.,'Hola, Katalon')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 14,
+          "comando": "assertLocation | glob:*/dashboard",
+          "resultado": "OK"
+        },
+        {
+          "paso": 15,
+          "comando": "click | xpath=//header//button[normalize-space()='Salir']",
+          "resultado": "OK"
+        },
+        {
+          "paso": 16,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 17,
+          "comando": "assertLocation | glob:*/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 18,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 19,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 20,
+          "comando": "type | id=email | ${email}",
+          "resultado": "OK"
+        },
+        {
+          "paso": 21,
+          "comando": "type | id=password | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 22,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 23,
+          "comando": "waitForElementPresent | xpath=//h1[contains(.,'Hola, Katalon')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 24,
+          "comando": "assertLocation | glob:*/dashboard",
+          "resultado": "OK"
+        },
+        {
+          "paso": 25,
+          "comando": "click | xpath=//header//button[normalize-space()='Salir']",
+          "resultado": "OK"
+        },
+        {
+          "paso": 26,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 27,
+          "comando": "assertLocation | glob:*/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 28,
+          "comando": "open | http://localhost:5173/dashboard",
+          "resultado": "OK"
+        },
+        {
+          "paso": 29,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 30,
+          "comando": "assertLocation | glob:*/login",
+          "resultado": "OK"
+        }
+      ]
+    },
+    {
+      "caso": "TC03_Validacion_credenciales",
+      "resultado": "PASA",
+      "duracionMs": 3856,
+      "captura": "TC03_Validacion_credenciales.png",
+      "pasos": [
+        {
+          "paso": 1,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 2,
+          "comando": "runScript | localStorage.clear(); sessionStorage.clear();",
+          "resultado": "OK"
+        },
+        {
+          "paso": 3,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 4,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 5,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 6,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 7,
+          "comando": "type | id=email | admin@celularpro.co",
+          "resultado": "OK"
+        },
+        {
+          "paso": 8,
+          "comando": "type | id=password | Equivocada1",
+          "resultado": "OK"
+        },
+        {
+          "paso": 9,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 10,
+          "comando": "waitForElementPresent | css=[data-testid=\"error-servidor\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 11,
+          "comando": "assertText | css=[data-testid=\"error-servidor\"] | glob:Credenciales inválidas",
+          "resultado": "OK"
+        },
+        {
+          "paso": 12,
+          "comando": "assertLocation | glob:*/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 13,
+          "comando": "open | http://localhost:5173/register",
+          "resultado": "OK"
+        },
+        {
+          "paso": 14,
+          "comando": "waitForElementPresent | id=name",
+          "resultado": "OK"
+        },
+        {
+          "paso": 15,
+          "comando": "type | id=name | Katalon Pruebas",
+          "resultado": "OK"
+        },
+        {
+          "paso": 16,
+          "comando": "type | id=email | katalon@gmail.com",
+          "resultado": "OK"
+        },
+        {
+          "paso": 17,
+          "comando": "type | id=password | segura1234",
+          "resultado": "OK"
+        },
+        {
+          "paso": 18,
+          "comando": "type | id=confirmPassword | segura1234",
+          "resultado": "OK"
+        },
+        {
+          "paso": 19,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 20,
+          "comando": "waitForElementPresent | xpath=//p[contains(@class,'cp-field-error') and contains(.,'mayúscula')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 21,
+          "comando": "assertText | xpath=//p[contains(@class,'cp-field-error') and contains(.,'mayúscula')] | glob:La contraseña debe incluir al menos una letra mayúscula",
+          "resultado": "OK"
+        },
+        {
+          "paso": 22,
+          "comando": "type | id=email | katalon@empresa.com",
+          "resultado": "OK"
+        },
+        {
+          "paso": 23,
+          "comando": "type | id=password | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 24,
+          "comando": "type | id=confirmPassword | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 25,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 26,
+          "comando": "waitForElementPresent | xpath=//p[contains(@class,'cp-field-error') and contains(.,'Usa Gmail')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 27,
+          "comando": "assertText | xpath=//p[contains(@class,'cp-field-error') and contains(.,'Usa Gmail')] | glob:Correo inválido. Usa Gmail, Outlook, Hotmail, Yahoo o iCloud.",
+          "resultado": "OK"
+        },
+        {
+          "paso": 28,
+          "comando": "assertElementNotPresent | xpath=//p[contains(@class,'cp-field-error') and contains(.,'mayúscula')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 29,
+          "comando": "assertLocation | glob:*/register",
+          "resultado": "OK"
+        }
+      ]
+    },
+    {
+      "caso": "TC04_Gestion_perfil",
+      "resultado": "PASA",
+      "duracionMs": 7684,
+      "captura": "TC04_Gestion_perfil.png",
+      "pasos": [
+        {
+          "paso": 1,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 2,
+          "comando": "runScript | localStorage.clear(); sessionStorage.clear();",
+          "resultado": "OK"
+        },
+        {
+          "paso": 3,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 4,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 5,
+          "comando": "storeEval | \"katalon.\" + Date.now() + \"@gmail.com\" | email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 6,
+          "comando": "open | http://localhost:5173/register",
+          "resultado": "OK"
+        },
+        {
+          "paso": 7,
+          "comando": "waitForElementPresent | id=name",
+          "resultado": "OK"
+        },
+        {
+          "paso": 8,
+          "comando": "type | id=name | Katalon Pruebas",
+          "resultado": "OK"
+        },
+        {
+          "paso": 9,
+          "comando": "type | id=email | ${email}",
+          "resultado": "OK"
+        },
+        {
+          "paso": 10,
+          "comando": "type | id=password | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 11,
+          "comando": "type | id=confirmPassword | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 12,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 13,
+          "comando": "waitForElementPresent | xpath=//h1[contains(.,'Hola, Katalon')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 14,
+          "comando": "assertLocation | glob:*/dashboard",
+          "resultado": "OK"
+        },
+        {
+          "paso": 15,
+          "comando": "open | http://localhost:5173/profile",
+          "resultado": "OK"
+        },
+        {
+          "paso": 16,
+          "comando": "waitForElementPresent | id=profile-name",
+          "resultado": "OK"
+        },
+        {
+          "paso": 17,
+          "comando": "assertText | css=[data-testid=\"perfil-rol\"] | glob:Cliente",
+          "resultado": "OK"
+        },
+        {
+          "paso": 18,
+          "comando": "type | id=profile-name | Valentina Katalon",
+          "resultado": "OK"
+        },
+        {
+          "paso": 19,
+          "comando": "click | xpath=//button[normalize-space()='Guardar nombre']",
+          "resultado": "OK"
+        },
+        {
+          "paso": 20,
+          "comando": "waitForElementPresent | xpath=//header//a[normalize-space()='Valentina']",
+          "resultado": "OK"
+        },
+        {
+          "paso": 21,
+          "comando": "type | id=current-password | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 22,
+          "comando": "type | id=new-password | Nueva4567",
+          "resultado": "OK"
+        },
+        {
+          "paso": 23,
+          "comando": "type | id=confirm-new-password | Nueva4567",
+          "resultado": "OK"
+        },
+        {
+          "paso": 24,
+          "comando": "click | xpath=//button[normalize-space()='Cambiar contraseña']",
+          "resultado": "OK"
+        },
+        {
+          "paso": 25,
+          "comando": "waitForElementPresent | css=[role=\"status\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 26,
+          "comando": "assertText | css=[role=\"status\"] | glob:Contraseña actualizada*",
+          "resultado": "OK"
+        },
+        {
+          "paso": 27,
+          "comando": "click | xpath=//header//button[normalize-space()='Salir']",
+          "resultado": "OK"
+        },
+        {
+          "paso": 28,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 29,
+          "comando": "assertLocation | glob:*/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 30,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 31,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 32,
+          "comando": "type | id=email | ${email}",
+          "resultado": "OK"
+        },
+        {
+          "paso": 33,
+          "comando": "type | id=password | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 34,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 35,
+          "comando": "waitForElementPresent | css=[data-testid=\"error-servidor\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 36,
+          "comando": "assertText | css=[data-testid=\"error-servidor\"] | glob:Credenciales inválidas",
+          "resultado": "OK"
+        },
+        {
+          "paso": 37,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 38,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 39,
+          "comando": "type | id=email | ${email}",
+          "resultado": "OK"
+        },
+        {
+          "paso": 40,
+          "comando": "type | id=password | Nueva4567",
+          "resultado": "OK"
+        },
+        {
+          "paso": 41,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 42,
+          "comando": "waitForElementPresent | xpath=//h1[contains(.,'Hola, Valentina')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 43,
+          "comando": "assertLocation | glob:*/dashboard",
+          "resultado": "OK"
+        }
+      ]
+    },
+    {
+      "caso": "TC05_Control_roles",
+      "resultado": "PASA",
+      "duracionMs": 7343,
+      "captura": "TC05_Control_roles.png",
+      "pasos": [
+        {
+          "paso": 1,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 2,
+          "comando": "runScript | localStorage.clear(); sessionStorage.clear();",
+          "resultado": "OK"
+        },
+        {
+          "paso": 3,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 4,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 5,
+          "comando": "open | http://localhost:5173/admin",
+          "resultado": "OK"
+        },
+        {
+          "paso": 6,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 7,
+          "comando": "assertLocation | glob:*/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 8,
+          "comando": "storeEval | \"katalon.\" + Date.now() + \"@gmail.com\" | email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 9,
+          "comando": "open | http://localhost:5173/register",
+          "resultado": "OK"
+        },
+        {
+          "paso": 10,
+          "comando": "waitForElementPresent | id=name",
+          "resultado": "OK"
+        },
+        {
+          "paso": 11,
+          "comando": "type | id=name | Katalon Pruebas",
+          "resultado": "OK"
+        },
+        {
+          "paso": 12,
+          "comando": "type | id=email | ${email}",
+          "resultado": "OK"
+        },
+        {
+          "paso": 13,
+          "comando": "type | id=password | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 14,
+          "comando": "type | id=confirmPassword | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 15,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 16,
+          "comando": "waitForElementPresent | xpath=//h1[contains(.,'Hola, Katalon')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 17,
+          "comando": "assertLocation | glob:*/dashboard",
+          "resultado": "OK"
+        },
+        {
+          "paso": 18,
+          "comando": "open | http://localhost:5173/admin",
+          "resultado": "OK"
+        },
+        {
+          "paso": 19,
+          "comando": "waitForElementPresent | xpath=//h1[contains(.,'Acceso no autorizado')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 20,
+          "comando": "assertText | css=h1 | glob:Acceso no autorizado",
+          "resultado": "OK"
+        },
+        {
+          "paso": 21,
+          "comando": "runScript | localStorage.clear(); sessionStorage.clear();",
+          "resultado": "OK"
+        },
+        {
+          "paso": 22,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 23,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 24,
+          "comando": "type | id=email | admin@celularpro.co",
+          "resultado": "OK"
+        },
+        {
+          "paso": 25,
+          "comando": "type | id=password | admin1234",
+          "resultado": "OK"
+        },
+        {
+          "paso": 26,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 27,
+          "comando": "waitForElementPresent | xpath=//h1[contains(.,'Hola')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 28,
+          "comando": "assertLocation | glob:*/dashboard",
+          "resultado": "OK"
+        },
+        {
+          "paso": 29,
+          "comando": "open | http://localhost:5173/admin/users",
+          "resultado": "OK"
+        },
+        {
+          "paso": 30,
+          "comando": "waitForElementPresent | css=input[aria-label=\"Buscar usuarios\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 31,
+          "comando": "type | css=input[aria-label=\"Buscar usuarios\"] | ${email}",
+          "resultado": "OK"
+        },
+        {
+          "paso": 32,
+          "comando": "waitForElementPresent | xpath=//table//tr[contains(.,'${email}')]//button[contains(.,'Hacer admin')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 33,
+          "comando": "click | xpath=//table//tr[contains(.,'${email}')]//button[contains(.,'Hacer admin')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 34,
+          "comando": "waitForElementPresent | xpath=//table//tr[contains(.,'${email}')]//button[contains(.,'Quitar admin')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 35,
+          "comando": "runScript | localStorage.clear(); sessionStorage.clear();",
+          "resultado": "OK"
+        },
+        {
+          "paso": 36,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 37,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 38,
+          "comando": "type | id=email | ${email}",
+          "resultado": "OK"
+        },
+        {
+          "paso": 39,
+          "comando": "type | id=password | Segura123",
+          "resultado": "OK"
+        },
+        {
+          "paso": 40,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 41,
+          "comando": "waitForElementPresent | xpath=//h1[contains(.,'Hola, Katalon')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 42,
+          "comando": "assertLocation | glob:*/dashboard",
+          "resultado": "OK"
+        },
+        {
+          "paso": 43,
+          "comando": "open | http://localhost:5173/admin",
+          "resultado": "OK"
+        },
+        {
+          "paso": 44,
+          "comando": "waitForElementPresent | css=[data-alertas-cargadas]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 45,
+          "comando": "assertLocation | glob:*/admin",
+          "resultado": "OK"
+        },
+        {
+          "paso": 46,
+          "comando": "assertElementPresent | css=h1.cp-admin-page-title",
+          "resultado": "OK"
+        }
+      ]
+    },
+    {
+      "caso": "TC06_Alerta_stock_bajo",
+      "resultado": "PASA",
+      "duracionMs": 5912,
+      "captura": "TC06_Alerta_stock_bajo.png",
+      "pasos": [
+        {
+          "paso": 1,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 2,
+          "comando": "runScript | localStorage.clear(); sessionStorage.clear();",
+          "resultado": "OK"
+        },
+        {
+          "paso": 3,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 4,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 5,
+          "comando": "open | http://localhost:5173/login",
+          "resultado": "OK"
+        },
+        {
+          "paso": 6,
+          "comando": "waitForElementPresent | id=email",
+          "resultado": "OK"
+        },
+        {
+          "paso": 7,
+          "comando": "type | id=email | admin@celularpro.co",
+          "resultado": "OK"
+        },
+        {
+          "paso": 8,
+          "comando": "type | id=password | admin1234",
+          "resultado": "OK"
+        },
+        {
+          "paso": 9,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 10,
+          "comando": "waitForElementPresent | xpath=//h1[contains(.,'Hola')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 11,
+          "comando": "assertLocation | glob:*/dashboard",
+          "resultado": "OK"
+        },
+        {
+          "paso": 12,
+          "comando": "open | http://localhost:5173/admin/phones",
+          "resultado": "OK"
+        },
+        {
+          "paso": 13,
+          "comando": "waitForElementPresent | xpath=//table//tr[contains(.,'iPhone 13 (Usado)')]//a[contains(@href,'/edit')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 14,
+          "comando": "click | xpath=//table//tr[contains(.,'iPhone 13 (Usado)')]//a[contains(@href,'/edit')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 15,
+          "comando": "waitForElementPresent | id=stock",
+          "resultado": "OK"
+        },
+        {
+          "paso": 16,
+          "comando": "type | id=stock | 2",
+          "resultado": "OK"
+        },
+        {
+          "paso": 17,
+          "comando": "type | id=minStock | 5",
+          "resultado": "OK"
+        },
+        {
+          "paso": 18,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 19,
+          "comando": "waitForElementPresent | xpath=//table//tr[contains(.,'iPhone 13 (Usado)')]//a[contains(@href,'/edit')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 20,
+          "comando": "assertLocation | glob:*/admin/phones",
+          "resultado": "OK"
+        },
+        {
+          "paso": 21,
+          "comando": "open | http://localhost:5173/admin",
+          "resultado": "OK"
+        },
+        {
+          "paso": 22,
+          "comando": "waitForElementPresent | css=[data-alertas-cargadas=\"true\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 23,
+          "comando": "waitForElementPresent | xpath=//*[@data-testid='stock-alerts']//li[contains(.,'iPhone 13 (Usado)')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 24,
+          "comando": "assertText | xpath=//*[@data-testid='stock-alerts']//li[contains(.,'iPhone 13 (Usado)')]/span[2] | glob:*tiene 2 unidades, en o por debajo del mínimo de 5.",
+          "resultado": "OK"
+        },
+        {
+          "paso": 25,
+          "comando": "open | http://localhost:5173/admin/phones",
+          "resultado": "OK"
+        },
+        {
+          "paso": 26,
+          "comando": "waitForElementPresent | xpath=//table//tr[contains(.,'iPhone 13 (Usado)')]//a[contains(@href,'/edit')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 27,
+          "comando": "click | xpath=//table//tr[contains(.,'iPhone 13 (Usado)')]//a[contains(@href,'/edit')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 28,
+          "comando": "waitForElementPresent | id=stock",
+          "resultado": "OK"
+        },
+        {
+          "paso": 29,
+          "comando": "type | id=stock | 0",
+          "resultado": "OK"
+        },
+        {
+          "paso": 30,
+          "comando": "type | id=minStock | 5",
+          "resultado": "OK"
+        },
+        {
+          "paso": 31,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 32,
+          "comando": "waitForElementPresent | xpath=//table//tr[contains(.,'iPhone 13 (Usado)')]//a[contains(@href,'/edit')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 33,
+          "comando": "assertLocation | glob:*/admin/phones",
+          "resultado": "OK"
+        },
+        {
+          "paso": 34,
+          "comando": "open | http://localhost:5173/admin",
+          "resultado": "OK"
+        },
+        {
+          "paso": 35,
+          "comando": "waitForElementPresent | css=[data-alertas-cargadas=\"true\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 36,
+          "comando": "waitForElementPresent | xpath=//*[@data-testid='stock-alerts']//li[contains(.,'iPhone 13 (Usado)')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 37,
+          "comando": "assertText | xpath=//*[@data-testid='stock-alerts']//li[contains(.,'iPhone 13 (Usado)')]/span[2] | glob:*se quedó sin unidades.",
+          "resultado": "OK"
+        },
+        {
+          "paso": 38,
+          "comando": "open | http://localhost:5173/admin/phones",
+          "resultado": "OK"
+        },
+        {
+          "paso": 39,
+          "comando": "waitForElementPresent | xpath=//table//tr[contains(.,'iPhone 13 (Usado)')]//a[contains(@href,'/edit')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 40,
+          "comando": "click | xpath=//table//tr[contains(.,'iPhone 13 (Usado)')]//a[contains(@href,'/edit')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 41,
+          "comando": "waitForElementPresent | id=stock",
+          "resultado": "OK"
+        },
+        {
+          "paso": 42,
+          "comando": "type | id=stock | 15",
+          "resultado": "OK"
+        },
+        {
+          "paso": 43,
+          "comando": "type | id=minStock | 5",
+          "resultado": "OK"
+        },
+        {
+          "paso": 44,
+          "comando": "click | css=form button[type=\"submit\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 45,
+          "comando": "waitForElementPresent | xpath=//table//tr[contains(.,'iPhone 13 (Usado)')]//a[contains(@href,'/edit')]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 46,
+          "comando": "assertLocation | glob:*/admin/phones",
+          "resultado": "OK"
+        },
+        {
+          "paso": 47,
+          "comando": "open | http://localhost:5173/admin",
+          "resultado": "OK"
+        },
+        {
+          "paso": 48,
+          "comando": "waitForElementPresent | css=[data-alertas-cargadas=\"true\"]",
+          "resultado": "OK"
+        },
+        {
+          "paso": 49,
+          "comando": "assertElementNotPresent | xpath=//*[@data-testid='stock-alerts']//li[contains(.,'iPhone 13 (Usado)')]",
+          "resultado": "OK"
+        }
+      ]
+    }
+  ]
+}

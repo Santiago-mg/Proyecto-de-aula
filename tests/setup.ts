@@ -29,4 +29,8 @@ vi.mock('bcrypt', () => {
 beforeEach(async () => {
   const { limpiarPrismaMock } = await import('./helpers/prisma-mock')
   limpiarPrismaMock()
+  const { reiniciarLimitadorLogin } = await import(
+    '../src/interface/middlewares/login-limiter.middleware'
+  )
+  reiniciarLimitadorLogin()
 })

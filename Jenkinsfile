@@ -1,16 +1,12 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Pipeline del BACKEND de CelularPro            (job en Jenkins: celularpro-backend)
+// Pipeline del BACKEND de CelularPro              (job en Jenkins: celularpro-backend)
 //
 //   Entorno → Instalar dependencias → Typecheck → Pruebas y cobertura
 //          → SonarQube (análisis + Quality Gate) → Build → Imagen Docker
 //
-// - Corre dentro del agente de Dockerfile.jenkins (idea de Andrés): la máquina
-//   de Jenkins solo necesita Docker.
-// - Las pruebas son la suite de todo el equipo (tests/unit + tests/escenarios)
-//   y usan un doble de Prisma: no hace falta base de datos.
-// - Este job NO despliega. El despliegue (Docker + Vercel) lo hace el
-//   orquestador (Jenkinsfile.orquestador, en el repo del front) solo cuando el
-//   back y el front pasaron todo.
+// Mismo agente (Dockerfile.jenkins) y mismas etapas que el frontend. Este job
+// NO despliega: lo hace el orquestador (Jenkinsfile.orquestador, en el
+// frontend) cuando el back y el front pasaron todo.
 //
 // Plugins: Pipeline, Git, Docker Pipeline, SonarQube Scanner, JUnit, Timestamper
 // ─────────────────────────────────────────────────────────────────────────────
@@ -19,8 +15,6 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile.jenkins'
-            // Socket de Docker del host: para construir la imagen de la API.
-            // -u root: para poder usar ese socket dentro del contenedor.
             args '-v /var/run/docker.sock:/var/run/docker.sock -u root'
         }
     }
@@ -33,6 +27,7 @@ pipeline {
     }
 
     environment {
+        // CI=true: Vitest genera además reports/junit.xml (ver vitest.config.ts)
         CI     = 'true'
         IMAGEN = 'celularpro-api'
     }
@@ -51,32 +46,25 @@ pipeline {
 
         stage('Instalar dependencias') {
             steps {
-                // npm ci también corre `prisma generate` (postinstall).
+                // El postinstall genera el cliente de Prisma
                 sh 'npm ci --no-audit --no-fund'
             }
         }
 
         stage('Typecheck') {
             steps {
-                // Revisa los tipos de src/ y también de tests/.
                 sh 'npm run typecheck'
             }
         }
 
         stage('Pruebas y cobertura') {
             steps {
-                // Esta es la suite de regresión: se corre completa en cada
-                // cambio. Si una sola prueba falla, el pipeline se detiene aquí.
-                sh '''
-                    npx vitest run --coverage \
-                        --reporter=default \
-                        --reporter=junit \
-                        --outputFile.junit=reports/junit.xml
-                '''
+                // 426 pruebas: unitarias, escenarios de API, regresión,
+                // seguridad y rendimiento. No necesitan Postgres (Prisma simulado).
+                sh 'npm run test:coverage'
             }
             post {
                 always {
-                    // Pestaña "Test Result" del build, con cada prueba.
                     junit testResults: 'reports/junit.xml', allowEmptyResults: true
                 }
             }
@@ -84,12 +72,8 @@ pipeline {
 
         stage('SonarQube') {
             steps {
-                // 'SonarQube' es el servidor configurado en Manage Jenkins →
-                // System (el mismo nombre que usa el pipeline de Andrés).
-                // withSonarQubeEnv le entrega al scanner la URL y el token.
-                //
-                // sonar.qualitygate.wait=true: el scanner espera el resultado
-                // del Quality Gate y, si no pasa, la etapa falla y no se sigue.
+                // Servidor 'SonarQube' configurado en Jenkins. El scanner espera
+                // el Quality Gate: si no pasa, el pipeline se detiene aquí.
                 withSonarQubeEnv('SonarQube') {
                     sh 'npx --yes sonarqube-scanner@5 -Dsonar.qualitygate.wait=true'
                 }
@@ -104,8 +88,13 @@ pipeline {
 
         stage('Imagen Docker') {
             steps {
-                // La usa el orquestador para levantar la app con Docker.
-                sh 'docker build -t "$IMAGEN:$BUILD_NUMBER" -t "$IMAGEN:latest" .'
+                // La usa el orquestador (servicios `migraciones` y `api`)
+                sh '''
+                    docker build \
+                        -t "$IMAGEN:$BUILD_NUMBER" \
+                        -t "$IMAGEN:latest" \
+                        .
+                '''
             }
         }
     }
@@ -115,11 +104,9 @@ pipeline {
             echo "Backend OK: pruebas, SonarQube e imagen ${env.IMAGEN}:${env.BUILD_NUMBER} listos."
         }
         failure {
-            echo 'Backend FALLÓ: revisa la etapa en rojo. El orquestador no sigue con el front.'
+            echo 'Backend FALLÓ: revisa la etapa en rojo. El orquestador no despliega.'
         }
         always {
-            // Borra lo que generó esta corrida. Va con sh para que corra dentro
-            // del contenedor como root, que es quien creó esos archivos.
             sh 'rm -rf node_modules dist coverage reports .scannerwork'
         }
     }

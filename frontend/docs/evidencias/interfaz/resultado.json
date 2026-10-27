@@ -1,0 +1,73 @@
+{
+  "fecha": "2026-10-12T22:40:51.352Z",
+  "casos": [
+    {
+      "id": "I1-escritorio",
+      "objetivo": "Comprobar que las 10 pantallas se adaptan a 1366×768.",
+      "esperado": "Ninguna pantalla se desplaza horizontalmente ni deja controles cortados fuera de la vista.",
+      "obtenido": "Ninguna se desplaza ni corta controles.",
+      "ok": true,
+      "evidencia": [
+        "I1-escritorio_.png",
+        "I1-escritorio_catalog.png",
+        "I1-escritorio_login.png",
+        "I1-escritorio_register.png",
+        "I1-escritorio_dashboard.png",
+        "I1-escritorio_profile.png",
+        "I1-escritorio_admin.png",
+        "I1-escritorio_admin_users.png",
+        "I1-escritorio_admin_phones.png",
+        "I1-escritorio_unauthorized.png"
+      ]
+    },
+    {
+      "id": "I1-movil",
+      "objetivo": "Comprobar que las 10 pantallas se adaptan a 375×812.",
+      "esperado": "Ninguna pantalla se desplaza horizontalmente ni deja controles cortados fuera de la vista.",
+      "obtenido": "Ninguna se desplaza ni corta controles.",
+      "ok": true,
+      "evidencia": [
+        "I1-movil_.png",
+        "I1-movil_catalog.png",
+        "I1-movil_login.png",
+        "I1-movil_register.png",
+        "I1-movil_dashboard.png",
+        "I1-movil_profile.png",
+        "I1-movil_admin.png",
+        "I1-movil_admin_users.png",
+        "I1-movil_admin_phones.png",
+        "I1-movil_unauthorized.png"
+      ]
+    },
+    {
+      "id": "I2",
+      "objetivo": "Comprobar que se puede iniciar sesión solo con el teclado.",
+      "esperado": "Orden de foco Email → Contraseña → Ingresar, foco visible en cada paso y Enter envía el formulario.",
+      "obtenido": "Orden: email → password → Ingresar; foco visible: sí; Enter navegó a /dashboard: sí.",
+      "ok": true,
+      "evidencia": [
+        "I2-foco-boton.png"
+      ]
+    },
+    {
+      "id": "I3",
+      "objetivo": "Comprobar que enviar el registro vacío muestra un error junto a cada campo obligatorio.",
+      "esperado": "Cuatro mensajes de error, los cuatro campos marcados aria-invalid y la página sigue en /register.",
+      "obtenido": "4 mensajes (El nombre debe tener al menos 2 caracteres | Correo electrónico inválido | La contraseña debe tener al menos 8 caracteres | Confirma tu contraseña); campos inválidos: name, email, password, confirmPassword; ruta: /register.",
+      "ok": true,
+      "evidencia": [
+        "I3-registro-errores.png"
+      ]
+    },
+    {
+      "id": "I4",
+      "objetivo": "Comprobar que guardar el perfil da retroalimentación inmediata.",
+      "esperado": "Aparece \"Nombre actualizado\" y el menú muestra el nombre nuevo sin recargar.",
+      "obtenido": "Confirmación visible: sí; menú: \"Valentina\".",
+      "ok": true,
+      "evidencia": [
+        "I4-perfil-confirmacion.png"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1340 @@
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/alertas.feature:19
+
+Alertas de stock bajo: La alerta depende del stock frente al mínimo
+
+  Before
+  Given Daniela es administradora y ha iniciado sesión
+    Daniela abre /login
+      ✓ Daniela navigates to "http://127.0.0.1:5173/login" (384ms)
+    ✓ Daniela borra la sesión del navegador (39ms)
+    Daniela inicia sesión con "admin@celularpro.co"
+      Daniela abre /login
+        ✓ Daniela navigates to "http://127.0.0.1:5173/login" (121ms)
+      ✓ Daniela waits until campo de correo does become present (109ms)
+      ✓ Daniela scrolls to campo de correo (668ms)
+      ✓ Daniela clears the value of campo de correo (88ms)
+      ✓ Daniela enters "admin@celularpro.co" into campo de correo (36ms)
+      ✓ Daniela clears the value of campo de contraseña (102ms)
+      ✓ Daniela enters [a masked value] into campo de contraseña (40ms)
+      ✓ Daniela clicks on botón Ingresar (215ms)
+    ✓ Daniela waits until "/dashboard" does equal "/dashboard" (518ms)
+  When ella crea un celular con stock 3 y mínimo 5
+    Daniela crea "QA Celular 1792905484075" con stock 3 y mínimo 5
+      Daniela abre /admin/phones/new
+        ✓ Daniela navigates to "http://127.0.0.1:5173/admin/phones/new" (160ms)
+      ✓ Daniela waits until campo Nombre does become present (109ms)
+      ✓ Daniela scrolls to campo Nombre (87ms)
+      ✓ Daniela enters "QA Celular 1792905484075" into campo Nombre (23ms)
+      ✓ Daniela enters "qa-celular-1792905484075" into campo Slug (19ms)
+      ✓ Daniela enters "Samsung" into campo Marca (20ms)
+      ✓ Daniela selects value "samsung" from selector de categoría (51ms)
+      ✓ Daniela enters "2500000" into campo Precio (28ms)
+      ✓ Daniela enters "3" into campo Stock (21ms)
+      ✓ Daniela clears the value of campo Stock mínimo (umbral de alerta) (39ms)
+      ✓ Daniela enters "5" into campo Stock mínimo (umbral de alerta) (30ms)
+      ✓ Daniela clicks on botón "Crear celular" (139ms)
+      ✓ Daniela waits until "/admin/phones" does equal "/admin/phones" (515ms)
+  And ella abre la página "/admin/alerts"
+    Daniela abre /admin/alerts
+      ✓ Daniela navigates to "http://127.0.0.1:5173/admin/alerts" (92ms)
+  Then ella ve que la alerta del celular es "Stock bajo"
+    ✓ Daniela waits until <<the text of título de la página>>.toLowerCase() does include "alertas de inventario" (94ms)
+    ✓ Daniela waits until the text of alerta de "QA Celular 1792905484075" does include "Stock bajo" (22ms)
+
+✓ Execution successful (4s 517ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/alertas.feature:20
+
+Alertas de stock bajo: La alerta depende del stock frente al mínimo
+
+  Before
+  Given Daniela es administradora y ha iniciado sesión
+    Daniela abre /login
+      ✓ Daniela navigates to "http://127.0.0.1:5173/login" (352ms)
+    ✓ Daniela borra la sesión del navegador (62ms)
+    Daniela inicia sesión con "admin@celularpro.co"
+      Daniela abre /login
+        ✓ Daniela navigates to "http://127.0.0.1:5173/login" (92ms)
+      ✓ Daniela waits until campo de correo does become present (80ms)
+      ✓ Daniela scrolls to campo de correo (644ms)
+      ✓ Daniela clears the value of campo de correo (57ms)
+      ✓ Daniela enters "admin@celularpro.co" into campo de correo (37ms)
+      ✓ Daniela clears the value of campo de contraseña (50ms)
+      ✓ Daniela enters [a masked value] into campo de contraseña (38ms)
+      ✓ Daniela clicks on botón Ingresar (192ms)
+    ✓ Daniela waits until "/dashboard" does equal "/dashboard" (520ms)
+  When ella crea un celular con stock 5 y mínimo 5
+    Daniela crea "QA Celular 1792905488415" con stock 5 y mínimo 5
+      Daniela abre /admin/phones/new
+        ✓ Daniela navigates to "http://127.0.0.1:5173/admin/phones/new" (68ms)
+      ✓ Daniela waits until campo Nombre does become present (106ms)
+      ✓ Daniela scrolls to campo Nombre (86ms)
+      ✓ Daniela enters "QA Celular 1792905488415" into campo Nombre (18ms)
+      ✓ Daniela enters "qa-celular-1792905488415" into campo Slug (18ms)
+      ✓ Daniela enters "Samsung" into campo Marca (18ms)
+      ✓ Daniela selects value "samsung" from selector de categoría (12ms)
+      ✓ Daniela enters "2500000" into campo Precio (18ms)
+      ✓ Daniela enters "5" into campo Stock (22ms)
+      ✓ Daniela clears the value of campo Stock mínimo (umbral de alerta) (35ms)
+      ✓ Daniela enters "5" into campo Stock mínimo (umbral de alerta) (19ms)
+      ✓ Daniela clicks on botón "Crear celular" (137ms)
+      ✓ Daniela waits until "/admin/phones" does equal "/admin/phones" (17ms)
+  And ella abre la página "/admin/alerts"
+    Daniela abre /admin/alerts
+      ✓ Daniela navigates to "http://127.0.0.1:5173/admin/alerts" (125ms)
+  Then ella ve que la alerta del celular es "Stock bajo"
+    ✓ Daniela waits until <<the text of título de la página>>.toLowerCase() does include "alertas de inventario" (69ms)
+    ✓ Daniela waits until the text of alerta de "QA Celular 1792905488415" does include "Stock bajo" (31ms)
+
+✓ Execution successful (3s 628ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/alertas.feature:21
+
+Alertas de stock bajo: La alerta depende del stock frente al mínimo
+
+  Before
+  Given Daniela es administradora y ha iniciado sesión
+    Daniela abre /login
+      ✓ Daniela navigates to "http://127.0.0.1:5173/login" (325ms)
+    ✓ Daniela borra la sesión del navegador (59ms)
+    Daniela inicia sesión con "admin@celularpro.co"
+      Daniela abre /login
+        ✓ Daniela navigates to "http://127.0.0.1:5173/login" (88ms)
+      ✓ Daniela waits until campo de correo does become present (75ms)
+      ✓ Daniela scrolls to campo de correo (728ms)
+      ✓ Daniela clears the value of campo de correo (26ms)
+      ✓ Daniela enters "admin@celularpro.co" into campo de correo (20ms)
+      ✓ Daniela clears the value of campo de contraseña (58ms)
+      ✓ Daniela enters [a masked value] into campo de contraseña (27ms)
+      ✓ Daniela clicks on botón Ingresar (194ms)
+    ✓ Daniela waits until "/dashboard" does equal "/dashboard" (518ms)
+  When ella crea un celular con stock 6 y mínimo 5
+    Daniela crea "QA Celular 1792905492007" con stock 6 y mínimo 5
+      Daniela abre /admin/phones/new
+        ✓ Daniela navigates to "http://127.0.0.1:5173/admin/phones/new" (116ms)
+      ✓ Daniela waits until campo Nombre does become present (89ms)
+      ✓ Daniela scrolls to campo Nombre (107ms)
+      ✓ Daniela enters "QA Celular 1792905492007" into campo Nombre (35ms)
+      ✓ Daniela enters "qa-celular-1792905492007" into campo Slug (54ms)
+      ✓ Daniela enters "Samsung" into campo Marca (18ms)
+      ✓ Daniela selects value "samsung" from selector de categoría (25ms)
+      ✓ Daniela enters "2500000" into campo Precio (21ms)
+      ✓ Daniela enters "6" into campo Stock (22ms)
+      ✓ Daniela clears the value of campo Stock mínimo (umbral de alerta) (29ms)
+      ✓ Daniela enters "5" into campo Stock mínimo (umbral de alerta) (17ms)
+      ✓ Daniela clicks on botón "Crear celular" (142ms)
+      ✓ Daniela waits until "/admin/phones" does equal "/admin/phones" (15ms)
+  And ella abre la página "/admin/alerts"
+    Daniela abre /admin/alerts
+      ✓ Daniela navigates to "http://127.0.0.1:5173/admin/alerts" (84ms)
+  Then ella ve que la alerta del celular es "ninguna"
+    ✓ Daniela waits until <<the text of título de la página>>.toLowerCase() does include "alertas de inventario" (80ms)
+    ✓ Daniela ensures that alerta de "QA Celular 1792905492007" does not become present (262ms)
+
+✓ Execution successful (3s 847ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/alertas.feature:22
+
+Alertas de stock bajo: La alerta depende del stock frente al mínimo
+
+  Before
+  Given Daniela es administradora y ha iniciado sesión
+    Daniela abre /login
+      ✓ Daniela navigates to "http://127.0.0.1:5173/login" (340ms)
+    ✓ Daniela borra la sesión del navegador (64ms)
+    Daniela inicia sesión con "admin@celularpro.co"
+      Daniela abre /login
+        ✓ Daniela navigates to "http://127.0.0.1:5173/login" (146ms)
+      ✓ Daniela waits until campo de correo does become present (65ms)
+      ✓ Daniela scrolls to campo de correo (1s 101ms)
+      ✓ Daniela clears the value of campo de correo (34ms)
+      ✓ Daniela enters "admin@celularpro.co" into campo de correo (24ms)
+      ✓ Daniela clears the value of campo de contraseña (52ms)
+      ✓ Daniela enters [a masked value] into campo de contraseña (29ms)
+      ✓ Daniela clicks on botón Ingresar (203ms)
+    ✓ Daniela waits until "/dashboard" does equal "/dashboard" (529ms)
+  When ella crea un celular con stock 0 y mínimo 5
+    Daniela crea "QA Celular 1792905496350" con stock 0 y mínimo 5
+      Daniela abre /admin/phones/new
+        ✓ Daniela navigates to "http://127.0.0.1:5173/admin/phones/new" (86ms)
+      ✓ Daniela waits until campo Nombre does become present (103ms)
+      ✓ Daniela scrolls to campo Nombre (93ms)
+      ✓ Daniela enters "QA Celular 1792905496350" into campo Nombre (17ms)
+      ✓ Daniela enters "qa-celular-1792905496350" into campo Slug (21ms)
+      ✓ Daniela enters "Samsung" into campo Marca (17ms)
+      ✓ Daniela selects value "samsung" from selector de categoría (17ms)
+      ✓ Daniela enters "2500000" into campo Precio (18ms)
+      ✓ Daniela enters "0" into campo Stock (18ms)
+      ✓ Daniela clears the value of campo Stock mínimo (umbral de alerta) (26ms)
+      ✓ Daniela enters "5" into campo Stock mínimo (umbral de alerta) (17ms)
+      ✓ Daniela clicks on botón "Crear celular" (127ms)
+      ✓ Daniela waits until "/admin/phones" does equal "/admin/phones" (14ms)
+  And ella abre la página "/admin/alerts"
+    Daniela abre /admin/alerts
+      ✓ Daniela navigates to "http://127.0.0.1:5173/admin/alerts" (116ms)
+  Then ella ve que la alerta del celular es "Sin stock"
+    ✓ Daniela waits until <<the text of título de la página>>.toLowerCase() does include "alertas de inventario" (72ms)
+    ✓ Daniela waits until the text of alerta de "QA Celular 1792905496350" does include "Sin stock" (17ms)
+
+✓ Execution successful (4s 6ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/alertas.feature:23
+
+Alertas de stock bajo: La alerta depende del stock frente al mínimo
+
+  Before
+  Given Daniela es administradora y ha iniciado sesión
+    Daniela abre /login
+      ✓ Daniela navigates to "http://127.0.0.1:5173/login" (298ms)
+    ✓ Daniela borra la sesión del navegador (53ms)
+    Daniela inicia sesión con "admin@celularpro.co"
+      Daniela abre /login
+        ✓ Daniela navigates to "http://127.0.0.1:5173/login" (91ms)
+      ✓ Daniela waits until campo de correo does become present (60ms)
+      ✓ Daniela scrolls to campo de correo (1s 98ms)
+      ✓ Daniela clears the value of campo de correo (34ms)
+      ✓ Daniela enters "admin@celularpro.co" into campo de correo (26ms)
+      ✓ Daniela clears the value of campo de contraseña (47ms)
+      ✓ Daniela enters [a masked value] into campo de contraseña (26ms)
+      ✓ Daniela clicks on botón Ingresar (205ms)
+    ✓ Daniela waits until "/dashboard" does equal "/dashboard" (525ms)
+  When ella crea un celular con stock 10 y mínimo 12
+    Daniela crea "QA Celular 1792905500227" con stock 10 y mínimo 12
+      Daniela abre /admin/phones/new
+        ✓ Daniela navigates to "http://127.0.0.1:5173/admin/phones/new" (73ms)
+      ✓ Daniela waits until campo Nombre does become present (102ms)
+      ✓ Daniela scrolls to campo Nombre (73ms)
+      ✓ Daniela enters "QA Celular 1792905500227" into campo Nombre (18ms)
+      ✓ Daniela enters "qa-celular-1792905500227" into campo Slug (17ms)
+      ✓ Daniela enters "Samsung" into campo Marca (12ms)
+      ✓ Daniela selects value "samsung" from selector de categoría (13ms)
+      ✓ Daniela enters "2500000" into campo Precio (19ms)
+      ✓ Daniela enters "10" into campo Stock (20ms)
+      ✓ Daniela clears the value of campo Stock mínimo (umbral de alerta) (38ms)
+      ✓ Daniela enters "12" into campo Stock mínimo (umbral de alerta) (14ms)
+      ✓ Daniela clicks on botón "Crear celular" (144ms)
+      ✓ Daniela waits until "/admin/phones" does equal "/admin/phones" (13ms)
+  And ella abre la página "/admin/alerts"
+    Daniela abre /admin/alerts
+      ✓ Daniela navigates to "http://127.0.0.1:5173/admin/alerts" (83ms)
+  Then ella ve que la alerta del celular es "Stock bajo"
+    ✓ Daniela waits until <<the text of título de la página>>.toLowerCase() does include "alertas de inventario" (86ms)
+    ✓ Daniela waits until the text of alerta de "QA Celular 1792905500227" does include "Stock bajo" (24ms)
+
+✓ Execution successful (3s 801ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/alertas.feature:25
+
+Alertas de stock bajo: El menú muestra cuántas alertas hay abiertas
+
+  Before
+  Given Daniela es administradora y ha iniciado sesión
+    Daniela abre /login
+      ✓ Daniela navigates to "http://127.0.0.1:5173/login" (304ms)
+    ✓ Daniela borra la sesión del navegador (52ms)
+    Daniela inicia sesión con "admin@celularpro.co"
+      Daniela abre /login
+        ✓ Daniela navigates to "http://127.0.0.1:5173/login" (88ms)
+      ✓ Daniela waits until campo de correo does become present (61ms)
+      ✓ Daniela scrolls to campo de correo (1s 125ms)
+      ✓ Daniela clears the value of campo de correo (29ms)
+      ✓ Daniela enters "admin@celularpro.co" into campo de correo (26ms)
+      ✓ Daniela clears the value of campo de contraseña (38ms)
+      ✓ Daniela enters [a masked value] into campo de contraseña (18ms)
+      ✓ Daniela clicks on botón Ingresar (178ms)
+    ✓ Daniela waits until "/dashboard" does equal "/dashboard" (517ms)
+  When ella crea un celular con stock 2 y mínimo 5
+    Daniela crea "QA Celular 1792905504021" con stock 2 y mínimo 5
+      Daniela abre /admin/phones/new
+        ✓ Daniela navigates to "http://127.0.0.1:5173/admin/phones/new" (132ms)
+      ✓ Daniela waits until campo Nombre does become present (81ms)
+      ✓ Daniela scrolls to campo Nombre (69ms)
+      ✓ Daniela enters "QA Celular 1792905504021" into campo Nombre (22ms)
+      ✓ Daniela enters "qa-celular-1792905504021" into campo Slug (25ms)
+      ✓ Daniela enters "Samsung" into campo Marca (16ms)
+      ✓ Daniela selects value "samsung" from selector de categoría (18ms)
+      ✓ Daniela enters "2500000" into campo Precio (19ms)
+      ✓ Daniela enters "2" into campo Stock (14ms)
+      ✓ Daniela clears the value of campo Stock mínimo (umbral de alerta) (32ms)
+      ✓ Daniela enters "5" into campo Stock mínimo (umbral de alerta) (15ms)
+      ✓ Daniela clicks on botón "Crear celular" (105ms)
+      ✓ Daniela waits until "/admin/phones" does equal "/admin/phones" (12ms)
+  And ella abre la página "/admin"
+    Daniela abre /admin
+      ✓ Daniela navigates to "http://127.0.0.1:5173/admin" (131ms)
+  Then ella ve la insignia de alertas en el menú
+    ✓ Daniela waits until insignia de alertas del menú does become visible (185ms)
+
+✓ Execution successful (3s 890ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/alertas.feature:30
+
+Alertas de stock bajo: Reponer el inventario cierra la alerta
+
+  Before
+  Given Daniela es administradora y ha iniciado sesión
+    Daniela abre /login
+      ✓ Daniela navigates to "http://127.0.0.1:5173/login" (295ms)
+    ✓ Daniela borra la sesión del navegador (49ms)
+    Daniela inicia sesión con "admin@celularpro.co"
+      Daniela abre /login
+        ✓ Daniela navigates to "http://127.0.0.1:5173/login" (120ms)
+      ✓ Daniela waits until campo de correo does become present (70ms)
+      ✓ Daniela scrolls to campo de correo (1s 96ms)
+      ✓ Daniela clears the value of campo de correo (35ms)
+      ✓ Daniela enters "admin@celularpro.co" into campo de correo (24ms)
+      ✓ Daniela clears the value of campo de contraseña (23ms)
+      ✓ Daniela enters [a masked value] into campo de contraseña (14ms)
+      ✓ Daniela clicks on botón Ingresar (171ms)
+    ✓ Daniela waits until "/dashboard" does equal "/dashboard" (513ms)
+  Given ella creó un celular con stock 2 y mínimo 5
+    Daniela crea "QA Celular 1792905507873" con stock 2 y mínimo 5
+      Daniela abre /admin/phones/new
+        ✓ Daniela navigates to "http://127.0.0.1:5173/admin/phones/new" (69ms)
+      ✓ Daniela waits until campo Nombre does become present (96ms)
+      ✓ Daniela scrolls to campo Nombre (81ms)
+      ✓ Daniela enters "QA Celular 1792905507873" into campo Nombre (29ms)
+      ✓ Daniela enters "qa-celular-1792905507873" into campo Slug (19ms)
+      ✓ Daniela enters "Samsung" into campo Marca (17ms)
+      ✓ Daniela selects value "samsung" from selector de categoría (31ms)
+      ✓ Daniela enters "2500000" into campo Precio (33ms)
+      ✓ Daniela enters "2" into campo Stock (32ms)
+      ✓ Daniela clears the value of campo Stock mínimo (umbral de alerta) (51ms)
+      ✓ Daniela enters "5" into campo Stock mínimo (umbral de alerta) (22ms)
+      ✓ Daniela clicks on botón "Crear celular" (121ms)
+      ✓ Daniela waits until "/admin/phones" does equal "/admin/phones" (515ms)
+  When ella repone ese celular a 50 unidades desde la alerta
+    Daniela repone "QA Celular 1792905507873" a 50 unidades
+      Daniela abre /admin/alerts
+        ✓ Daniela navigates to "http://127.0.0.1:5173/admin/alerts" (100ms)
+      ✓ Daniela clicks on enlace Reponer de "QA Celular 1792905507873" (215ms)
+      ✓ Daniela waits until campo Stock does become present (44ms)
+      ✓ Daniela scrolls to campo Stock (52ms)
+      ✓ Daniela clears the value of campo Stock (33ms)
+      ✓ Daniela enters "50" into campo Stock (26ms)
+      ✓ Daniela clicks on botón "Guardar cambios" (128ms)
+      ✓ Daniela waits until "/admin/phones" does equal "/admin/phones" (12ms)
+  And ella abre la página "/admin/alerts"
+    Daniela abre /admin/alerts
+      ✓ Daniela navigates to "http://127.0.0.1:5173/admin/alerts" (91ms)
+  Then ella ve que la alerta del celular es "ninguna"
+    ✓ Daniela waits until <<the text of título de la página>>.toLowerCase() does include "alertas de inventario" (69ms)
+    ✓ Daniela ensures that alerta de "QA Celular 1792905507873" does not become present (260ms)
+
+✓ Execution successful (5s 272ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/credenciales.feature:7
+
+Validación de credenciales y sesión: Sin sesión, el perfil lleva a iniciar sesión
+
+  Before
+  Given Alicia abre la página "/login"
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (314ms)
+  And ella borra la sesión del navegador
+    ✓ Alicia borra la sesión del navegador (57ms)
+  When ella abre la página "/profile"
+    Alicia abre /profile
+      ✓ Alicia navigates to "http://127.0.0.1:5173/profile" (107ms)
+  Then ella llega a "/login"
+    ✓ Alicia waits until "/login" does equal "/login" (517ms)
+
+✓ Execution successful (1s 144ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/credenciales.feature:14
+
+Validación de credenciales y sesión: Cerrar sesión devuelve al inicio de sesión y cierra el perfil
+
+  Before
+  Given Alicia tiene la sesión iniciada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (297ms)
+    ✓ Alicia borra la sesión del navegador (49ms)
+    Alicia se registra como "qa+17929055116954b3736@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (77ms)
+      ✓ Alicia waits until campo de nombre does become present (85ms)
+      ✓ Alicia scrolls to campo de nombre (706ms)
+      ✓ Alicia clears the value of campo de nombre (38ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (20ms)
+      ✓ Alicia clears the value of campo de correo (36ms)
+      ✓ Alicia enters "qa+17929055116954b3736@gmail.com" into campo de correo (25ms)
+      ✓ Alicia clears the value of campo de contraseña (41ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (25ms)
+      ✓ Alicia clears the value of campo de confirmación (39ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (30ms)
+      ✓ Alicia clicks on botón Crear cuenta (326ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (523ms)
+  When ella cierra sesión
+    Alicia cierra sesión
+      ✓ Alicia clicks on botón "Cerrar sesión" (243ms)
+      ✓ Alicia waits until "/login" does equal "/login" (13ms)
+  Then ella llega a "/login"
+    ✓ Alicia waits until "/login" does equal "/login" (12ms)
+  When ella abre la página "/profile"
+    Alicia abre /profile
+      ✓ Alicia navigates to "http://127.0.0.1:5173/profile" (100ms)
+  Then ella llega a "/login"
+    ✓ Alicia waits until "/login" does equal "/login" (12ms)
+
+✓ Execution successful (3s 136ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/credenciales.feature:21
+
+Validación de credenciales y sesión: Una sesión corrupta se explica en lugar de fallar en silencio
+
+  Before
+  Given Alicia tiene la sesión iniciada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (295ms)
+    ✓ Alicia borra la sesión del navegador (63ms)
+    Alicia se registra como "qa+1792905514846c59377@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (131ms)
+      ✓ Alicia waits until campo de nombre does become present (70ms)
+      ✓ Alicia scrolls to campo de nombre (707ms)
+      ✓ Alicia clears the value of campo de nombre (34ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (22ms)
+      ✓ Alicia clears the value of campo de correo (36ms)
+      ✓ Alicia enters "qa+1792905514846c59377@gmail.com" into campo de correo (37ms)
+      ✓ Alicia clears the value of campo de contraseña (49ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (36ms)
+      ✓ Alicia clears the value of campo de confirmación (41ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (30ms)
+      ✓ Alicia clicks on botón Crear cuenta (422ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (12ms)
+  And su sesión se corrompe
+    ✓ Alicia corrompe el token de su sesión (73ms)
+  When ella abre la página "/dashboard"
+    Alicia abre /dashboard
+      ✓ Alicia navigates to "http://127.0.0.1:5173/dashboard" (150ms)
+  Then ella llega a "/login"
+    ✓ Alicia waits until "/login" does equal "/login" (516ms)
+  And ella ve el aviso de sesión "Tu sesión ya no es válida. Inicia sesión de nuevo."
+    ✓ Alicia waits until the text of aviso de sesión does equal "Tu sesión ya no es válida. Inicia sesión de nuevo." (90ms)
+
+✓ Execution successful (3s 255ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/heuristicas.feature:9
+
+Correcciones de la evaluación heurística: Desde Ingresar se llega al centro de ayuda
+
+  Before
+  Given Alicia abre la página "/login"
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (335ms)
+  When ella sigue el enlace "Centro de ayuda"
+    Alicia sigue el enlace "Centro de ayuda"
+      ✓ Alicia waits until enlace "Centro de ayuda" does become present (106ms)
+      ✓ Alicia scrolls to enlace "Centro de ayuda" (1s 44ms)
+      ✓ Alicia clicks on enlace "Centro de ayuda" (142ms)
+  Then ella llega a "/ayuda"
+    ✓ Alicia waits until "/ayuda" does equal "/ayuda" (14ms)
+  And ella ve el título "Centro de ayuda"
+    ✓ Alicia waits until <<the text of título de la página>>.toLowerCase() does include "centro de ayuda" (27ms)
+
+✓ Execution successful (1s 874ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/heuristicas.feature:16
+
+Correcciones de la evaluación heurística: "Garantías" lleva a las garantías
+
+  Before
+  Given Alicia abre la página "/unauthorized"
+    Alicia abre /unauthorized
+      ✓ Alicia navigates to "http://127.0.0.1:5173/unauthorized" (329ms)
+  When ella sigue el enlace "Garantías"
+    Alicia sigue el enlace "Garantías"
+      ✓ Alicia waits until enlace "Garantías" does become present (88ms)
+      ✓ Alicia scrolls to enlace "Garantías" (178ms)
+      ✓ Alicia clicks on enlace "Garantías" (254ms)
+  Then ella llega a "/ayuda"
+    ✓ Alicia waits until "/ayuda" does equal "/ayuda" (13ms)
+
+✓ Execution successful (1s 50ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/heuristicas.feature:22
+
+Correcciones de la evaluación heurística: Cada pantalla nombra su pestaña
+
+  Before
+  Given Alicia abre la página "/register"
+    Alicia abre /register
+      ✓ Alicia navigates to "http://127.0.0.1:5173/register" (315ms)
+  Then la pestaña del navegador dice "Crear cuenta · CelularPro"
+    ✓ Alicia waits until <<current page>>.title() does equal "Crear cuenta · CelularPro" (57ms)
+
+✓ Execution successful (469ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/heuristicas.feature:27
+
+Correcciones de la evaluación heurística: Los requisitos de la contraseña se marcan mientras se escribe
+
+  Before
+  Given Alicia abre la página "/register"
+    Alicia abre /register
+      ✓ Alicia navigates to "http://127.0.0.1:5173/register" (302ms)
+  When ella escribe la contraseña "medellin2026" sin enviar
+    Alicia escribe una contraseña sin enviar
+      ✓ Alicia waits until campo de contraseña does become present (81ms)
+      ✓ Alicia clears the value of campo de contraseña (42ms)
+      ✓ Alicia enters "medellin2026" into campo de contraseña (37ms)
+  Then el requisito "minuscula" aparece cumplido
+    ✓ Alicia waits until "data-cumple" attribute of requisito de contraseña "minuscula" does equal "true" (23ms)
+  And el requisito "numero" aparece cumplido
+    ✓ Alicia waits until "data-cumple" attribute of requisito de contraseña "numero" does equal "true" (33ms)
+  And el requisito "mayuscula" aparece pendiente
+    ✓ Alicia waits until "data-cumple" attribute of requisito de contraseña "mayuscula" does equal "false" (24ms)
+
+✓ Execution successful (768ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/heuristicas.feature:35
+
+Correcciones de la evaluación heurística: Descartar los cambios devuelve el nombre guardado
+
+  Before
+  Given Alicia tiene la sesión iniciada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (303ms)
+    ✓ Alicia borra la sesión del navegador (45ms)
+    Alicia se registra como "qa+179290552228349ecc1@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (104ms)
+      ✓ Alicia waits until campo de nombre does become present (68ms)
+      ✓ Alicia scrolls to campo de nombre (1s 102ms)
+      ✓ Alicia clears the value of campo de nombre (24ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (46ms)
+      ✓ Alicia clears the value of campo de correo (48ms)
+      ✓ Alicia enters "qa+179290552228349ecc1@gmail.com" into campo de correo (29ms)
+      ✓ Alicia clears the value of campo de contraseña (39ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (26ms)
+      ✓ Alicia clears the value of campo de confirmación (42ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (35ms)
+      ✓ Alicia clicks on botón Crear cuenta (364ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (524ms)
+  And ella abre la página "/profile"
+    Alicia abre /profile
+      ✓ Alicia navigates to "http://127.0.0.1:5173/profile" (145ms)
+  When ella escribe el nombre "Otro Nombre" sin guardar
+    Alicia escribe el nombre "Otro Nombre" sin guardar
+      ✓ Alicia waits until campo de nombre does become present (92ms)
+      ✓ Alicia clears the value of campo de nombre (72ms)
+      ✓ Alicia enters "Otro Nombre" into campo de nombre (32ms)
+  And ella descarta los cambios
+    Alicia descarta los cambios del perfil
+      ✓ Alicia clicks on botón "Descartar cambios" (407ms)
+  Then el campo de nombre muestra "Ana Pérez"
+    ✓ Alicia waits until the value of campo de nombre does equal "Ana Pérez" (30ms)
+
+✓ Execution successful (4s 81ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/login.feature:11
+
+Inicio de sesión: Inicio de sesión correcto
+
+  Before
+  Given Alicia tiene una cuenta registrada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (350ms)
+    ✓ Alicia borra la sesión del navegador (57ms)
+    Alicia se registra como "qa+1792905526367f2b46a@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (109ms)
+      ✓ Alicia waits until campo de nombre does become present (85ms)
+      ✓ Alicia scrolls to campo de nombre (705ms)
+      ✓ Alicia clears the value of campo de nombre (34ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (17ms)
+      ✓ Alicia clears the value of campo de correo (30ms)
+      ✓ Alicia enters "qa+1792905526367f2b46a@gmail.com" into campo de correo (23ms)
+      ✓ Alicia clears the value of campo de contraseña (34ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (36ms)
+      ✓ Alicia clears the value of campo de confirmación (48ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (21ms)
+      ✓ Alicia clicks on botón Crear cuenta (439ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (12ms)
+    Alicia cierra sesión
+      ✓ Alicia clicks on botón "Cerrar sesión" (323ms)
+      ✓ Alicia waits until "/login" does equal "/login" (17ms)
+  When ella inicia sesión con su correo y su contraseña
+    Alicia inicia sesión con "qa+1792905526367f2b46a@gmail.com"
+      Alicia abre /login
+        ✓ Alicia navigates to "http://127.0.0.1:5173/login" (103ms)
+      ✓ Alicia waits until campo de correo does become present (87ms)
+      ✓ Alicia scrolls to campo de correo (1s 112ms)
+      ✓ Alicia clears the value of campo de correo (28ms)
+      ✓ Alicia enters "qa+1792905526367f2b46a@gmail.com" into campo de correo (29ms)
+      ✓ Alicia clears the value of campo de contraseña (33ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (23ms)
+      ✓ Alicia clicks on botón Ingresar (163ms)
+  Then ella llega a "/dashboard"
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (514ms)
+  And ella ve el saludo "Hola, Ana"
+    ✓ Alicia waits until <<the text of título de la página>>.toLowerCase() does include "hola, ana" (26ms)
+
+✓ Execution successful (5s 24ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/login.feature:17
+
+Inicio de sesión: Contraseña incorrecta con el correo correcto
+
+  Before
+  Given Alicia tiene una cuenta registrada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (296ms)
+    ✓ Alicia borra la sesión del navegador (44ms)
+    Alicia se registra como "qa+1792905531399509860@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (88ms)
+      ✓ Alicia waits until campo de nombre does become present (84ms)
+      ✓ Alicia scrolls to campo de nombre (1s 117ms)
+      ✓ Alicia clears the value of campo de nombre (29ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (30ms)
+      ✓ Alicia clears the value of campo de correo (36ms)
+      ✓ Alicia enters "qa+1792905531399509860@gmail.com" into campo de correo (20ms)
+      ✓ Alicia clears the value of campo de contraseña (43ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (39ms)
+      ✓ Alicia clears the value of campo de confirmación (40ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (29ms)
+      ✓ Alicia clicks on botón Crear cuenta (390ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (12ms)
+    Alicia cierra sesión
+      ✓ Alicia clicks on botón "Cerrar sesión" (313ms)
+      ✓ Alicia waits until "/login" does equal "/login" (13ms)
+  When ella inicia sesión con su correo y la contraseña "ClaveEquivocada1"
+    Alicia inicia sesión con "qa+1792905531399509860@gmail.com"
+      Alicia abre /login
+        ✓ Alicia navigates to "http://127.0.0.1:5173/login" (139ms)
+      ✓ Alicia waits until campo de correo does become present (70ms)
+      ✓ Alicia scrolls to campo de correo (603ms)
+      ✓ Alicia clears the value of campo de correo (28ms)
+      ✓ Alicia enters "qa+1792905531399509860@gmail.com" into campo de correo (25ms)
+      ✓ Alicia clears the value of campo de contraseña (42ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (24ms)
+      ✓ Alicia clicks on botón Ingresar (189ms)
+  Then ella observa el mensaje de error "Credenciales inválidas"
+    ✓ Alicia waits until the text of mensaje de error del formulario does include "Credenciales inválidas" (27ms)
+  And ella sigue en "/login"
+    ✓ Alicia ensures that "/login" does equal "/login" (1ms)
+
+✓ Execution successful (4s 352ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/login.feature:22
+
+Inicio de sesión: Correo que no existe con la contraseña correcta
+
+  Before
+  Given Alicia tiene una cuenta registrada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (295ms)
+    ✓ Alicia borra la sesión del navegador (60ms)
+    Alicia se registra como "qa+17929055357597061df@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (89ms)
+      ✓ Alicia waits until campo de nombre does become present (84ms)
+      ✓ Alicia scrolls to campo de nombre (719ms)
+      ✓ Alicia clears the value of campo de nombre (55ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (29ms)
+      ✓ Alicia clears the value of campo de correo (59ms)
+      ✓ Alicia enters "qa+17929055357597061df@gmail.com" into campo de correo (18ms)
+      ✓ Alicia clears the value of campo de contraseña (43ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (35ms)
+      ✓ Alicia clears the value of campo de confirmación (45ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (28ms)
+      ✓ Alicia clicks on botón Crear cuenta (366ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (528ms)
+    Alicia cierra sesión
+      ✓ Alicia clicks on botón "Cerrar sesión" (162ms)
+      ✓ Alicia waits until "/login" does equal "/login" (14ms)
+  When ella inicia sesión con el correo "nadie.existe@gmail.com" y su contraseña
+    Alicia inicia sesión con "nadie.existe@gmail.com"
+      Alicia abre /login
+        ✓ Alicia navigates to "http://127.0.0.1:5173/login" (136ms)
+      ✓ Alicia waits until campo de correo does become present (124ms)
+      ✓ Alicia scrolls to campo de correo (1s 108ms)
+      ✓ Alicia clears the value of campo de correo (30ms)
+      ✓ Alicia enters "nadie.existe@gmail.com" into campo de correo (21ms)
+      ✓ Alicia clears the value of campo de contraseña (43ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (25ms)
+      ✓ Alicia clicks on botón Ingresar (168ms)
+  Then ella observa el mensaje de error "Credenciales inválidas"
+    ✓ Alicia waits until the text of mensaje de error del formulario does include "Credenciales inválidas" (22ms)
+  And ella sigue en "/login"
+    ✓ Alicia ensures that "/login" does equal "/login" (1ms)
+
+✓ Execution successful (4s 917ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/login.feature:27
+
+Inicio de sesión: El correo escrito en mayúsculas también entra
+
+  Before
+  Given Alicia tiene una cuenta registrada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (347ms)
+    ✓ Alicia borra la sesión del navegador (55ms)
+    Alicia se registra como "qa+1792905540679ca035a@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (95ms)
+      ✓ Alicia waits until campo de nombre does become present (87ms)
+      ✓ Alicia scrolls to campo de nombre (688ms)
+      ✓ Alicia clears the value of campo de nombre (43ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (29ms)
+      ✓ Alicia clears the value of campo de correo (64ms)
+      ✓ Alicia enters "qa+1792905540679ca035a@gmail.com" into campo de correo (23ms)
+      ✓ Alicia clears the value of campo de contraseña (44ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (35ms)
+      ✓ Alicia clears the value of campo de confirmación (38ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (26ms)
+      ✓ Alicia clicks on botón Crear cuenta (400ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (528ms)
+    Alicia cierra sesión
+      ✓ Alicia clicks on botón "Cerrar sesión" (144ms)
+      ✓ Alicia waits until "/login" does equal "/login" (13ms)
+  When ella inicia sesión con su correo en mayúsculas y su contraseña
+    Alicia inicia sesión con "QA+1792905540679CA035A@GMAIL.COM"
+      Alicia abre /login
+        ✓ Alicia navigates to "http://127.0.0.1:5173/login" (140ms)
+      ✓ Alicia waits until campo de correo does become present (76ms)
+      ✓ Alicia scrolls to campo de correo (641ms)
+      ✓ Alicia clears the value of campo de correo (41ms)
+      ✓ Alicia enters "QA+1792905540679CA035A@GMAIL.COM" into campo de correo (21ms)
+      ✓ Alicia clears the value of campo de contraseña (40ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (24ms)
+      ✓ Alicia clicks on botón Ingresar (163ms)
+  Then ella llega a "/dashboard"
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (524ms)
+
+✓ Execution successful (4s 873ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/login.feature:34
+
+Inicio de sesión: Demasiados intentos fallidos bloquean el acceso un rato
+
+  Before
+  Given Alicia tiene una cuenta registrada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (290ms)
+    ✓ Alicia borra la sesión del navegador (72ms)
+    Alicia se registra como "qa+17929055455720ea6f8@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (95ms)
+      ✓ Alicia waits until campo de nombre does become present (87ms)
+      ✓ Alicia scrolls to campo de nombre (1s 132ms)
+      ✓ Alicia clears the value of campo de nombre (33ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (30ms)
+      ✓ Alicia clears the value of campo de correo (37ms)
+      ✓ Alicia enters "qa+17929055455720ea6f8@gmail.com" into campo de correo (26ms)
+      ✓ Alicia clears the value of campo de contraseña (49ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (42ms)
+      ✓ Alicia clears the value of campo de confirmación (50ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (25ms)
+      ✓ Alicia clicks on botón Crear cuenta (308ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (526ms)
+    Alicia cierra sesión
+      ✓ Alicia clicks on botón "Cerrar sesión" (148ms)
+      ✓ Alicia waits until "/login" does equal "/login" (16ms)
+  When ella falla 6 veces al iniciar sesión con su correo
+    Alicia inicia sesión con "qa+17929055455720ea6f8@gmail.com"
+      Alicia abre /login
+        ✓ Alicia navigates to "http://127.0.0.1:5173/login" (71ms)
+      ✓ Alicia waits until campo de correo does become present (76ms)
+      ✓ Alicia scrolls to campo de correo (1s 121ms)
+      ✓ Alicia clears the value of campo de correo (36ms)
+      ✓ Alicia enters "qa+17929055455720ea6f8@gmail.com" into campo de correo (23ms)
+      ✓ Alicia clears the value of campo de contraseña (36ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (29ms)
+      ✓ Alicia clicks on botón Ingresar (210ms)
+    ✓ Alicia waits until the text of mensaje de error del formulario does include "Credenciales inválidas" (53ms)
+    Alicia inicia sesión con "qa+17929055455720ea6f8@gmail.com"
+      Alicia abre /login
+        ✓ Alicia navigates to "http://127.0.0.1:5173/login" (126ms)
+      ✓ Alicia waits until campo de correo does become present (76ms)
+      ✓ Alicia scrolls to campo de correo (1s 139ms)
+      ✓ Alicia clears the value of campo de correo (29ms)
+      ✓ Alicia enters "qa+17929055455720ea6f8@gmail.com" into campo de correo (26ms)
+      ✓ Alicia clears the value of campo de contraseña (51ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (32ms)
+      ✓ Alicia clicks on botón Ingresar (198ms)
+    ✓ Alicia waits until the text of mensaje de error del formulario does include "Credenciales inválidas" (20ms)
+    Alicia inicia sesión con "qa+17929055455720ea6f8@gmail.com"
+      Alicia abre /login
+        ✓ Alicia navigates to "http://127.0.0.1:5173/login" (120ms)
+      ✓ Alicia waits until campo de correo does become present (74ms)
+      ✓ Alicia scrolls to campo de correo (1s 74ms)
+      ✓ Alicia clears the value of campo de correo (27ms)
+      ✓ Alicia enters "qa+17929055455720ea6f8@gmail.com" into campo de correo (20ms)
+      ✓ Alicia clears the value of campo de contraseña (50ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (48ms)
+      ✓ Alicia clicks on botón Ingresar (157ms)
+    ✓ Alicia waits until the text of mensaje de error del formulario does include "Credenciales inválidas" (32ms)
+    Alicia inicia sesión con "qa+17929055455720ea6f8@gmail.com"
+      Alicia abre /login
+        ✓ Alicia navigates to "http://127.0.0.1:5173/login" (107ms)
+      ✓ Alicia waits until campo de correo does become present (61ms)
+      ✓ Alicia scrolls to campo de correo (1s 42ms)
+      ✓ Alicia clears the value of campo de correo (26ms)
+      ✓ Alicia enters "qa+17929055455720ea6f8@gmail.com" into campo de correo (47ms)
+      ✓ Alicia clears the value of campo de contraseña (42ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (23ms)
+      ✓ Alicia clicks on botón Ingresar (150ms)
+    ✓ Alicia waits until the text of mensaje de error del formulario does include "Credenciales inválidas" (54ms)
+    Alicia inicia sesión con "qa+17929055455720ea6f8@gmail.com"
+      Alicia abre /login
+        ✓ Alicia navigates to "http://127.0.0.1:5173/login" (114ms)
+      ✓ Alicia waits until campo de correo does become present (95ms)
+      ✓ Alicia scrolls to campo de correo (651ms)
+      ✓ Alicia clears the value of campo de correo (34ms)
+      ✓ Alicia enters "qa+17929055455720ea6f8@gmail.com" into campo de correo (16ms)
+      ✓ Alicia clears the value of campo de contraseña (37ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (25ms)
+      ✓ Alicia clicks on botón Ingresar (200ms)
+    ✓ Alicia waits until the text of mensaje de error del formulario does include "Credenciales inválidas" (17ms)
+    Alicia inicia sesión con "qa+17929055455720ea6f8@gmail.com"
+      Alicia abre /login
+        ✓ Alicia navigates to "http://127.0.0.1:5173/login" (94ms)
+      ✓ Alicia waits until campo de correo does become present (88ms)
+      ✓ Alicia scrolls to campo de correo (1s 121ms)
+      ✓ Alicia clears the value of campo de correo (38ms)
+      ✓ Alicia enters "qa+17929055455720ea6f8@gmail.com" into campo de correo (32ms)
+      ✓ Alicia clears the value of campo de contraseña (41ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (25ms)
+      ✓ Alicia clicks on botón Ingresar (202ms)
+    ✓ Alicia waits until the text of mensaje de error del formulario does include "Demasiados intentos" (31ms)
+  Then ella observa el mensaje de error "Demasiados intentos fallidos"
+    ✓ Alicia waits until the text of mensaje de error del formulario does include "Demasiados intentos fallidos" (26ms)
+
+✓ Execution successful (13s 806ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/perfil.feature:11
+
+Gestión de perfil: Cambiar el nombre
+
+  Before
+  Given Alicia tiene la sesión iniciada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (311ms)
+    ✓ Alicia borra la sesión del navegador (50ms)
+    Alicia se registra como "qa+1792905559388cf0335@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (92ms)
+      ✓ Alicia waits until campo de nombre does become present (86ms)
+      ✓ Alicia scrolls to campo de nombre (706ms)
+      ✓ Alicia clears the value of campo de nombre (32ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (27ms)
+      ✓ Alicia clears the value of campo de correo (49ms)
+      ✓ Alicia enters "qa+1792905559388cf0335@gmail.com" into campo de correo (23ms)
+      ✓ Alicia clears the value of campo de contraseña (43ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (40ms)
+      ✓ Alicia clears the value of campo de confirmación (44ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (35ms)
+      ✓ Alicia clicks on botón Crear cuenta (349ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (518ms)
+  When ella cambia su nombre a "María Gómez"
+    Alicia cambia su nombre a "María Gómez"
+      Alicia abre /profile
+        ✓ Alicia navigates to "http://127.0.0.1:5173/profile" (95ms)
+      ✓ Alicia waits until campo de nombre does become present (92ms)
+      ✓ Alicia scrolls to campo de nombre (464ms)
+      ✓ Alicia clears the value of campo de nombre (34ms)
+      ✓ Alicia enters "María Gómez" into campo de nombre (21ms)
+      ✓ Alicia clicks on botón "Guardar cambios" (160ms)
+  Then ella ve la confirmación "Perfil actualizado"
+    ✓ Alicia waits until <<the text of aviso de confirmación>>.toLowerCase() does equal "perfil actualizado" (33ms)
+  When ella abre la página "/dashboard"
+    Alicia abre /dashboard
+      ✓ Alicia navigates to "http://127.0.0.1:5173/dashboard" (116ms)
+  Then ella ve el saludo "Hola, María"
+    ✓ Alicia waits until <<the text of título de la página>>.toLowerCase() does include "hola, maría" (62ms)
+
+✓ Execution successful (3s 997ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/perfil.feature:17
+
+Gestión de perfil: Un nombre en blanco no se guarda
+
+  Before
+  Given Alicia tiene la sesión iniciada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (337ms)
+    ✓ Alicia borra la sesión del navegador (66ms)
+    Alicia se registra como "qa+179290556338830cf2e@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (122ms)
+      ✓ Alicia waits until campo de nombre does become present (82ms)
+      ✓ Alicia scrolls to campo de nombre (678ms)
+      ✓ Alicia clears the value of campo de nombre (30ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (41ms)
+      ✓ Alicia clears the value of campo de correo (45ms)
+      ✓ Alicia enters "qa+179290556338830cf2e@gmail.com" into campo de correo (34ms)
+      ✓ Alicia clears the value of campo de contraseña (50ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (25ms)
+      ✓ Alicia clears the value of campo de confirmación (38ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (37ms)
+      ✓ Alicia clicks on botón Crear cuenta (400ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (12ms)
+  When ella cambia su nombre a " "
+    Alicia cambia su nombre a " "
+      Alicia abre /profile
+        ✓ Alicia navigates to "http://127.0.0.1:5173/profile" (175ms)
+      ✓ Alicia waits until campo de nombre does become present (74ms)
+      ✓ Alicia scrolls to campo de nombre (1s 24ms)
+      ✓ Alicia clears the value of campo de nombre (32ms)
+      ✓ Alicia enters " " into campo de nombre (22ms)
+      ✓ Alicia clicks on botón "Guardar cambios" (141ms)
+  Then ella observa el error de campo "El nombre debe tener al menos 2 caracteres"
+    ✓ Alicia waits until the text of errores de campo does contain "El nombre debe tener al menos 2 caracteres" (44ms)
+
+✓ Execution successful (3s 961ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/perfil.feature:21
+
+Gestión de perfil: Cambiar la contraseña y entrar con la nueva
+
+  Before
+  Given Alicia tiene la sesión iniciada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (314ms)
+    ✓ Alicia borra la sesión del navegador (61ms)
+    Alicia se registra como "qa+1792905567381082113@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (110ms)
+      ✓ Alicia waits until campo de nombre does become present (70ms)
+      ✓ Alicia scrolls to campo de nombre (1s 179ms)
+      ✓ Alicia clears the value of campo de nombre (52ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (27ms)
+      ✓ Alicia clears the value of campo de correo (42ms)
+      ✓ Alicia enters "qa+1792905567381082113@gmail.com" into campo de correo (21ms)
+      ✓ Alicia clears the value of campo de contraseña (55ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (30ms)
+      ✓ Alicia clears the value of campo de confirmación (38ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (37ms)
+      ✓ Alicia clicks on botón Crear cuenta (324ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (527ms)
+  When ella cambia su contraseña por "ClaveNueva2027"
+    Alicia cambia su contraseña
+      Alicia abre /profile
+        ✓ Alicia navigates to "http://127.0.0.1:5173/profile" (110ms)
+      ✓ Alicia waits until campo de contraseña actual does become present (78ms)
+      ✓ Alicia scrolls to campo de contraseña actual (996ms)
+      ✓ Alicia clears the value of campo de contraseña actual (52ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña actual (20ms)
+      ✓ Alicia clears the value of campo de contraseña nueva (60ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña nueva (28ms)
+      ✓ Alicia clears the value of campo de confirmación (41ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (29ms)
+      ✓ Alicia clicks on botón "Cambiar contraseña" (168ms)
+  Then ella ve la confirmación "Contraseña actualizada"
+    ✓ Alicia waits until <<the text of aviso de confirmación>>.toLowerCase() does equal "contraseña actualizada" (30ms)
+  When ella cierra sesión
+    Alicia cierra sesión
+      ✓ Alicia clicks on botón "Cerrar sesión" (173ms)
+      ✓ Alicia waits until "/login" does equal "/login" (12ms)
+  And ella inicia sesión con su correo y la contraseña "ClaveNueva2027"
+    Alicia inicia sesión con "qa+1792905567381082113@gmail.com"
+      Alicia abre /login
+        ✓ Alicia navigates to "http://127.0.0.1:5173/login" (79ms)
+      ✓ Alicia waits until campo de correo does become present (119ms)
+      ✓ Alicia scrolls to campo de correo (1s 135ms)
+      ✓ Alicia clears the value of campo de correo (28ms)
+      ✓ Alicia enters "qa+1792905567381082113@gmail.com" into campo de correo (24ms)
+      ✓ Alicia clears the value of campo de contraseña (47ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (31ms)
+      ✓ Alicia clicks on botón Ingresar (226ms)
+  Then ella llega a "/dashboard"
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (514ms)
+
+✓ Execution successful (7s 723ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/perfil.feature:28
+
+Gestión de perfil: La contraseña actual equivocada no permite el cambio
+
+  Before
+  Given Alicia tiene la sesión iniciada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (296ms)
+    ✓ Alicia borra la sesión del navegador (52ms)
+    Alicia se registra como "qa+1792905575092f9c976@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (88ms)
+      ✓ Alicia waits until campo de nombre does become present (92ms)
+      ✓ Alicia scrolls to campo de nombre (768ms)
+      ✓ Alicia clears the value of campo de nombre (55ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (27ms)
+      ✓ Alicia clears the value of campo de correo (45ms)
+      ✓ Alicia enters "qa+1792905575092f9c976@gmail.com" into campo de correo (34ms)
+      ✓ Alicia clears the value of campo de contraseña (46ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (39ms)
+      ✓ Alicia clears the value of campo de confirmación (39ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (29ms)
+      ✓ Alicia clicks on botón Crear cuenta (484ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (16ms)
+  When ella intenta cambiar su contraseña usando como actual "EquivocadaXX1"
+    Alicia cambia su contraseña
+      Alicia abre /profile
+        ✓ Alicia navigates to "http://127.0.0.1:5173/profile" (132ms)
+      ✓ Alicia waits until campo de contraseña actual does become present (82ms)
+      ✓ Alicia scrolls to campo de contraseña actual (1s 14ms)
+      ✓ Alicia clears the value of campo de contraseña actual (56ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña actual (48ms)
+      ✓ Alicia clears the value of campo de contraseña nueva (64ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña nueva (35ms)
+      ✓ Alicia clears the value of campo de confirmación (64ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (20ms)
+      ✓ Alicia clicks on botón "Cambiar contraseña" (137ms)
+  Then ella observa el mensaje de error "La contraseña actual no es correcta"
+    ✓ Alicia waits until the text of mensaje de error del formulario does include "La contraseña actual no es correcta" (46ms)
+
+✓ Execution successful (4s 334ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/registro.feature:8
+
+Registro de usuario: Registro correcto
+
+  Before
+  Given Alicia abre la página "/register"
+    Alicia abre /register
+      ✓ Alicia navigates to "http://127.0.0.1:5173/register" (372ms)
+  When ella se registra con una contraseña válida
+    ✓ Alicia borra la sesión del navegador (30ms)
+    Alicia se registra como "qa+1792905579443c6ac45@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (96ms)
+      ✓ Alicia waits until campo de nombre does become present (70ms)
+      ✓ Alicia scrolls to campo de nombre (704ms)
+      ✓ Alicia clears the value of campo de nombre (41ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (26ms)
+      ✓ Alicia clears the value of campo de correo (42ms)
+      ✓ Alicia enters "qa+1792905579443c6ac45@gmail.com" into campo de correo (28ms)
+      ✓ Alicia clears the value of campo de contraseña (33ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (32ms)
+      ✓ Alicia clears the value of campo de confirmación (44ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (32ms)
+      ✓ Alicia clicks on botón Crear cuenta (325ms)
+  Then ella llega a "/dashboard"
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (522ms)
+  And ella ve el saludo "Hola, Ana"
+    ✓ Alicia waits until <<the text of título de la página>>.toLowerCase() does include "hola, ana" (20ms)
+
+✓ Execution successful (2s 781ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/registro.feature:23
+
+Registro de usuario: Contraseña que no cumple la regla
+
+  Before
+  Given Alicia abre la página "/register"
+    Alicia abre /register
+      ✓ Alicia navigates to "http://127.0.0.1:5173/register" (310ms)
+  When ella se registra con la contraseña "12345678"
+    Alicia se registra como "qa+17929055822336a0173@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (91ms)
+      ✓ Alicia waits until campo de nombre does become present (81ms)
+      ✓ Alicia scrolls to campo de nombre (1s 33ms)
+      ✓ Alicia clears the value of campo de nombre (29ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (34ms)
+      ✓ Alicia clears the value of campo de correo (56ms)
+      ✓ Alicia enters "qa+17929055822336a0173@gmail.com" into campo de correo (38ms)
+      ✓ Alicia clears the value of campo de contraseña (39ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (30ms)
+      ✓ Alicia clears the value of campo de confirmación (33ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (20ms)
+      ✓ Alicia clicks on botón Crear cuenta (313ms)
+  Then ella observa el error de campo "La contraseña debe incluir al menos una letra minúscula"
+    ✓ Alicia waits until the text of errores de campo does contain "La contraseña debe incluir al menos una letra minúscula" (30ms)
+  And ella sigue en "/register"
+    ✓ Alicia ensures that "/register" does equal "/register" (5ms)
+
+✓ Execution successful (2s 492ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/registro.feature:24
+
+Registro de usuario: Contraseña que no cumple la regla
+
+  Before
+  Given Alicia abre la página "/register"
+    Alicia abre /register
+      ✓ Alicia navigates to "http://127.0.0.1:5173/register" (314ms)
+  When ella se registra con la contraseña "sololetras1"
+    Alicia se registra como "qa+17929055847288e34f1@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (101ms)
+      ✓ Alicia waits until campo de nombre does become present (99ms)
+      ✓ Alicia scrolls to campo de nombre (698ms)
+      ✓ Alicia clears the value of campo de nombre (46ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (23ms)
+      ✓ Alicia clears the value of campo de correo (57ms)
+      ✓ Alicia enters "qa+17929055847288e34f1@gmail.com" into campo de correo (28ms)
+      ✓ Alicia clears the value of campo de contraseña (197ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (425ms)
+      ✓ Alicia clears the value of campo de confirmación (56ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (32ms)
+      ✓ Alicia clicks on botón Crear cuenta (333ms)
+  Then ella observa el error de campo "La contraseña debe incluir al menos una letra mayúscula"
+    ✓ Alicia waits until the text of errores de campo does contain "La contraseña debe incluir al menos una letra mayúscula" (26ms)
+  And ella sigue en "/register"
+    ✓ Alicia ensures that "/register" does equal "/register" (3ms)
+
+✓ Execution successful (2s 906ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/registro.feature:25
+
+Registro de usuario: Contraseña que no cumple la regla
+
+  Before
+  Given Alicia abre la página "/register"
+    Alicia abre /register
+      ✓ Alicia navigates to "http://127.0.0.1:5173/register" (312ms)
+  When ella se registra con la contraseña "SoloLetras"
+    Alicia se registra como "qa+17929055876493eddd7@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (132ms)
+      ✓ Alicia waits until campo de nombre does become present (105ms)
+      ✓ Alicia scrolls to campo de nombre (743ms)
+      ✓ Alicia clears the value of campo de nombre (62ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (24ms)
+      ✓ Alicia clears the value of campo de correo (45ms)
+      ✓ Alicia enters "qa+17929055876493eddd7@gmail.com" into campo de correo (27ms)
+      ✓ Alicia clears the value of campo de contraseña (48ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (37ms)
+      ✓ Alicia clears the value of campo de confirmación (51ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (50ms)
+      ✓ Alicia clicks on botón Crear cuenta (369ms)
+  Then ella observa el error de campo "La contraseña debe incluir al menos un número"
+    ✓ Alicia waits until the text of errores de campo does contain "La contraseña debe incluir al menos un número" (35ms)
+  And ella sigue en "/register"
+    ✓ Alicia ensures that "/register" does equal "/register" (1ms)
+
+✓ Execution successful (2s 462ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/registro.feature:26
+
+Registro de usuario: Contraseña que no cumple la regla
+
+  Before
+  Given Alicia abre la página "/register"
+    Alicia abre /register
+      ✓ Alicia navigates to "http://127.0.0.1:5173/register" (301ms)
+  When ella se registra con la contraseña "Abc1"
+    Alicia se registra como "qa+1792905590132dbc3e3@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (121ms)
+      ✓ Alicia waits until campo de nombre does become present (73ms)
+      ✓ Alicia scrolls to campo de nombre (1s 141ms)
+      ✓ Alicia clears the value of campo de nombre (56ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (29ms)
+      ✓ Alicia clears the value of campo de correo (39ms)
+      ✓ Alicia enters "qa+1792905590132dbc3e3@gmail.com" into campo de correo (25ms)
+      ✓ Alicia clears the value of campo de contraseña (75ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (39ms)
+      ✓ Alicia clears the value of campo de confirmación (41ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (31ms)
+      ✓ Alicia clicks on botón Crear cuenta (303ms)
+  Then ella observa el error de campo "La contraseña debe tener al menos 8 caracteres"
+    ✓ Alicia waits until the text of errores de campo does contain "La contraseña debe tener al menos 8 caracteres" (38ms)
+  And ella sigue en "/register"
+    ✓ Alicia ensures that "/register" does equal "/register" (3ms)
+
+✓ Execution successful (2s 698ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/registro.feature:29
+
+Registro de usuario: Correo con un dominio no permitido
+
+  Before
+  Given Alicia abre la página "/register"
+    Alicia abre /register
+      ✓ Alicia navigates to "http://127.0.0.1:5173/register" (288ms)
+  When ella se registra con el correo "ana.perez@empresa.com"
+    Alicia se registra como "ana.perez@empresa.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (149ms)
+      ✓ Alicia waits until campo de nombre does become present (73ms)
+      ✓ Alicia scrolls to campo de nombre (624ms)
+      ✓ Alicia clears the value of campo de nombre (56ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (22ms)
+      ✓ Alicia clears the value of campo de correo (36ms)
+      ✓ Alicia enters "ana.perez@empresa.com" into campo de correo (21ms)
+      ✓ Alicia clears the value of campo de contraseña (39ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (36ms)
+      ✓ Alicia clears the value of campo de confirmación (32ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (21ms)
+      ✓ Alicia clicks on botón Crear cuenta (342ms)
+  Then ella observa el error de campo "Correo inválido. Usa Gmail, Outlook, Hotmail, Yahoo o iCloud."
+    ✓ Alicia waits until the text of errores de campo does contain "Correo inválido. Usa Gmail, Outlook, Hotmail, Yahoo o iCloud." (29ms)
+  And ella sigue en "/register"
+    ✓ Alicia ensures that "/register" does equal "/register" (1ms)
+
+✓ Execution successful (2s 145ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/registro.feature:35
+
+Registro de usuario: La confirmación no coincide
+
+  Before
+  Given Alicia abre la página "/register"
+    Alicia abre /register
+      ✓ Alicia navigates to "http://127.0.0.1:5173/register" (284ms)
+  When ella se registra confirmando con "OtraClave2026"
+    Alicia se registra como "qa+17929055949732d05e6@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (150ms)
+      ✓ Alicia waits until campo de nombre does become present (83ms)
+      ✓ Alicia scrolls to campo de nombre (724ms)
+      ✓ Alicia clears the value of campo de nombre (33ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (44ms)
+      ✓ Alicia clears the value of campo de correo (38ms)
+      ✓ Alicia enters "qa+17929055949732d05e6@gmail.com" into campo de correo (21ms)
+      ✓ Alicia clears the value of campo de contraseña (34ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (27ms)
+      ✓ Alicia clears the value of campo de confirmación (40ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (33ms)
+      ✓ Alicia clicks on botón Crear cuenta (204ms)
+  Then ella observa el error de campo "Las contraseñas no coinciden"
+    ✓ Alicia waits until the text of errores de campo does contain "Las contraseñas no coinciden" (31ms)
+
+✓ Execution successful (2s 149ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/registro.feature:40
+
+Registro de usuario: Correo ya registrado
+
+  Before
+  Given Alicia tiene una cuenta registrada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (292ms)
+    ✓ Alicia borra la sesión del navegador (47ms)
+    Alicia se registra como "qa+17929055971271bb730@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (103ms)
+      ✓ Alicia waits until campo de nombre does become present (80ms)
+      ✓ Alicia scrolls to campo de nombre (1s 100ms)
+      ✓ Alicia clears the value of campo de nombre (62ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (42ms)
+      ✓ Alicia clears the value of campo de correo (42ms)
+      ✓ Alicia enters "qa+17929055971271bb730@gmail.com" into campo de correo (21ms)
+      ✓ Alicia clears the value of campo de contraseña (41ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (31ms)
+      ✓ Alicia clears the value of campo de confirmación (37ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (54ms)
+      ✓ Alicia clicks on botón Crear cuenta (345ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (527ms)
+    Alicia cierra sesión
+      ✓ Alicia clicks on botón "Cerrar sesión" (131ms)
+      ✓ Alicia waits until "/login" does equal "/login" (13ms)
+  When ella intenta registrarse otra vez con el mismo correo
+    Alicia se registra como "qa+17929055971271bb730@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (120ms)
+      ✓ Alicia waits until campo de nombre does become present (102ms)
+      ✓ Alicia scrolls to campo de nombre (652ms)
+      ✓ Alicia clears the value of campo de nombre (57ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (36ms)
+      ✓ Alicia clears the value of campo de correo (63ms)
+      ✓ Alicia enters "qa+17929055971271bb730@gmail.com" into campo de correo (41ms)
+      ✓ Alicia clears the value of campo de contraseña (43ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (46ms)
+      ✓ Alicia clears the value of campo de confirmación (43ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (49ms)
+      ✓ Alicia clicks on botón Crear cuenta (399ms)
+  Then ella observa el mensaje de error "El email ya está registrado"
+    ✓ Alicia waits until the text of mensaje de error del formulario does include "El email ya está registrado" (24ms)
+
+✓ Execution successful (5s 254ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/roles.feature:7
+
+Control de roles: Un cliente no entra al panel de administración
+
+  Before
+  Given Alicia tiene la sesión iniciada
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (330ms)
+    ✓ Alicia borra la sesión del navegador (48ms)
+    Alicia se registra como "qa+179290560238817ea94@gmail.com"
+      Alicia abre /register
+        ✓ Alicia navigates to "http://127.0.0.1:5173/register" (103ms)
+      ✓ Alicia waits until campo de nombre does become present (87ms)
+      ✓ Alicia scrolls to campo de nombre (664ms)
+      ✓ Alicia clears the value of campo de nombre (48ms)
+      ✓ Alicia enters "Ana Pérez" into campo de nombre (27ms)
+      ✓ Alicia clears the value of campo de correo (33ms)
+      ✓ Alicia enters "qa+179290560238817ea94@gmail.com" into campo de correo (33ms)
+      ✓ Alicia clears the value of campo de contraseña (39ms)
+      ✓ Alicia enters [a masked value] into campo de contraseña (32ms)
+      ✓ Alicia clears the value of campo de confirmación (44ms)
+      ✓ Alicia enters [a masked value] into campo de confirmación (33ms)
+      ✓ Alicia clicks on botón Crear cuenta (299ms)
+    ✓ Alicia waits until "/dashboard" does equal "/dashboard" (521ms)
+  When ella abre la página "/admin/alerts"
+    Alicia abre /admin/alerts
+      ✓ Alicia navigates to "http://127.0.0.1:5173/admin/alerts" (123ms)
+  Then ella llega a "/unauthorized"
+    ✓ Alicia waits until "/unauthorized" does equal "/unauthorized" (15ms)
+  And ella ve el título "Acceso no autorizado"
+    ✓ Alicia waits until <<the text of título de la página>>.toLowerCase() does include "acceso no autorizado" (75ms)
+
+✓ Execution successful (2s 956ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/roles.feature:13
+
+Control de roles: Sin sesión, el panel lleva a iniciar sesión
+
+  Before
+  Given Alicia abre la página "/login"
+    Alicia abre /login
+      ✓ Alicia navigates to "http://127.0.0.1:5173/login" (370ms)
+  And ella borra la sesión del navegador
+    ✓ Alicia borra la sesión del navegador (58ms)
+  When ella abre la página "/admin"
+    Alicia abre /admin
+      ✓ Alicia navigates to "http://127.0.0.1:5173/admin" (134ms)
+  Then ella llega a "/login"
+    ✓ Alicia waits until "/login" does equal "/login" (522ms)
+
+✓ Execution successful (1s 246ms)
+--------------------------------------------------------------------------------
+/home/claude/b/Proyecto-de-aula-front-main/e2e/serenityjs/features/roles.feature:20
+
+Control de roles: Un administrador sí entra al panel
+
+  Before
+  Given Daniela es administradora y ha iniciado sesión
+    Daniela abre /login
+      ✓ Daniela navigates to "http://127.0.0.1:5173/login" (323ms)
+    ✓ Daniela borra la sesión del navegador (55ms)
+    Daniela inicia sesión con "admin@celularpro.co"
+      Daniela abre /login
+        ✓ Daniela navigates to "http://127.0.0.1:5173/login" (101ms)
+      ✓ Daniela waits until campo de correo does become present (67ms)
+      ✓ Daniela scrolls to campo de correo (1s 53ms)
+      ✓ Daniela clears the value of campo de correo (40ms)
+      ✓ Daniela enters "admin@celularpro.co" into campo de correo (31ms)
+      ✓ Daniela clears the value of campo de contraseña (53ms)
+      ✓ Daniela enters [a masked value] into campo de contraseña (32ms)
+      ✓ Daniela clicks on botón Ingresar (193ms)
+    ✓ Daniela waits until "/dashboard" does equal "/dashboard" (520ms)
+  When ella abre la página "/admin"
+    Daniela abre /admin
+      ✓ Daniela navigates to "http://127.0.0.1:5173/admin" (109ms)
+  Then ella ve el título "Panel"
+    ✓ Daniela waits until <<the text of título de la página>>.toLowerCase() does include "panel" (99ms)
+
+✓ Execution successful (2s 987ms)
+================================================================================
+Execution Summary
+
+Alertas de stock bajo:          7 successful, 7 total (28s 961ms)
+Control de roles:               3 successful, 3 total (7s 189ms)
+Correcciones de la evaluac...:  5 successful, 5 total (8s 242ms)
+Gestión de perfil:              4 successful, 4 total (20s 15ms)
+Inicio de sesión:               5 successful, 5 total (32s 972ms)
+Registro de usuario:            8 successful, 8 total (22s 887ms)
+Validación de credenciales...:  3 successful, 3 total (7s 535ms)
+
+Total time: 2m 7s 801ms
+Real time: 2m 8s 731ms
+Scenarios:  35
+================================================================================

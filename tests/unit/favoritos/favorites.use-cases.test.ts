@@ -1,5 +1,4 @@
-import { expect } from 'chai'
-import { beforeEach, describe, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   addFavorite,
   getMyFavorites,
@@ -8,7 +7,6 @@ import {
 import type { Phone } from '../../../src/domain/entities/Phone'
 import type { IFavoriteRepository } from '../../../src/domain/repositories/IFavoriteRepository'
 import type { IPhoneRepository } from '../../../src/domain/repositories/IPhoneRepository'
-import { capturarError } from '../../helpers/errores'
 
 /**
  * Casos de uso de favoritos, aislados de Express y de Prisma.
@@ -51,38 +49,29 @@ describe('addFavorite', () => {
   })
 
   it('si el celular no existe → 404 y no se escribe nada', async () => {
-    // Arrange
     vi.mocked(celulares.findById).mockResolvedValue(null)
 
-    // Act
-    const error = await capturarError(
+    await expect(
       addFavorite(favoritos, celulares, USER_ID, 'inexistente'),
-    )
-
-    // Assert
-    expect(error).to.deep.include({
+    ).rejects.toMatchObject({
       message: 'Celular no encontrado',
       statusCode: 404,
     })
 
-    expect(vi.mocked(favoritos.add).mock.calls).to.be.empty
+    expect(favoritos.add).not.toHaveBeenCalled()
   })
 
   it('si el celular existe, lo marca para ese usuario', async () => {
-    // Arrange
     vi.mocked(celulares.findById).mockResolvedValue({
       id: PHONE_ID,
     } as Phone)
 
-    // Act
     await addFavorite(favoritos, celulares, USER_ID, PHONE_ID)
 
-    // Assert
-    expect(vi.mocked(favoritos.add).mock.calls).to.deep.include([USER_ID, PHONE_ID])
+    expect(favoritos.add).toHaveBeenCalledWith(USER_ID, PHONE_ID)
   })
 
   it('comprueba el catálogo antes de escribir, no después', async () => {
-    // Arrange
     const orden: string[] = []
     vi.mocked(celulares.findById).mockImplementation(async () => {
       orden.push('buscar celular')
@@ -92,11 +81,9 @@ describe('addFavorite', () => {
       orden.push('marcar favorito')
     })
 
-    // Act
     await addFavorite(favoritos, celulares, USER_ID, PHONE_ID)
 
-    // Assert
-    expect(orden).to.deep.equal(['buscar celular', 'marcar favorito'])
+    expect(orden).toEqual(['buscar celular', 'marcar favorito'])
   })
 })
 
@@ -108,19 +95,15 @@ describe('removeFavorite', () => {
   })
 
   it('pide quitar la marca de ese usuario y ese celular', async () => {
-    // Act
     await removeFavorite(favoritos, USER_ID, PHONE_ID)
 
-    // Assert
-    expect(vi.mocked(favoritos.remove).mock.calls).to.deep.include([USER_ID, PHONE_ID])
+    expect(favoritos.remove).toHaveBeenCalledWith(USER_ID, PHONE_ID)
   })
 
   it('no comprueba que el celular exista: quitar es idempotente por diseño', async () => {
-    // Act
-    const resultado = await removeFavorite(favoritos, USER_ID, 'nunca-estuvo')
-
-    // Assert
-    expect(resultado).to.be.undefined
+    await expect(
+      removeFavorite(favoritos, USER_ID, 'nunca-estuvo'),
+    ).resolves.toBeUndefined()
   })
 })
 
@@ -132,39 +115,26 @@ describe('getMyFavorites', () => {
   })
 
   it('consulta la lista del usuario que se le pasa', async () => {
-    // Arrange
     vi.mocked(favoritos.findByUser).mockResolvedValue([])
 
-    // Act
     await getMyFavorites(favoritos, USER_ID)
 
-    // Assert
-    expect(vi.mocked(favoritos.findByUser).mock.calls).to.deep.include([USER_ID])
+    expect(favoritos.findByUser).toHaveBeenCalledWith(USER_ID)
   })
 
   it('sin favoritos devuelve una lista vacía, no null', async () => {
-    // Arrange
     vi.mocked(favoritos.findByUser).mockResolvedValue([])
 
-    // Act
-    const resultado = await getMyFavorites(favoritos, USER_ID)
-
-    // Assert
-    expect(resultado).to.be.an('array').that.is.empty
+    await expect(getMyFavorites(favoritos, USER_ID)).resolves.toEqual([])
   })
 
   it('devuelve los celulares tal como los entrega el repositorio', async () => {
-    // Arrange
     const celulares = [
       { id: PHONE_ID, name: 'iPhone 13' },
       { id: 'phone-2', name: 'Galaxy S21' },
     ] as Phone[]
     vi.mocked(favoritos.findByUser).mockResolvedValue(celulares)
 
-    // Act
-    const resultado = await getMyFavorites(favoritos, USER_ID)
-
-    // Assert
-    expect(resultado).to.deep.equal(celulares)
+    await expect(getMyFavorites(favoritos, USER_ID)).resolves.toEqual(celulares)
   })
 })

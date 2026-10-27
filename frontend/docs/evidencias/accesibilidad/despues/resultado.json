@@ -1,0 +1,86 @@
+{
+  "fecha": "2026-10-12T22:40:03.924Z",
+  "estandar": "WCAG 2.1 A/AA (axe-core)",
+  "pantallas": [
+    {
+      "pantalla": "Inicio",
+      "ruta": "/",
+      "rol": "anonimo",
+      "captura": "_.png",
+      "reglasEvaluadas": 23,
+      "violaciones": []
+    },
+    {
+      "pantalla": "Catálogo",
+      "ruta": "/catalog",
+      "rol": "anonimo",
+      "captura": "_catalog.png",
+      "reglasEvaluadas": 25,
+      "violaciones": []
+    },
+    {
+      "pantalla": "Iniciar sesión",
+      "ruta": "/login",
+      "rol": "anonimo",
+      "captura": "_login.png",
+      "reglasEvaluadas": 14,
+      "violaciones": []
+    },
+    {
+      "pantalla": "Registro",
+      "ruta": "/register",
+      "rol": "anonimo",
+      "captura": "_register.png",
+      "reglasEvaluadas": 19,
+      "violaciones": []
+    },
+    {
+      "pantalla": "Mis pedidos",
+      "ruta": "/dashboard",
+      "rol": "cliente",
+      "captura": "_dashboard.png",
+      "reglasEvaluadas": 22,
+      "violaciones": []
+    },
+    {
+      "pantalla": "Mi perfil",
+      "ruta": "/profile",
+      "rol": "cliente",
+      "captura": "_profile.png",
+      "reglasEvaluadas": 27,
+      "violaciones": []
+    },
+    {
+      "pantalla": "Panel de administración",
+      "ruta": "/admin",
+      "rol": "admin",
+      "captura": "_admin.png",
+      "reglasEvaluadas": 12,
+      "violaciones": []
+    },
+    {
+      "pantalla": "Usuarios (admin)",
+      "ruta": "/admin/users",
+      "rol": "admin",
+      "captura": "_admin_users.png",
+      "reglasEvaluadas": 20,
+      "violaciones": []
+    },
+    {
+      "pantalla": "Celulares (admin)",
+      "ruta": "/admin/phones",
+      "rol": "admin",
+      "captura": "_admin_phones.png",
+      "reglasEvaluadas": 13,
+      "violaciones": []
+    },
+    {
+      "pantalla": "Acceso no autorizado",
+      "ruta": "/unauthorized",
+      "rol": "anonimo",
+      "captura": "_unauthorized.png",
+      "reglasEvaluadas": 21,
+      "violaciones": []
+    }
+  ]
+}

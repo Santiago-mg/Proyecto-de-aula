@@ -1,5 +1,4 @@
-import { expect } from 'chai';
-import { beforeEach, describe, it, vi } from 'vitest';
+import { beforeEach, describe, it, expect, vi } from 'vitest';
 import {
   createPhone,
   deletePhone,
@@ -26,7 +25,6 @@ import {
   ordenarPorAfinidad,
   rangoDePrecio,
 } from '../../../src/domain/recomendaciones';
-import { capturarError } from '../../helpers/errores';
 
 /** La ficha resumida, tal como la arma mapToListItem() en el repositorio real. */
 function aListItem(p: Phone): PhoneListItem {
@@ -204,76 +202,55 @@ beforeEach(() => {
 
 describe('getPhoneBySlug — obtener un celular por su slug', () => {
   it('returns the phone when the slug exists', async () => {
-    // Arrange
     const telefonos = [
       makePhone({ id: 'p1', slug: 'iphone-15', name: 'iPhone 15' }),
       makePhone({ id: 'p2', slug: 'galaxy-s24', name: 'Galaxy S24' }),
     ];
     const repo = new IPhoneRepositoryMock(telefonos);
 
-    // Act
     const result = await getPhoneBySlug(repo, 'iphone-15');
 
-    // Assert
-    expect(result).to.deep.equal(telefonos[0]);
+    expect(result).toEqual(telefonos[0]);
   });
 
   it('asks the repository for the exact slug', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock([
       makePhone({ id: 'p1', slug: 'iphone-15' }),
     ]);
     const spy = vi.spyOn(repo, 'findBySlug');
 
-    // Act
     await getPhoneBySlug(repo, 'iphone-15');
 
-    // Assert
-    expect(spy.mock.calls).to.have.lengthOf(1);
-    expect(spy.mock.calls).to.deep.include(['iphone-15']);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith('iphone-15');
   });
 
   it('throws a 404 AppError when the slug does not exist', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock([
       makePhone({ id: 'p1', slug: 'iphone-15' }),
     ]);
 
-    // Act
-    const error = await capturarError(getPhoneBySlug(repo, 'galaxy-s24'))
-
-    // Assert
-    expect(error).to.deep.include({
+    await expect(getPhoneBySlug(repo, 'galaxy-s24')).rejects.toMatchObject({
       statusCode: 404,
       message: 'Celular no encontrado',
     });
   });
 
   it('throws 404 when the repository has no phones at all', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock();
 
-    // Act
-    const error = await capturarError(getPhoneBySlug(repo, 'cualquier-slug'))
-
-    // Assert
-    expect(error).to.deep.include({
+    await expect(getPhoneBySlug(repo, 'cualquier-slug')).rejects.toMatchObject({
       statusCode: 404,
       message: 'Celular no encontrado',
     });
   });
 
   it('matches the slug exactly and not by partial text', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock([
       makePhone({ id: 'p1', slug: 'iphone-15' }),
     ]);
 
-    // Act
-    const error = await capturarError(getPhoneBySlug(repo, 'iphone-1'))
-
-    // Assert
-    expect(error).to.deep.include({
+    await expect(getPhoneBySlug(repo, 'iphone-1')).rejects.toMatchObject({
       statusCode: 404,
     });
   });
@@ -281,7 +258,6 @@ describe('getPhoneBySlug — obtener un celular por su slug', () => {
 
 describe('getPhones — listar celulares con filtros y paginación', () => {
   it('delegates the filters and pagination to the repository', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock([
       makePhone({ id: 'p1', slug: 'iphone-15' }),
     ]);
@@ -305,12 +281,10 @@ describe('getPhones — listar celulares con filtros y paginación', () => {
       search: 'iphone',
     };
 
-    // Act
     const result = await getPhones(repo, query);
 
-    // Assert
-    expect(spy.mock.calls).to.have.lengthOf(1);
-    expect(spy.mock.calls).to.deep.include([
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(
       {
         category: 'apple',
         brand: 'Apple',
@@ -322,58 +296,47 @@ describe('getPhones — listar celulares con filtros y paginación', () => {
       },
       2,
       5,
-    ]);
-    expect(result).to.deep.equal(pagina);
+    );
+    expect(result).toEqual(pagina);
   });
 
   it('applies the filters to the in-memory phones', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock([
       makePhone({ id: 'p1', slug: 'iphone-15', brand: 'Apple', price: 1_500_000 }),
       makePhone({ id: 'p2', slug: 'galaxy-s24', brand: 'Samsung', price: 3_000_000 }),
     ]);
 
-    // Act
     const result = await getPhones(repo, {
       page: 1,
       limit: 12,
       brand: 'Samsung',
     });
 
-    // Assert
-    expect(result.data).to.have.lengthOf(1);
-    expect(result.data[0].slug).to.equal('galaxy-s24');
-    expect(result.meta.total).to.equal(1);
+    expect(result.data).toHaveLength(1);
+    expect(result.data[0].slug).toBe('galaxy-s24');
+    expect(result.meta.total).toBe(1);
   });
 });
 
 describe('getPhoneById — obtener un celular por su id', () => {
   it('returns the phone when the id exists', async () => {
-    // Arrange
     const telefonos = [
       makePhone({ id: 'p1', slug: 'iphone-15' }),
       makePhone({ id: 'p2', slug: 'galaxy-s24' }),
     ];
     const repo = new IPhoneRepositoryMock(telefonos);
 
-    // Act
     const result = await getPhoneById(repo, 'p2');
 
-    // Assert
-    expect(result).to.deep.equal(telefonos[1]);
+    expect(result).toEqual(telefonos[1]);
   });
 
   it('throws a 404 AppError when the id does not exist', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock([
       makePhone({ id: 'p1', slug: 'iphone-15' }),
     ]);
 
-    // Act
-    const error = await capturarError(getPhoneById(repo, 'id-desconocido'))
-
-    // Assert
-    expect(error).to.deep.include({
+    await expect(getPhoneById(repo, 'id-desconocido')).rejects.toMatchObject({
       statusCode: 404,
       message: 'Celular no encontrado',
     });
@@ -382,7 +345,6 @@ describe('getPhoneById — obtener un celular por su id', () => {
 
 describe('createPhone — crear un celular', () => {
   it('creates a phone keeping every optional field provided', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock();
     const data: CreatePhoneDto = {
       slug: 'iphone-15',
@@ -411,11 +373,9 @@ describe('createPhone — crear un celular', () => {
       features: ['5G', 'Face ID'],
     };
 
-    // Act
     const result = await createPhone(repo, data);
 
-    // Assert
-    expect(result).to.deep.include({
+    expect(result).toMatchObject({
       slug: 'iphone-15',
       name: 'iPhone 15',
       compareAt: 5_000_000,
@@ -431,14 +391,12 @@ describe('createPhone — crear un celular', () => {
       longDesc: 'Descripción larga',
       heroImage: 'https://ejemplo.com/iphone-15.jpg',
     });
-    const resultado = await repo.findById(result.id)
-    expect(resultado).to.deep.include({
+    await expect(repo.findById(result.id)).resolves.toMatchObject({
       slug: 'iphone-15',
     });
   });
 
   it('defaults the optional fields to null when they are absent', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock();
     const data: CreatePhoneDto = {
       slug: 'galaxy-s24',
@@ -457,11 +415,9 @@ describe('createPhone — crear un celular', () => {
       features: [],
     };
 
-    // Act
     const result = await createPhone(repo, data);
 
-    // Assert
-    expect(result).to.deep.include({
+    expect(result).toMatchObject({
       slug: 'galaxy-s24',
       compareAt: null,
       badge: null,
@@ -481,34 +437,28 @@ describe('createPhone — crear un celular', () => {
 
 describe('updatePhone — actualizar un celular', () => {
   it('updates an existing phone with the given data', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock([
       makePhone({ id: 'p1', slug: 'iphone-15', price: 1_500_000, stock: 5 }),
     ]);
     const data: UpdatePhoneDto = { price: 2_000_000, stock: 3 };
     const spy = vi.spyOn(repo, 'update');
 
-    // Act
     const result = await updatePhone(repo, 'p1', data);
 
-    // Assert
-    expect(spy.mock.calls).to.have.lengthOf(1);
-    expect(spy.mock.calls).to.deep.include(['p1', data]);
-    expect(result.price).to.equal(2_000_000);
-    expect(result.stock).to.equal(3);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith('p1', data);
+    expect(result.price).toBe(2_000_000);
+    expect(result.stock).toBe(3);
   });
 
   it('throws a 404 AppError when the phone does not exist', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock([
       makePhone({ id: 'p1', slug: 'iphone-15' }),
     ]);
 
-    // Act
-    const error = await capturarError(updatePhone(repo, 'id-desconocido', { price: 1 }))
-
-    // Assert
-    expect(error).to.deep.include({
+    await expect(
+      updatePhone(repo, 'id-desconocido', { price: 1 }),
+    ).rejects.toMatchObject({
       statusCode: 404,
       message: 'Celular no encontrado',
     });
@@ -517,33 +467,24 @@ describe('updatePhone — actualizar un celular', () => {
 
 describe('deletePhone — eliminar un celular', () => {
   it('deletes an existing phone', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock([
       makePhone({ id: 'p1', slug: 'iphone-15' }),
     ]);
     const spy = vi.spyOn(repo, 'delete');
 
-    // Act
     await deletePhone(repo, 'p1');
 
-    // Assert
-    expect(spy.mock.calls).to.have.lengthOf(1);
-    expect(spy.mock.calls).to.deep.include(['p1']);
-    const resultado = await repo.findById('p1')
-    expect(resultado).to.be.null;
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith('p1');
+    await expect(repo.findById('p1')).resolves.toBeNull();
   });
 
   it('throws a 404 AppError when the phone does not exist', async () => {
-    // Arrange
     const repo = new IPhoneRepositoryMock([
       makePhone({ id: 'p1', slug: 'iphone-15' }),
     ]);
 
-    // Act
-    const error = await capturarError(deletePhone(repo, 'id-desconocido'))
-
-    // Assert
-    expect(error).to.deep.include({
+    await expect(deletePhone(repo, 'id-desconocido')).rejects.toMatchObject({
       statusCode: 404,
       message: 'Celular no encontrado',
     });

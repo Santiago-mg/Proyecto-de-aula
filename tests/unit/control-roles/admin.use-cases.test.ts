@@ -1,10 +1,8 @@
-import { expect } from 'chai'
-import { describe, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { changeUserRole } from '../../../src/application/use-cases/admin.use-cases'
 import { AdminRepository } from '../../../src/infrastructure/repositories/AdminRepository'
-import { consultaDe, prismaMock } from '../../helpers/prisma-mock'
+import { prismaMock } from '../../helpers/prisma-mock'
 import { usuarioConConteo } from '../../helpers/fixtures'
-import { capturarError } from '../../helpers/errores'
 
 // Igual que control-roles/changeUserRole.use-case.test.ts, pero cubriendo
 // también el caso de degradar de ADMIN a USER. Se deja como archivo aparte
@@ -17,12 +15,10 @@ const repo = new AdminRepository()
 
 describe('changeUserRole', () => {
   it('promueve a un USER a ADMIN', async () => {
-    // Arrange
     const admin = usuarioConConteo({ role: 'ADMIN' })
     const usuario = usuarioConConteo({ role: 'USER' })
     prismaMock.user.update.mockResolvedValue({ ...usuario, role: 'ADMIN' })
 
-    // Act
     const result = await changeUserRole(
       repo,
       usuario.id,
@@ -30,36 +26,30 @@ describe('changeUserRole', () => {
       admin.id,
     )
 
-    // Assert
-    expect(consultaDe(prismaMock.user.update)).to.deep.include({
-      where: { id: usuario.id },
-      data: { role: 'ADMIN' },
-    })
-    expect(result.role).to.equal('ADMIN')
+    expect(prismaMock.user.update).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: { id: usuario.id },
+        data: { role: 'ADMIN' },
+      }),
+    )
+    expect(result.role).toBe('ADMIN')
   })
 
   it('rechaza que un admin cambie su propio rol', async () => {
-    // Arrange
     const admin = usuarioConConteo({ role: 'ADMIN' })
 
-    // Act
-    const error = await capturarError(
+    await expect(
       changeUserRole(repo, admin.id, { role: 'ADMIN' }, admin.id),
-    )
+    ).rejects.toMatchObject({ statusCode: 400 })
 
-    // Assert
-    expect(error).to.deep.include({ statusCode: 400 })
-
-    expect(prismaMock.user.update.mock.calls).to.be.empty
+    expect(prismaMock.user.update).not.toHaveBeenCalled()
   })
 
   it('degrada a un ADMIN a USER', async () => {
-    // Arrange
     const admin = usuarioConConteo({ role: 'ADMIN' })
     const otroAdmin = usuarioConConteo({ role: 'ADMIN' })
     prismaMock.user.update.mockResolvedValue({ ...otroAdmin, role: 'USER' })
 
-    // Act
     const result = await changeUserRole(
       repo,
       otroAdmin.id,
@@ -67,7 +57,6 @@ describe('changeUserRole', () => {
       admin.id,
     )
 
-    // Assert
-    expect(result.role).to.equal('USER')
+    expect(result.role).toBe('USER')
   })
 })

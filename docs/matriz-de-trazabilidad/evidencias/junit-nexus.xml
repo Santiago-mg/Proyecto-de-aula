@@ -1,0 +1,50 @@
+<testsuites id="" name="" tests="18" failures="0" skipped="0" errors="0" time="48.572431">
+<testsuite name="escenarios/01-registro.spec.js" timestamp="2026-10-25T05:07:43.694Z" hostname="chromium" tests="3" failures="0" skipped="0" time="9.067" errors="0">
+<testcase name="Registro correcto con correo de Gmail lleva a Mi cuenta" classname="escenarios/01-registro.spec.js" time="3.207">
+</testcase>
+<testcase name="Registro rechaza un correo de dominio no permitido sin enviar" classname="escenarios/01-registro.spec.js" time="3.081">
+</testcase>
+<testcase name="Registro rechaza confirmación distinta" classname="escenarios/01-registro.spec.js" time="2.779">
+</testcase>
+</testsuite>
+<testsuite name="escenarios/02-inicio-sesion.spec.js" timestamp="2026-10-25T05:07:43.694Z" hostname="chromium" tests="4" failures="0" skipped="0" time="9.185" errors="0">
+<testcase name="Inicio de sesión correcto del administrador" classname="escenarios/02-inicio-sesion.spec.js" time="2.07">
+</testcase>
+<testcase name="Inicio de sesión con contraseña incorrecta muestra el error y no entra" classname="escenarios/02-inicio-sesion.spec.js" time="2.036">
+</testcase>
+<testcase name="Inicio de sesión acepta el correo en mayúsculas" classname="escenarios/02-inicio-sesion.spec.js" time="2.021">
+</testcase>
+<testcase name="Cerrar sesión vuelve a Ingresar y protege Mi cuenta" classname="escenarios/02-inicio-sesion.spec.js" time="3.058">
+</testcase>
+</testsuite>
+<testsuite name="escenarios/03-perfil.spec.js" timestamp="2026-10-25T05:07:43.694Z" hostname="chromium" tests="3" failures="0" skipped="0" time="11.097" errors="0">
+<testcase name="Cambiar el nombre en Mi perfil actualiza el saludo" classname="escenarios/03-perfil.spec.js" time="4.045">
+</testcase>
+<testcase name="Descartar cambios devuelve el nombre guardado" classname="escenarios/03-perfil.spec.js" time="3.031">
+</testcase>
+<testcase name="Cambiar la contraseña con la actual incorrecta muestra el error" classname="escenarios/03-perfil.spec.js" time="4.021">
+</testcase>
+</testsuite>
+<testsuite name="escenarios/04-credenciales.spec.js" timestamp="2026-10-25T05:07:43.694Z" hostname="chromium" tests="3" failures="0" skipped="0" time="6.15" errors="0">
+<testcase name="Los requisitos de la contraseña se marcan mientras se escribe" classname="escenarios/04-credenciales.spec.js" time="1.434">
+</testcase>
+<testcase name="Contraseña sin mayúscula no se envía" classname="escenarios/04-credenciales.spec.js" time="3.081">
+</testcase>
+<testcase name="Una sesión corrupta se explica en Ingresar" classname="escenarios/04-credenciales.spec.js" time="1.635">
+</testcase>
+</testsuite>
+<testsuite name="escenarios/05-roles.spec.js" timestamp="2026-10-25T05:07:43.694Z" hostname="chromium" tests="3" failures="0" skipped="0" time="6.226" errors="0">
+<testcase name="Sin sesión, el panel de administración pide iniciar sesión" classname="escenarios/05-roles.spec.js" time="1.147">
+</testcase>
+<testcase name="Un cliente no entra al panel de administración" classname="escenarios/05-roles.spec.js" time="2.938">
+</testcase>
+<testcase name="El administrador entra al panel" classname="escenarios/05-roles.spec.js" time="2.141">
+</testcase>
+</testsuite>
+<testsuite name="escenarios/06-alertas-stock.spec.js" timestamp="2026-10-25T05:07:43.694Z" hostname="chromium" tests="2" failures="0" skipped="0" time="4.87" errors="0">
+<testcase name="El administrador ve la página de alertas de stock" classname="escenarios/06-alertas-stock.spec.js" time="2.178">
+</testcase>
+<testcase name="Un cliente no puede ver las alertas de stock" classname="escenarios/06-alertas-stock.spec.js" time="2.692">
+</testcase>
+</testsuite>
+</testsuites>

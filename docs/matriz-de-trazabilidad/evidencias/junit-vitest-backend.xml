@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="462" failures="0" errors="0" time="27.263">
+    <testsuite name="tests/escenarios/autenticacion.test.ts" timestamp="2026-10-25T09:57:40.794Z" hostname="vm" tests="10" failures="0" errors="0" skipped="0" time="0.07657273">
+        <testcase classname="tests/escenarios/autenticacion.test.ts" name="POST /auth/register &gt; body inválido → 400 Datos inválidos" time="0.02770717">
+        </testcase>
+        <testcase classname="tests/escenarios/autenticacion.test.ts" name="POST /auth/register &gt; email ya registrado → 409" time="0.005648064">
+        </testcase>
+        <testcase classname="tests/escenarios/autenticacion.test.ts" name="POST /auth/register &gt; datos correctos → 201 con el usuario y su token, sin la contraseña" time="0.006475844">
+        </testcase>
+        <testcase classname="tests/escenarios/autenticacion.test.ts" name="POST /auth/login &gt; credenciales incorrectas → 401" time="0.004078883">
+        </testcase>
+        <testcase classname="tests/escenarios/autenticacion.test.ts" name="POST /auth/login &gt; cuenta suspendida → 403 con el motivo" time="0.004115715">
+        </testcase>
+        <testcase classname="tests/escenarios/autenticacion.test.ts" name="POST /auth/login &gt; credenciales correctas → 200 con el token" time="0.009337438">
+        </testcase>
+        <testcase classname="tests/escenarios/autenticacion.test.ts" name="GET /auth/me &gt; sin token → 401" time="0.002893163">
+        </testcase>
+        <testcase classname="tests/escenarios/autenticacion.test.ts" name="GET /auth/me &gt; token con firma inválida → 401" time="0.00384767">
+        </testcase>
+        <testcase classname="tests/escenarios/autenticacion.test.ts" name="GET /auth/me &gt; token válido → 200 con el perfil completo leído de la base" time="0.006720856">
+        </testcase>
+        <testcase classname="tests/escenarios/autenticacion.test.ts" name="GET /auth/me &gt; el usuario del token ya no existe → 401" time="0.004045821">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/catalogo-publico.test.ts" timestamp="2026-10-25T09:57:40.803Z" hostname="vm" tests="14" failures="0" errors="0" skipped="0" time="0.0979751">
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="GET /phones — listado público &gt; sin filtros → 200 con la lista paginada y el WHERE vacío" time="0.02589278">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="GET /phones — listado público &gt; limit fuera de rango → 400 Datos inválidos" time="0.006474122">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="GET /phones — listado público &gt; verified=false filtra por los NO verificados" time="0.005030149">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="GET /phones — listado público &gt; verified con un valor que no es true/false → 400" time="0.004416668">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="GET /phones — listado público &gt; cada filtro se traduce a su parte del WHERE" time="0.005549689">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="GET /phones — listado público &gt; la segunda página salta los resultados de la primera" time="0.003613565">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="GET /phones/:slug — detalle público &gt; slug inexistente → 404" time="0.009235465">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="GET /phones/:slug — detalle público &gt; slug existente → 200 con el celular y sus relaciones" time="0.004572114">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="GET /phones/id/:id — detalle por UUID (solo admin) &gt; sin token → 401" time="0.005911408">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="GET /phones/id/:id — detalle por UUID (solo admin) &gt; rol USER → 403: expone el registro crudo, así que no es pública" time="0.008828652">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="GET /phones/id/:id — detalle por UUID (solo admin) &gt; admin con id inexistente → 404" time="0.005815324">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="GET /phones/id/:id — detalle por UUID (solo admin) &gt; admin con id existente → 200" time="0.003983512">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="Rutas que no existen &gt; devuelve 404 Ruta no encontrada" time="0.003109351">
+        </testcase>
+        <testcase classname="tests/escenarios/catalogo-publico.test.ts" name="Rutas que no existen &gt; /health responde ok" time="0.002494195">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/esc-13-recomendacion-productos.test.ts" timestamp="2026-10-25T09:57:40.807Z" hostname="vm" tests="16" failures="0" errors="0" skipped="0" time="0.10014189">
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Camino 1 (1-2-15): el parámetro limit no es válido &gt; limit = 0 → 400 Datos inválidos" time="0.023407308">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Camino 1 (1-2-15): el parámetro limit no es válido &gt; limit por encima del tope → 400, el endpoint no es un volcado del catálogo" time="0.005026329">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Camino 1 (1-2-15): el parámetro limit no es válido &gt; limit que no es un número → 400" time="0.004369442">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Camino 2 (1-3-4-15): el celular base no existe &gt; slug que no está en el catálogo → 404 Celular no encontrado" time="0.004355422">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Camino 3 (1-3-5-6-13-14-15): no hay candidatos &gt; el catálogo no tiene nada parecido → 200 con lista vacía" time="0.004851587">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Puntuación de un candidato (caminos 4 a 7) &gt; Camino 4 (1-3-5-6-7-8-9-10-11-12-6-13-14-15): coincide en marca, categoría y precio" time="0.004906718">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Puntuación de un candidato (caminos 4 a 7) &gt; Camino 5 (1-3-5-6-7-9-10-11-12-6-13-14-15): otra marca, misma categoría y precio" time="0.009349392">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Puntuación de un candidato (caminos 4 a 7) &gt; Camino 6 (1-3-5-6-7-8-9-11-12-6-13-14-15): misma marca, otra categoría, precio dentro" time="0.004575717">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Puntuación de un candidato (caminos 4 a 7) &gt; Camino 7 (1-3-5-6-7-8-9-10-11-6-13-14-15): marca y categoría iguales, precio fuera del rango" time="0.0053907">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Orden y recorte de la lista (nodo 13) &gt; primero el de más afinidad, aunque la base lo devuelva de último" time="0.004027008">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Orden y recorte de la lista (nodo 13) &gt; a igual afinidad, primero el de precio más cercano" time="0.002666918">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Orden y recorte de la lista (nodo 13) &gt; devuelve como mucho las que se piden" time="0.00344764">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Consulta de candidatos (nodo 5) &gt; descarta el propio celular y los agotados, y busca por marca, categoría o precio" time="0.004996298">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Consulta de candidatos (nodo 5) &gt; sin limit se piden 4, que es lo que cabe en la fila de la ficha" time="0.003285023">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Consulta de candidatos (nodo 5) &gt; con limit explícito se piden candidatos en proporción" time="0.00289796">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-13-recomendacion-productos.test.ts" name="Fallos de infraestructura &gt; si se cae la consulta de candidatos → 500 sin filtrar el detalle" time="0.010043099">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/esc-26-banear-usuario-ampliacion.test.ts" timestamp="2026-10-25T09:57:40.812Z" hostname="vm" tests="4" failures="0" errors="0" skipped="0" time="0.057739455">
+        <testcase classname="tests/escenarios/esc-26-banear-usuario-ampliacion.test.ts" name="ESC-26 — Banear usuario: ampliación &gt; un motivo de exactamente 4 caracteres es válido (valor límite) → 200" time="0.035568293">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-26-banear-usuario-ampliacion.test.ts" name="ESC-26 — Banear usuario: ampliación &gt; sin el campo reason → 400 indicando el campo que falta" time="0.008465774">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-26-banear-usuario-ampliacion.test.ts" name="ESC-26 — Banear usuario: ampliación &gt; guarda el motivo recibido y la fecha de la suspensión" time="0.007506128">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-26-banear-usuario-ampliacion.test.ts" name="ESC-26 — Banear usuario: ampliación &gt; un administrador suspendido no puede banear a nadie → 403" time="0.005032468">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/esc-26-banear-usuario.test.ts" timestamp="2026-10-25T09:57:40.813Z" hostname="vm" tests="8" failures="0" errors="0" skipped="0" time="0.095580611">
+        <testcase classname="tests/escenarios/esc-26-banear-usuario.test.ts" name="ESC-26 — Banear usuario &gt; Camino 1 (1-2-14): sin cabecera Bearer → 401 Token requerido" time="0.03631156">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-26-banear-usuario.test.ts" name="ESC-26 — Banear usuario &gt; Camino 2 (1-3-4-14): firma inválida → 401 Token inválido o expirado" time="0.007555302">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-26-banear-usuario.test.ts" name="ESC-26 — Banear usuario &gt; Camino 3 (1-3-5-6-14): rol USER → 403 Acceso restringido" time="0.006009197">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-26-banear-usuario.test.ts" name="ESC-26 — Banear usuario &gt; Camino 4 (1-3-5-7-8-14): reason con menos de 4 caracteres → 400 Datos inválidos" time="0.009260703">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-26-banear-usuario.test.ts" name="ESC-26 — Banear usuario &gt; Camino 5 (1-3-5-7-9-10-14): un admin no puede banearse a sí mismo (RN-05) → 400" time="0.005813667">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-26-banear-usuario.test.ts" name="ESC-26 — Banear usuario &gt; Camino 6 (1-3-5-7-9-11-12-14): el id no existe → 404 Usuario no encontrado" time="0.014340276">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-26-banear-usuario.test.ts" name="ESC-26 — Banear usuario &gt; Camino 7 (1-3-5-7-9-11-13-14): datos correctos → 200 con el usuario baneado" time="0.006528343">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-26-banear-usuario.test.ts" name="ESC-26 — Banear usuario &gt; Camino 8: el destino es otro administrador → 403 y no se banea (H7.1)" time="0.004940272">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" timestamp="2026-10-25T09:57:40.815Z" hostname="vm" tests="18" failures="0" errors="0" skipped="0" time="0.124026364">
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: contrato de la respuesta &gt; responde 200 con el usuario dentro de { data }" time="0.030932102">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: contrato de la respuesta &gt; el usuario queda activo: banned = false" time="0.007732637">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: contrato de la respuesta &gt; el motivo de la suspensión queda en null" time="0.004929417">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: contrato de la respuesta &gt; la fecha de la suspensión queda en null" time="0.003500338">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: contrato de la respuesta &gt; la contraseña nunca sale en la respuesta" time="0.004802376">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: contrato de la respuesta &gt; devuelve solo los campos públicos del usuario" time="0.003965213">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: contrato de la respuesta &gt; el conteo de pedidos sale como orderCount" time="0.008572032">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: lo que se guarda &gt; limpia los tres campos de la suspensión en una sola actualización" time="0.005380958">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: lo que se guarda &gt; actualiza exactamente el usuario de la ruta" time="0.006084209">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: lo que se guarda &gt; desbanear a un usuario que ya estaba activo responde 200 (operación idempotente)" time="0.004276073">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: lo que se guarda &gt; un administrador puede desbanear a otro administrador" time="0.002796851">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: seguridad y errores &gt; un administrador suspendido no puede desbanear a nadie → 403" time="0.003366684">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: seguridad y errores &gt; un token de un usuario que ya no existe → 401 y no se toca la base" time="0.003936931">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: seguridad y errores &gt; un fallo inesperado de la base → 500 con el mensaje genérico" time="0.011502163">
+            <system-err>
+[ERROR 500] conexión perdida con la base de datos
+Error: conexión perdida con la base de datos
+    at /home/claude/a/Proyecto-de-aula-mario/tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts:125:46
+    at file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:146:14
+    at file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:533:11
+    at runWithTimeout (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:39:7)
+    at runTest (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1056:17)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at runSuite (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runSuite (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runFiles (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1262:5)
+    at startTests (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1271:3)
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: seguridad y errores &gt; en producción ese fallo no expone el detalle interno" time="0.004136226">
+            <system-err>
+[ERROR 500] conexión perdida con la base de datos
+Error: conexión perdida con la base de datos
+    at /home/claude/a/Proyecto-de-aula-mario/tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts:136:46
+    at file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:146:14
+    at file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:533:11
+    at runWithTimeout (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:39:7)
+    at runTest (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1056:17)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at runSuite (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runSuite (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runFiles (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1262:5)
+    at startTests (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1271:3)
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: seguridad y errores &gt; la respuesta no se guarda en caché (Cache-Control: no-store)" time="0.003390789">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: seguridad y errores &gt; la ruta solo acepta PUT: GET → 404" time="0.002976101">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts" name="ESC-27 — Desbanear usuario: seguridad y errores &gt; no hace falta cuerpo: un cuerpo cualquiera se ignora y no modifica otros campos" time="0.009811773">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/esc-27-desbanear-usuario.test.ts" timestamp="2026-10-25T09:57:40.819Z" hostname="vm" tests="5" failures="0" errors="0" skipped="0" time="0.049020372">
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario.test.ts" name="ESC-27 — Desbanear usuario &gt; Camino 1 (1-2-10): sin cabecera Bearer → 401 Token requerido" time="0.02124245">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario.test.ts" name="ESC-27 — Desbanear usuario &gt; Camino 2 (1-3-4-10): firma inválida → 401 Token inválido o expirado" time="0.007284827">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario.test.ts" name="ESC-27 — Desbanear usuario &gt; Camino 3 (1-3-5-6-10): rol USER → 403 Acceso restringido" time="0.006170459">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario.test.ts" name="ESC-27 — Desbanear usuario &gt; Camino 4 (1-3-5-7-8-10): el id no existe → 404 Usuario no encontrado" time="0.00533315">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-27-desbanear-usuario.test.ts" name="ESC-27 — Desbanear usuario &gt; Camino 5 (1-3-5-7-9-10): usuario suspendido → 200 y se limpian los tres campos del baneo" time="0.007683533">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" timestamp="2026-10-25T09:57:40.823Z" hostname="vm" tests="14" failures="0" errors="0" skipped="0" time="0.10116147">
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: límites de los parámetros &gt; limit mayor que 50 → 400 Datos inválidos, sin consultar la base" time="0.031798531">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: límites de los parámetros &gt; limit en 0 → 400 Datos inválidos, sin consultar la base" time="0.005902099">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: límites de los parámetros &gt; page negativo → 400 Datos inválidos, sin consultar la base" time="0.004777266">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: límites de los parámetros &gt; limit no numérico → 400 Datos inválidos, sin consultar la base" time="0.004264569">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: paginación &gt; sin parámetros usa la página 1 con 20 usuarios" time="0.007867821">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: paginación &gt; page=3 y limit=10 salta los primeros 20 usuarios" time="0.005041944">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: paginación &gt; totalPages se redondea hacia arriba: 45 usuarios de a 20 son 3 páginas" time="0.009989089">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: paginación &gt; una página más allá del final responde 200 con la lista vacía" time="0.003731633">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: búsqueda, orden y filas &gt; la búsqueda compara nombre y correo sin distinguir mayúsculas" time="0.007037107">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: búsqueda, orden y filas &gt; el total también se cuenta con el mismo filtro de búsqueda" time="0.004503971">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: búsqueda, orden y filas &gt; los usuarios más recientes salen primero" time="0.003984143">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: búsqueda, orden y filas &gt; cada fila trae su cantidad de pedidos (orderCount)" time="0.003659284">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: búsqueda, orden y filas &gt; los usuarios suspendidos aparecen con su estado y su motivo" time="0.003442234">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts" name="ESC-28 — Consultar usuarios: búsqueda, orden y filas &gt; la respuesta no se guarda en caché (Cache-Control: no-store)" time="0.002918017">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/esc-28-consultar-usuarios.test.ts" timestamp="2026-10-25T09:57:40.826Z" hostname="vm" tests="7" failures="0" errors="0" skipped="0" time="0.069250492">
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios.test.ts" name="ESC-28 — Consultar usuarios &gt; Camino 1 (1-2-14): sin cabecera Bearer → 401 Token requerido" time="0.022997278">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios.test.ts" name="ESC-28 — Consultar usuarios &gt; Camino 2 (1-3-4-14): firma inválida → 401 Token inválido o expirado" time="0.007821417">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios.test.ts" name="ESC-28 — Consultar usuarios &gt; Camino 3 (1-3-5-6-14): rol USER → 403 Acceso restringido" time="0.005426815">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios.test.ts" name="ESC-28 — Consultar usuarios &gt; Camino 4 (1-3-5-7-8-14): page inválido → 400 Datos inválidos" time="0.007268347">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios.test.ts" name="ESC-28 — Consultar usuarios &gt; Camino 5 (1-3-5-7-9-10-12-13-14): con search → 200 con la lista filtrada" time="0.00871877">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios.test.ts" name="ESC-28 — Consultar usuarios &gt; Camino 6 (1-3-5-7-9-11-12-13-14): sin search → 200 con la lista completa paginada" time="0.00529917">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-28-consultar-usuarios.test.ts" name="ESC-28 — Consultar usuarios &gt; La contraseña nunca sale en el listado" time="0.010149746">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/esc-29-panel-estadisticas.test.ts" timestamp="2026-10-25T09:57:40.831Z" hostname="vm" tests="9" failures="0" errors="0" skipped="0" time="0.105128346">
+        <testcase classname="tests/escenarios/esc-29-panel-estadisticas.test.ts" name="ESC-29 — Panel de estadísticas &gt; Camino 1 (1-2-14): sin cabecera Bearer → 401 Token requerido" time="0.022346579">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-29-panel-estadisticas.test.ts" name="ESC-29 — Panel de estadísticas &gt; Camino 2 (1-3-4-14): firma inválida → 401 Token inválido o expirado" time="0.00884219">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-29-panel-estadisticas.test.ts" name="ESC-29 — Panel de estadísticas &gt; Camino 3 (1-3-5-6-14): rol USER → 403 Acceso restringido" time="0.006071275">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-29-panel-estadisticas.test.ts" name="ESC-29 — Panel de estadísticas &gt; Camino 4 (1-3-5-7-8-9-13-14): sin pedidos → 200 con los ingresos en 0" time="0.023670914">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-29-panel-estadisticas.test.ts" name="ESC-29 — Panel de estadísticas &gt; Camino 5 (1-3-5-7-8-9-10-11-9-13-14): pedido no cancelado → suma su total a los ingresos" time="0.00663866">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-29-panel-estadisticas.test.ts" name="ESC-29 — Panel de estadísticas &gt; Camino 6 (1-3-5-7-8-9-10-12-9-13-14): pedido cancelado → no se suma a los ingresos" time="0.005743495">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-29-panel-estadisticas.test.ts" name="ESC-29 — Panel de estadísticas &gt; Con pedidos mezclados solo suma los que no están cancelados" time="0.012445325">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-29-panel-estadisticas.test.ts" name="ESC-29 — Panel de estadísticas &gt; El panel siempre devuelve los 7 días de ingresos" time="0.009129033">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-29-panel-estadisticas.test.ts" name="ESC-29 — Panel de estadísticas &gt; Un pedido de hoy aparece en el último día del desglose diario" time="0.008709439">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/esc-30-administracion-catalogo.test.ts" timestamp="2026-10-25T09:57:40.832Z" hostname="vm" tests="10" failures="0" errors="0" skipped="0" time="0.085413135">
+        <testcase classname="tests/escenarios/esc-30-administracion-catalogo.test.ts" name="ESC-30 — Administración del catálogo &gt; Camino 1 (1-2-19): sin cabecera Bearer → 401 Token requerido" time="0.026656508">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-30-administracion-catalogo.test.ts" name="ESC-30 — Administración del catálogo &gt; Camino 2 (1-3-4-19): firma inválida → 401 Token inválido o expirado" time="0.007635674">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-30-administracion-catalogo.test.ts" name="ESC-30 — Administración del catálogo &gt; Camino 3 (1-3-5-6-19): rol USER → 403 Acceso restringido" time="0.005393838">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-30-administracion-catalogo.test.ts" name="ESC-30 — Administración del catálogo &gt; Camino 4 (1-3-5-7-8-9-19): POST con body inválido → 400 Datos inválidos" time="0.006498444">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-30-administracion-catalogo.test.ts" name="ESC-30 — Administración del catálogo &gt; Camino 5 (1-3-5-7-8-10-11-19): POST con un slug repetido (RN-01) → 409 Ya existe un celular con ese slug" time="0.013076566">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-30-administracion-catalogo.test.ts" name="ESC-30 — Administración del catálogo &gt; Camino 6 (1-3-5-7-8-10-12-19): POST con body válido y slug libre → 201 celular creado" time="0.0054035">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-30-administracion-catalogo.test.ts" name="ESC-30 — Administración del catálogo &gt; Camino 7 (1-3-5-7-13-14-19): PUT sobre un id que no existe → 404 Celular no encontrado" time="0.00412577">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-30-administracion-catalogo.test.ts" name="ESC-30 — Administración del catálogo &gt; Camino 8 (1-3-5-7-13-15-19): PUT sobre un celular existente → 200 actualizado" time="0.003613527">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-30-administracion-catalogo.test.ts" name="ESC-30 — Administración del catálogo &gt; Camino 9 (1-3-5-7-16-17-19): DELETE sobre un id que no existe → 404 Celular no encontrado" time="0.006116749">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-30-administracion-catalogo.test.ts" name="ESC-30 — Administración del catálogo &gt; Camino 10 (1-3-5-7-16-18-19): DELETE sobre un celular existente → 204 sin contenido" time="0.00557789">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/esc-31-alertas-stock.test.ts" timestamp="2026-10-25T09:57:40.835Z" hostname="vm" tests="15" failures="0" errors="0" skipped="0" time="0.114331917">
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="GET /admin/alerts — consultar alertas abiertas &gt; sin token → 401" time="0.020918991">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="GET /admin/alerts — consultar alertas abiertas &gt; usuario sin rol de administrador → 403" time="0.008418395">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="GET /admin/alerts — consultar alertas abiertas &gt; sin alertas pendientes → 200 con lista vacía" time="0.005189379">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="GET /admin/alerts — consultar alertas abiertas &gt; devuelve las alertas con los datos del celular" time="0.005359749">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="GET /admin/alerts — consultar alertas abiertas &gt; solo pide las que siguen sin resolver, de la más reciente a la más antigua" time="0.006383342">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="Una compra levanta la alerta que corresponda &gt; si la compra deja el stock justo en el mínimo → alerta de poco stock" time="0.019605759">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="Una compra levanta la alerta que corresponda &gt; si la compra agota el celular → alerta de agotado" time="0.005151728">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="Una compra levanta la alerta que corresponda &gt; si queda inventario de sobra → no abre ninguna alerta" time="0.004127402">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="Una compra levanta la alerta que corresponda &gt; si el pedido se cae por stock insuficiente, no se toca la tabla de alertas" time="0.006117506">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="Reponer inventario desde el panel cierra la alerta &gt; al subir el stock por encima del mínimo se resuelven las abiertas" time="0.005324123">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="Reponer inventario desde el panel cierra la alerta &gt; si se repone poco, la alerta sigue abierta pero como LOW_STOCK" time="0.003500048">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="Reponer inventario desde el panel cierra la alerta &gt; un celular nuevo dado de alta sin unidades nace con su alerta" time="0.003824354">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="minStock en el catálogo &gt; si no se envía, el celular se crea con el mínimo por defecto (5)" time="0.004249124">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="minStock en el catálogo &gt; un mínimo negativo se rechaza con 400" time="0.004244769">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-31-alertas-stock.test.ts" name="Fallos de infraestructura al consultar alertas &gt; si la consulta se cae → 500" time="0.010168551">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/esc-32-lista-favoritos.test.ts" timestamp="2026-10-25T09:57:40.839Z" hostname="vm" tests="17" failures="0" errors="0" skipped="0" time="0.104402624">
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Acceso a la lista &gt; Camino 1: sin cabecera Bearer → 401 Token requerido" time="0.020122358">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Acceso a la lista &gt; Camino 2: firma inválida → 401 Token inválido o expirado" time="0.007127038">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Acceso a la lista &gt; no hace falta ser administrador: un usuario corriente entra" time="0.005164565">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Camino 3: agregar un celular a favoritos &gt; con un celular que existe → 201 y queda marcado" time="0.007066739">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Camino 3: agregar un celular a favoritos &gt; Camino 4: el id de la URL no es un UUID → 400 Datos inválidos" time="0.004695311">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Camino 3: agregar un celular a favoritos &gt; Camino 5: UUID bien formado pero que no existe → 404 Celular no encontrado" time="0.003985195">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Camino 3: agregar un celular a favoritos &gt; Camino 6: marcarlo dos veces no lo duplica (upsert, no create)" time="0.011994874">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Camino 7 y 8: quitar de favoritos &gt; quitar uno que estaba marcado → 204 sin cuerpo" time="0.00506095">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Camino 7 y 8: quitar de favoritos &gt; quitar algo que nunca estuvo marcado → 204 igual, no es un error" time="0.003449978">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Camino 7 y 8: quitar de favoritos &gt; el id de la URL también se valida al quitar → 400" time="0.003516291">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Camino 9: consultar la lista &gt; sin favoritos → 200 con lista vacía" time="0.003427884">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Camino 9: consultar la lista &gt; devuelve el celular completo, con la misma forma que el catálogo" time="0.00381894">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Camino 9: consultar la lista &gt; solo consulta los del usuario del token, nunca los de otro" time="0.004113737">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Camino 9: consultar la lista &gt; las características vuelven como texto plano, no como filas" time="0.002665272">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Fallos de infraestructura &gt; si la consulta de la lista se cae → 500" time="0.009391231">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Fallos de infraestructura &gt; si falla la escritura del favorito → 500" time="0.003636064">
+        </testcase>
+        <testcase classname="tests/escenarios/esc-32-lista-favoritos.test.ts" name="Fallos de infraestructura &gt; si falla el borrado → 500" time="0.003101497">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/gestion-perfil.test.ts" timestamp="2026-10-25T09:57:40.844Z" hostname="vm" tests="11" failures="0" errors="0" skipped="0" time="0.112286184">
+        <testcase classname="tests/escenarios/gestion-perfil.test.ts" name="PATCH /auth/me — editar el nombre &gt; sin token → 401" time="0.028871699">
+        </testcase>
+        <testcase classname="tests/escenarios/gestion-perfil.test.ts" name="PATCH /auth/me — editar el nombre &gt; nombre válido → 200 con el perfil actualizado y sin contraseña" time="0.012432986">
+        </testcase>
+        <testcase classname="tests/escenarios/gestion-perfil.test.ts" name="PATCH /auth/me — editar el nombre &gt; nombre demasiado corto → 400 con el campo y el mensaje" time="0.005947997">
+        </testcase>
+        <testcase classname="tests/escenarios/gestion-perfil.test.ts" name="PATCH /auth/me — editar el nombre &gt; un body con role: ADMIN no cambia el rol" time="0.005236169">
+        </testcase>
+        <testcase classname="tests/escenarios/gestion-perfil.test.ts" name="PATCH /auth/me — editar el nombre &gt; el usuario se elimina entre la autenticación y la escritura → 404" time="0.014388121">
+        </testcase>
+        <testcase classname="tests/escenarios/gestion-perfil.test.ts" name="PATCH /auth/me — editar el nombre &gt; cuenta suspendida → 403, no puede editar su perfil" time="0.00637031">
+        </testcase>
+        <testcase classname="tests/escenarios/gestion-perfil.test.ts" name="PUT /auth/me/password — cambiar la contraseña &gt; contraseña actual correcta y nueva válida → 204" time="0.006206413">
+        </testcase>
+        <testcase classname="tests/escenarios/gestion-perfil.test.ts" name="PUT /auth/me/password — cambiar la contraseña &gt; contraseña actual incorrecta → 400 (la sesión sigue abierta)" time="0.005629159">
+        </testcase>
+        <testcase classname="tests/escenarios/gestion-perfil.test.ts" name="PUT /auth/me/password — cambiar la contraseña &gt; contraseña nueva débil → 400 con la regla incumplida" time="0.008243195">
+        </testcase>
+        <testcase classname="tests/escenarios/gestion-perfil.test.ts" name="PUT /auth/me/password — cambiar la contraseña &gt; después del cambio, la contraseña vieja ya no sirve para ingresar" time="0.011642065">
+        </testcase>
+        <testcase classname="tests/escenarios/gestion-perfil.test.ts" name="PUT /auth/me/password — cambiar la contraseña &gt; token de un usuario eliminado → 401" time="0.005207606">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/pedidos.test.ts" timestamp="2026-10-25T09:57:40.851Z" hostname="vm" tests="12" failures="0" errors="0" skipped="0" time="0.132120741">
+        <testcase classname="tests/escenarios/pedidos.test.ts" name="POST /orders — crear pedido &gt; sin token → 401" time="0.035815836">
+        </testcase>
+        <testcase classname="tests/escenarios/pedidos.test.ts" name="POST /orders — crear pedido &gt; body inválido → 400 Datos inválidos" time="0.015834106">
+        </testcase>
+        <testcase classname="tests/escenarios/pedidos.test.ts" name="POST /orders — crear pedido &gt; celular inexistente → 404" time="0.009399038">
+        </testcase>
+        <testcase classname="tests/escenarios/pedidos.test.ts" name="POST /orders — crear pedido &gt; datos correctos → 201 con el pedido creado" time="0.00801262">
+        </testcase>
+        <testcase classname="tests/escenarios/pedidos.test.ts" name="GET /orders/my — mis pedidos &gt; sin token → 401" time="0.005566228">
+        </testcase>
+        <testcase classname="tests/escenarios/pedidos.test.ts" name="GET /orders/my — mis pedidos &gt; con token → 200 con los pedidos de ese usuario" time="0.014979555">
+        </testcase>
+        <testcase classname="tests/escenarios/pedidos.test.ts" name="GET /orders — listado de admin &gt; rol USER → 403" time="0.005411971">
+        </testcase>
+        <testcase classname="tests/escenarios/pedidos.test.ts" name="GET /orders — listado de admin &gt; admin → 200 con la lista paginada" time="0.007405832">
+        </testcase>
+        <testcase classname="tests/escenarios/pedidos.test.ts" name="PUT /orders/:id/status — cambiar estado &gt; rol USER → 403" time="0.008151188">
+        </testcase>
+        <testcase classname="tests/escenarios/pedidos.test.ts" name="PUT /orders/:id/status — cambiar estado &gt; estado inválido → 400 Datos inválidos" time="0.00687242">
+        </testcase>
+        <testcase classname="tests/escenarios/pedidos.test.ts" name="PUT /orders/:id/status — cambiar estado &gt; pedido inexistente → 404" time="0.006832551">
+        </testcase>
+        <testcase classname="tests/escenarios/pedidos.test.ts" name="PUT /orders/:id/status — cambiar estado &gt; transición válida → 200 con el estado nuevo" time="0.005336127">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/ramas-de-error.test.ts" timestamp="2026-10-25T09:57:40.859Z" hostname="vm" tests="11" failures="0" errors="0" skipped="0" time="0.120481099">
+        <testcase classname="tests/escenarios/ramas-de-error.test.ts" name="Cambio de rol — PUT /admin/users/:id/role &gt; rol USER → 403" time="0.033062614">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-de-error.test.ts" name="Cambio de rol — PUT /admin/users/:id/role &gt; rol inválido → 400 Datos inválidos" time="0.006881205">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-de-error.test.ts" name="Cambio de rol — PUT /admin/users/:id/role &gt; un admin no puede cambiar su propio rol → 400" time="0.005181591">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-de-error.test.ts" name="Cambio de rol — PUT /admin/users/:id/role &gt; cambia el rol de otro usuario → 200" time="0.004813626">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-de-error.test.ts" name="Cambio de rol — PUT /admin/users/:id/role &gt; el id no existe → 404" time="0.016862202">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-de-error.test.ts" name="Fallos inesperados de la capa de datos &gt; un error de base de datos sale como 500, sin filtrar la consulta" time="0.010468626">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-de-error.test.ts" name="Fallos inesperados de la capa de datos &gt; si la base falla al releer el usuario del token, responde 500 y no 401" time="0.004168944">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-de-error.test.ts" name="Fallos inesperados de la capa de datos &gt; un update que falla por otra razón distinta de P2025 no se convierte en 404" time="0.004280967">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-de-error.test.ts" name="Actualización de celular con relaciones &gt; reemplaza imágenes, colores y características cuando vienen en el body" time="0.008114605">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-de-error.test.ts" name="Actualización de celular con relaciones &gt; sin relaciones en el body, no las toca" time="0.004621258">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-de-error.test.ts" name="Panel — pedidos recientes &gt; mapea los pedidos recientes con su número de artículos" time="0.019782478">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/escenarios/ramas-restantes.test.ts" timestamp="2026-10-25T09:57:40.860Z" hostname="vm" tests="18" failures="0" errors="0" skipped="0" time="0.337387302">
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Fallos al consultar listados &gt; si falla la consulta de mis pedidos → 500" time="0.047978375">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Fallos al consultar listados &gt; si falla el conteo del catálogo → 500" time="0.008459287">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Fallos al consultar listados &gt; si falla la consulta del listado de usuarios → 500" time="0.008222155">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Fallos al consultar listados &gt; si falla la lectura del perfil después de validar el token → 500" time="0.017244359">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Fallos al consultar listados &gt; si el usuario desaparece entre validar el token y leer el perfil → 404" time="0.00689118">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="En producción no se filtra el detalle del error &gt; la respuesta 500 no expone el mensaje interno" time="0.007590909">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="En producción no se filtra el detalle del error &gt; fuera de producción sí incluye el detalle, para diagnosticar" time="0.00590705">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Estados terminales de un pedido &gt; un pedido entregado no admite más cambios" time="0.017253254">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Estados terminales de un pedido &gt; si falla la escritura del nuevo estado → 500" time="0.010222307">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Estados terminales de un pedido &gt; un pedido cancelado tampoco revive" time="0.007918686">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Mensaje de cuenta suspendida &gt; sin motivo registrado, el mensaje no inventa uno" time="0.007068177">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Mensaje de cuenta suspendida &gt; el middleware tampoco inventa motivo cuando no lo hay" time="0.006288121">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Un celular con todas sus relaciones &gt; al crearlo, se guardan las relaciones y vuelven ya mapeadas" time="0.009886794">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Un celular con todas sus relaciones &gt; al editarlo, las relaciones se reemplazan por completo" time="0.006700868">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Filas incompletas que llegan del motor &gt; si el usuario viene sin el conteo de pedidos, el panel muestra 0" time="0.005537285">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="Filas incompletas que llegan del motor &gt; un groupBy sin sumas (todas en null) no rompe los ingresos" time="0.050756401">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="CORS &gt; sin FRONTEND_URL configurado, acepta cualquier origen" time="0.073627652">
+        </testcase>
+        <testcase classname="tests/escenarios/ramas-restantes.test.ts" name="CORS &gt; con FRONTEND_URL configurado, responde con ese origen" time="0.03674322">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/fluent/asserciones-fluidas.test.ts" timestamp="2026-10-25T09:57:40.863Z" hostname="vm" tests="12" failures="0" errors="0" skipped="0" time="0.020806625">
+        <testcase classname="tests/fluent/asserciones-fluidas.test.ts" name="Recomendación de productos — aserciones fluidas (func. 13) &gt; puntúa 6 cuando coinciden marca, categoría y precio" time="0.007204403">
+        </testcase>
+        <testcase classname="tests/fluent/asserciones-fluidas.test.ts" name="Recomendación de productos — aserciones fluidas (func. 13) &gt; no otorga puntos por marca cuando difiere, aunque cambien las mayúsculas del resto" time="0.000707645">
+        </testcase>
+        <testcase classname="tests/fluent/asserciones-fluidas.test.ts" name="Recomendación de productos — aserciones fluidas (func. 13) &gt; devuelve 0 cuando no comparte ningún criterio" time="0.000379507">
+        </testcase>
+        <testcase classname="tests/fluent/asserciones-fluidas.test.ts" name="Recomendación de productos — aserciones fluidas (func. 13) &gt; calcula el rango de precio equivalente con el margen configurado" time="0.001151372">
+        </testcase>
+        <testcase classname="tests/fluent/asserciones-fluidas.test.ts" name="Recomendación de productos — aserciones fluidas (func. 13) &gt; ordena por afinidad y desempata por cercanía de precio" time="0.000801483">
+        </testcase>
+        <testcase classname="tests/fluent/asserciones-fluidas.test.ts" name="Recomendación de productos — aserciones fluidas (func. 13) &gt; recorta al límite pedido aunque haya más candidatos" time="0.000648486">
+        </testcase>
+        <testcase classname="tests/fluent/asserciones-fluidas.test.ts" name="Alertas de stock bajo — aserciones fluidas (func. 14) &gt; el umbral es inclusivo: stock igual al mínimo ya dispara LOW_STOCK" time="0.00037007">
+        </testcase>
+        <testcase classname="tests/fluent/asserciones-fluidas.test.ts" name="Alertas de stock bajo — aserciones fluidas (func. 14) &gt; no hay alerta con stock por encima del mínimo" time="0.000293472">
+        </testcase>
+        <testcase classname="tests/fluent/asserciones-fluidas.test.ts" name="Alertas de stock bajo — aserciones fluidas (func. 14) &gt; OUT_OF_STOCK tiene prioridad sobre LOW_STOCK cuando el stock es 0 o negativo" time="0.000472381">
+        </testcase>
+        <testcase classname="tests/fluent/asserciones-fluidas.test.ts" name="Alertas de stock bajo — aserciones fluidas (func. 14) &gt; el mensaje de stock bajo usa singular cuando queda exactamente una unidad" time="0.002658859">
+        </testcase>
+        <testcase classname="tests/fluent/asserciones-fluidas.test.ts" name="Alertas de stock bajo — aserciones fluidas (func. 14) &gt; el mensaje de sin stock no menciona la cantidad" time="0.000425765">
+        </testcase>
+        <testcase classname="tests/fluent/asserciones-fluidas.test.ts" name="AppError — excepciones fluidas &gt; conserva el statusCode y el mensaje con los que se crea" time="0.003783744">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/fluent/credenciales-y-perfil.test.ts" timestamp="2026-10-25T09:57:40.868Z" hostname="vm" tests="10" failures="0" errors="0" skipped="0" time="0.019040635">
+        <testcase classname="tests/fluent/credenciales-y-perfil.test.ts" name="Validación de credenciales — fluido &gt; la lista de dominios permitidos es exactamente la acordada con el frontend" time="0.003660068">
+        </testcase>
+        <testcase classname="tests/fluent/credenciales-y-perfil.test.ts" name="Validación de credenciales — fluido &gt; normaliza el correo antes de compararlo" time="0.000856834">
+        </testcase>
+        <testcase classname="tests/fluent/credenciales-y-perfil.test.ts" name="Validación de credenciales — fluido &gt; describe todos los problemas de una contraseña débil" time="0.001165664">
+        </testcase>
+        <testcase classname="tests/fluent/credenciales-y-perfil.test.ts" name="Registro de usuario — fluido &gt; el DTO devuelve los datos ya limpios" time="0.004713123">
+        </testcase>
+        <testcase classname="tests/fluent/credenciales-y-perfil.test.ts" name="Inicio de sesión — fluido &gt; rechaza con AppError 401 y el mensaje genérico" time="0.000962502">
+        </testcase>
+        <testcase classname="tests/fluent/credenciales-y-perfil.test.ts" name="Inicio de sesión — fluido &gt; entrega un token y el usuario público" time="0.003309222">
+        </testcase>
+        <testcase classname="tests/fluent/credenciales-y-perfil.test.ts" name="Gestión de perfil — fluido &gt; updateProfile devuelve el perfil público con el nombre nuevo" time="0.000620122">
+        </testcase>
+        <testcase classname="tests/fluent/credenciales-y-perfil.test.ts" name="Gestión de perfil — fluido &gt; el DTO de perfil ignora todo lo que no sea el nombre" time="0.0004406">
+        </testcase>
+        <testcase classname="tests/fluent/credenciales-y-perfil.test.ts" name="Gestión de perfil — fluido &gt; changePassword explica por qué rechaza la contraseña actual" time="0.000623277">
+        </testcase>
+        <testcase classname="tests/fluent/credenciales-y-perfil.test.ts" name="Gestión de perfil — fluido &gt; changePasswordDto marca el campo correcto cuando se repite la contraseña" time="0.00088612">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/regression/regresion-credenciales.test.ts" timestamp="2026-10-25T09:57:40.869Z" hostname="vm" tests="9" failures="0" errors="0" skipped="0" time="0.071108034">
+        <testcase classname="tests/regression/regresion-credenciales.test.ts" name="Regresión — defectos corregidos &gt; regresion_login_con_mayusculas_en_el_correo_encuentra_la_cuenta" time="0.03261105">
+        </testcase>
+        <testcase classname="tests/regression/regresion-credenciales.test.ts" name="Regresión — defectos corregidos &gt; regresion_el_backend_aplica_la_lista_de_dominios_del_frontend" time="0.00671623">
+        </testcase>
+        <testcase classname="tests/regression/regresion-credenciales.test.ts" name="Regresión — defectos corregidos &gt; regresion_el_backend_exige_la_politica_de_contrasenas" time="0.004378339">
+        </testcase>
+        <testcase classname="tests/regression/regresion-credenciales.test.ts" name="Regresión — defectos corregidos &gt; regresion_json_malformado_responde_400_y_no_500" time="0.006514333">
+        </testcase>
+        <testcase classname="tests/regression/regresion-credenciales.test.ts" name="Regresión — defectos corregidos &gt; regresion_existen_los_endpoints_de_gestion_de_perfil" time="0.016335492">
+        </testcase>
+        <testcase classname="tests/regression/regresion-credenciales.test.ts" name="Regresión — valores de negocio fijados &gt; regresion_dominios_permitidos_son_cinco" time="0.001104071">
+        </testcase>
+        <testcase classname="tests/regression/regresion-credenciales.test.ts" name="Regresión — valores de negocio fijados &gt; regresion_longitud_de_contrasena_entre_8_y_72" time="0.000644162">
+        </testcase>
+        <testcase classname="tests/regression/regresion-credenciales.test.ts" name="Regresión — valores de negocio fijados &gt; regresion_nombre_minimo_de_2_caracteres" time="0.000685375">
+        </testcase>
+        <testcase classname="tests/regression/regresion-credenciales.test.ts" name="Regresión — valores de negocio fijados &gt; regresion_minstock_por_defecto_5_dispara_alerta_con_5_unidades" time="0.000537841">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/regression/regresion.test.ts" timestamp="2026-10-25T09:57:40.871Z" hostname="vm" tests="11" failures="0" errors="0" skipped="0" time="0.01469499">
+        <testcase classname="tests/regression/regresion.test.ts" name="Regresión — recomendación de productos (func. 13) &gt; regresion_afinidad_maxima_es_6_puntos" time="0.004466292">
+        </testcase>
+        <testcase classname="tests/regression/regresion.test.ts" name="Regresión — recomendación de productos (func. 13) &gt; regresion_margen_de_precio_equivalente_es_25_por_ciento" time="0.00061303">
+        </testcase>
+        <testcase classname="tests/regression/regresion.test.ts" name="Regresión — recomendación de productos (func. 13) &gt; regresion_limite_de_recomendaciones_recorta_la_lista" time="0.001217669">
+        </testcase>
+        <testcase classname="tests/regression/regresion.test.ts" name="Regresión — alertas de stock bajo (func. 14) &gt; regresion_stock_igual_al_minimo_dispara_low_stock" time="0.000375427">
+        </testcase>
+        <testcase classname="tests/regression/regresion.test.ts" name="Regresión — alertas de stock bajo (func. 14) &gt; regresion_stock_en_cero_dispara_out_of_stock_no_low_stock" time="0.000339695">
+        </testcase>
+        <testcase classname="tests/regression/regresion.test.ts" name="Regresión — alertas de stock bajo (func. 14) &gt; regresion_stock_por_encima_del_minimo_no_dispara_alerta" time="0.000310975">
+        </testcase>
+        <testcase classname="tests/regression/regresion.test.ts" name="Regresión — crear orden (func. 22) &gt; regresion_envio_gratis_a_partir_de_500_001" time="0.001555644">
+        </testcase>
+        <testcase classname="tests/regression/regresion.test.ts" name="Regresión — crear orden (func. 22) &gt; regresion_envio_tiene_costo_en_el_umbral_exacto_de_500_000" time="0.00063375">
+        </testcase>
+        <testcase classname="tests/regression/regresion.test.ts" name="Regresión — actualizar estado de una orden (func. 25) &gt; regresion_pedido_entregado_es_un_estado_terminal" time="0.002153972">
+        </testcase>
+        <testcase classname="tests/regression/regresion.test.ts" name="Regresión — banear / cambiar rol (func. 21, 26) &gt; regresion_mensaje_exacto_al_intentar_banearse_a_si_mismo" time="0.000980769">
+        </testcase>
+        <testcase classname="tests/regression/regresion.test.ts" name="Regresión — banear / cambiar rol (func. 21, 26) &gt; regresion_mensaje_exacto_al_intentar_cambiarse_el_rol_a_si_mismo" time="0.00049179">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/rendimiento/rendimiento.test.ts" timestamp="2026-10-25T09:57:40.879Z" hostname="vm" tests="4" failures="0" errors="0" skipped="0" time="0.21887929">
+        <testcase classname="tests/rendimiento/rendimiento.test.ts" name="Rendimiento — reglas de dominio &gt; evalúa la alerta de 100.000 celulares en menos de 250 ms" time="0.025900475">
+        </testcase>
+        <testcase classname="tests/rendimiento/rendimiento.test.ts" name="Rendimiento — reglas de dominio &gt; valida 10.000 contraseñas en menos de 250 ms" time="0.014930089">
+        </testcase>
+        <testcase classname="tests/rendimiento/rendimiento.test.ts" name="Rendimiento — endpoints de las funcionalidades &gt; POST /auth/login: mediana de 15 peticiones bajo 150 ms" time="0.103133129">
+        </testcase>
+        <testcase classname="tests/rendimiento/rendimiento.test.ts" name="Rendimiento — endpoints de las funcionalidades &gt; GET /admin/alerts con 500 alertas abiertas: mediana bajo 150 ms" time="0.0737408">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/seguridad/cabeceras-seguridad.test.ts" timestamp="2026-10-25T09:57:40.883Z" hostname="vm" tests="7" failures="0" errors="0" skipped="0" time="0.159383475">
+        <testcase classname="tests/seguridad/cabeceras-seguridad.test.ts" name="Seguridad — cabeceras HTTP &gt; GET /health lleva las cabeceras de helmet y no anuncia el framework" time="0.020224778">
+        </testcase>
+        <testcase classname="tests/seguridad/cabeceras-seguridad.test.ts" name="Seguridad — cabeceras HTTP &gt; GET /api/v1/ruta-que-no-existe lleva las cabeceras de helmet y no anuncia el framework" time="0.004208555">
+        </testcase>
+        <testcase classname="tests/seguridad/cabeceras-seguridad.test.ts" name="Seguridad — cabeceras HTTP &gt; POST /api/v1/auth/login lleva las cabeceras de helmet y no anuncia el framework" time="0.011183231">
+        </testcase>
+        <testcase classname="tests/seguridad/cabeceras-seguridad.test.ts" name="Seguridad — cabeceras HTTP &gt; las respuestas de la API (también los errores) llevan Cache-Control: no-store" time="0.006372515">
+        </testcase>
+        <testcase classname="tests/seguridad/cabeceras-seguridad.test.ts" name="Seguridad — cabeceras HTTP &gt; /health queda fuera de /api/v1 y no fuerza no-store" time="0.003445694">
+        </testcase>
+        <testcase classname="tests/seguridad/cabeceras-seguridad.test.ts" name="Seguridad — CORS &gt; sin FRONTEND_URL: cualquier origen, pero SIN credenciales" time="0.037555492">
+        </testcase>
+        <testcase classname="tests/seguridad/cabeceras-seguridad.test.ts" name="Seguridad — CORS &gt; con FRONTEND_URL: solo ese origen, con credenciales" time="0.07502622">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/seguridad/fuerza-bruta.test.ts" timestamp="2026-10-25T09:57:40.886Z" hostname="vm" tests="10" failures="0" errors="0" skipped="0" time="0.371315235">
+        <testcase classname="tests/seguridad/fuerza-bruta.test.ts" name="Fuerza bruta — límite de intentos fallidos &gt; los primeros 5 intentos fallidos responden 401 y el sexto 429" time="0.045252938">
+        </testcase>
+        <testcase classname="tests/seguridad/fuerza-bruta.test.ts" name="Fuerza bruta — límite de intentos fallidos &gt; el 429 explica cuánto esperar e incluye Retry-After" time="0.02391357">
+        </testcase>
+        <testcase classname="tests/seguridad/fuerza-bruta.test.ts" name="Fuerza bruta — límite de intentos fallidos &gt; bloqueada la cuenta, ni siquiera la contraseña correcta entra hasta que pase la ventana" time="0.014213416">
+        </testcase>
+        <testcase classname="tests/seguridad/fuerza-bruta.test.ts" name="Fuerza bruta — límite de intentos fallidos &gt; un login correcto antes del límite borra los fallos acumulados" time="0.024935983">
+        </testcase>
+        <testcase classname="tests/seguridad/fuerza-bruta.test.ts" name="Fuerza bruta — límite de intentos fallidos &gt; la cuenta bloqueada no afecta a otra cuenta" time="0.011144633">
+        </testcase>
+        <testcase classname="tests/seguridad/fuerza-bruta.test.ts" name="Fuerza bruta — límite de intentos fallidos &gt; el correo con mayúsculas cuenta como la misma cuenta" time="0.012182911">
+        </testcase>
+        <testcase classname="tests/seguridad/fuerza-bruta.test.ts" name="Fuerza bruta — límite de intentos fallidos &gt; pasada la ventana de 15 minutos, la cuenta vuelve a poder intentar" time="0.022386616">
+        </testcase>
+        <testcase classname="tests/seguridad/fuerza-bruta.test.ts" name="Fuerza bruta — límite de intentos fallidos &gt; más de 50 fallos desde una IP sobre cuentas distintas también se bloquean" time="0.172552232">
+        </testcase>
+        <testcase classname="tests/seguridad/fuerza-bruta.test.ts" name="Fuerza bruta — IP detrás de un proxy &gt; por defecto no confía en X-Forwarded-For (no se puede falsificar la IP)" time="0.002092281">
+        </testcase>
+        <testcase classname="tests/seguridad/fuerza-bruta.test.ts" name="Fuerza bruta — IP detrás de un proxy &gt; con TRUST_PROXY=true toma la IP del primer proxy" time="0.040718221">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/seguridad/seguridad-credenciales.test.ts" timestamp="2026-10-25T09:57:40.889Z" hostname="vm" tests="17" failures="0" errors="0" skipped="0" time="0.101128753">
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Registro — asignación masiva &gt; un body con role: ADMIN crea igualmente un USER" time="0.029821133">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Registro — asignación masiva &gt; la contraseña se guarda hasheada" time="0.005231859">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Ninguna respuesta expone la contraseña &gt; registro" time="0.004591293">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Ninguna respuesta expone la contraseña &gt; login" time="0.004570628">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Ninguna respuesta expone la contraseña &gt; perfil" time="0.011674261">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Control de roles — el rol se lee de la base, no del token &gt; un token que dice ADMIN de un usuario que hoy es USER → 403 en /admin" time="0.004321319">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Control de roles — el rol se lee de la base, no del token &gt; un USER no accede a GET /api/v1/admin/stats" time="0.003593731">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Control de roles — el rol se lee de la base, no del token &gt; un USER no accede a GET /api/v1/admin/users" time="0.002960689">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Control de roles — el rol se lee de la base, no del token &gt; un USER no accede a GET /api/v1/admin/alerts" time="0.004587947">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Control de roles — el rol se lee de la base, no del token &gt; un USER no accede a PUT /api/v1/admin/users/x/role" time="0.003717946">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Control de roles — el rol se lee de la base, no del token &gt; un USER no accede a PUT /api/v1/admin/users/x/ban" time="0.002648266">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Control de roles — el rol se lee de la base, no del token &gt; un token con algoritmo &quot;none&quot; (sin firma) se rechaza" time="0.002344453">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Control de roles — el rol se lee de la base, no del token &gt; un admin no puede quitarse a sí mismo el rol" time="0.004666929">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Cabeceras y errores &gt; no anuncia el framework (X-Powered-By)" time="0.002210485">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Cabeceras y errores &gt; un body JSON malformado en el login no devuelve 500" time="0.004566045">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Errores del cliente al enviar el cuerpo &gt; JSON malformado → 400 con un mensaje claro y sin detalle interno" time="0.003089078">
+        </testcase>
+        <testcase classname="tests/seguridad/seguridad-credenciales.test.ts" name="Errores del cliente al enviar el cuerpo &gt; un cuerpo de más de 100 kB → 413, no 500" time="0.004466434">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/alertas/stock-alerts.test.ts" timestamp="2026-10-25T09:57:40.899Z" hostname="vm" tests="14" failures="0" errors="0" skipped="0" time="0.017387963">
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="evaluarAlerta — qué alerta corresponde a un inventario &gt; sin unidades → OUT_OF_STOCK" time="0.004217129">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="evaluarAlerta — qué alerta corresponde a un inventario &gt; stock negativo (dato corrupto) también cuenta como agotado" time="0.000659701">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="evaluarAlerta — qué alerta corresponde a un inventario &gt; justo en el mínimo → LOW_STOCK (el umbral es inclusivo)" time="0.00051329">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="evaluarAlerta — qué alerta corresponde a un inventario &gt; por debajo del mínimo → LOW_STOCK" time="0.00032644">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="evaluarAlerta — qué alerta corresponde a un inventario &gt; por encima del mínimo → ninguna alerta" time="0.000385925">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="evaluarAlerta — qué alerta corresponde a un inventario &gt; con mínimo en 0, una sola unidad ya es inventario sano" time="0.000343878">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="evaluarAlerta — qué alerta corresponde a un inventario &gt; con mínimo en 0, quedarse en cero sigue siendo agotado" time="0.00027589">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="mensajeAlerta — texto que ve el administrador &gt; agotado: avisa que no quedan unidades" time="0.000321241">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="mensajeAlerta — texto que ve el administrador &gt; poco stock: incluye cuántas quedan y cuál es el mínimo" time="0.000459051">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="mensajeAlerta — texto que ve el administrador &gt; concuerda el singular cuando queda una sola unidad" time="0.000367634">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="sincronizarAlertas — deja la tabla Alert al día &gt; inventario sano: cierra lo que hubiera abierto y no abre nada" time="0.004243196">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="sincronizarAlertas — deja la tabla Alert al día &gt; poco stock: cierra las de otro tipo y abre (o reabre) la de LOW_STOCK" time="0.002341672">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="sincronizarAlertas — deja la tabla Alert al día &gt; agotado: abre la de OUT_OF_STOCK y cierra la de poco stock" time="0.000686569">
+        </testcase>
+        <testcase classname="tests/unit/alertas/stock-alerts.test.ts" name="sincronizarAlertas — deja la tabla Alert al día &gt; el mensaje que se guarda es el que produce la regla de dominio" time="0.000393109">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/catalogo/phones.use-cases.test.ts" timestamp="2026-10-25T09:57:40.904Z" hostname="vm" tests="15" failures="0" errors="0" skipped="0" time="0.069971117">
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="getPhoneBySlug — obtener un celular por su slug &gt; returns the phone when the slug exists" time="0.044706972">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="getPhoneBySlug — obtener un celular por su slug &gt; asks the repository for the exact slug" time="0.004284623">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="getPhoneBySlug — obtener un celular por su slug &gt; throws a 404 AppError when the slug does not exist" time="0.001689044">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="getPhoneBySlug — obtener un celular por su slug &gt; throws 404 when the repository has no phones at all" time="0.000729578">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="getPhoneBySlug — obtener un celular por su slug &gt; matches the slug exactly and not by partial text" time="0.000581551">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="getPhones — listar celulares con filtros y paginación &gt; delegates the filters and pagination to the repository" time="0.001533495">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="getPhones — listar celulares con filtros y paginación &gt; applies the filters to the in-memory phones" time="0.001158129">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="getPhoneById — obtener un celular por su id &gt; returns the phone when the id exists" time="0.000585405">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="getPhoneById — obtener un celular por su id &gt; throws a 404 AppError when the id does not exist" time="0.000702102">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="createPhone — crear un celular &gt; creates a phone keeping every optional field provided" time="0.007206568">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="createPhone — crear un celular &gt; defaults the optional fields to null when they are absent" time="0.001199691">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="updatePhone — actualizar un celular &gt; updates an existing phone with the given data" time="0.00119374">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="updatePhone — actualizar un celular &gt; throws a 404 AppError when the phone does not exist" time="0.000814158">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="deletePhone — eliminar un celular &gt; deletes an existing phone" time="0.000966991">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/phones.use-cases.test.ts" name="deletePhone — eliminar un celular &gt; throws a 404 AppError when the phone does not exist" time="0.00040247">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/catalogo/recomendaciones.test.ts" timestamp="2026-10-25T09:57:40.913Z" hostname="vm" tests="16" failures="0" errors="0" skipped="0" time="0.019192328">
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="rangoDePrecio &gt; abre una ventana del ±25% alrededor del precio" time="0.00749988">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="rangoDePrecio &gt; devuelve enteros, porque la columna price lo es" time="0.000778581">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="rangoDePrecio &gt; el margen es el declarado en el dominio, no un número suelto" time="0.000668922">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="afinidad — cuántos puntos gana un candidato &gt; coincidir en todo da el máximo" time="0.000467351">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="afinidad — cuántos puntos gana un candidato &gt; no coincidir en nada da cero" time="0.000407589">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="afinidad — cuántos puntos gana un candidato &gt; la marca pesa más que la categoría, y la categoría más que el precio" time="0.000839179">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="afinidad — cuántos puntos gana un candidato &gt; la marca se compara sin distinguir mayúsculas" time="0.000344793">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="afinidad — cuántos puntos gana un candidato &gt; bordes del rango de precio &gt; el mínimo exacto cuenta como dentro" time="0.00039695">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="afinidad — cuántos puntos gana un candidato &gt; bordes del rango de precio &gt; un peso por debajo del mínimo ya no" time="0.000409902">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="afinidad — cuántos puntos gana un candidato &gt; bordes del rango de precio &gt; el máximo exacto cuenta como dentro" time="0.000413391">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="afinidad — cuántos puntos gana un candidato &gt; bordes del rango de precio &gt; un peso por encima del máximo ya no" time="0.000299099">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="ordenarPorAfinidad &gt; sin candidatos devuelve una lista vacía" time="0.000382281">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="ordenarPorAfinidad &gt; ordena de más afín a menos" time="0.002583453">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="ordenarPorAfinidad &gt; a igual afinidad gana el de precio más cercano" time="0.000485765">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="ordenarPorAfinidad &gt; recorta al límite pedido" time="0.001034468">
+        </testcase>
+        <testcase classname="tests/unit/catalogo/recomendaciones.test.ts" name="ordenarPorAfinidad &gt; no modifica el arreglo que recibe" time="0.000490053">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/control-roles/admin.use-cases.test.ts" timestamp="2026-10-25T09:57:40.926Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.0108253">
+        <testcase classname="tests/unit/control-roles/admin.use-cases.test.ts" name="changeUserRole &gt; promueve a un USER a ADMIN" time="0.007297185">
+        </testcase>
+        <testcase classname="tests/unit/control-roles/admin.use-cases.test.ts" name="changeUserRole &gt; rechaza que un admin cambie su propio rol" time="0.001734361">
+        </testcase>
+        <testcase classname="tests/unit/control-roles/admin.use-cases.test.ts" name="changeUserRole &gt; degrada a un ADMIN a USER" time="0.000548186">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/control-roles/changeUserRole.use-case.test.ts" timestamp="2026-10-25T09:57:40.931Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.012162933">
+        <testcase classname="tests/unit/control-roles/changeUserRole.use-case.test.ts" name="changeUserRole &gt; lanza AppError 400 y no modifica ningún registro si userId === requesterId" time="0.008347712">
+        </testcase>
+        <testcase classname="tests/unit/control-roles/changeUserRole.use-case.test.ts" name="changeUserRole &gt; el error lanzado es una instancia de AppError" time="0.00111855">
+        </testcase>
+        <testcase classname="tests/unit/control-roles/changeUserRole.use-case.test.ts" name="changeUserRole &gt; cambia el rol de otro usuario cuando quien pide el cambio es un admin distinto" time="0.001237939">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/control-roles/requireAdmin.middleware.test.ts" timestamp="2026-10-25T09:57:40.932Z" hostname="vm" tests="2" failures="0" errors="0" skipped="0" time="0.007007586">
+        <testcase classname="tests/unit/control-roles/requireAdmin.middleware.test.ts" name="requireAdmin middleware &gt; responde 403 y bloquea el acceso si el usuario no es ADMIN" time="0.005043193">
+        </testcase>
+        <testcase classname="tests/unit/control-roles/requireAdmin.middleware.test.ts" name="requireAdmin middleware &gt; llama a next() si el usuario tiene rol ADMIN" time="0.000855328">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/errores/error.middleware.test.ts" timestamp="2026-10-25T09:57:40.934Z" hostname="vm" tests="12" failures="0" errors="0" skipped="0" time="0.034736407">
+        <testcase classname="tests/unit/errores/error.middleware.test.ts" name="AppError — errores esperados del negocio &gt; responde con el código y el mensaje que trae el error" time="0.009581559">
+        </testcase>
+        <testcase classname="tests/unit/errores/error.middleware.test.ts" name="AppError — errores esperados del negocio &gt; no ensucia la consola: un 403 no es una falla del servidor" time="0.001087375">
+        </testcase>
+        <testcase classname="tests/unit/errores/error.middleware.test.ts" name="AppError — errores esperados del negocio &gt; respeta el código de cada caso" time="0.001291245">
+        </testcase>
+        <testcase classname="tests/unit/errores/error.middleware.test.ts" name="ZodError — red de seguridad de validación &gt; un dato de entrada malo es 400, no 500" time="0.002985553">
+        </testcase>
+        <testcase classname="tests/unit/errores/error.middleware.test.ts" name="ZodError — red de seguridad de validación &gt; cada problema de Zod sale como { field, message }" time="0.004085453">
+        </testcase>
+        <testcase classname="tests/unit/errores/error.middleware.test.ts" name="ZodError — red de seguridad de validación &gt; con varios campos malos, sale uno por campo" time="0.002567085">
+        </testcase>
+        <testcase classname="tests/unit/errores/error.middleware.test.ts" name="ZodError — red de seguridad de validación &gt; tampoco se loggea: la culpa es del cliente, no del servidor" time="0.000686477">
+        </testcase>
+        <testcase classname="tests/unit/errores/error.middleware.test.ts" name="Cualquier otro error — 500 &gt; el cliente recibe un mensaje genérico" time="0.00442525">
+        </testcase>
+        <testcase classname="tests/unit/errores/error.middleware.test.ts" name="Cualquier otro error — 500 &gt; fuera de producción sí viaja el detalle, para diagnosticar" time="0.001254526">
+        </testcase>
+        <testcase classname="tests/unit/errores/error.middleware.test.ts" name="Cualquier otro error — 500 &gt; en producción no se filtra nada del error interno" time="0.001053971">
+        </testcase>
+        <testcase classname="tests/unit/errores/error.middleware.test.ts" name="Cualquier otro error — 500 &gt; el log del servidor conserva mensaje y traza, aunque el cliente no los vea" time="0.00289882">
+        </testcase>
+        <testcase classname="tests/unit/errores/error.middleware.test.ts" name="En todos los casos &gt; nunca delega con next(): el manejador es el último de la cadena" time="0.001016391">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/favoritos/favorites.use-cases.test.ts" timestamp="2026-10-25T09:57:40.939Z" hostname="vm" tests="8" failures="0" errors="0" skipped="0" time="0.018710151">
+        <testcase classname="tests/unit/favoritos/favorites.use-cases.test.ts" name="addFavorite &gt; si el celular no existe → 404 y no se escribe nada" time="0.00994922">
+        </testcase>
+        <testcase classname="tests/unit/favoritos/favorites.use-cases.test.ts" name="addFavorite &gt; si el celular existe, lo marca para ese usuario" time="0.002136873">
+        </testcase>
+        <testcase classname="tests/unit/favoritos/favorites.use-cases.test.ts" name="addFavorite &gt; comprueba el catálogo antes de escribir, no después" time="0.000990369">
+        </testcase>
+        <testcase classname="tests/unit/favoritos/favorites.use-cases.test.ts" name="removeFavorite &gt; pide quitar la marca de ese usuario y ese celular" time="0.000866916">
+        </testcase>
+        <testcase classname="tests/unit/favoritos/favorites.use-cases.test.ts" name="removeFavorite &gt; no comprueba que el celular exista: quitar es idempotente por diseño" time="0.001226651">
+        </testcase>
+        <testcase classname="tests/unit/favoritos/favorites.use-cases.test.ts" name="getMyFavorites &gt; consulta la lista del usuario que se le pasa" time="0.000745363">
+        </testcase>
+        <testcase classname="tests/unit/favoritos/favorites.use-cases.test.ts" name="getMyFavorites &gt; sin favoritos devuelve una lista vacía, no null" time="0.000559018">
+        </testcase>
+        <testcase classname="tests/unit/favoritos/favorites.use-cases.test.ts" name="getMyFavorites &gt; devuelve los celulares tal como los entrega el repositorio" time="0.000637582">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/gestion-perfil/changePassword.use-case.test.ts" timestamp="2026-10-25T09:57:40.949Z" hostname="vm" tests="4" failures="0" errors="0" skipped="0" time="0.009626826">
+        <testcase classname="tests/unit/gestion-perfil/changePassword.use-case.test.ts" name="changePassword &gt; guarda la contraseña nueva hasheada cuando la actual es correcta" time="0.005041945">
+        </testcase>
+        <testcase classname="tests/unit/gestion-perfil/changePassword.use-case.test.ts" name="changePassword &gt; nunca guarda la contraseña nueva en texto plano" time="0.001211399">
+        </testcase>
+        <testcase classname="tests/unit/gestion-perfil/changePassword.use-case.test.ts" name="changePassword &gt; rechaza con 400 (no 401) si la contraseña actual no coincide" time="0.001625646">
+        </testcase>
+        <testcase classname="tests/unit/gestion-perfil/changePassword.use-case.test.ts" name="changePassword &gt; lanza 404 si el usuario ya no existe" time="0.000701088">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/gestion-perfil/updateProfile.use-case.test.ts" timestamp="2026-10-25T09:57:40.950Z" hostname="vm" tests="10" failures="0" errors="0" skipped="0" time="0.018031814">
+        <testcase classname="tests/unit/gestion-perfil/updateProfile.use-case.test.ts" name="getProfile &gt; devuelve el perfil sin la contraseña" time="0.005165327">
+        </testcase>
+        <testcase classname="tests/unit/gestion-perfil/updateProfile.use-case.test.ts" name="getProfile &gt; lanza 404 si el usuario ya no existe" time="0.0013651">
+        </testcase>
+        <testcase classname="tests/unit/gestion-perfil/updateProfile.use-case.test.ts" name="updateProfile &gt; actualiza solo el nombre y devuelve el perfil sin la contraseña" time="0.004696981">
+        </testcase>
+        <testcase classname="tests/unit/gestion-perfil/updateProfile.use-case.test.ts" name="updateProfile &gt; traduce P2025 (usuario eliminado) a 404" time="0.000805211">
+        </testcase>
+        <testcase classname="tests/unit/gestion-perfil/updateProfile.use-case.test.ts" name="updateProfile &gt; propaga cualquier otro error de la base sin disfrazarlo de 404" time="0.001089425">
+        </testcase>
+        <testcase classname="tests/unit/gestion-perfil/updateProfile.use-case.test.ts" name="updateProfileDto &gt; recorta los espacios del nombre" time="0.001266421">
+        </testcase>
+        <testcase classname="tests/unit/gestion-perfil/updateProfile.use-case.test.ts" name="updateProfileDto &gt; rechaza un nombre vacío" time="0.000599049">
+        </testcase>
+        <testcase classname="tests/unit/gestion-perfil/updateProfile.use-case.test.ts" name="updateProfileDto &gt; rechaza un nombre de una letra tras recortar" time="0.00054329">
+        </testcase>
+        <testcase classname="tests/unit/gestion-perfil/updateProfile.use-case.test.ts" name="updateProfileDto &gt; rechaza un nombre de más de 80 caracteres" time="0.000409888">
+        </testcase>
+        <testcase classname="tests/unit/gestion-perfil/updateProfile.use-case.test.ts" name="updateProfileDto &gt; descarta role, email y banned: el perfil no puede cambiar la identidad ni el rol" time="0.000623253">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/gestion-usuarios/ban.controller.test.ts" timestamp="2026-10-25T09:57:40.956Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.011828532">
+        <testcase classname="tests/unit/gestion-usuarios/ban.controller.test.ts" name="admin.controller — ban() &gt; responde con el usuario baneado cuando banUser() resuelve sin error" time="0.006680985">
+        </testcase>
+        <testcase classname="tests/unit/gestion-usuarios/ban.controller.test.ts" name="admin.controller — ban() &gt; invoca next(error) cuando el id no existe" time="0.001453549">
+        </testcase>
+        <testcase classname="tests/unit/gestion-usuarios/ban.controller.test.ts" name="admin.controller — ban() &gt; le pasa al caso de uso el id del admin que hace la petición, y ese admin no puede banearse a sí mismo" time="0.002614">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/gestion-usuarios/unban.controller.test.ts" timestamp="2026-10-25T09:57:40.956Z" hostname="vm" tests="2" failures="0" errors="0" skipped="0" time="0.010402569">
+        <testcase classname="tests/unit/gestion-usuarios/unban.controller.test.ts" name="admin.controller — unban() &gt; responde con el usuario desbaneado cuando unbanUser() resuelve sin error" time="0.007023395">
+        </testcase>
+        <testcase classname="tests/unit/gestion-usuarios/unban.controller.test.ts" name="admin.controller — unban() &gt; invoca next(error) cuando el id no existe" time="0.002330861">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/login/authenticate.middleware.test.ts" timestamp="2026-10-25T09:57:40.957Z" hostname="vm" tests="8" failures="0" errors="0" skipped="0" time="0.020191422">
+        <testcase classname="tests/unit/login/authenticate.middleware.test.ts" name="authenticate middleware &gt; responde 401 &quot;Token requerido&quot; si no hay header Authorization" time="0.004149827">
+        </testcase>
+        <testcase classname="tests/unit/login/authenticate.middleware.test.ts" name="authenticate middleware &gt; responde 401 &quot;Token requerido&quot; si el header no tiene el prefijo Bearer" time="0.000698129">
+        </testcase>
+        <testcase classname="tests/unit/login/authenticate.middleware.test.ts" name="authenticate middleware &gt; responde 401 &quot;Token inválido o expirado&quot; si la firma no corresponde al JWT_SECRET del servidor" time="0.003732035">
+        </testcase>
+        <testcase classname="tests/unit/login/authenticate.middleware.test.ts" name="authenticate middleware &gt; responde 401 &quot;Token inválido o expirado&quot; si el token ya venció" time="0.001308927">
+        </testcase>
+        <testcase classname="tests/unit/login/authenticate.middleware.test.ts" name="authenticate middleware &gt; responde 401 si el token es válido pero el usuario ya no existe" time="0.00148488">
+        </testcase>
+        <testcase classname="tests/unit/login/authenticate.middleware.test.ts" name="authenticate middleware &gt; responde 403 con el motivo si la cuenta está baneada" time="0.004862041">
+        </testcase>
+        <testcase classname="tests/unit/login/authenticate.middleware.test.ts" name="authenticate middleware &gt; asigna req.user y llama a next() si el token es válido" time="0.001740474">
+        </testcase>
+        <testcase classname="tests/unit/login/authenticate.middleware.test.ts" name="authenticate middleware &gt; usa el rol vigente en la base y no el que trae el token" time="0.001013433">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/login/login-enumeracion.test.ts" timestamp="2026-10-25T09:57:40.959Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.013641328">
+        <testcase classname="tests/unit/login/login-enumeracion.test.ts" name="loginUser — sin enumeración de usuarios &gt; ejecuta bcrypt.compare aunque el correo no exista" time="0.008507733">
+        </testcase>
+        <testcase classname="tests/unit/login/login-enumeracion.test.ts" name="loginUser — sin enumeración de usuarios &gt; responde exactamente igual a correo inexistente y a contraseña equivocada" time="0.002056672">
+        </testcase>
+        <testcase classname="tests/unit/login/login-enumeracion.test.ts" name="loginUser — sin enumeración de usuarios &gt; a una cuenta suspendida con contraseña equivocada le responde 401, sin revelar la suspensión" time="0.001075633">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/login/loginUser.use-case.test.ts" timestamp="2026-10-25T09:57:40.959Z" hostname="vm" tests="4" failures="0" errors="0" skipped="0" time="0.010946679">
+        <testcase classname="tests/unit/login/loginUser.use-case.test.ts" name="loginUser &gt; lanza 401 &quot;Credenciales inválidas&quot; si el usuario no existe" time="0.004043949">
+        </testcase>
+        <testcase classname="tests/unit/login/loginUser.use-case.test.ts" name="loginUser &gt; lanza 401 &quot;Credenciales inválidas&quot; si la contraseña no coincide" time="0.000988635">
+        </testcase>
+        <testcase classname="tests/unit/login/loginUser.use-case.test.ts" name="loginUser &gt; lanza 403 con el motivo cuando la cuenta está baneada" time="0.000760785">
+        </testcase>
+        <testcase classname="tests/unit/login/loginUser.use-case.test.ts" name="loginUser &gt; retorna user + token cuando las credenciales son válidas y la cuenta está activa" time="0.004158785">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/pedidos/orders.use-cases.test.ts" timestamp="2026-10-25T09:57:40.963Z" hostname="vm" tests="25" failures="0" errors="0" skipped="0" time="0.028679723">
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrder &gt; crea el pedido calculando el subtotal y el total a partir del precio real de los celulares" time="0.005139854">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrder &gt; crea el pedido sin userId cuando la compra es de un invitado" time="0.003081583">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrder &gt; el envío es gratis cuando el subtotal supera los 500.000" time="0.000549159">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrder &gt; descuenta el stock del celular comprado" time="0.002233258">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrder &gt; lanza AppError 404 si algún celular del pedido no existe" time="0.001545965">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrder &gt; lanza AppError 400 y no descuenta stock cuando el stock es insuficiente" time="0.000622539">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrderDto validation &gt; rejects when &quot;email&quot; is missing" time="0.002661912">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrderDto validation &gt; rejects when &quot;name&quot; is missing" time="0.000916866">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrderDto validation &gt; rejects when &quot;phone&quot; is missing" time="0.000664294">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrderDto validation &gt; rejects when &quot;address&quot; is missing" time="0.000393185">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrderDto validation &gt; rejects when &quot;city&quot; is missing" time="0.000486433">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrderDto validation &gt; rejects when &quot;dept&quot; is missing" time="0.000426894">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrderDto validation &gt; rejects when &quot;items&quot; is missing" time="0.000331536">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrderDto validation &gt; accepts a complete order" time="0.000552185">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrderDto validation &gt; rejects an invalid email" time="0.00048496">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrderDto validation &gt; rejects an empty items array" time="0.000467912">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrderDto validation &gt; rejects a non-positive quantity" time="0.000400045">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="createOrderDto validation &gt; rejects a non-uuid phoneId" time="0.000409197">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="getMyOrders &gt; returns all orders for the given user" time="0.002264379">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="getMyOrders &gt; returns an empty array when the user has no orders" time="0.000347448">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="getAllOrders &gt; returns a paginated list of orders" time="0.000528139">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="updateOrderStatus &gt; actualiza el estado de un pedido existente (CONFIRMED → SHIPPED es una transición válida)" time="0.000476638">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="updateOrderStatus &gt; rejects with 400 una transición inválida (de CONFIRMED a DELIVERED, saltándose SHIPPED)" time="0.000570334">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="updateOrderStatus &gt; rejects with 400 cuando el pedido ya está en ese estado" time="0.000590934">
+        </testcase>
+        <testcase classname="tests/unit/pedidos/orders.use-cases.test.ts" name="updateOrderStatus &gt; rejects with 404 cuando el pedido no existe" time="0.000383943">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/registro/register.validate-dto.test.ts" timestamp="2026-10-25T09:57:40.967Z" hostname="vm" tests="6" failures="0" errors="0" skipped="0" time="0.021630983">
+        <testcase classname="tests/unit/registro/register.validate-dto.test.ts" name="registerDto (validación del body en POST /auth/register) &gt; rechaza un body con password demasiado corto" time="0.012481368">
+        </testcase>
+        <testcase classname="tests/unit/registro/register.validate-dto.test.ts" name="registerDto (validación del body en POST /auth/register) &gt; rechaza un body sin el campo name" time="0.001387475">
+        </testcase>
+        <testcase classname="tests/unit/registro/register.validate-dto.test.ts" name="registerDto (validación del body en POST /auth/register) &gt; rechaza un name de una sola letra" time="0.000828294">
+        </testcase>
+        <testcase classname="tests/unit/registro/register.validate-dto.test.ts" name="registerDto (validación del body en POST /auth/register) &gt; acumula todos los errores del body, no solo el primero" time="0.001227141">
+        </testcase>
+        <testcase classname="tests/unit/registro/register.validate-dto.test.ts" name="registerDto (validación del body en POST /auth/register) &gt; acepta un body válido y retorna los datos parseados" time="0.001820619">
+        </testcase>
+        <testcase classname="tests/unit/registro/register.validate-dto.test.ts" name="registerDto (validación del body en POST /auth/register) &gt; descarta los campos que no están en el esquema" time="0.00212844">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/registro/registerUser.use-case.test.ts" timestamp="2026-10-25T09:57:40.971Z" hostname="vm" tests="8" failures="0" errors="0" skipped="0" time="0.018979839">
+        <testcase classname="tests/unit/registro/registerUser.use-case.test.ts" name="registerUser &gt; lanza AppError 409 cuando el email ya existe" time="0.004701348">
+        </testcase>
+        <testcase classname="tests/unit/registro/registerUser.use-case.test.ts" name="registerUser &gt; el error lanzado es una instancia de AppError" time="0.000907741">
+        </testcase>
+        <testcase classname="tests/unit/registro/registerUser.use-case.test.ts" name="registerUser &gt; crea el usuario, hashea la contraseña con bcrypt y retorna user + token sin exponer el password" time="0.00453432">
+        </testcase>
+        <testcase classname="tests/unit/registro/registerUser.use-case.test.ts" name="registerUser — costo de bcrypt configurable &gt; con BCRYPT_COST=&quot;&quot; hashea con costo 12" time="0.001947813">
+        </testcase>
+        <testcase classname="tests/unit/registro/registerUser.use-case.test.ts" name="registerUser — costo de bcrypt configurable &gt; con BCRYPT_COST=&quot;10&quot; hashea con costo 10" time="0.003076638">
+        </testcase>
+        <testcase classname="tests/unit/registro/registerUser.use-case.test.ts" name="registerUser — costo de bcrypt configurable &gt; con BCRYPT_COST=&quot;8&quot; hashea con costo 10" time="0.000913676">
+        </testcase>
+        <testcase classname="tests/unit/registro/registerUser.use-case.test.ts" name="registerUser — costo de bcrypt configurable &gt; con BCRYPT_COST=&quot;20&quot; hashea con costo 14" time="0.000848614">
+        </testcase>
+        <testcase classname="tests/unit/registro/registerUser.use-case.test.ts" name="registerUser — costo de bcrypt configurable &gt; con BCRYPT_COST=&quot;abc&quot; hashea con costo 12" time="0.000676994">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/validacion-credenciales/emailSchema.test.ts" timestamp="2026-10-25T09:57:40.972Z" hostname="vm" tests="16" failures="0" errors="0" skipped="0" time="0.020024244">
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — formato (registro y login) &gt; rechaza un correo sin dominio" time="0.007611637">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — formato (registro y login) &gt; rechaza un correo sin arroba" time="0.000836394">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — formato (registro y login) &gt; rechaza un correo sin nombre" time="0.000548966">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — formato (registro y login) &gt; rechaza un correo vacío" time="0.000440553">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — formato (registro y login) &gt; aplica el mismo formato en loginDto" time="0.000597401">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — normalización &gt; el registro guarda el correo en minúsculas y sin espacios" time="0.000419613">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — normalización &gt; el login normaliza igual, así que encuentra la cuenta escrita con mayúsculas" time="0.000357541">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — dominios permitidos (solo registro) &gt; acepta el dominio gmail.com" time="0.00043251">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — dominios permitidos (solo registro) &gt; acepta el dominio outlook.com" time="0.000440971">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — dominios permitidos (solo registro) &gt; acepta el dominio hotmail.com" time="0.0028317">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — dominios permitidos (solo registro) &gt; acepta el dominio yahoo.com" time="0.002406333">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — dominios permitidos (solo registro) &gt; acepta el dominio icloud.com" time="0.000263729">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — dominios permitidos (solo registro) &gt; rechaza el dominio empresa.com con el mensaje que ve el usuario" time="0.000496245">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — dominios permitidos (solo registro) &gt; rechaza el dominio gmail.co con el mensaje que ve el usuario" time="0.000279643">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — dominios permitidos (solo registro) &gt; rechaza el dominio mail.gmail.com con el mensaje que ve el usuario" time="0.000226814">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/emailSchema.test.ts" name="validación de email — dominios permitidos (solo registro) &gt; el login no exige dominio: la cuenta admin@celularpro.co puede ingresar" time="0.000270008">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/validacion-credenciales/login-limiter.middleware.test.ts" timestamp="2026-10-25T09:57:40.975Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.01498325">
+        <testcase classname="tests/unit/validacion-credenciales/login-limiter.middleware.test.ts" name="limitarIntentosLogin — ramas defensivas &gt; sin req.ip ni email en el body agrupa los intentos bajo una clave común" time="0.008371277">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/login-limiter.middleware.test.ts" name="limitarIntentosLogin — ramas defensivas &gt; cuando falta menos de un minuto usa el singular &quot;minuto&quot;" time="0.004071923">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/login-limiter.middleware.test.ts" name="limitarIntentosLogin — ramas defensivas &gt; una respuesta que no es 401 ni 200 (p. ej. 403) no suma ni borra fallos" time="0.001479689">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/validacion-credenciales/password-policy.test.ts" timestamp="2026-10-25T09:57:40.975Z" hostname="vm" tests="15" failures="0" errors="0" skipped="0" time="0.025171172">
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — regla de dominio &gt; acepta una contraseña con minúscula, mayúscula y número de 8 caracteres" time="0.008010597">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — regla de dominio &gt; rechaza una contraseña corta" time="0.000736204">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — regla de dominio &gt; rechaza una contraseña sin minúscula" time="0.000372424">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — regla de dominio &gt; rechaza una contraseña sin mayúscula" time="0.000411265">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — regla de dominio &gt; rechaza una contraseña sin número" time="0.000299085">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — regla de dominio &gt; acumula todos los problemas en un orden fijo" time="0.000511443">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — regla de dominio &gt; con 7 caracteres la contraseña es válida: false" time="0.001052425">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — regla de dominio &gt; con 8 caracteres la contraseña es válida: true" time="0.000389339">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — regla de dominio &gt; con 72 caracteres la contraseña es válida: true" time="0.000571582">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — regla de dominio &gt; con 73 caracteres la contraseña es válida: false" time="0.003248138">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — DTO de registro &gt; devuelve el mensaje de la regla incumplida en el campo password" time="0.004706096">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — DTO de registro &gt; acepta una contraseña que cumple todas las reglas" time="0.000577717">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — DTO de cambio de contraseña &gt; aplica la misma política a la contraseña nueva" time="0.000422289">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — DTO de cambio de contraseña &gt; no permite repetir la contraseña actual" time="0.001369323">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/password-policy.test.ts" name="política de contraseñas — DTO de cambio de contraseña &gt; exige la contraseña actual" time="0.000427848">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/unit/validacion-credenciales/validate.middleware.test.ts" timestamp="2026-10-25T09:57:40.983Z" hostname="vm" tests="3" failures="0" errors="0" skipped="0" time="0.014446963">
+        <testcase classname="tests/unit/validacion-credenciales/validate.middleware.test.ts" name="validate middleware &gt; responde 400 con un arreglo de errores por campo cuando el body es inválido" time="0.010820472">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/validate.middleware.test.ts" name="validate middleware &gt; reemplaza req.body con los datos parseados y llama next() cuando el body es válido" time="0.001405">
+        </testcase>
+        <testcase classname="tests/unit/validacion-credenciales/validate.middleware.test.ts" name="validate middleware &gt; valida req.query en lugar de req.body cuando source = &quot;query&quot;" time="0.000980269">
+        </testcase>
+    </testsuite>
+</testsuites>

@@ -14,5 +14,5 @@
     "rootDir": ".",
     "declaration": false
   },
-  "include": ["src/**/*", "tests/**/*", "vitest.config.ts"]
+  "include": ["src/**/*", "tests/**/*", "vitest.config.ts", "vitest.carga.config.ts"]
 }

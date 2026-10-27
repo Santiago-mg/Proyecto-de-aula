@@ -1,0 +1,26 @@
+EVIDENCIAS DE LA MATRIZ DE TRAZABILIDAD — CelularPro
+====================================================
+
+La matriz tiene 360 casos: 30 por cada una de las 12 funcionalidades (RF-01 a RF-12).
+Todos se ejecutaron y pasaron. Cubren las 59 reglas de negocio de las 12 funcionalidades.
+
+Archivos:
+  junit-vitest-frontend.xml, log-vitest-frontend.txt   Vitest del frontend (415 pruebas, todas pasan)
+  junit-vitest-backend.xml,  log-vitest-backend.txt    Vitest del backend (462 pruebas, todas pasan)
+  junit-serenity.xml, log-serenity-ejecucion.txt       Serenity/JS, Screenplay + Gherkin (35 de 35 pasan)
+  junit-nexus.xml, log-nexus-ejecucion.txt             Autify Nexus, Playwright (18 de 18 pasan)
+  junit-katalon-suite.xml, resultados-katalon-suite.json,
+  log-katalon-ejecucion.txt                            Katalon, Selenese (29 de 29 pasan)
+  api-simulada-usada-en-e2e.ts                         API usada por las pruebas E2E (ver abajo)
+
+Cada fila de la matriz cita en la columna Evidencia el reporte JUnit y el log de su suite.
+El ID del caso (VF-..., VB-..., SJ-..., KT-..., NX-...) indica la herramienta:
+  VF = Vitest frontend · VB = Vitest backend · SJ = Serenity/JS · KT = Katalon · NX = Autify Nexus
+
+Entorno de las pruebas E2E (Serenity, Katalon, Nexus):
+  - Navegador real Chromium 153 (el mismo que usa Playwright 1.63).
+  - Frontend: build de producción servido con vite preview.
+  - Backend: la API simulada del equipo (Proyecto-de-aula-mario/frontend/e2e/support/api-simulada.ts),
+    con las mismas reglas, códigos y mensajes del backend real. Se le agregaron, replicando el código
+    del backend real y marcados con "AGREGADO": POST /phones (crear celular) y el límite de intentos
+    de inicio de sesión (5 fallos por cuenta en 15 minutos -> 429).

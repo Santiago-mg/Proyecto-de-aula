@@ -1,0 +1,25 @@
+fileType: momentic/test/v2
+id: celularpro-api-roles
+description: Control de roles — el administrador entra a las rutas de administración y un registro que pide rol ADMIN queda como USER
+defaultEnv: local
+labels: [api, roles]
+steps:
+  - module: ../modules/token-admin.module.yaml
+  - request:
+      url: "{{ env.API_URL }}/admin/users"
+      method: GET
+      headers:
+        Authorization: "Bearer {{ env.TOKEN_ADMIN }}"
+      saveAs: USUARIOS
+  - javascript:
+      code: return `api.rol+${Date.now()}@gmail.com`
+      saveAs: CORREO_ROL
+  - request:
+      url: "{{ env.API_URL }}/auth/register"
+      method: POST
+      body: '{"name":"Intento Admin","email":"{{ env.CORREO_ROL }}","password":"{{ env.CLAVE_PRUEBA }}","role":"ADMIN"}'
+      saveAs: REGISTRO_CON_ROL
+  - javascript:
+      code: |
+        if (!Array.isArray(env.USUARIOS.json.data)) throw new Error('el administrador no recibió la lista de usuarios')
+        if (env.REGISTRO_CON_ROL.json.data.user.role !== 'USER') throw new Error('el registro aceptó el rol ADMIN')

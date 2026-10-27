@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "outDir": "lib",
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "features/**/*.ts",
+    "screenplay/**/*.ts",
+    "support/**/*.ts",
+    "katalon/**/*.ts",
+    "calidad/**/*.ts"
+  ],
+  "ts-node": {
+    "moduleTypes": {
+      "../src/validation/**/*": "cjs"
+    }
+  }
+}

@@ -2,6 +2,22 @@ import { NextFunction, Request, Response } from 'express'
 import { ZodError } from 'zod'
 import { AppError } from '../../domain/AppError'
 
+interface ErrorDeBodyParser extends Error {
+  status: number
+  expose: boolean
+  type?: string
+}
+
+function esErrorDelCliente(err: Error): err is ErrorDeBodyParser {
+  const e = err as Partial<ErrorDeBodyParser>
+  return (
+    e.expose === true &&
+    typeof e.status === 'number' &&
+    e.status >= 400 &&
+    e.status < 500
+  )
+}
+
 export function errorHandler(
   err: Error,
   _req: Request,
@@ -23,6 +39,19 @@ export function errorHandler(
         field: e.path.join('.'),
         message: e.message,
       })),
+    })
+    return
+  }
+
+  // Errores de express.json(): JSON malformado (400), cuerpo demasiado
+  // grande (413), etc. body-parser los marca con status 4xx y expose=true.
+  // Son culpa del cliente; antes caían al 500 de abajo.
+  if (esErrorDelCliente(err)) {
+    res.status(err.status).json({
+      error:
+        err.type === 'entity.parse.failed'
+          ? 'El cuerpo de la petición no es un JSON válido'
+          : 'Petición inválida',
     })
     return
   }

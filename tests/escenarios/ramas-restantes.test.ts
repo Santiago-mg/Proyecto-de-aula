@@ -1,5 +1,4 @@
-import { expect } from 'chai'
-import { afterEach, beforeEach, describe, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import request from 'supertest'
 import app from '../../src/app'
 import { prismaMock } from '../helpers/prisma-mock'
@@ -29,46 +28,36 @@ afterEach(() => {
 
 describe('Fallos al consultar listados', () => {
   it('si falla la consulta de mis pedidos → 500', async () => {
-    // Arrange
     const { token } = autenticar()
     prismaMock.order.findMany.mockRejectedValue(new Error('timeout'))
 
-    // Act
     const res = await request(app)
       .get('/api/v1/orders/my')
       .set('Authorization', `Bearer ${token}`)
 
-    // Assert
-    expect(res.status).to.equal(500)
+    expect(res.status).toBe(500)
   })
 
   it('si falla el conteo del catálogo → 500', async () => {
-    // Arrange
     prismaMock.phone.count.mockRejectedValue(new Error('timeout'))
 
-    // Act
     const res = await request(app).get('/api/v1/phones')
 
-    // Assert
-    expect(res.status).to.equal(500)
+    expect(res.status).toBe(500)
   })
 
   it('si falla la consulta del listado de usuarios → 500', async () => {
-    // Arrange
     const { token } = autenticarAdmin()
     prismaMock.user.count.mockRejectedValue(new Error('timeout'))
 
-    // Act
     const res = await request(app)
       .get('/api/v1/admin/users')
       .set('Authorization', `Bearer ${token}`)
 
-    // Assert
-    expect(res.status).to.equal(500)
+    expect(res.status).toBe(500)
   })
 
   it('si falla la lectura del perfil después de validar el token → 500', async () => {
-    // Arrange
     const { user, token } = autenticar()
     // La primera lectura es la del middleware y funciona; la segunda, la que
     // hace getProfile() para armar el perfil, se cae.
@@ -76,17 +65,14 @@ describe('Fallos al consultar listados', () => {
     prismaMock.user.findUnique.mockResolvedValueOnce(user)
     prismaMock.user.findUnique.mockRejectedValueOnce(new Error('timeout'))
 
-    // Act
     const res = await request(app)
       .get('/api/v1/auth/me')
       .set('Authorization', `Bearer ${token}`)
 
-    // Assert
-    expect(res.status).to.equal(500)
+    expect(res.status).toBe(500)
   })
 
   it('si el usuario desaparece entre validar el token y leer el perfil → 404', async () => {
-    // Arrange
     const { user, token } = autenticar()
     // El middleware alcanza a leerlo, pero para cuando getProfile() consulta
     // de nuevo la fila ya no está (se borró la cuenta en medio).
@@ -94,20 +80,17 @@ describe('Fallos al consultar listados', () => {
     prismaMock.user.findUnique.mockResolvedValueOnce(user)
     prismaMock.user.findUnique.mockResolvedValueOnce(null)
 
-    // Act
     const res = await request(app)
       .get('/api/v1/auth/me')
       .set('Authorization', `Bearer ${token}`)
 
-    // Assert
-    expect(res.status).to.equal(404)
-    expect(res.body.error).to.equal('Usuario no encontrado')
+    expect(res.status).toBe(404)
+    expect(res.body.error).toBe('Usuario no encontrado')
   })
 })
 
 describe('En producción no se filtra el detalle del error', () => {
   it('la respuesta 500 no expone el mensaje interno', async () => {
-    // Arrange
     const original = process.env.NODE_ENV
     process.env.NODE_ENV = 'production'
     const { token } = autenticarAdmin()
@@ -115,33 +98,28 @@ describe('En producción no se filtra el detalle del error', () => {
       new Error('relation "orders" does not exist en 127.0.0.1:5432'),
     )
 
-    // Act
     const res = await request(app)
       .get('/api/v1/orders')
       .set('Authorization', `Bearer ${token}`)
 
-    // Assert
-    expect(res.status).to.equal(500)
-    expect(res.body.error).to.equal('Error interno del servidor')
+    expect(res.status).toBe(500)
+    expect(res.body.error).toBe('Error interno del servidor')
     // Fuera de producción sí viaja `detail`; aquí filtraría la tabla y el host.
-    expect(res.body).to.not.have.property('detail')
+    expect(res.body).not.toHaveProperty('detail')
 
     process.env.NODE_ENV = original
   })
 
   it('fuera de producción sí incluye el detalle, para diagnosticar', async () => {
-    // Arrange
     const { token } = autenticarAdmin()
     prismaMock.order.count.mockRejectedValue(new Error('fallo de prueba'))
 
-    // Act
     const res = await request(app)
       .get('/api/v1/orders')
       .set('Authorization', `Bearer ${token}`)
 
-    // Assert
-    expect(res.status).to.equal(500)
-    expect(res.body.detail).to.equal('fallo de prueba')
+    expect(res.status).toBe(500)
+    expect(res.body.detail).toBe('fallo de prueba')
   })
 })
 
@@ -149,7 +127,6 @@ describe('Estados terminales de un pedido', () => {
   const ORDER_ID = '6ba7b810-9dad-11d1-80b4-00c04fd430c8'
 
   it('un pedido entregado no admite más cambios', async () => {
-    // Arrange
     const { token } = autenticarAdmin()
     prismaMock.order.findUnique.mockResolvedValue({
       id: ORDER_ID,
@@ -157,20 +134,17 @@ describe('Estados terminales de un pedido', () => {
       items: [],
     })
 
-    // Act
     const res = await request(app)
       .put(`/api/v1/orders/${ORDER_ID}/status`)
       .set('Authorization', `Bearer ${token}`)
       .send({ status: 'SHIPPED' })
 
-    // Assert
-    expect(res.status).to.equal(400)
-    expect(res.body.error).to.include('estado final')
-    expect(prismaMock.order.update.mock.calls).to.be.empty
+    expect(res.status).toBe(400)
+    expect(res.body.error).toContain('estado final')
+    expect(prismaMock.order.update).not.toHaveBeenCalled()
   })
 
   it('si falla la escritura del nuevo estado → 500', async () => {
-    // Arrange
     const { token } = autenticarAdmin()
     prismaMock.order.findUnique.mockResolvedValue({
       id: ORDER_ID,
@@ -179,18 +153,15 @@ describe('Estados terminales de un pedido', () => {
     })
     prismaMock.order.update.mockRejectedValue(new Error('deadlock detected'))
 
-    // Act
     const res = await request(app)
       .put(`/api/v1/orders/${ORDER_ID}/status`)
       .set('Authorization', `Bearer ${token}`)
       .send({ status: 'SHIPPED' })
 
-    // Assert
-    expect(res.status).to.equal(500)
+    expect(res.status).toBe(500)
   })
 
   it('un pedido cancelado tampoco revive', async () => {
-    // Arrange
     const { token } = autenticarAdmin()
     prismaMock.order.findUnique.mockResolvedValue({
       id: ORDER_ID,
@@ -198,21 +169,18 @@ describe('Estados terminales de un pedido', () => {
       items: [],
     })
 
-    // Act
     const res = await request(app)
       .put(`/api/v1/orders/${ORDER_ID}/status`)
       .set('Authorization', `Bearer ${token}`)
       .send({ status: 'CONFIRMED' })
 
-    // Assert
-    expect(res.status).to.equal(400)
-    expect(res.body.error).to.include('estado final')
+    expect(res.status).toBe(400)
+    expect(res.body.error).toContain('estado final')
   })
 })
 
 describe('Mensaje de cuenta suspendida', () => {
   it('sin motivo registrado, el mensaje no inventa uno', async () => {
-    // Arrange
     prismaMock.user.findUnique.mockResolvedValue(
       usuario({
         email: 'baneado@correo.com',
@@ -222,32 +190,27 @@ describe('Mensaje de cuenta suspendida', () => {
       }),
     )
 
-    // Act
     const res = await request(app)
       .post('/api/v1/auth/login')
       .send({ email: 'baneado@correo.com', password: 'password123' })
 
-    // Assert
-    expect(res.status).to.equal(403)
-    expect(res.body.error).to.equal('Tu cuenta ha sido suspendida.')
-    expect(res.body.error).to.not.include('Motivo')
+    expect(res.status).toBe(403)
+    expect(res.body.error).toBe('Tu cuenta ha sido suspendida.')
+    expect(res.body.error).not.toContain('Motivo')
   })
 
   it('el middleware tampoco inventa motivo cuando no lo hay', async () => {
-    // Arrange
     const { token } = autenticar()
     prismaMock.user.findUnique.mockResolvedValue(
       usuario({ banned: true, banReason: null }),
     )
 
-    // Act
     const res = await request(app)
       .get('/api/v1/auth/me')
       .set('Authorization', `Bearer ${token}`)
 
-    // Assert
-    expect(res.status).to.equal(403)
-    expect(res.body.error).to.equal('Tu cuenta ha sido suspendida.')
+    expect(res.status).toBe(403)
+    expect(res.body.error).toBe('Tu cuenta ha sido suspendida.')
   })
 })
 
@@ -272,79 +235,69 @@ describe('Un celular con todas sus relaciones', () => {
   }
 
   it('al crearlo, se guardan las relaciones y vuelven ya mapeadas', async () => {
-    // Arrange
     const { token } = autenticarAdmin()
     prismaMock.phone.findUnique.mockResolvedValue(null)
     prismaMock.phone.create.mockResolvedValue(celularCompleto())
 
-    // Act
     const res = await request(app)
       .post(CELULARES)
       .set('Authorization', `Bearer ${token}`)
       .send(bodyCelularValido(relacionesEnviadas))
 
-    // Assert
-    expect(res.status).to.equal(201)
-    expect(res.body.data.images[0]).to.deep.include({
+    expect(res.status).toBe(201)
+    expect(res.body.data.images[0]).toMatchObject({
       url: 'https://cdn.test/1.jpg',
       position: 0,
     })
-    expect(res.body.data.colors[0]).to.deep.include({
+    expect(res.body.data.colors[0]).toMatchObject({
       colorId: 'negro',
       name: 'Negro',
       hex: '#000000',
     })
     // Las características viajan como objetos en la base y como texto plano
     // hacia afuera.
-    expect(res.body.data.features).to.deep.equal(['Carga rápida'])
+    expect(res.body.data.features).toEqual(['Carga rápida'])
   })
 
   it('al editarlo, las relaciones se reemplazan por completo', async () => {
-    // Arrange
     const { token } = autenticarAdmin()
     prismaMock.phone.findUnique.mockResolvedValue(celularCompleto())
     prismaMock.phone.update.mockResolvedValue(celularCompleto())
 
-    // Act
     const res = await request(app)
       .put(`${CELULARES}/${PHONE_ID}`)
       .set('Authorization', `Bearer ${token}`)
       .send(relacionesEnviadas)
 
-    // Assert
-    expect(res.status).to.equal(200)
+    expect(res.status).toBe(200)
     // deleteMany + create: se borra lo anterior antes de escribir lo nuevo.
     const [args] = prismaMock.phone.update.mock.calls[0] as [
       { data: Record<string, { deleteMany?: unknown }> },
     ]
-    expect(args.data.images.deleteMany).to.deep.equal({})
-    expect(args.data.colors.deleteMany).to.deep.equal({})
-    expect(args.data.features.deleteMany).to.deep.equal({})
+    expect(args.data.images.deleteMany).toEqual({})
+    expect(args.data.colors.deleteMany).toEqual({})
+    expect(args.data.features.deleteMany).toEqual({})
   })
 })
 
 describe('Filas incompletas que llegan del motor', () => {
   it('si el usuario viene sin el conteo de pedidos, el panel muestra 0', async () => {
-    // Arrange
     const { token } = autenticarAdmin()
     // usuario() no trae _count; usuarioConConteo() sí. Este es el caso en que
     // la consulta se hizo sin el include y mapUser tiene que resolverlo.
     const objetivo = usuario({ banned: true, banReason: 'incumplimiento' })
     prismaMock.user.update.mockResolvedValue(objetivo)
 
-    // Act
     const res = await request(app)
       .put(`/api/v1/admin/users/${objetivo.id}/ban`)
       .set('Authorization', `Bearer ${token}`)
       .send({ reason: 'incumplimiento' })
 
-    // Assert
-    expect(res.status).to.equal(200)
-    expect(res.body.data.orderCount).to.equal(0)
+    expect(res.status).toBe(200)
+    expect(res.body.data.orderCount).toBe(0)
   })
 
   it('un groupBy sin sumas (todas en null) no rompe los ingresos', async () => {
-    // Arrange
     const { token } = autenticarAdmin()
     prismaMock.user.count.mockResolvedValue(0)
     prismaMock.phone.count.mockResolvedValue(0)
@@ -359,14 +312,12 @@ describe('Filas incompletas que llegan del motor', () => {
     prismaMock.order.aggregate.mockResolvedValue({ _sum: { total: null } })
     prismaMock.order.findMany.mockResolvedValue([])
 
-    // Act
     const res = await request(app)
       .get('/api/v1/admin/stats')
       .set('Authorization', `Bearer ${token}`)
 
-    // Assert
-    expect(res.status).to.equal(200)
-    expect(res.body.data.orders).to.deep.include({
+    expect(res.status).toBe(200)
+    expect(res.body.data.orders).toMatchObject({
       total: 15,
       pending: 1,
       confirmed: 2,
@@ -381,36 +332,28 @@ describe('Filas incompletas que llegan del motor', () => {
 
 describe('CORS', () => {
   it('sin FRONTEND_URL configurado, acepta cualquier origen', async () => {
-    // Arrange
     const original = process.env.FRONTEND_URL
     process.env.FRONTEND_URL = ''
     vi.resetModules()
 
     const { default: appSinOrigen } = await import('../../src/app')
-
-    // Act
     const res = await request(appSinOrigen).get('/health')
 
-    // Assert
-    expect(res.headers['access-control-allow-origin']).to.equal('*')
+    expect(res.headers['access-control-allow-origin']).toBe('*')
 
     process.env.FRONTEND_URL = original
     vi.resetModules()
   })
 
   it('con FRONTEND_URL configurado, responde con ese origen', async () => {
-    // Arrange
     const original = process.env.FRONTEND_URL
     process.env.FRONTEND_URL = 'https://celularpro.co'
     vi.resetModules()
 
     const { default: appConOrigen } = await import('../../src/app')
-
-    // Act
     const res = await request(appConOrigen).get('/health')
 
-    // Assert
-    expect(res.headers['access-control-allow-origin']).to.equal(
+    expect(res.headers['access-control-allow-origin']).toBe(
       'https://celularpro.co',
     )
 

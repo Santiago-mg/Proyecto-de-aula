@@ -1,0 +1,49 @@
+{
+  "name": "celularpro-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pruebas E2E de CelularPro: Serenity/JS + Cucumber (Gherkin) + Playwright con el patrón Screenplay",
+  "scripts": {
+    "clean": "node scripts/clean.js",
+    "build:front": "node scripts/build-front.js",
+    "typecheck": "tsc --noEmit",
+    "pretest": "npm run clean && npm run build:front",
+    "test": "cucumber-js",
+    "test:smoke": "npm test -- --tags @smoke",
+    "test:registro": "npm test -- --tags @registro",
+    "test:inicio-sesion": "npm test -- --tags @inicio-sesion",
+    "test:gestion-perfil": "npm test -- --tags @gestion-perfil",
+    "test:validacion-credenciales": "npm test -- --tags @validacion-credenciales",
+    "test:control-roles": "npm test -- --tags @control-roles",
+    "test:alerta-stock": "npm test -- --tags @alerta-stock",
+    "test:real": "cucumber-js",
+    "test:report": "html-reporter serve --dir reports/serenity-js --port 8080 --open",
+    "test:katalon": "ts-node katalon/validar-suite.ts",
+    "pretest:katalon": "npm run build:front",
+    "test:accesibilidad": "ts-node calidad/accesibilidad.ts",
+    "pretest:accesibilidad": "npm run build:front",
+    "test:interfaz": "ts-node calidad/interfaz.ts",
+    "pretest:interfaz": "npm run build:front",
+    "evidencias": "node scripts/evidencias.js",
+    "api:simulada": "ts-node support/levantar-api-simulada.ts"
+  },
+  "engines": {
+    "node": "^22.22.2 || ^24.15.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@cucumber/cucumber": "13.3.0",
+    "@serenity-js/assertions": "3.48.0",
+    "@serenity-js/console-reporter": "3.48.0",
+    "@serenity-js/core": "3.48.0",
+    "@serenity-js/cucumber": "3.48.0",
+    "@serenity-js/html-reporter": "3.48.0",
+    "@serenity-js/playwright": "3.48.0",
+    "@serenity-js/rest": "3.48.0",
+    "@serenity-js/web": "3.48.0",
+    "@types/node": "24.10.0",
+    "playwright": "1.63.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.9.3"
+  }
+}

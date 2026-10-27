@@ -1,0 +1,320 @@
+{
+  "fecha": "2026-10-12T02:00:29.675Z",
+  "estandar": "WCAG 2.1 A/AA (axe-core)",
+  "pantallas": [
+    {
+      "pantalla": "Inicio",
+      "ruta": "/",
+      "rol": "anonimo",
+      "captura": "_.png",
+      "reglasEvaluadas": 24,
+      "violaciones": [
+        {
+          "regla": "color-contrast",
+          "impacto": "serious",
+          "descripcion": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag2aa",
+            "wcag143"
+          ],
+          "ayuda": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright",
+          "elementos": [
+            {
+              "selector": ".cp-footer-bottom > span:nth-child(1)",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.39 (foreground color: #3f4f6a, background color: #050a14, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".cp-footer-bottom > span:nth-child(2)",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.39 (foreground color: #3f4f6a, background color: #050a14, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pantalla": "Catálogo",
+      "ruta": "/catalog",
+      "rol": "anonimo",
+      "captura": "_catalog.png",
+      "reglasEvaluadas": 25,
+      "violaciones": [
+        {
+          "regla": "color-contrast",
+          "impacto": "serious",
+          "descripcion": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag2aa",
+            "wcag143"
+          ],
+          "ayuda": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright",
+          "elementos": [
+            {
+              "selector": ".cp-footer-bottom > span:nth-child(1)",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.39 (foreground color: #3f4f6a, background color: #050a14, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".cp-footer-bottom > span:nth-child(2)",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.39 (foreground color: #3f4f6a, background color: #050a14, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "regla": "select-name",
+          "impacto": "critical",
+          "descripcion": "Select element must have an accessible name",
+          "wcag": [
+            "wcag2a",
+            "wcag412"
+          ],
+          "ayuda": "https://dequeuniversity.com/rules/axe/4.10/select-name?application=playwright",
+          "elementos": [
+            {
+              "selector": ".cp-filter-group:nth-child(4) > select",
+              "resumen": "Fix any of the following:   Element does not have an implicit (wrapped) <label>   Element does not have an explicit <label>"
+            },
+            {
+              "selector": ".cp-filter-group:nth-child(5) > select",
+              "resumen": "Fix any of the following:   Element does not have an implicit (wrapped) <label>   Element does not have an explicit <label>"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pantalla": "Iniciar sesión",
+      "ruta": "/login",
+      "rol": "anonimo",
+      "captura": "_login.png",
+      "reglasEvaluadas": 14,
+      "violaciones": [
+        {
+          "regla": "link-in-text-block",
+          "impacto": "serious",
+          "descripcion": "Links must be distinguishable without relying on color",
+          "wcag": [
+            "wcag2a",
+            "wcag141"
+          ],
+          "ayuda": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block?application=playwright",
+          "elementos": [
+            {
+              "selector": ".cp-link",
+              "resumen": "Fix any of the following:   The link has insufficient color contrast of 2.24:1 with the surrounding text. (Minimum contrast is 3:1, link text: #00e5ff, surrounding text: #7d8ba3)   The link has no styling (such as underline) to distinguish it from the surrounding text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pantalla": "Registro",
+      "ruta": "/register",
+      "rol": "anonimo",
+      "captura": "_register.png",
+      "reglasEvaluadas": 19,
+      "violaciones": [
+        {
+          "regla": "link-in-text-block",
+          "impacto": "serious",
+          "descripcion": "Links must be distinguishable without relying on color",
+          "wcag": [
+            "wcag2a",
+            "wcag141"
+          ],
+          "ayuda": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block?application=playwright",
+          "elementos": [
+            {
+              "selector": ".cp-link",
+              "resumen": "Fix any of the following:   The link has insufficient color contrast of 2.24:1 with the surrounding text. (Minimum contrast is 3:1, link text: #00e5ff, surrounding text: #7d8ba3)   The link has no styling (such as underline) to distinguish it from the surrounding text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pantalla": "Mis pedidos",
+      "ruta": "/dashboard",
+      "rol": "cliente",
+      "captura": "_dashboard.png",
+      "reglasEvaluadas": 23,
+      "violaciones": [
+        {
+          "regla": "color-contrast",
+          "impacto": "serious",
+          "descripcion": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag2aa",
+            "wcag143"
+          ],
+          "ayuda": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright",
+          "elementos": [
+            {
+              "selector": ".cp-footer-bottom > span:nth-child(1)",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.39 (foreground color: #3f4f6a, background color: #050a14, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".cp-footer-bottom > span:nth-child(2)",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.39 (foreground color: #3f4f6a, background color: #050a14, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pantalla": "Mi perfil",
+      "ruta": "/profile",
+      "rol": "cliente",
+      "captura": "_profile.png",
+      "reglasEvaluadas": 28,
+      "violaciones": [
+        {
+          "regla": "color-contrast",
+          "impacto": "serious",
+          "descripcion": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag2aa",
+            "wcag143"
+          ],
+          "ayuda": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright",
+          "elementos": [
+            {
+              "selector": "#new-password-ayuda",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.39 (foreground color: #3f4f6a, background color: #050a14, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".cp-footer-bottom > span:nth-child(1)",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.39 (foreground color: #3f4f6a, background color: #050a14, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".cp-footer-bottom > span:nth-child(2)",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.39 (foreground color: #3f4f6a, background color: #050a14, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pantalla": "Panel de administración",
+      "ruta": "/admin",
+      "rol": "admin",
+      "captura": "_admin.png",
+      "reglasEvaluadas": 13,
+      "violaciones": [
+        {
+          "regla": "color-contrast",
+          "impacto": "serious",
+          "descripcion": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag2aa",
+            "wcag143"
+          ],
+          "ayuda": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright",
+          "elementos": [
+            {
+              "selector": ".cp-admin-brand-sub",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.25 (foreground color: #3f4f6a, background color: #0b1224, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".cp-kpi-cyan > .cp-kpi-sub",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.25 (foreground color: #3f4f6a, background color: #0b1224, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".cp-kpi-violet > .cp-kpi-sub",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.25 (foreground color: #3f4f6a, background color: #0b1224, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".cp-kpi-green > .cp-kpi-sub",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.25 (foreground color: #3f4f6a, background color: #0b1224, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".cp-kpi-orange > .cp-kpi-sub",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.25 (foreground color: #3f4f6a, background color: #0b1224, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pantalla": "Usuarios (admin)",
+      "ruta": "/admin/users",
+      "rol": "admin",
+      "captura": "_admin_users.png",
+      "reglasEvaluadas": 21,
+      "violaciones": [
+        {
+          "regla": "color-contrast",
+          "impacto": "serious",
+          "descripcion": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag2aa",
+            "wcag143"
+          ],
+          "ayuda": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright",
+          "elementos": [
+            {
+              "selector": ".cp-admin-brand-sub",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.25 (foreground color: #3f4f6a, background color: #0b1224, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr:nth-child(3) > td:nth-child(2) > .cp-badge",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 4.13 (foreground color: #a855f7, background color: #211a3f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pantalla": "Celulares (admin)",
+      "ruta": "/admin/phones",
+      "rol": "admin",
+      "captura": "_admin_phones.png",
+      "reglasEvaluadas": 14,
+      "violaciones": [
+        {
+          "regla": "color-contrast",
+          "impacto": "serious",
+          "descripcion": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag2aa",
+            "wcag143"
+          ],
+          "ayuda": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright",
+          "elementos": [
+            {
+              "selector": ".cp-admin-brand-sub",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.25 (foreground color: #3f4f6a, background color: #0b1224, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pantalla": "Acceso no autorizado",
+      "ruta": "/unauthorized",
+      "rol": "anonimo",
+      "captura": "_unauthorized.png",
+      "reglasEvaluadas": 22,
+      "violaciones": [
+        {
+          "regla": "color-contrast",
+          "impacto": "serious",
+          "descripcion": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag2aa",
+            "wcag143"
+          ],
+          "ayuda": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright",
+          "elementos": [
+            {
+              "selector": ".cp-footer-bottom > span:nth-child(1)",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.39 (foreground color: #3f4f6a, background color: #050a14, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".cp-footer-bottom > span:nth-child(2)",
+              "resumen": "Fix any of the following:   Element has insufficient color contrast of 2.39 (foreground color: #3f4f6a, background color: #050a14, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

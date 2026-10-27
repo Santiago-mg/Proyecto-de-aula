@@ -1,0 +1,86 @@
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /home/claude/a/Proyecto-de-aula-mario
+
+ ✓ tests/unit/catalogo/phones.use-cases.test.ts (15 tests) 70ms
+ ✓ tests/escenarios/ramas-restantes.test.ts (18 tests) 337ms
+ ✓ tests/escenarios/esc-31-alertas-stock.test.ts (15 tests) 114ms
+ ✓ tests/unit/pedidos/orders.use-cases.test.ts (25 tests) 29ms
+ ✓ tests/escenarios/esc-13-recomendacion-productos.test.ts (16 tests) 100ms
+ ✓ tests/escenarios/esc-32-lista-favoritos.test.ts (17 tests) 104ms
+ ✓ tests/escenarios/ramas-de-error.test.ts (11 tests) 120ms
+ ✓ tests/regression/regresion.test.ts (11 tests) 15ms
+stderr | tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts > ESC-27 — Desbanear usuario: seguridad y errores > un fallo inesperado de la base → 500 con el mensaje genérico
+[ERROR 500] conexión perdida con la base de datos
+Error: conexión perdida con la base de datos
+    at /home/claude/a/Proyecto-de-aula-mario/tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts:125:46
+    at file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:146:14
+    at file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:533:11
+    at runWithTimeout (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:39:7)
+    at runTest (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1056:17)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at runSuite (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runSuite (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runFiles (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1262:5)
+    at startTests (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1271:3)
+
+stderr | tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts > ESC-27 — Desbanear usuario: seguridad y errores > en producción ese fallo no expone el detalle interno
+[ERROR 500] conexión perdida con la base de datos
+Error: conexión perdida con la base de datos
+    at /home/claude/a/Proyecto-de-aula-mario/tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts:136:46
+    at file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:146:14
+    at file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:533:11
+    at runWithTimeout (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:39:7)
+    at runTest (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1056:17)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at runSuite (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runSuite (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runFiles (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1262:5)
+    at startTests (file:///home/claude/a/Proyecto-de-aula-mario/node_modules/@vitest/runner/dist/index.js:1271:3)
+
+ ✓ tests/escenarios/esc-27-desbanear-usuario-ampliacion.test.ts (18 tests) 124ms
+ ✓ tests/escenarios/esc-26-banear-usuario.test.ts (8 tests) 96ms
+ ✓ tests/escenarios/catalogo-publico.test.ts (14 tests) 98ms
+ ✓ tests/escenarios/esc-29-panel-estadisticas.test.ts (9 tests) 105ms
+ ✓ tests/seguridad/seguridad-credenciales.test.ts (17 tests) 101ms
+ ✓ tests/escenarios/esc-30-administracion-catalogo.test.ts (10 tests) 85ms
+ ✓ tests/unit/login/authenticate.middleware.test.ts (8 tests) 20ms
+ ✓ tests/unit/errores/error.middleware.test.ts (12 tests) 35ms
+ ✓ tests/escenarios/gestion-perfil.test.ts (11 tests) 112ms
+ ✓ tests/escenarios/pedidos.test.ts (12 tests) 132ms
+ ✓ tests/fluent/asserciones-fluidas.test.ts (12 tests) 21ms
+ ✓ tests/unit/catalogo/recomendaciones.test.ts (16 tests) 19ms
+ ✓ tests/fluent/credenciales-y-perfil.test.ts (10 tests) 19ms
+ ✓ tests/unit/alertas/stock-alerts.test.ts (14 tests) 17ms
+ ✓ tests/escenarios/autenticacion.test.ts (10 tests) 77ms
+ ✓ tests/escenarios/esc-28-consultar-usuarios.test.ts (7 tests) 69ms
+ ✓ tests/seguridad/fuerza-bruta.test.ts (10 tests) 371ms
+ ✓ tests/escenarios/esc-28-consultar-usuarios-ampliacion.test.ts (14 tests) 101ms
+ ✓ tests/unit/favoritos/favorites.use-cases.test.ts (8 tests) 19ms
+ ✓ tests/rendimiento/rendimiento.test.ts (4 tests) 219ms
+ ✓ tests/unit/registro/registerUser.use-case.test.ts (8 tests) 19ms
+ ✓ tests/regression/regresion-credenciales.test.ts (9 tests) 71ms
+ ✓ tests/unit/validacion-credenciales/password-policy.test.ts (15 tests) 25ms
+ ✓ tests/unit/gestion-perfil/updateProfile.use-case.test.ts (10 tests) 18ms
+ ✓ tests/unit/gestion-usuarios/ban.controller.test.ts (3 tests) 12ms
+ ✓ tests/unit/login/loginUser.use-case.test.ts (4 tests) 11ms
+ ✓ tests/escenarios/esc-27-desbanear-usuario.test.ts (5 tests) 49ms
+ ✓ tests/seguridad/cabeceras-seguridad.test.ts (7 tests) 159ms
+ ✓ tests/unit/validacion-credenciales/emailSchema.test.ts (16 tests) 20ms
+ ✓ tests/unit/registro/register.validate-dto.test.ts (6 tests) 22ms
+ ✓ tests/unit/gestion-perfil/changePassword.use-case.test.ts (4 tests) 10ms
+ ✓ tests/escenarios/esc-26-banear-usuario-ampliacion.test.ts (4 tests) 58ms
+ ✓ tests/unit/login/login-enumeracion.test.ts (3 tests) 14ms
+ ✓ tests/unit/validacion-credenciales/login-limiter.middleware.test.ts (3 tests) 15ms
+ ✓ tests/unit/control-roles/changeUserRole.use-case.test.ts (3 tests) 12ms
+ ✓ tests/unit/control-roles/admin.use-cases.test.ts (3 tests) 11ms
+ ✓ tests/unit/gestion-usuarios/unban.controller.test.ts (2 tests) 10ms
+ ✓ tests/unit/validacion-credenciales/validate.middleware.test.ts (3 tests) 14ms
+ ✓ tests/unit/control-roles/requireAdmin.middleware.test.ts (2 tests) 7ms
+
+ Test Files  47 passed (47)
+      Tests  462 passed (462)
+   Start at  09:57:13
+   Duration  27.30s (transform 731ms, setup 461ms, collect 10.13s, tests 3.29s, environment 10ms, prepare 4.24s)
+
+JUNIT report written to /home/claude/evid/junit-vitest-backend.xml

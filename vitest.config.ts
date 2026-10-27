@@ -1,4 +1,11 @@
 import { defineConfig } from 'vitest/config'
+import { RPReporter } from '@reportportal/agent-js-vitest'
+import rp from './reportportal/config.cjs'
+
+// ReportPortal (reportportal/LEEME.md): se suma solo si existe RP_API_KEY.
+const reportePortal = rp.activo()
+  ? [new RPReporter(rp.opciones('api-vitest', 'Backend: unitarias, escenarios de API, regresión, seguridad y rendimiento'))]
+  : []
 
 export default defineConfig({
   test: {
@@ -6,8 +13,14 @@ export default defineConfig({
     //   tests/escenarios  → pruebas de camino básico sobre la API completa
     //   tests/unit        → pruebas unitarias por caso de uso, middleware y DTO
     include: ['tests/**/*.test.ts'],
+    // La carga tiene su propia configuración (vitest.carga.config.ts).
+    exclude: ['node_modules/**', 'tests/carga/**'],
 
     environment: 'node',
+
+    // En CI (Jenkins) también JUnit, que la etapa de pruebas publica
+    reporters: ['default', ...(process.env.CI === 'true' ? ['junit'] : []), ...reportePortal],
+    outputFile: { junit: 'reports/junit.xml' },
 
     // Instala el doble del cliente Prisma y el de bcrypt antes de que
     // cualquier repositorio los importe, y deja el doble en blanco entre
